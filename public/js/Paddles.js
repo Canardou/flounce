@@ -1,4 +1,4 @@
-var paddle=function(game,x,y,orientation,small,initial_angle,angle_max,speed){
+var Paddles=function(game,x,y,orientation,small,initial_angle,angle_max,speed){
     //Constants and functions
     this.initial_angle = initial_angle||0.5;
     this.angle_max = angle_max||0.9;
@@ -58,14 +58,14 @@ var paddle=function(game,x,y,orientation,small,initial_angle,angle_max,speed){
     this.paddle.flipperConstraint.setMotorSpeed(this.orientation*this.speed);
 }
 
-paddle.prototype.up=function(x,y){
+Paddles.prototype.up=function(x,y){
     if(this.orientation==1)
         this.paddle.flipperConstraint.lowerLimit=this.orientation*this.initial_angle-this.angle_max;
     else
         this.paddle.flipperConstraint.upperLimit=this.orientation*this.initial_angle+this.angle_max;
 }
 
-paddle.prototype.down=function(x,y){
+Paddles.prototype.down=function(x,y){
     if(this.orientation==1)
         this.paddle.flipperConstraint.lowerLimit=this.orientation*this.initial_angle;
     else
