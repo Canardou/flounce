@@ -48,7 +48,7 @@ var Paddles=function(game,x,y,orientation,small,initial_angle,angle_max,speed){
     game.physics.p2.enable(this.paddle.pivotPoint,true);
     this.paddle.pivotPoint.body.static=true;
     this.paddle.pivotPoint.body.clearCollision(true,true);
-    this.paddle.flipperConstraint=game.physics.p2.createRevoluteConstraint(this.paddle, 
+    this.paddle.flipperConstraint=game.physics.p2.createRevoluteConstraint(this.paddle,
                                                                             [this.paddle.pivotOffsetX,this.paddle.pivotOffsetY],
                                                                             this.paddle.pivotPoint,
                                                                             [0, 5]);
