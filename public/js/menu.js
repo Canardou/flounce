@@ -7,4 +7,4 @@ var menuState = {
 	var nameLabel = game.add.text(game.world.centerX, 80, 'Flounce', { font: '50px Arial', fill: '#ffffff' });
 	nameLabel.anchor.setTo(0.5, 0.5);
 	}
-}
+};

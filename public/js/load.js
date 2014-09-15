@@ -11,11 +11,11 @@ var loadState = {
 
 		//Loading assets
 		//game.load.image('player', 'assets/player.png');
-    	//game.load.image('enemy', 'assets/enemy.png');
+		//game.load.image('enemy', 'assets/enemy.png');	
     },
 
     create: function() {
-    	//Start the menu
-    	game.state.start('menu');
+		//Start the menu
+		game.state.start('menu');
     }
-}
+};
