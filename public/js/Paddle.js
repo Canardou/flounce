@@ -1,5 +1,5 @@
-/*global pi,cos,sin,def,isDef,rand from utils.js*/
-var Paddles=function(game,x,y,orientation,small,initial_angle,angle_max,speed){
+/*global game,pi,cos,sin,def,isDef,rand from utils.js*/
+var Paddle=function(x,y,orientation,small,initial_angle,angle_max,speed){
     //Constants and functions
     this.initial_angle = def(initial_angle,0.5);
     this.angle_max = def(angle_max,0.9);
@@ -62,21 +62,21 @@ var Paddles=function(game,x,y,orientation,small,initial_angle,angle_max,speed){
     this.paddle.flipperConstraint.setMotorSpeed(this.orientation*this.speed);
 };
 
-Paddles.prototype.up=function(x,y){
+Paddle.prototype.up=function(x,y){
     if(this.orientation==1)
         this.paddle.flipperConstraint.lowerLimit=this.orientation*this.initial_angle-this.angle_max;
     else
         this.paddle.flipperConstraint.upperLimit=this.orientation*this.initial_angle+this.angle_max;
 };
 
-Paddles.prototype.down=function(x,y){
+Paddle.prototype.down=function(x,y){
     if(this.orientation==1)
         this.paddle.flipperConstraint.lowerLimit=this.orientation*this.initial_angle;
     else
         this.paddle.flipperConstraint.upperLimit=this.orientation*this.initial_angle;
 };
 
-Paddles.prototype.destroy=function(){
+Paddle.prototype.destroy=function(){
     this.paddle.pivotPoint.destroy();
     this.paddle.destroy();
 };
