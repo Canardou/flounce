@@ -10,8 +10,8 @@ var loadState = {
 		game.load.setPreloadSprite(progressBar);
 
 		//Loading assets
-		//game.load.image('player', 'assets/player.png');
-		//game.load.image('enemy', 'assets/enemy.png');	
+		game.load.image('guy_body', 'assets/guy_body.png');
+		game.load.image('guy_limb', 'assets/guy_limb.png');	
     },
 
     create: function() {
