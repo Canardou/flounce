@@ -1,7 +1,20 @@
 // Initialise Phaser
 var game;
 window.onload = function(){
-	game = new Phaser.Game(500, 340, Phaser.AUTO, 'gameDiv');
+	var gameHeight = 1138;
+	var gameWidth = 640;
+	game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, 'gameDiv');
+	
+	var preload = function() {
+		game.scale.maxHeight = document.body.scrollHeight<1138?document.body.scrollHeight:1138;
+    	game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    	game.scale.setScreenSize(true);
+    	game.stage.smoothed = false;
+	};
+	
+	var create = function(){};
+
+	var update = function(){};
 
 	// Define all the global variables here
 	game.global = {

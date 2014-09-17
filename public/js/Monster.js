@@ -1,10 +1,10 @@
 /*global game,pi,cos,sin,def,isDef,rand from utils.js*/
-var Monster = function(life, gold, value, decay, strength) {
+var Monster = function(life, gold, value, strength, decay) {
     this.life = life;
     this.gold = gold;
     this.value = def(value, 0);
-    this.decay = def(decay, true);
     this.strength = def(strength, 1);
+    this.decay = def(decay, true);
     this.dead = false;
     this.parts = game.add.group();
 };

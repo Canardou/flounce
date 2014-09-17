@@ -4,6 +4,12 @@ var Paddle = function(x, y, orientation, small, initial_angle, angle_max, speed)
     this.initial_angle = def(initial_angle, 0.5);
     this.angle_max = def(angle_max, 0.9);
     this.speed = def(speed, 10);
+    /**
+     * Generate the base of paddle, without the body physics
+     * @param cx pivot point x
+     * @param cy pivot point y
+     * @param img sprite reference
+     */
     var generate_paddle = function(cx, cy, img) {
         var paddle = game.add.sprite(x, y, img);
         paddle.pivotOffsetX = cx;
@@ -12,8 +18,10 @@ var Paddle = function(x, y, orientation, small, initial_angle, angle_max, speed)
         paddle.body.clearShapes();
         return paddle;
     };
-
+    //Starting creation
     this.small = small || false;
+    //Left or right sprite
+    //cx and cy must be the pivot point of the paddle
     switch (orientation) {
         case 'right':
         case 0:
@@ -41,26 +49,27 @@ var Paddle = function(x, y, orientation, small, initial_angle, angle_max, speed)
             this.orientation = -1;
             break;
     }
-
+    //Physics of the pivot
+    //Add a pivot point
     this.paddle.pivotPoint = game.add.sprite(this.paddle.position.x + this.paddle.pivotOffsetX,
                                                 this.paddle.position.y + this.paddle.pivotOffsetY);
-
+    //Physics of the pivot : static, no collision, revolute constraint with upper/lower limit
     game.physics.p2.enable(this.paddle.pivotPoint, true);
     this.paddle.pivotPoint.body.static = true;
     this.paddle.pivotPoint.body.clearCollision(true, true);
     this.paddle.flipperConstraint = game.physics.p2.createRevoluteConstraint(this.paddle, [this.paddle.pivotOffsetX, this.paddle.pivotOffsetY],
                                                                                 this.paddle.pivotPoint, [0, 5]);
-
     this.paddle.flipperConstraint.upperLimitEnabled = true;
     this.paddle.flipperConstraint.lowerLimitEnabled = true;
     this.paddle.flipperConstraint.lowerLimit = this.orientation * this.initial_angle;
     this.paddle.flipperConstraint.upperLimit = this.orientation * this.initial_angle;
-
+    //The motor allow movement when upper limit (or lower limit, depends of orientation) is raised
     this.paddle.flipperConstraint.enableMotor();
     this.paddle.flipperConstraint.setMotorSpeed(this.orientation * this.speed);
 };
 
 Paddle.prototype.up = function(x, y) {
+    //Function to call when key is pressed
     if (this.orientation == 1)
         this.paddle.flipperConstraint.lowerLimit = this.orientation * this.initial_angle - this.angle_max;
     else
@@ -68,6 +77,7 @@ Paddle.prototype.up = function(x, y) {
 };
 
 Paddle.prototype.down = function(x, y) {
+    //Function to call when key is released (resting)
     if (this.orientation == 1)
         this.paddle.flipperConstraint.lowerLimit = this.orientation * this.initial_angle;
     else
@@ -75,6 +85,7 @@ Paddle.prototype.down = function(x, y) {
 };
 
 Paddle.prototype.destroy = function() {
+    //Remove the paddle
     this.paddle.pivotPoint.destroy();
     this.paddle.destroy();
 };
