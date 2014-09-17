@@ -6,10 +6,7 @@ window.onload = function(){
 	game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, 'gameDiv');
 	
 	var preload = function() {
-		game.scale.maxHeight = document.body.scrollHeight<1138?document.body.scrollHeight:1138;
-    	game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-    	game.scale.setScreenSize(true);
-    	game.stage.smoothed = false;
+		
 	};
 	
 	var create = function(){};
