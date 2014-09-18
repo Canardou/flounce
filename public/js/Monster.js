@@ -7,6 +7,7 @@ var Monster = function(life, gold, value, strength, decay) {
     this.decay = def(decay, true);
     this.dead = false;
     this.parts = game.add.group();
+    this.groupCollision = null;
 };
 
 Monster.prototype.die = function() {
@@ -31,3 +32,4 @@ Monster.prototype.destroy = function() {
         part.destroy();
     });
 };
+

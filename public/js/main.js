@@ -16,7 +16,7 @@ window.onload = function(){
 	// Define all the global variables here
 	game.global = {
 		EXPDATE: 42,
-		score: 0
+		score: 0,
 	};
 
 	// Add all the states

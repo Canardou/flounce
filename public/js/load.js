@@ -11,7 +11,13 @@ var loadState = {
 
 		//Loading assets
 		game.load.image('guy_body', 'asset/sprites/guy_body.png');
-		game.load.image('guy_limb', 'asset/sprites/guy_limb.png');	
+		game.load.image('guy_hand', 'asset/sprites/guy_hand.png');
+		game.load.image('guy_arm', 'asset/sprites/guy_arm.png');
+		game.load.image('guy_leg', 'asset/sprites/guy_leg.png');
+		game.load.image('guy_rfoot', 'asset/sprites/guy_right_foot.png');
+		game.load.image('guy_lfoot', 'asset/sprites/guy_left_foot.png');
+		game.load.image('guy_limb', 'asset/sprites/guy_limb.png');
+		game.load.image('guy_head', 'asset/sprites/guy_head.png');	
     },
 
     create: function() {
