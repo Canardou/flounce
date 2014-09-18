@@ -11,7 +11,7 @@ var menuState = {
 		});
 		nameLabel.anchor.setTo(0.5, 0.5);
 		
-
-		var yolo = new Guy(1, 1, 1, 0, false);
+	for(var i=0;i<6;i++)
+		var yolo = new Guy(100+i*50,100,1, 1, 1, 0, false);
 	}
 };

@@ -20,8 +20,8 @@ var Guy = function(x, y, life, gold, value, strengh, decay) {
     var head = game.add.sprite(x, y - 13, 'guy_limb');
     this.parts.add(head);
     game.physics.p2.enableBody(head,true);
-    head.body.setCircle(3);
-    head.revolute = game.physics.p2.createRevoluteConstraint(head, [0, 3], chest, [0, -10]);
+    head.body.setCircle(5);
+    head.revolute = game.physics.p2.createRevoluteConstraint(head, [0, 5], chest, [0, -10]);
     head.revolute.collideConnected = false;
     head.rotation = game.physics.p2.createRotationalSpring(head, chest, 0, 5, 1);
     head.body.setCollisionGroup(guyCollision);
@@ -79,7 +79,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay) {
     left_leg.revolute.collideConnected = false;
     left_leg.revolute.upperLimitEnabled = true;
     left_leg.revolute.lowerLimitEnabled = true;
-    left_leg.revolute.lowerLimit = -1;
+    left_leg.revolute.lowerLimit = -1.5;
     left_leg.revolute.upperLimit = 1;
     left_leg.body.setCollisionGroup(guyCollision);
     left_leg.body.collides(game.physics.p2.boundsCollisionGroup);
@@ -92,7 +92,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay) {
     left_foot.revolute.collideConnected = false;
     left_foot.revolute.upperLimitEnabled = true;
     left_foot.revolute.lowerLimitEnabled = true;
-    left_foot.revolute.lowerLimit = -1;
+    left_foot.revolute.lowerLimit = 0;
     left_foot.revolute.upperLimit = 1;
     left_foot.body.setCollisionGroup(guyCollision);
     left_foot.body.collides(game.physics.p2.boundsCollisionGroup);
@@ -106,7 +106,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay) {
     right_leg.revolute.upperLimitEnabled = true;
     right_leg.revolute.lowerLimitEnabled = true;
     right_leg.revolute.lowerLimit = -1;
-    right_leg.revolute.upperLimit = 1;
+    right_leg.revolute.upperLimit = 1.5;
     right_leg.body.setCollisionGroup(guyCollision);
     right_leg.body.collides(game.physics.p2.boundsCollisionGroup);
     
@@ -119,7 +119,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay) {
     right_foot.revolute.upperLimitEnabled = true;
     right_foot.revolute.lowerLimitEnabled = true;
     right_foot.revolute.lowerLimit = -1;
-    right_foot.revolute.upperLimit = 1;
+    right_foot.revolute.upperLimit = 0;
     right_foot.body.setCollisionGroup(guyCollision);
     right_foot.body.collides(game.physics.p2.boundsCollisionGroup);
     
