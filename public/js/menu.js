@@ -1,3 +1,4 @@
+/*global Monster,game,pi,cos,sin,def,isDef,rand,inh from utils.js*/
 var menuState = {
 	create: function() {
 
@@ -9,9 +10,16 @@ var menuState = {
 			font: '50px Arial',
 			fill: '#ffffff'
 		});
-		nameLabel.anchor.setTo(0.5, 0.5);
-		
-	for(var i=0;i<6;i++)
-		var yolo = new Guy(100+i*50,100,1, 1, 1, 0, false);
-	}
+
+		var monstersToCreate = [
+	{"number": 3, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 },
+	{"number": 4, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 },
+	{"number": 8, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 },
+	{"number": 3, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 }
+	];
+
+	var wave1 = new Wave(monstersToCreate, 1);
+	
+	wave1.start();
+	},
 };

@@ -1,0 +1,7 @@
+//Six guys !
+{"monstersToCreate":[
+	{"number": 2, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 },
+	{"number": 4, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 },
+	{"number": 8, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 },
+	{"number": 1, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 }
+	]}
