@@ -66,6 +66,8 @@ var Paddle = function(x, y, orientation, small, initial_angle, angle_max, speed)
     //The motor allow movement when upper limit (or lower limit, depends of orientation) is raised
     this.paddle.flipperConstraint.enableMotor();
     this.paddle.flipperConstraint.setMotorSpeed(this.orientation * this.speed);
+    this.paddle.body.setCollisionGroup(game.global.playerCollisionGroup);
+    this.paddle.body.collides(game.global.enemiesCollisionGroup, this.hit, this);
 };
 
 Paddle.prototype.up = function(x, y) {
@@ -88,4 +90,8 @@ Paddle.prototype.destroy = function() {
     //Remove the paddle
     this.paddle.pivotPoint.destroy();
     this.paddle.destroy();
+};
+
+Paddle.prototype.hit = function(paddle,ennemy){
+    //Gestion de collision
 };

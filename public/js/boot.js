@@ -14,8 +14,10 @@ var bootState = {
 		game.stage.backgroundColor = '#3498db';
 		game.physics.startSystem(Phaser.Physics.P2JS);
 		game.physics.p2.gravity.y=300;
-		// game.global.GROUND=2;
-		// game.global.BODY_PARTS=game.physics.p2.createCollisionGroup();
+		game.physics.p2.setImpactEvents(true);
+		game.global.paddleCollisionGroup = game.physics.p2.createCollisionGroup();
+        game.global.wallsCollisionGroup = game.physics.p2.createCollisionGroup();
+        game.global.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.physics.p2.updateBoundsCollisionGroup();
 		// Start the load state
 		game.state.start('load');
