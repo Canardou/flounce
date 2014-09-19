@@ -3,14 +3,9 @@ var Wave = function(monstersToCreate, number, entrees) {
     this.monstersToCreate = monstersToCreate;
     this.entrees = def(entrees, [new Entree(100,100)]);
     this.number = number;
-};
-
-Wave.prototype.isEmpty = function() {
-	if(this.monstersToCreate.length > 0){
-		return false;
-	}
-    else{
-        return true;
+    this.totalMonster = 0;
+    for (var i = monstersToCreate.length - 1; i >= 0; i--) {
+		this.totalMonster+=monstersToCreate[i].number;
     }
 };
 
@@ -31,14 +26,23 @@ Wave.prototype.popMonster = function(type, life, gold, value, strength, entree){
 	}*/
 };
 
-Wave.prototype.monsterTime = function(){
-	var toSummon= this.monstersToCreate.pop();
-	game.time.events.repeat(Phaser.Timer.HALF, toSummon.number, this.popMonster, this, toSummon.type,toSummon.life,toSummon.gold, toSummon.weight,toSummon.strength);
+Wave.prototype.monsterTime = function(that){
+	var toSummon= that.monstersToCreate.pop();
+	game.time.events.repeat(Phaser.Timer.HALF, toSummon.number, that.popMonster, that, toSummon.type,toSummon.life,toSummon.gold, toSummon.weight,toSummon.strength);
+	if(that.monstersToCreate.length > 0){
+		setTimeout(function(){that.monsterTime(that);}, Phaser.Timer.HALF * toSummon.number);
+	}
 };
 
 
 Wave.prototype.start = function(){
-	game.time.events.repeat(Phaser.Timer.SECOND*3, this.monstersToCreate.length, this.monsterTime, this);
+	//game.time.events.repeat(Phaser.Timer.SECOND*5, this.monstersToCreate.length, this.monsterTime, this);
+	this.monsterTime(this);
+	
 };
 
+//To know if the wave has monster to invoke
+Wave.prototype.isRunning = function(){
+	return (this.monstersToCreate.length > 0);
+};
 

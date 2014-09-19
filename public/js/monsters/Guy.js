@@ -98,12 +98,12 @@ var Guy = function(x, y, life, gold, value, strengh, decay) {
     right_foot.revolute.lowerLimit = -1;
     right_foot.revolute.upperLimit = 0;
     
-    this.parts.forEach(function(item1){
+    /*this.parts.forEach(function(item1){
         this.parts.forEach(function(item2){
             var falseConstraint = game.physics.p2.createDistanceConstraint(item1,item2,0,[0,0],[0,0],0);
             falseConstraint.collideConnected=false;
         });
-    },this);
+    },this);*/
     /*var falseConstraint = game.physics.p2.createDistanceConstraint(right_foot,chest,0,[0,0],[0,0],0);
     falseConstraint.collideConnected=false;
     falseConstraint = game.physics.p2.createDistanceConstraint(left_foot,chest,0,[0,0],[0,0],0);
