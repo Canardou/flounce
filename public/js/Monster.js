@@ -6,8 +6,9 @@ var Monster = function(life, gold, value, strength, decay) {
     this.strength = def(strength, 1);
     this.decay = def(decay, true);
     this.dead = false;
+    this.isDestroy = false;
     this.parts = game.add.group();
-    this.groupCollision = null;
+    this.constraints = [];
 };
 
 Monster.prototype.die = function() {
@@ -28,8 +29,24 @@ Monster.prototype.getHit = function(damage) {
 };
 
 Monster.prototype.destroy = function() {
-    this.parts.forEach(function(part) {
-        part.destroy();
-    });
+    if (!this.isDestroy) {
+        this.isDestroy = true;
+        this.parts.forEach(function(part) {
+            if (part !== undefined) {
+                /*if (part.revolute)
+                    game.physics.p2.removeConstraint(part.revolute);
+                if (part.rotation)
+                    game.physics.p2.removeSpring(part.rotation);*/
+                //part.body.destroy();
+                part.kill();
+            }
+        },this);
+    }
 };
 
+Monster.prototype.updateCollision = function() {
+    this.parts.forEach(function(item) {
+        item.body.setCollisionGroup(game.global.enemiesCollisionGroup);
+        item.body.collides([game.global.enemiesCollisionGroup, game.global.wallsCollisionGroup, game.global.playerCollisionGroup]);
+    })
+}

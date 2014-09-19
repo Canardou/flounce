@@ -17,11 +17,13 @@ var loadState = {
 		game.load.image('guy_rfoot', 'asset/sprites/guy_right_foot.png');
 		game.load.image('guy_lfoot', 'asset/sprites/guy_left_foot.png');
 		game.load.image('guy_limb', 'asset/sprites/guy_limb.png');
-		game.load.image('guy_head', 'asset/sprites/guy_head.png');	
+		game.load.image('guy_head', 'asset/sprites/guy_head.png');
+		game.load.image('flipperRightImg', 'asset/sprites/flipper_right.png');
+		game.load.physics('paddle_physics', 'asset/physics/physics.json');
     },
 
     create: function() {
 		//Start the menu
-		game.state.start('menu');
+		game.state.start('level');
     }
 };
