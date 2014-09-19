@@ -1,0 +1,71 @@
+	{ 
+		
+		"flipper_right": [
+			
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   3, 64  ,  0, 51  ,  6, 45  ,  114, 1 ,  134, 5 ,  137, 16  ,  138, 28  ,  130, 40  ,  16, 66  ,  9, 68  ]
+				}  
+		],
+		
+		"flipper_left": [
+			
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   134, 67  ,  24, 42  ,  29, 0  ,  139, 44  ,  145, 49  ,  146, 56  ,  144, 64  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   7, 17  ,  15, 5  ,  29, 0  ,  24, 42  ,  10, 33  ]
+				}  
+		],
+		
+		"background": [
+		
+			{
+				"density": 2, "friction": 0, "bounce": 0, 
+				"filter": { "categoryBits": 1, "maskBits": 65535 },
+				"shape": [   2005, 300  ,  2160, 289  ,  2044, 967  ,  1821, 711  ]
+			}  ,
+			{
+				"density": 2, "friction": 0, "bounce": 0, 
+				"filter": { "categoryBits": 1, "maskBits": 65535 },
+				"shape": [   1666, 3665  ,  2048, 3475  ,  2160, 3840  ,  1661, 3840  ]
+			}  ,
+			{
+				"density": 2, "friction": 0, "bounce": 0, 
+				"filter": { "categoryBits": 1, "maskBits": 65535 },
+				"shape": [   2160, 3840  ,  2048, 3475  ,  2044, 967  ,  2160, 289  ]
+			}   ,  
+			{
+				"density": 2, "friction": 0, "bounce": 0, 
+				"filter": { "categoryBits": 1, "maskBits": 65535 },
+				"shape": [   0, 3840  ,  0, 3800  ,  40, 3800  ]
+			}   ,
+			{
+				"density": 2, "friction": 0, "bounce": 0, 
+				"filter": { "categoryBits": 1, "maskBits": 65535 },
+				"shape": [   0, 3840  ,  0, 3800  ,  40, 3800  ]
+			}   ,
+			{
+				"density": 2, "friction": 0, "bounce": 0, 
+				"filter": { "categoryBits": 1, "maskBits": 65535 },
+				"shape": [   170, 940  ,  -10, 340  ,  120, 350  ,  359, 709  ]
+			}  ,
+			{
+				"density": 2, "friction": 0, "bounce": 0, 
+				"filter": { "categoryBits": 1, "maskBits": 65535 },
+				"shape": [   10, 3840  ,  125, 3425  ,  569, 3654  ,  579, 3840  ]
+			}  ,
+			{
+				"density": 2, "friction": 0, "bounce": 0, 
+				"filter": { "categoryBits": 1, "maskBits": 65535 },
+				"shape": [   125, 3425  ,  10, 3840  ,  -10, 340  ,  170, 940  ]
+			}  
+		]
+		
+		
+	}

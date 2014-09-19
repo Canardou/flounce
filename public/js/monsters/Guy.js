@@ -3,6 +3,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay) {
     Monster.call(this, life, gold, value, strengh, decay);
     //Guuuuuuuyyyyy !
     var chest = game.add.sprite(x, y, 'guy_body');
+    chest.entity=this;
     this.parts.add(chest);
     game.physics.p2.enableBody(chest);
     chest.body.setRectangle(8, 16);
@@ -11,6 +12,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay) {
     this.body.velocity.y=-Math.random()*2000;
     //Head
     var head = game.add.sprite(x, y - 13, 'guy_head');
+    head.entity=this;
     this.parts.add(head);
     game.physics.p2.enableBody(head);
     head.body.setCircle(5);
@@ -19,6 +21,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay) {
     head.rotation = game.physics.p2.createRotationalSpring(head, chest, 0, 5, 1);
     //Arms
     var left_arm = game.add.sprite(x - 4, y - 4, 'guy_arm');
+    left_arm.entity=this;
     this.parts.add(left_arm);
     game.physics.p2.enableBody(left_arm);
     left_arm.body.setRectangle(4, 8);
@@ -26,6 +29,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay) {
     left_arm.revolute.collideConnected = false;
     
     var left_hand = game.add.sprite(x - 4, y + 4, 'guy_hand');
+    left_hand.entity=this;
     this.parts.add(left_hand);
     game.physics.p2.enableBody(left_hand);
     left_hand.body.setRectangle(4, 8);
@@ -37,6 +41,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay) {
     left_hand.revolute.upperLimit = 1;
     
     var right_arm = game.add.sprite(x + 4, y - 4, 'guy_arm');
+    right_arm.entity=this;
     this.parts.add(right_arm);
     game.physics.p2.enableBody(right_arm);
     right_arm.body.setRectangle(4, 8);
@@ -44,6 +49,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay) {
     right_arm.revolute.collideConnected = false;
     
     var right_hand = game.add.sprite(x + 4, y + 4, 'guy_hand');
+    right_hand.entity=this;
     this.parts.add(right_hand);
     game.physics.p2.enableBody(right_hand);
     right_hand.body.setRectangle(4, 8);
@@ -55,6 +61,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay) {
     right_hand.revolute.upperLimit = 1;
     //Legs
     var left_leg = game.add.sprite(x - 2, y + 8, 'guy_leg');
+    left_leg.entity=this;
     this.parts.add(left_leg);
     game.physics.p2.enableBody(left_leg);
     left_leg.body.setRectangle(4, 8);
@@ -66,6 +73,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay) {
     left_leg.revolute.upperLimit = 1;
     
     var left_foot = game.add.sprite(x - 2, y + 16, 'guy_lfoot');
+    left_foot.entity=this;
     this.parts.add(left_foot);
     game.physics.p2.enableBody(left_foot);
     left_foot.body.setRectangle(4, 8);
@@ -77,6 +85,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay) {
     left_foot.revolute.upperLimit = 1;
     
     var right_leg = game.add.sprite(x + 2, y + 8, 'guy_leg');
+    right_leg.entity=this;
     this.parts.add(right_leg);
     game.physics.p2.enableBody(right_leg);
     right_leg.body.setRectangle(4, 8);
@@ -88,6 +97,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay) {
     right_leg.revolute.upperLimit = 1.5;
     
     var right_foot = game.add.sprite(x + 2, y + 16, 'guy_rfoot');
+    right_foot.entity=this;
     this.parts.add(right_foot);
     game.physics.p2.enableBody(right_foot);
     right_foot.body.setRectangle(4, 8);

@@ -3,7 +3,7 @@ var Paddle = function(x, y, orientation, small, initial_angle, angle_max, speed)
     //Constants and functions
     this.initial_angle = def(initial_angle, 0.5);
     this.angle_max = def(angle_max, 0.9);
-    this.speed = def(speed, 10);
+    this.speed = def(speed, 12);
     /**
      * Generate the base of paddle, without the body physics
      * @param cx pivot point x
@@ -52,13 +52,13 @@ var Paddle = function(x, y, orientation, small, initial_angle, angle_max, speed)
     //Physics of the pivot
     //Add a pivot point
     this.paddle.pivotPoint = game.add.sprite(this.paddle.position.x + this.paddle.pivotOffsetX,
-                                                this.paddle.position.y + this.paddle.pivotOffsetY);
+        this.paddle.position.y + this.paddle.pivotOffsetY);
     //Physics of the pivot : static, no collision, revolute constraint with upper/lower limit
     game.physics.p2.enable(this.paddle.pivotPoint, true);
     this.paddle.pivotPoint.body.static = true;
     this.paddle.pivotPoint.body.clearCollision(true, true);
     this.paddle.flipperConstraint = game.physics.p2.createRevoluteConstraint(this.paddle, [this.paddle.pivotOffsetX, this.paddle.pivotOffsetY],
-                                                                                this.paddle.pivotPoint, [0, 5]);
+        this.paddle.pivotPoint, [0, 5]);
     this.paddle.flipperConstraint.upperLimitEnabled = true;
     this.paddle.flipperConstraint.lowerLimitEnabled = true;
     this.paddle.flipperConstraint.lowerLimit = this.orientation * this.initial_angle;
@@ -68,6 +68,7 @@ var Paddle = function(x, y, orientation, small, initial_angle, angle_max, speed)
     this.paddle.flipperConstraint.setMotorSpeed(this.orientation * this.speed);
     this.paddle.body.setCollisionGroup(game.global.playerCollisionGroup);
     this.paddle.body.collides(game.global.enemiesCollisionGroup, this.hit, this);
+    this.paddle.body.mass = 10;
 };
 
 Paddle.prototype.up = function(x, y) {
@@ -92,6 +93,10 @@ Paddle.prototype.destroy = function() {
     this.paddle.destroy();
 };
 
-Paddle.prototype.hit = function(paddle,ennemy){
+Paddle.prototype.hit = function(paddle, ennemy) {
     //Gestion de collision
+    if (ennemy.sprite !== null) {
+        if (ennemy.sprite.entity.isDestroy === false)
+            ennemy.sprite.entity.destroy();
+    }
 };
