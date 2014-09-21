@@ -68,6 +68,7 @@ var Paddle = function(x, y, orientation, small, initial_angle, angle_max, speed)
     this.paddle.flipperConstraint.setMotorSpeed(this.orientation * this.speed);
     this.paddle.body.setCollisionGroup(game.global.playerCollisionGroup);
     this.paddle.body.collides(game.global.enemiesCollisionGroup, this.hit, this);
+    this.paddle.body.collides(game.global.limbsCollisionGroup);
     this.paddle.body.mass = 10;
 };
 

@@ -30,7 +30,6 @@ Monster.prototype.getHit = function(damage) {
 
 Monster.prototype.destroy = function() {
     if (!this.isDestroy) {
-        this.isDestroy = true;
         for (var item in this.constraints)
             game.physics.p2.removeConstraint(this.constraints[item]);
         for (var item in this.parts){
@@ -39,11 +38,12 @@ Monster.prototype.destroy = function() {
             this.parts[item].body.collideWorldBounds=false;
             this.parts[item].checkWorldBounds=true;
             var that = this.parts[item];
-            this.parts[item].events.onOutOfBounds.add(function(){that.destroy()},this)
+            this.parts[item].events.onOutOfBounds.add(function(){if(that.dead)that.destroy();},this)//Sprite must be dead before destroying it
             this.parts[item].outOfBoundsKill=true;
         }
         this.constraints=[];
         this.parts=[];
+        this.isDestroy = true;
     }
 };
 
