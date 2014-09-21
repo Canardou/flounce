@@ -19,8 +19,8 @@ var Guy = function(x, y, life, gold, value, strengh, decay) {
     head.revolute = game.physics.p2.createRevoluteConstraint(head, [0, 5], chest, [0, -8]);
     head.revolute.collideConnected = false;
     this.constraints.push(head.revolute);
-    head.rotation = game.physics.p2.createRotationalSpring(head, chest, 0, 5, 1);
-    this.constraints.push(head.rotation);
+    //head.rotation = game.physics.p2.createRotationalSpring(head, chest, 0, 5, 1);
+    //this.constraints.push(head.rotation);
     //Arms
     var left_arm = game.add.sprite(x - 4, y - 4, 'guy_arm');
     left_arm.entity=this;

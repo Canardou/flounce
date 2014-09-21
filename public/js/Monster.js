@@ -38,7 +38,7 @@ Monster.prototype.destroy = function() {
             this.parts[item].body.collideWorldBounds=false;
             this.parts[item].checkWorldBounds=true;
             var that = this.parts[item];
-            this.parts[item].events.onOutOfBounds.add(function(){if(that.dead)that.destroy();},this)//Sprite must be dead before destroying it
+            this.parts[item].events.onOutOfBounds.add(function(){if(!that.alive)that.destroy();},this)//Sprite must be dead before destroying it
             this.parts[item].outOfBoundsKill=true;
         }
         this.constraints=[];
