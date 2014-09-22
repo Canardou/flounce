@@ -13,6 +13,8 @@ var Monster = function(life, gold, value, strength, decay) {
 
 Monster.prototype.die = function() {
     this.dead = true;
+    if (this.isDestroy === false)
+        this.destroy();
 };
 
 Monster.prototype.getHit = function(damage) {

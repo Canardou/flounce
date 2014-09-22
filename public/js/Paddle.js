@@ -1,5 +1,6 @@
 /*global game,pi,cos,sin,def,isDef,rand from utils.js*/
-var Paddle = function(x, y, orientation, small, initial_angle, angle_max, speed) {
+var Paddle = function(damage, x, y, orientation, small, initial_angle, angle_max, speed) {
+    Building.call(this,damage);
     //Constants and functions
     this.initial_angle = def(initial_angle, 0.5);
     this.angle_max = def(angle_max, 0.9);
@@ -96,8 +97,10 @@ Paddle.prototype.destroy = function() {
 
 Paddle.prototype.hit = function(paddle, ennemy) {
     //Gestion de collision
+    console.log(this.getDamage(paddle, ennemy));
     if (ennemy.sprite !== null) {
-        if (ennemy.sprite.entity.isDestroy === false)
-            ennemy.sprite.entity.destroy();
+        ennemy.sprite.entity.getHit(0);//DAMAGE!
     }
 };
+
+inh(Paddle,Building);
