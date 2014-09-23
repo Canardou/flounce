@@ -95,12 +95,4 @@ Paddle.prototype.destroy = function() {
     this.paddle.destroy();
 };
 
-Paddle.prototype.hit = function(paddle, ennemy) {
-    //Gestion de collision
-    console.log(this.getDamage(paddle, ennemy));
-    if (ennemy.sprite !== null) {
-        ennemy.sprite.entity.getHit(0);//DAMAGE!
-    }
-};
-
 inh(Paddle,Building);

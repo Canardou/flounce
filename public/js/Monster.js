@@ -9,6 +9,7 @@ var Monster = function(life, gold, value, strength, decay) {
     this.isDestroy = false;
     this.parts = [];
     this.constraints = [];
+    this.lastCollision = null;
 };
 
 Monster.prototype.die = function() {
@@ -21,11 +22,9 @@ Monster.prototype.getHit = function(damage) {
     if (!this.dead) {
         this.life -= damage;
         if (this.life <= 0) {
+            this.dead=true;
             this.life = 0;
             this.die();
-            this.parts.forEach(function(part) {
-                part.die();
-            });
         }
     }
 };
@@ -46,19 +45,6 @@ Monster.prototype.destroy = function() {
         this.constraints=[];
         this.parts=[];
         this.isDestroy = true;
-/*<<<<<<< HEAD
-        this.parts.forEach(function(part) {
-            if (part !== undefined) {
-                /*if (part.revolute)
-                    game.physics.p2.removeConstraint(part.revolute);
-                if (part.rotation)
-                    game.physics.p2.removeSpring(part.rotation);*/
-                //part.body.destroy();
-                //part.kill();
-          //  }
-        //},this);
-//=======
-//>>>>>>> a721e710df9183ad3364976d6f3b0d7156152c33*/
     }
 };
 
