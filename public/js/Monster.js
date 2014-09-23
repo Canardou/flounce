@@ -38,7 +38,7 @@ Monster.prototype.destroy = function() {
                 if (part.rotation)
                     game.physics.p2.removeSpring(part.rotation);*/
                 //part.body.destroy();
-                part.kill();
+                //part.kill();
             }
         },this);
     }

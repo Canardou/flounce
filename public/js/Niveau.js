@@ -9,25 +9,29 @@ var Niveau = function(waves, initialHeroLife, initialGold, difficulty, available
 	this.difficulty = def(difficulty, "easy");
 	this.availableTower = def(availableTower,1);
 	this.design = design;
-	this.phase = "beginning";
+	this.phase = "beginning"; // to find if it will be a fight or a contruct phase.
 };
 
-//Sera dans le level1State.js !!! et pas une methode de niveau
-//Niveau.prototype.start = function(){
-//	var hero = new Hero(this.initialHeroLife, this.initialGold);
-//	var currentWave = new Wave(this.waves[0], 1);
-	//Find a way to check sprites on screen :
-	//Compte des monstres invoqués - compte monstres tués ?
-	
-//};
-Niveau.prototype.checkStage = function(){
-	if (this.phase === "fight") {
+ 
+Niveau.prototype.defend = function(){
+	this.phase = "defending";
+	if(this.waves.length > 0){
+		var waveToStart = new Wave(this.waves.pop(), 1);
+		waveToStart.start();
 	}
-	else if(this.phase === "fight"){
-
+	else{
+		this.endLevel();
 	}
-	else
-	{
+};
 
+//When every monster have been killed
+Niveau.prototype.contruct = function(){
+	this.phase = "constructing";
+	//Show all the consruction panel
+};
+
+Niveau.prototype.endLevel = function(){
+	if (this.waves.length > 0 && this.enemiesAllDead === true) {
+		alert("You won !");
 	}
 };

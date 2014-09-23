@@ -4,7 +4,7 @@ var Hero = function(life, gold, power){
 	this.gold = def(gold, 1000);
 	this.power = def(power, false);
 	this.dead = false;
-    this.monsterKilled = 0;
+    this.monsterKilledDuringCurrentWave = 0;
 };
 
 Hero.prototype.die = function() {

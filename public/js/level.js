@@ -27,8 +27,8 @@ var levelState = {
 
   });
         
-        	var monstersToCreate = [
-	{"number": 30, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 }
+  var monstersToCreate = [
+    {"number": 30, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 }
 	];
 
 	var wave1 = new Wave(monstersToCreate, 1);
