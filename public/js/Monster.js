@@ -7,12 +7,14 @@ var Monster = function(life, gold, value, strength, decay) {
     this.decay = def(decay, true);
     this.dead = false;
     this.isDestroy = false;
-    this.parts = game.add.group();
+    this.parts = [];
     this.constraints = [];
 };
 
 Monster.prototype.die = function() {
     this.dead = true;
+    if (this.isDestroy === false)
+        this.destroy();
 };
 
 Monster.prototype.getHit = function(damage) {
@@ -30,7 +32,21 @@ Monster.prototype.getHit = function(damage) {
 
 Monster.prototype.destroy = function() {
     if (!this.isDestroy) {
+        for (var item in this.constraints)
+            game.physics.p2.removeConstraint(this.constraints[item]);
+        for (var item in this.parts){
+            this.parts[item].body.setCollisionGroup(game.global.limbsCollisionGroup);
+            this.parts[item].body.collides([game.global.wallsCollisionGroup, game.global.playerCollisionGroup]);
+            this.parts[item].body.collideWorldBounds=false;
+            this.parts[item].checkWorldBounds=true;
+            var that = this.parts[item];
+            this.parts[item].events.onOutOfBounds.add(function(){if(!that.alive)that.destroy();},this);//Sprite must be dead before destroying it
+            this.parts[item].outOfBoundsKill=true;
+        }
+        this.constraints=[];
+        this.parts=[];
         this.isDestroy = true;
+/*<<<<<<< HEAD
         this.parts.forEach(function(part) {
             if (part !== undefined) {
                 /*if (part.revolute)
@@ -39,14 +55,16 @@ Monster.prototype.destroy = function() {
                     game.physics.p2.removeSpring(part.rotation);*/
                 //part.body.destroy();
                 //part.kill();
-            }
-        },this);
+          //  }
+        //},this);
+//=======
+//>>>>>>> a721e710df9183ad3364976d6f3b0d7156152c33*/
     }
 };
 
 Monster.prototype.updateCollision = function() {
-    this.parts.forEach(function(item) {
-        item.body.setCollisionGroup(game.global.enemiesCollisionGroup);
-        item.body.collides([game.global.enemiesCollisionGroup, game.global.wallsCollisionGroup, game.global.playerCollisionGroup]);
-    })
-}
+    for (var item in this.parts) {
+        this.parts[item].body.setCollisionGroup(game.global.enemiesCollisionGroup);
+        this.parts[item].body.collides([game.global.enemiesCollisionGroup, game.global.wallsCollisionGroup, game.global.playerCollisionGroup]);
+    }
+};

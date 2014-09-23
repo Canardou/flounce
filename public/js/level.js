@@ -13,7 +13,7 @@ var levelState = {
 		game.physics.p2.world.setGlobalRelaxation=20;
         // Collision group
         
-        var paddle=new Paddle(250,250,'right');
+        var paddle=new Paddle({base:50,max:150},250,250,'right');
         
         var spacebar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
   spacebar.onDown.add(function() {
@@ -28,7 +28,7 @@ var levelState = {
   });
         
   var monstersToCreate = [
-    {"number": 30, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 }
+	{"number": 200, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 }
 	];
 
 	var wave1 = new Wave(monstersToCreate, 1);
