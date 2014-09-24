@@ -9,21 +9,19 @@ var level1State = {
 	create: function() {
 
 		var waves = [
-	[
-	{"number": 2, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 },
-	{"number": 4, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 },
-	{"number": 8, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 },
-	{"number": 1, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 }
+	/*[
+	{"number": 12, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 }
 	],
 	[
-	{"number": 2, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 }
-	],
+	{"number": 8, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 }
+	],*/
 	[
 	{"number": 2, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 },
-	{"number": 4, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 },
-	{"number": 8, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 },
+	{"number": 1, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 },
+	{"number": 1, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 },
 	{"number": 1, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 }
-	]];
+	]
+	];
 		game.physics.startSystem(Phaser.Physics.P2JS);
 		game.physics.p2.gravity.y=300;
 		game.physics.p2.setImpactEvents(true);
@@ -39,8 +37,8 @@ var level1State = {
 
         //Locations
         var background = game.add.sprite(320,520,'background');
-        var paddle_right= new Paddle({base:50,max:150},430,1000,'right');
-        var paddle_left= new Paddle({base:50,max:150},190,1000,'left');
+        var paddle_right= new Paddle({base:50,max:150},430,930,'right');
+        var paddle_left= new Paddle({base:50,max:150},190,930,'left');
 
         game.physics.p2.enableBody(background,true);
         background.body.static = true;
@@ -81,7 +79,6 @@ var level1State = {
 
 		//Begining of the level
 		niveau1 = new Niveau(waves, true);
-		hero = new Hero(niveau1.initialHeroLife, niveau1.initialGold);
 
 		button = game.add.button(game.world.centerX - 95, 400, 'button', niveau1.defend, niveau1);
 		button.scale.x =0.2;
@@ -94,6 +91,11 @@ var level1State = {
 		}
 		else if (niveau1.phase === "constructing"){
 			button.visible = true;
+		}
+
+		if(niveau1.hero.monsterKilledDuringCurrentWave === niveau1.currentWave.totalMonster)
+		{
+			niveau1.construct();
 		}
 
 	},

@@ -1,22 +1,24 @@
 /*global Monster,Guy,game,pi,cos,sin,floor,def,isDef,rand,inh from utils.js*/
-var Wave = function(monstersToCreate, number, entrees) {
+var Wave = function(monstersToCreate, hero, number, entrees) {
     this.monstersToCreate = monstersToCreate;
-    this.entrees = def(entrees, [new Entree(100,100)]);
+    this.hero = hero;
+    this.entrees = def(entrees, [new Entree(100,100), new Entree(400,100)]);
     this.number = number;
     this.totalMonster = 0;
     for (var i = monstersToCreate.length - 1; i >= 0; i--) {
 		this.totalMonster+=monstersToCreate[i].number;
     }
     this.end = false;
+    this.hero = hero;
 };
 
 Wave.prototype.popMonster = function(type, life, gold, value, strength, entree){
-	var entreeToUse = def(entree, floor(rand(this.entrees.length - 1, 0)));
+	var entreeToUse = def(entree, floor(rand(this.entrees.length, 0)));
 	var aliveMonster;
 	var weigth = 1;//+(number/10);
 
 	if(type === "Guy") {
-		aliveMonster = new Guy(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,life * weigth, gold * weigth, value * weigth, strength, false);
+		aliveMonster = new Guy(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,life * weigth, gold * weigth, value * weigth, strength, false, this.hero);
 	}
 	/*
 	else if(monsterToCreate.type === "Cow") {

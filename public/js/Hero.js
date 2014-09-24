@@ -1,7 +1,7 @@
 var Hero = function(life, gold, power){
 	this.life = def(life, 12);
 	this.points = 0;
-	this.gold = def(gold, 1000);
+	this.gold = def(gold, 2000);
 	this.power = def(power, false);
 	this.dead = false;
     this.monsterKilledDuringCurrentWave = 0;
