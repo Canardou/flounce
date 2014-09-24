@@ -1,3 +1,4 @@
+/*global Phaser game*/
 var level1State = {
 	preload: function() {
 
@@ -84,7 +85,7 @@ var level1State = {
 		game.global.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.limbsCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.physics.p2.updateBoundsCollisionGroup();
-		game.physics.p2.world.setGlobalRelaxation = 20;
+		//game.physics.p2.world.setGlobalRelaxation = 20;
 		// Collision group
 
 		//Design of the level
@@ -99,6 +100,11 @@ var level1State = {
 			base: 50,
 			max: 150
 		}, 190, 1000, 'left');
+		
+		var bumper = new Bumper({
+			base: 10,
+			max: 20
+		}, 150, 300);
 
 		game.physics.p2.enableBody(background, true);
 		background.body.static = true;
@@ -113,6 +119,8 @@ var level1State = {
 		background.body.setCollisionGroup(game.global.playerCollisionGroup);
 		background.body.collides(game.global.enemiesCollisionGroup, this.hit, this);
 		background.body.collides(game.global.limbsCollisionGroup);
+		game.physics.p2.world.setGlobalStiffness = Number.MAX_VALUE;
+		game.physics.p2.world.setGlobalRelaxation = 1;
 
 		//Add the inputs and the associated functions
 		var key_P = game.input.keyboard.addKey(Phaser.Keyboard.P);
