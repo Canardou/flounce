@@ -77,6 +77,7 @@ var level1State = {
 				"strength": 20
 			}]
 		];
+
 		game.physics.startSystem(Phaser.Physics.P2JS);
 		game.physics.p2.gravity.y = 300;
 		game.physics.p2.setImpactEvents(true);
@@ -85,7 +86,6 @@ var level1State = {
 		game.global.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.limbsCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.physics.p2.updateBoundsCollisionGroup();
-		//game.physics.p2.world.setGlobalRelaxation = 20;
 		// Collision group
 
 		//Design of the level
@@ -147,7 +147,6 @@ var level1State = {
 
 		//Begining of the level
 		niveau1 = new Niveau(waves, true);
-		hero = new Hero(niveau1.initialHeroLife, niveau1.initialGold);
 
 		button = game.add.button(game.world.centerX - 95, 400, 'button', niveau1.defend, niveau1);
 		button.scale.x = 0.2;
@@ -160,6 +159,11 @@ var level1State = {
 		}
 		else if (niveau1.phase === "constructing") {
 			button.visible = true;
+		}
+
+		if(niveau1.hero.monsterKilledDuringCurrentWave === niveau1.currentWave.totalMonster)
+		{
+			niveau1.construct();
 		}
 
 	},

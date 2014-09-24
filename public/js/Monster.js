@@ -1,5 +1,5 @@
 /*global game,pi,cos,sin,def,isDef,rand from utils.js*/
-var Monster = function(life, gold, value, strength, decay) {
+var Monster = function(life, gold, value, strength, decay, hero) {
     this.life = life;
     this.gold = gold;
     this.value = def(value, 0);
@@ -10,12 +10,18 @@ var Monster = function(life, gold, value, strength, decay) {
     this.parts = [];
     this.constraints = [];
     this.lastCollision = null;
+    this.hero = hero;
 };
 
 Monster.prototype.die = function() {
     this.dead = true;
-    if (this.isDestroy === false)
+    if (this.isDestroy === false){
         this.destroy();
+        this.hero.monsterKilledDuringCurrentWave++;
+        this.hero.gold += this.gold;
+        this.hero.point += this.value;
+    }
+        
 };
 
 Monster.prototype.getHit = function(damage) {
