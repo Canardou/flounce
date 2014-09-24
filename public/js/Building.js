@@ -1,5 +1,6 @@
 //var test=new Building({base:50,max:150});
-var Building = function(damage) {
+var Building = function(damage,limit) {
+    this.threshold = def(limit, true);
     this.damage = {
         base: def(damage.base, 0),
         max: def(damage.max, 0),
@@ -10,7 +11,7 @@ var Building = function(damage) {
 
 Building.prototype.getDamage = function(body1, body2) {
     var bonus = floor(body2.velocity.x * body2.velocity.x) + Math.abs(body2.velocity.y * body2.velocity.y);
-    if (bonus > 250000) {
+    if (bonus > 250000 || !this.threshold) {
         bonus = Math.log(bonus);
         bonus /= 12.4;
         if (rand(100, 0) < this.damage.critOdds)
