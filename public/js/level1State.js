@@ -35,18 +35,51 @@ var level1State = {
 		game.physics.p2.world.setGlobalRelaxation=20;
         // Collision group
         
-        var paddle=new Paddle(250,250,'right');
-        
-        var spacebar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        //Design of the level
 
-		spacebar.onDown.add(function() {
-			paddle.up();
+        //Locations
+        var background = game.add.sprite(320,520,'background');
+        var paddle_right= new Paddle({base:50,max:150},430,1000,'right');
+        var paddle_left= new Paddle({base:50,max:150},190,1000,'left');
+
+        game.physics.p2.enableBody(background,true);
+        background.body.static = true;
+        background.body.clearShapes();
+        background.body.loadPolygon('paddle_physics','right_wall');
+        background.body.loadPolygon('paddle_physics','left_wall');
+        background.body.loadPolygon('paddle_physics','left_little_thing');
+        background.body.loadPolygon('paddle_physics','right_thing');
+        background.body.loadPolygon('paddle_physics','middle_diamond');
+        background.body.loadPolygon('paddle_physics','lower_pipe');
+        background.body.loadPolygon('paddle_physics','higer_pipe');
+        background.body.setCollisionGroup(game.global.playerCollisionGroup);
+		background.body.collides(game.global.enemiesCollisionGroup, this.hit, this);
+		background.body.collides(game.global.limbsCollisionGroup);
+
+        //Add the inputs and the associated functions
+        var key_P = game.input.keyboard.addKey(Phaser.Keyboard.P);
+        var key_A = game.input.keyboard.addKey(Phaser.Keyboard.A);
+
+		key_P.onDown.add(function() {
+			paddle_right.up();
 		});
     
-		spacebar.onUp.add(function() {
-			paddle.down();
+		key_P.onUp.add(function() {
+			paddle_right.down();
 		});
 
+		key_A.onDown.add(function() {
+			paddle_left.up();
+		});
+    
+		key_A.onUp.add(function() {
+			paddle_left.down();
+		});
+
+
+
+
+		//Begining of the level
 		niveau1 = new Niveau(waves, true);
 		hero = new Hero(niveau1.initialHeroLife, niveau1.initialGold);
 

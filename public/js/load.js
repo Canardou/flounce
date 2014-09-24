@@ -20,15 +20,16 @@ var loadState = {
 		game.load.image('guy_limb', 'asset/sprites/guy_limb.png');
 		game.load.image('guy_head', 'asset/sprites/guy_head.png');
 		game.load.image('flipperRightImg', 'asset/sprites/flipper_right.png');
+		game.load.image('background', 'asset/sprites/design.jpg');
 		game.load.spritesheet('button', 'asset/sprites/GreenButton.png');
 		game.load.physics('paddle_physics', 'asset/physics/physics.json');
     },
 
     create: function() {
 		//Start the menu
-		game.state.start('level');
+		//game.state.start('level');
 
 
-		//game.state.start('level1');
+		game.state.start('level1');
     }
 };
