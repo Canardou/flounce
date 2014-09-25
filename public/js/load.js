@@ -24,7 +24,7 @@ var loadState = {
 		game.load.spritesheet('button', 'asset/sprites/GreenButton.png');
 		game.load.physics('paddle_physics', 'asset/physics/physics.json');
 		for(var i=0;i<3;i++){
-			game.load.image('bumper'+i, 'asset/sprites/bumper'+i+'.png');
+			game.load.spritesheet('bumper'+i, 'asset/sprites/bumper'+i+'.png',60,60);
 		}
     },
 

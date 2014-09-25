@@ -40,7 +40,6 @@ Building.prototype.hit = function(building, enemy) {
             if (retour.damage != 0) {
                 console.log(retour.damage);
                 entity.lastCollision = building;
-                entity.nextDamage.destroy();
                 entity.nextDamage = new Phaser.Timer(game);
                 entity.nextDamage.add(100, function() {
                     entity.lastCollision = null;
