@@ -1,8 +1,11 @@
 var Bumper = function(damage, x, y) {
     Building.call(this, damage);
 
-    this.entity = game.add.sprite(x, y, 'guy_limb');
-    game.physics.p2.enableBody(this.entity,true);
+    this.entity = game.add.sprite(x, y);
+    this.design = game.add.sprite(x, y, 'bumper0');
+    this.design.anchor.setTo(0.5, 0.5);
+    this.design.bringToTop();
+    game.physics.p2.enableBody(this.entity);
     
     this.entity.body.setCircle(20);
     this.entity.body.static=true;
@@ -34,6 +37,10 @@ Bumper.prototype.hit = function(bumper, part) {
             part.velocity.y=-2000*sin(angle);
             entity.body.velocity.x=-3000*cos(angle);
             entity.body.velocity.y=-3000*sin(angle);
+            this.design.x=this.entity.x+5*cos(angle);
+            this.design.y=this.entity.y+5*sin(angle);
+            var tween = game.add.tween(this.design);
+            tween.to({x: this.entity.x, y: this.entity.y}, 100 , Phaser.Easing.Linear.None, true , 0, false);
         }
     }
     return {};
