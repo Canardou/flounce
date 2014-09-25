@@ -17,6 +17,8 @@ window.onload = function(){
 	game.global = {
 		EXPDATE: 42,
 		score: 0,
+		heigth:gameHeight,
+		width:gameWidth
 	};
 
 	// Add all the states

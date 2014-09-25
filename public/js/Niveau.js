@@ -10,7 +10,7 @@ var Niveau = function(waves, initialHeroLife, initialHeroGold, difficulty, avail
 	this.design = design;
 	this.phase = "beginning"; // to find if it will be a fight or a contruct phase.
 	this.currentWave = new Wave(this.waves[0], this.hero, 1);
-	this.hero = new Hero(def(initialHeroLife, 20), def(initialHeroGold, 2000));
+	this.hero = new Hero(def(initialHeroLife, 20), def(initialHeroGold, 2000));// strange to put default variable here
 };
 
  
