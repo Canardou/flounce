@@ -85,6 +85,7 @@ var level1State = {
 		game.global.wallsCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.limbsCollisionGroup = game.physics.p2.createCollisionGroup();
+		game.global.voidCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.physics.p2.updateBoundsCollisionGroup();
 		// Collision group
 

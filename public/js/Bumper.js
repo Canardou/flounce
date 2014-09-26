@@ -60,6 +60,7 @@ Bumper.prototype.hit = function(bumper, part) {
             }
             else if (this.overHeat == false) {
                 this.overHeat = true;
+                this.entity.body.setCollisionGroup(game.global.voidCollisionGroup);
             }
         }
     }
@@ -69,8 +70,9 @@ Bumper.prototype.hit = function(bumper, part) {
 Bumper.prototype.decreaseHeat = function() {
     if (this.heat > 0) {
         this.heat--;
-        if (this.heat <= 0) {
+        if (this.heat <= 0 && this.overHeat) {
             this.overHeat = false;
+            this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
         }
         if (this.overHeat)
             this.design.loadTexture('bumper'+this.type, 2);
