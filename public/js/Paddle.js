@@ -71,6 +71,8 @@ var Paddle = function(damage, x, y, orientation, small, initial_angle, angle_max
     this.paddle.body.collides(game.global.enemiesCollisionGroup, this.hit, this);
     this.paddle.body.collides(game.global.limbsCollisionGroup);
     this.paddle.body.mass = 10;
+    this.entity=this.paddle;
+    this.design=this.paddle;
 };
 
 Paddle.prototype.up = function(x, y) {

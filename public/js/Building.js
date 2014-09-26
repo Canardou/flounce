@@ -1,5 +1,7 @@
 //var test=new Building({base:50,max:150});
-var Building = function(damage,limit) {
+var Building = function(damage, limit) {
+    this.design;
+    this.entity;
     this.threshold = def(limit, true);
     this.damage = {
         base: def(damage.base, 0),
@@ -41,7 +43,7 @@ Building.prototype.hit = function(building, enemy) {
                 console.log(retour.damage);
                 entity.lastCollision = building;
                 entity.nextDamage = new Phaser.Timer(game);
-                entity.nextDamage.add(100, function() {
+                entity.nextDamage.add(200, function() {
                     entity.lastCollision = null;
                 }, this);
                 entity.nextDamage.start();
@@ -51,4 +53,22 @@ Building.prototype.hit = function(building, enemy) {
         }
     }
     return {};
+};
+
+Building.prototype.allowDrag = function() {
+    this.design.inputEnabled = true;
+    this.design.input.enableDrag();
+    this.design.events.onDragStart.add(this.onDragStart, this);
+    this.design.events.onDragStop.add(this.onDragStop, this);
+};
+
+Building.prototype.onDragStart = function(sprite, pointer) {
+    //Empty for the moment
+};
+
+Building.prototype.onDragStop = function(sprite, pointer) {
+    this.design.x=pointer.x;
+    this.design.y=pointer.y;
+    this.entity.body.x=pointer.x;
+    this.entity.body.y=pointer.y;
 };

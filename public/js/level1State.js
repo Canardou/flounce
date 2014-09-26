@@ -105,6 +105,8 @@ var level1State = {
 			base: 10,
 			max: 20
 		}, 150, 300);
+		
+		bumper.allowDrag();
 
 		game.physics.p2.enableBody(background, true);
 		background.body.static = true;
