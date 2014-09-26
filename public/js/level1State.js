@@ -101,12 +101,12 @@ var level1State = {
 			base: 50,
 			max: 150
 		}, 190, 1000, 'left');
-		
+
 		var bumper = new Bumper({
 			base: 10,
 			max: 20
 		}, 150, 300);
-		
+
 		bumper.allowDrag();
 
 		game.physics.p2.enableBody(background, true);
@@ -164,8 +164,7 @@ var level1State = {
 			button.visible = true;
 		}
 
-		if(niveau1.hero.monsterKilledDuringCurrentWave === niveau1.currentWave.totalMonster)
-		{
+		if (niveau1.hero.monsterKilledDuringCurrentWave === niveau1.currentWave.totalMonster) {
 			niveau1.construct();
 		}
 

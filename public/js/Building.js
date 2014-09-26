@@ -12,24 +12,15 @@ var Building = function(damage, limit) {
 };
 
 Building.prototype.getDamage = function(body1, body2) {
-    var bonus = floor(body2.velocity.x * body2.velocity.x) + Math.abs(body2.velocity.y * body2.velocity.y);
-    if (bonus > 250000 || !this.threshold) {
-        bonus = Math.log(bonus);
-        bonus /= 12.4;
-        if (rand(100, 0) < this.damage.critOdds)
-            return {
-                damage: floor(bonus * this.damage.max * rand(this.damage.critMult, 1)),
-                crit: true
-            };
-        else
-            return {
-                damage: floor(bonus * rand(this.damage.max, this.damage.base)),
-                crit: false
-            };
-    }
+    if (rand(100, 0) < this.damage.critOdds)
+        return {
+            damage: floor(this.damage.max * rand(this.damage.critMult, 1)),
+            crit: true
+        };
     else
         return {
-            damage: 0
+            damage: floor(rand(this.damage.max, this.damage.base)),
+            crit: false
         };
 }
 
@@ -42,11 +33,9 @@ Building.prototype.hit = function(building, enemy) {
             if (retour.damage != 0) {
                 console.log(retour.damage);
                 entity.lastCollision = building;
-                entity.nextDamage = new Phaser.Timer(game);
-                entity.nextDamage.add(200, function() {
-                    entity.lastCollision = null;
-                }, this);
-                entity.nextDamage.start();
+                game.time.events.add(200, function() {
+                        entity.lastCollision = null;
+                    }, this);
                 entity.getHit(retour.damage); //DAMAGE!
                 return retour;
             }
@@ -67,8 +56,8 @@ Building.prototype.onDragStart = function(sprite, pointer) {
 };
 
 Building.prototype.onDragStop = function(sprite, pointer) {
-    this.design.x=pointer.x;
-    this.design.y=pointer.y;
-    this.entity.body.x=pointer.x;
-    this.entity.body.y=pointer.y;
+    this.design.x = pointer.x;
+    this.design.y = pointer.y;
+    this.entity.body.x = pointer.x;
+    this.entity.body.y = pointer.y;
 };

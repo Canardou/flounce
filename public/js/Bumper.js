@@ -8,9 +8,9 @@ var Bumper = function(damage, x, y) {
     this.overHeat = false;
 
     this.entity = game.add.sprite(x, y);
-    this.design = game.add.sprite(x, y, 'bumper'+this.type, 0);
+    this.design = game.add.sprite(x, y, 'bumper' + this.type, 0);
     this.design.anchor.setTo(0.5, 0.5);
-    game.physics.p2.enableBody(this.entity, true);
+    game.physics.p2.enableBody(this.entity);
 
     this.entity.body.setCircle(20);
     this.entity.body.kinematic = true;
@@ -29,27 +29,25 @@ Bumper.prototype.hit = function(bumper, part) {
             if (this.heat < this.heatLimit && !this.overHeat) {
                 this.heat++;
                 if (this.heat >= this.heatLimit)
-                    this.design.loadTexture('bumper'+this.type, 2);
+                    this.design.loadTexture('bumper' + this.type, 2);
                 else if (this.heat > this.heatLimit / 2)
-                    this.design.loadTexture('bumper'+this.type, 1);
+                    this.design.loadTexture('bumper' + this.type, 1);
                 var retour = this.getDamage(bumper, part);
                 if (retour.damage != 0) {
                     console.log(retour.damage);
                     entity.lastCollision = bumper;
-                    entity.nextDamage = new Phaser.Timer(game);
-                    entity.nextDamage.add(200, function() {
+                    game.time.events.add(200, function() {
                         entity.lastCollision = null;
                     }, this);
-                    entity.nextDamage.start();
                     entity.getHit(retour.damage); //DAMAGE!
-                    return retour;
                 }
                 var angle = Math.atan2(bumper.y - entity.body.y, bumper.x - entity.body.x);
-                console.log(angle);
-                part.velocity.x = -2000 * cos(angle);
-                part.velocity.y = -2000 * sin(angle);
-                entity.body.velocity.x = -3000 * cos(angle);
-                entity.body.velocity.y = -3000 * sin(angle);
+                if (entity.life > 0) {
+                    part.velocity.x = -2000 * cos(angle);
+                    part.velocity.y = -2000 * sin(angle);
+                    entity.body.velocity.x = -3000 * cos(angle);
+                    entity.body.velocity.y = -3000 * sin(angle);
+                }
                 this.design.x = this.entity.x + 5 * cos(angle);
                 this.design.y = this.entity.y + 5 * sin(angle);
                 var tween = game.add.tween(this.design);
@@ -75,11 +73,11 @@ Bumper.prototype.decreaseHeat = function() {
             this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
         }
         if (this.overHeat)
-            this.design.loadTexture('bumper'+this.type, 2);
+            this.design.loadTexture('bumper' + this.type, 2);
         else if (this.heat > this.heatLimit / 2)
-            this.design.loadTexture('bumper'+this.type, 1);
+            this.design.loadTexture('bumper' + this.type, 1);
         else
-            this.design.loadTexture('bumper'+this.type, 0);
+            this.design.loadTexture('bumper' + this.type, 0);
     }
 };
 
