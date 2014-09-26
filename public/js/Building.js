@@ -53,6 +53,7 @@ Building.prototype.allowDrag = function() {
 
 Building.prototype.onDragStart = function(sprite, pointer) {
     //Empty for the moment
+    sprite.scale.set(1.2, 1.2);
 };
 
 Building.prototype.onDragStop = function(sprite, pointer) {
@@ -60,4 +61,5 @@ Building.prototype.onDragStop = function(sprite, pointer) {
     this.design.y = pointer.y;
     this.entity.body.x = pointer.x;
     this.entity.body.y = pointer.y;
+    sprite.scale.set(1, 1);
 };

@@ -86,6 +86,7 @@ var level1State = {
 		game.global.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.limbsCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.voidCollisionGroup = game.physics.p2.createCollisionGroup();
+		//game.global.depthGroup = game.add.group();
 		game.physics.p2.updateBoundsCollisionGroup();
 		// Collision group
 
@@ -168,5 +169,7 @@ var level1State = {
 			niveau1.construct();
 		}
 
+
+		//game.global.depthGroup.sort();
 	},
 };
