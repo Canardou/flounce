@@ -57,7 +57,7 @@ Building.prototype.hit = function(building, enemy) {
 
 Building.prototype.allowDrag = function() {
     this.design.inputEnabled = true;
-    this.design.input.enableDrag();
+    this.design.input.enableDrag(true);
     this.design.events.onDragStart.add(this.onDragStart, this);
     this.design.events.onDragStop.add(this.onDragStop, this);
 };
