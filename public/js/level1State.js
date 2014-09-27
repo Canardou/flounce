@@ -107,6 +107,8 @@ var level1State = {
 			base: 10,
 			max: 20
 		}, 150, 300);
+		
+		var test_hint = new Hint("A",0,430,1000);
 
 		bumper.allowDrag();
 

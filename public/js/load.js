@@ -21,6 +21,7 @@ var loadState = {
 		game.load.image('guy_head', 'asset/sprites/guy_head.png');
 		game.load.image('flipperRightImg', 'asset/sprites/flipper_right.png');
 		game.load.image('background', 'asset/sprites/design.jpg');
+		game.load.image('hint', 'asset/sprites/hint.png');
 		game.load.spritesheet('button', 'asset/sprites/GreenButton.png');
 		game.load.physics('paddle_physics', 'asset/physics/physics.json');
 		for(var i=0;i<3;i++){
