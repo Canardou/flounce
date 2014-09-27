@@ -11,6 +11,8 @@ var Hint = function(text, duration, x, y, size) {
         this.entity.scale.set(this.size);
         this.entity.anchor.setTo(0.5,0.5);
         this.entity.lifespan = duration * 1000;
+        this.entity.fadespan = duration * 200;
+        game.global.fade_out.push(this.entity);
         this.entity.bringToTop();
         this.entity.tween = game.add.tween(this.entity);
         this.entity.tween.to({
@@ -25,8 +27,14 @@ var Hint = function(text, duration, x, y, size) {
         this.text = game.add.text(x, y - this.size * 150, "P");
         this.text.anchor.setTo(0.5);
         this.text.fontSize=75;
-        
+        this.text.lifespan= duration * 1000;
+        this.text.tween =  game.add.tween(this.text);
+        this.text.tween.to({alpha:1},500);
+        this.text.tween.to({alpha:0},500);
+        this.text.tween.loop();
         this.entity.tween.start();
+        this.text.tween.start();
+        this.entity.events.onKilled.add(function() {    this.text.destroy();  }, this);
     }
 
 }

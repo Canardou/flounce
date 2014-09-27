@@ -86,7 +86,7 @@ var level1State = {
 		game.global.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.limbsCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.voidCollisionGroup = game.physics.p2.createCollisionGroup();
-		//game.global.depthGroup = game.add.group();
+		game.global.fade_out = [];
 		game.physics.p2.updateBoundsCollisionGroup();
 		// Collision group
 
@@ -108,7 +108,7 @@ var level1State = {
 			max: 20
 		}, 150, 300);
 		
-		var test_hint = new Hint("A",0,430,1000);
+		var test_hint = new Hint("A",5,430,1000);
 
 		bumper.allowDrag();
 
@@ -171,6 +171,12 @@ var level1State = {
 			niveau1.construct();
 		}
 
+		var groupFadeOut = game.global.fade_out;
+		for(var p in groupFadeOut){
+			var element = groupFadeOut[p];
+			if(element.lifespan<element.fadespan)
+				element.alpha= element.lifespan / element.fadespan;
+		}
 
 		//game.global.depthGroup.sort();
 	},
