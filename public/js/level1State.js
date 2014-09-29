@@ -149,7 +149,9 @@ var level1State = {
 		});
 
 
-
+		var panelTest=new Panel();
+		panelTest.setTowers([Bumper]);
+		panelTest.show();
 
 		//Begining of the level
 		niveau1 = new Niveau(waves, true);
