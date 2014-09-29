@@ -22,7 +22,7 @@ Building.prototype.getDamage = function(body1, body2) {
             damage: floor(rand(this.damage.max, this.damage.base)),
             crit: false
         };
-}
+};
 
 Building.prototype.hit = function(building, enemy) {
     //Gestion de collision
@@ -30,7 +30,7 @@ Building.prototype.hit = function(building, enemy) {
         var entity = enemy.sprite.entity;
         if (entity.lastCollision != building) {
             var retour = this.getDamage(building, enemy);
-            if (retour.damage != 0) {
+            if (retour.damage !== 0) {
                 console.log(retour.damage);
                 entity.lastCollision = building;
                 game.time.events.add(200, function() {

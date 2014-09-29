@@ -16,7 +16,8 @@ window.onload = function(){
 	// Define all the global variables here
 	game.global = {
 		EXPDATE: 42,
-		score: 0,
+		scoreMonster: 0,
+		scoreLife: 0,
 		heigth:gameHeight,
 		width:gameWidth
 	};
@@ -28,6 +29,7 @@ window.onload = function(){
 	game.state.add('level', levelState);
 	game.state.add('play', playState);
 	game.state.add('level1', level1State);
+	game.state.add('gameStats', gameStatsState);
 	
 	// Start the 'boot' state
 	game.state.start('boot');

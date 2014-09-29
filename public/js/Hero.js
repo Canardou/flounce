@@ -1,5 +1,5 @@
 var Hero = function(life, gold, power){
-	this.life = def(life, 200);
+	this.life = def(life, 20);
 	this.points = 0;
 	this.gold = def(gold, 2000);
 	this.power = def(power, false);
@@ -13,6 +13,7 @@ var Hero = function(life, gold, power){
     this.entity.body.collides(game.global.enemiesCollisionGroup, this.getHit, this);
     this.entity.renderable=false;
     this.entity.body.static=true;
+    console.log("Mon héro : "+this.life+' '+this.gold);
 };
 
 Hero.prototype.die = function() {

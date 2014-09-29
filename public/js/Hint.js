@@ -1,3 +1,7 @@
+//* Three size will be available :
+//
+//
+//*//
 var Hint = function(text, duration, x, y, size) {
     //Draw an information bubble on the screen for the duration in seconds, 0 for unlimited
     //If x, y are precised, it will draw a circle around the position (size could be specified)
@@ -24,11 +28,11 @@ var Hint = function(text, duration, x, y, size) {
         this.entity.tween.loop();
         
         //Better management of size needed
-        this.text = game.add.text(x, y - this.size * 150, "P");
+        this.text = game.add.text(x, y - this.size * 150, text);
         this.text.anchor.setTo(0.5);
-        this.text.fontSize=75;
-        this.text.lifespan= duration * 1000;
-        this.text.tween =  game.add.tween(this.text);
+        this.text.fontSize =75;
+        this.text.lifespan = duration * 1000;
+        this.text.tween = game.add.tween(this.text);
         this.text.tween.to({alpha:1},500);
         this.text.tween.to({alpha:0},500);
         this.text.tween.loop();
@@ -37,4 +41,4 @@ var Hint = function(text, duration, x, y, size) {
         this.entity.events.onKilled.add(function() {    this.text.destroy();  }, this);
     }
 
-}
+};

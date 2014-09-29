@@ -56,7 +56,7 @@ Bumper.prototype.hit = function(bumper, part) {
                     y: this.entity.y
                 }, 100, Phaser.Easing.Linear.None, true, 0, false);
             }
-            else if (this.overHeat == false) {
+            else if (this.overHeat === false) {
                 this.overHeat = true;
                 this.entity.body.setCollisionGroup(game.global.voidCollisionGroup);
             }

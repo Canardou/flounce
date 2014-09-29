@@ -10,6 +10,43 @@ var level1State = {
 	create: function() {
 
 		var waves = [
+			/*[{
+				"number": 2,
+				"type": "Guy",
+				"life": 20,
+				"gold": 20,
+				"value": 1,
+				"strength": 20
+			}, {
+				"number": 4,
+				"type": "Guy",
+				"life": 20,
+				"gold": 20,
+				"value": 1,
+				"strength": 20
+			}, {
+				"number": 8,
+				"type": "Guy",
+				"life": 20,
+				"gold": 20,
+				"value": 1,
+				"strength": 20
+			}, {
+				"number": 1,
+				"type": "Guy",
+				"life": 20,
+				"gold": 20,
+				"value": 1,
+				"strength": 20
+			}],*/
+			[{
+				"number": 2,
+				"type": "Guy",
+				"life": 20,
+				"gold": 20,
+				"value": 1,
+				"strength": 20
+			}]/*,
 			[{
 				"number": 2,
 				"type": "Guy",
@@ -38,44 +75,7 @@ var level1State = {
 				"gold": 20,
 				"value": 1,
 				"strength": 20
-			}],
-			[{
-				"number": 2,
-				"type": "Guy",
-				"life": 20,
-				"gold": 20,
-				"value": 1,
-				"strength": 20
-			}],
-			[{
-				"number": 2,
-				"type": "Guy",
-				"life": 20,
-				"gold": 20,
-				"value": 1,
-				"strength": 20
-			}, {
-				"number": 4,
-				"type": "Guy",
-				"life": 20,
-				"gold": 20,
-				"value": 1,
-				"strength": 20
-			}, {
-				"number": 8,
-				"type": "Guy",
-				"life": 20,
-				"gold": 20,
-				"value": 1,
-				"strength": 20
-			}, {
-				"number": 1,
-				"type": "Guy",
-				"life": 20,
-				"gold": 20,
-				"value": 1,
-				"strength": 20
-			}]
+			}]*/
 		];
 
 		game.physics.startSystem(Phaser.Physics.P2JS);
@@ -108,7 +108,7 @@ var level1State = {
 			max: 20
 		}, 150, 300);
 		
-		var test_hint = new Hint("A",5,430,1000);
+		var test_hint = new Hint("P",5,430,1000);
 
 		bumper.allowDrag();
 
@@ -149,12 +149,10 @@ var level1State = {
 		});
 
 
-
-
 		//Begining of the level
-		niveau1 = new Niveau(waves, true);
-
-		button = game.add.button(game.world.centerX - 95, 400, 'button', niveau1.defend, niveau1);
+		niveau1 = new Niveau(waves);
+		button = new LabelButton(game, game.world.centerX - 95, 400, 'button', 'Next Wave', niveau1.defend, niveau1);
+		//button = game.add.button(game.world.centerX - 95, 400, 'button', niveau1.defend, niveau1);
 		button.scale.x = 0.2;
 		button.scale.y = 0.2;
 	},
@@ -167,8 +165,18 @@ var level1State = {
 			button.visible = true;
 		}
 
+		if(niveau1.hero.dead)
+		{
+			alert("mouru");
+		}
+
 		if (niveau1.hero.monsterKilledDuringCurrentWave === niveau1.currentWave.totalMonster) {
-			niveau1.construct();
+			if(niveau1.waves.length > 0)
+				niveau1.construct();
+			else if(!niveau1.won){
+				niveau1.won = true;
+				setTimeout(function(){niveau1.endLevel();}, Phaser.Timer.SECOND*5);
+			}
 		}
 
 		var groupFadeOut = game.global.fade_out;
