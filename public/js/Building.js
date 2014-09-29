@@ -1,8 +1,7 @@
 //var test=new Building({base:50,max:150});
-var Building = function(damage, limit) {
+var Building = function(damage) {
     this.design;
     this.entity;
-    this.threshold = def(limit, true);
     this.damage = {
         base: def(damage.base, 0),
         max: def(damage.max, 0),
