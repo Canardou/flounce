@@ -2,7 +2,7 @@
 var Paddle = function(damage, x, y, orientation, small, initial_angle, angle_max, speed) {
     Building.call(this,damage);
     //Constants and functions
-    this.initial_angle = def(initial_angle, 0.5);
+    this.initial_angle = def(initial_angle, 0.7);
     this.angle_max = def(angle_max, 0.9);
     this.speed = def(speed, 12);
     /**
@@ -12,7 +12,7 @@ var Paddle = function(damage, x, y, orientation, small, initial_angle, angle_max
      * @param img sprite reference
      */
     var generate_paddle = function(cx, cy, img) {
-        var paddle = game.add.sprite(x, y, img);
+        var paddle = game.add.sprite(x-cx, y-cy, img);
         paddle.pivotOffsetX = cx;
         paddle.pivotOffsetY = cy;
         game.physics.p2.enableBody(paddle, true);
@@ -31,7 +31,7 @@ var Paddle = function(damage, x, y, orientation, small, initial_angle, angle_max
                 this.paddle.body.loadPolygon('paddle_physics', 'flipper_right_small');
             }
             else {
-                this.paddle = generate_paddle(45, -15, 'flipperRightImg');
+                this.paddle = generate_paddle(50, 0, 'paddle_right');
                 this.paddle.body.loadPolygon('paddle_physics', 'flipper_right');
             }
             this.orientation = 1;
@@ -44,7 +44,7 @@ var Paddle = function(damage, x, y, orientation, small, initial_angle, angle_max
                 this.paddle.body.loadPolygon('paddle_physics', 'flipper_left_small');
             }
             else {
-                this.paddle = generate_paddle(45, -15, 'flipperLeftImg');
+                this.paddle = generate_paddle(-50, 0, 'paddle_left');
                 this.paddle.body.loadPolygon('paddle_physics', 'flipper_left');
             }
             this.orientation = -1;

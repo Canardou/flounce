@@ -97,11 +97,11 @@ var level1State = {
 		var paddle_right = new Paddle({
 			base: 50,
 			max: 150
-		}, 430, 1000, 'right');
+		}, 460, 950, 'right');
 		var paddle_left = new Paddle({
 			base: 50,
 			max: 150
-		}, 190, 1000, 'left');
+		}, 200, 950, 'left');
 
 		var bumper = new Bumper({
 			base: 10,
