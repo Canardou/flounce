@@ -2,7 +2,7 @@
 var Monster = function(life, gold, value, strength, decay, hero) {
     this.life = life;
     this.gold = gold;
-    this.value = def(value, 0);
+    this.value = def(value, 10);
     this.strength = def(strength, 1);
     this.decay = def(decay, true);
     this.dead = false;
@@ -19,7 +19,16 @@ Monster.prototype.die = function() {
         this.destroy();
         this.hero.monsterKilledDuringCurrentWave++;
         this.hero.gold += this.gold;
-        this.hero.point += this.value;
+        this.hero.points += this.value;
+    }
+        
+};
+
+Monster.prototype.dieWithoutGlory = function() {
+    this.dead = true;
+    if (this.isDestroy === false){
+        this.destroy();
+        this.hero.monsterKilledDuringCurrentWave++;
     }
         
 };

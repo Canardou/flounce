@@ -16,8 +16,6 @@ window.onload = function(){
 	// Define all the global variables here
 	game.global = {
 		EXPDATE: 42,
-		scoreMonster: 0,
-		scoreLife: 0,
 		heigth:gameHeight,
 		width:gameWidth
 	};

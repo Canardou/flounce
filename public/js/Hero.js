@@ -23,16 +23,16 @@ Hero.prototype.die = function() {
 Hero.prototype.getHit = function(hero,monster) {
 	if (!this.dead) {
         this.life -= monster.sprite.entity.strength;
-        if (this.life <= 0) {
+        if (this.life < 0) {
             this.life = 0;
             //this.die();
         }
-        this.gold -= monster.gold;
+        this.gold -= monster.sprite.entity.gold;
         if(this.gold < 0){
 			this.gold = 0;
         }
     }
-    monster.sprite.entity.die();
+    monster.sprite.entity.dieWithoutGlory();
 };
 
 //Use the special power of our hero => just a draft

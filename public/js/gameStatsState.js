@@ -7,11 +7,10 @@ var gameStatsState = {
 		console.log(game.global.scoreLife);
 
 		//Score
-		var scoreToPrint = 'Monsters Score: '+
-			game.global.scoreMonster+'\nLife Score: '+
-			game.global.scoreLife+' x 100 = '+
-			game.global.scoreLife*100+
-			'\nTotal: '+(game.global.scoreMonster+game.global.scoreLife*100);
+		var scoreToPrint = 'Monsters Score: '+ game.global.currentLevel.hero.points+
+			'\nLife Score: '+game.global.currentLevel.hero.life+' x 100 = '+
+			game.global.currentLevel.hero.life*100+
+			'\nTotal: '+(game.global.currentLevel.hero.points+game.global.currentLevel.hero.life*100);
 
 		var printScore = game.add.text(game.world.centerX, 150, scoreToPrint, { font: '30px Arial', fill: '#ffffff' });
 		printScore.anchor.setTo(0.5, 0.5);

@@ -41,7 +41,7 @@ var level1State = {
 			[{
 				"number": 12,
 				"type": "Guy",
-				"life": 200,
+				"life": 70,
 				"gold": 20,
 				"value": 1,
 				"strength": 2
@@ -49,7 +49,7 @@ var level1State = {
 			[{
 				"number": 2,
 				"type": "Guy",
-				"life": 200,
+				"life": 50,
 				"gold": 20,
 				"value": 1,
 				"strength": 2
@@ -170,7 +170,6 @@ var level1State = {
 		//Begining of the level
 		niveau1 = game.global.currentLevel = new Niveau(waves);
 		button = new LabelButton(game, game.world.centerX - 95, 400, 'wood_frame', 'Next Wave', game.global.currentLevel.defend, game.global.currentLevel, 'black');
-		//button = game.add.button(game.world.centerX - 95, 400, 'button', niveau1.defend, niveau1);
 		button.scale.x = 0.3;
 		button.scale.y = 0.3;
 	},
@@ -205,6 +204,11 @@ var level1State = {
 				element.alpha = element.lifespan / element.fadespan;
 		}
 
-		//game.global.depthGroup.sort();
+	},
+
+	render: function() {
+		game.debug.text('Monsters Score: '+ game.global.currentLevel.hero.points, 10, 10);
+		game.debug.text('Health Point: '+game.global.currentLevel.hero.life, 10, 25);
+		game.debug.text('Gold: '+game.global.currentLevel.hero.gold, 10, 40);
 	},
 };
