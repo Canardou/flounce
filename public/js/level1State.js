@@ -123,7 +123,7 @@ var level1State = {
 
 		
 
-		game.physics.p2.enableBody(background, true);
+		game.physics.p2.enableBody(background);
 		background.body.static = true;
 		background.body.clearShapes();
 		background.body.loadPolygon('paddle_physics', 'right_wall');
@@ -169,31 +169,31 @@ var level1State = {
 
 		//Begining of the level
 		niveau1 = game.global.currentLevel = new Niveau(waves);
-		button = new LabelButton(game, game.world.centerX - 95, 400, 'wood_frame', 'Next Wave', niveau1.defend, niveau1, 'black');
+		button = new LabelButton(game, game.world.centerX - 95, 400, 'wood_frame', 'Next Wave', game.global.currentLevel.defend, game.global.currentLevel, 'black');
 		//button = game.add.button(game.world.centerX - 95, 400, 'button', niveau1.defend, niveau1);
 		button.scale.x = 0.3;
 		button.scale.y = 0.3;
 	},
 
 	update: function() {
-		if (niveau1.phase === "defending") {
+		if (game.global.currentLevel.phase === "defending") {
 			button.visible = false;
 		}
-		else if (niveau1.phase === "constructing") {
+		else if (game.global.currentLevel.phase === "constructing") {
 			button.visible = true;
 		}
 
-		if (niveau1.hero.dead) {
+		if (game.global.currentLevel.hero.dead) {
 			alert("mouru");
 		}
 
-		if (niveau1.hero.monsterKilledDuringCurrentWave === niveau1.currentWave.totalMonster) {
-			if (niveau1.waves.length > 0)
-				niveau1.construct();
-			else if (!niveau1.won) {
-				niveau1.won = true;
+		if (game.global.currentLevel.hero.monsterKilledDuringCurrentWave === game.global.currentLevel.currentWave.totalMonster) {
+			if (game.global.currentLevel.waves.length > 0)
+				game.global.currentLevel.construct();
+			else if (!game.global.currentLevel.won) {
+				game.global.currentLevel.won = true;
 				setTimeout(function() {
-					niveau1.endLevel();
+					game.global.currentLevel.endLevel();
 				}, Phaser.Timer.SECOND * 5);
 			}
 		}

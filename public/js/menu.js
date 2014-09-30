@@ -37,11 +37,10 @@ var menuState = {
 
 		//Animation du menu
 		var monstersToCreate = [
-		{"number": 20, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 }
+		{"number": 7, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20 }
 		];
 
 		var wave1 = new Wave(monstersToCreate, 1);
 		wave1.start();
-		console.log("Starting the wave");
 	},
 };

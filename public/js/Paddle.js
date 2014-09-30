@@ -15,7 +15,7 @@ var Paddle = function(damage, x, y, orientation, small, initial_angle, angle_max
         var paddle = game.add.sprite(x-cx, y-cy, img);
         paddle.pivotOffsetX = cx;
         paddle.pivotOffsetY = cy;
-        game.physics.p2.enableBody(paddle, true);
+        game.physics.p2.enableBody(paddle);
         paddle.body.clearShapes();
         return paddle;
     };
@@ -55,7 +55,7 @@ var Paddle = function(damage, x, y, orientation, small, initial_angle, angle_max
     this.paddle.pivotPoint = game.add.sprite(this.paddle.position.x + this.paddle.pivotOffsetX,
         this.paddle.position.y + this.paddle.pivotOffsetY);
     //Physics of the pivot : static, no collision, revolute constraint with upper/lower limit
-    game.physics.p2.enable(this.paddle.pivotPoint, true);
+    game.physics.p2.enable(this.paddle.pivotPoint);
     this.paddle.pivotPoint.body.static = true;
     this.paddle.pivotPoint.body.clearCollision(true, true);
     this.paddle.flipperConstraint = game.physics.p2.createRevoluteConstraint(this.paddle, [this.paddle.pivotOffsetX, this.paddle.pivotOffsetY],
