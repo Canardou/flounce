@@ -25,7 +25,7 @@ Hero.prototype.getHit = function(hero,monster) {
         this.life -= monster.strength;
         if (this.life <= 0) {
             this.life = 0;
-            this.die();
+            //this.die();
         }
         this.gold -= monster.gold;
         if(this.gold < 0){

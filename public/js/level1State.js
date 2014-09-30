@@ -1,10 +1,9 @@
 /*global Phaser game*/
 var level1State = {
 	preload: function() {
-
-		var button;
-		var niveau1;
-		var hero;
+		// var button;
+		// var niveau1;
+		// var hero;
 	},
 
 	create: function() {
@@ -46,36 +45,37 @@ var level1State = {
 				"gold": 20,
 				"value": 1,
 				"strength": 20
-			}]/*,
-			[{
-				"number": 2,
-				"type": "Guy",
-				"life": 20,
-				"gold": 20,
-				"value": 1,
-				"strength": 20
-			}, {
-				"number": 4,
-				"type": "Guy",
-				"life": 20,
-				"gold": 20,
-				"value": 1,
-				"strength": 20
-			}, {
-				"number": 8,
-				"type": "Guy",
-				"life": 20,
-				"gold": 20,
-				"value": 1,
-				"strength": 20
-			}, {
-				"number": 1,
-				"type": "Guy",
-				"life": 20,
-				"gold": 20,
-				"value": 1,
-				"strength": 20
-			}]*/
+			}]
+			/*,
+						[{
+							"number": 2,
+							"type": "Guy",
+							"life": 20,
+							"gold": 20,
+							"value": 1,
+							"strength": 20
+						}, {
+							"number": 4,
+							"type": "Guy",
+							"life": 20,
+							"gold": 20,
+							"value": 1,
+							"strength": 20
+						}, {
+							"number": 8,
+							"type": "Guy",
+							"life": 20,
+							"gold": 20,
+							"value": 1,
+							"strength": 20
+						}, {
+							"number": 1,
+							"type": "Guy",
+							"life": 20,
+							"gold": 20,
+							"value": 1,
+							"strength": 20
+						}]*/
 		];
 
 		game.physics.startSystem(Phaser.Physics.P2JS);
@@ -86,6 +86,8 @@ var level1State = {
 		game.global.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.limbsCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.voidCollisionGroup = game.physics.p2.createCollisionGroup();
+		game.global.onBottom = [];
+		game.global.onTop = [];
 		game.global.fade_out = [];
 		game.physics.p2.updateBoundsCollisionGroup();
 		// Collision group
@@ -107,8 +109,8 @@ var level1State = {
 			base: 10,
 			max: 20
 		}, 150, 300);
-		
-		var test_hint = new Hint("P",5,430,1000);
+
+		var test_hint = new Hint("P", 5, 430, 1000);
 
 		bumper.allowDrag();
 
@@ -148,8 +150,8 @@ var level1State = {
 			paddle_left.down();
 		});
 
-		
-		var panelTest=new Panel();
+
+		var panelTest = new Panel();
 		panelTest.setTowers([Bumper]);
 		panelTest.show();
 
@@ -169,25 +171,26 @@ var level1State = {
 			button.visible = true;
 		}
 
-		if(niveau1.hero.dead)
-		{
+		if (niveau1.hero.dead) {
 			alert("mouru");
 		}
 
 		if (niveau1.hero.monsterKilledDuringCurrentWave === niveau1.currentWave.totalMonster) {
-			if(niveau1.waves.length > 0)
+			if (niveau1.waves.length > 0)
 				niveau1.construct();
-			else if(!niveau1.won){
+			else if (!niveau1.won) {
 				niveau1.won = true;
-				setTimeout(function(){niveau1.endLevel();}, Phaser.Timer.SECOND*5);
+				setTimeout(function() {
+					niveau1.endLevel();
+				}, Phaser.Timer.SECOND * 5);
 			}
 		}
 
 		var groupFadeOut = game.global.fade_out;
-		for(var p in groupFadeOut){
+		for (var p in groupFadeOut) {
 			var element = groupFadeOut[p];
-			if(element.lifespan<element.fadespan)
-				element.alpha= element.lifespan / element.fadespan;
+			if (element.lifespan < element.fadespan)
+				element.alpha = element.lifespan / element.fadespan;
 		}
 
 		//game.global.depthGroup.sort();
