@@ -56,6 +56,7 @@ Monster.prototype.destroy = function() {
 
 Monster.prototype.updateCollision = function() {
     for (var item in this.parts) {
+        //this.parts[item].body.collideWorldBounds=true;
         this.parts[item].body.setCollisionGroup(game.global.enemiesCollisionGroup);
         this.parts[item].body.collides([game.global.enemiesCollisionGroup, game.global.wallsCollisionGroup, game.global.playerCollisionGroup]);
     }
