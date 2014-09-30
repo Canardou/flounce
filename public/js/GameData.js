@@ -30,7 +30,6 @@ GameData.prototype.checkCookie = function() {
         this.username =  this.getCookie('username');
         this.topScore = this.getCookie('topScore');
     } else {
-       //user = prompt("Please enter your name:","");
        this.currentLvl = 0;
        this.topScore = 0;
        this.username = "JohnDoe";
