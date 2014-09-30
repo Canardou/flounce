@@ -22,12 +22,13 @@ Niveau.prototype.defend = function(){
 	this.phase = "defending";
 	this.currentWave.totalMonster = 0;
 	if(this.waves.length > 0){
+		this.panel.hide();
 		var waveToStart = new Wave(this.waves.pop(), this.hero, 1);
 		this.currentWave = waveToStart;
 		console.log("Nombre de monstres: " + this.currentWave.totalMonster);
 		waveToStart.start();
 	}
-	this.panel.hide();
+	
 };
 
 //When every monster have been killed

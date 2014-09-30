@@ -97,6 +97,7 @@ var level1State = {
 		game.global.onBottom = [];
 		game.global.onTop = [];
 		game.global.fade_out = [];
+		
 		game.physics.p2.updateBoundsCollisionGroup();
 		// Collision group
 
@@ -120,7 +121,7 @@ var level1State = {
 
 		var test_hint = new Hint("P", 5, 430, 1000);
 
-		bumper.allowDrag();
+		
 
 		game.physics.p2.enableBody(background, true);
 		background.body.static = true;
@@ -145,8 +146,12 @@ var level1State = {
 		key_P.onDown.add(function() {
 			paddle_right.up();
 		});
-
+		
 		key_P.onUp.add(function() {
+			paddle_right.down();
+		});
+		
+		key_P.onHoldCallBack=(function() {
 			paddle_right.down();
 		});
 
@@ -176,7 +181,6 @@ var level1State = {
 		}
 		else if (niveau1.phase === "constructing") {
 			button.visible = true;
-			
 		}
 
 		if (niveau1.hero.dead) {

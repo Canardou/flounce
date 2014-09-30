@@ -50,9 +50,16 @@ Building.prototype.allowDrag = function() {
     this.design.events.onDragStop.add(this.onDragStop, this);
 };
 
+Building.prototype.stopDrag = function() {
+    this.design.inputEnabled = false;
+};
+
 Building.prototype.onDragStart = function(sprite, pointer) {
     //Empty for the moment
     sprite.scale.set(1.2, 1.2);
+    if(this.panel){
+        this.panel.shown.splice(this,1);
+    }
 };
 
 Building.prototype.onDragStop = function(sprite, pointer) {
@@ -61,4 +68,9 @@ Building.prototype.onDragStop = function(sprite, pointer) {
     this.entity.body.x = pointer.x;
     this.entity.body.y = pointer.y;
     sprite.scale.set(1, 1);
+    if(this.panel){
+        this.panel.reset();
+        this.panel=null;
+        this.stopDrag();
+    }
 };

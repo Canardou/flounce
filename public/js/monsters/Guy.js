@@ -8,8 +8,8 @@ var Guy = function(x, y, life, gold, value, strengh, decay, hero) {
     game.physics.p2.enableBody(chest);
     chest.body.setRectangle(8, 16);
     this.body=chest.body;
-    this.body.velocity.x=Math.random()*2000;
-    this.body.velocity.y=-Math.random()*2000;
+    this.body.velocity.x=Math.random()*2000-1000;
+    this.body.velocity.y=-Math.random()*1000;
     //Head
     var head = game.add.sprite(x, y - 13, 'guy_head');
     head.entity=this;

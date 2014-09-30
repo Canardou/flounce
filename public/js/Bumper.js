@@ -3,14 +3,14 @@ var Bumper = function(damage, x, y) {
 
     this.type = 1;
 
-    this.heatLimit = 10;
+    this.heatLimit = 5;
     this.heat = 0;
     this.overHeat = false;
 
     this.entity = game.add.sprite(x, y);
     this.design = game.add.sprite(x, y, 'bumper' + this.type, 0);
     this.design.anchor.setTo(0.5, 0.5);
-    game.physics.p2.enableBody(this.entity,true);
+    game.physics.p2.enableBody(this.entity);
 
     this.entity.body.setCircle(20);
     this.entity.body.kinematic = true;
