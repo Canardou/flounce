@@ -45,7 +45,15 @@ var level1State = {
 				"gold": 20,
 				"value": 1,
 				"strength": 2
-			}]
+			}],
+			[{
+				"number": 2,
+				"type": "Guy",
+				"life": 200,
+				"gold": 20,
+				"value": 1,
+				"strength": 2
+			}],
 			/*,
 						[{
 							"number": 2,
@@ -151,12 +159,11 @@ var level1State = {
 		});
 
 
-		var panelTest = new Panel();
-		panelTest.setTowers([Bumper]);
-		panelTest.show();
+		
+		
 
 		//Begining of the level
-		niveau1 = new Niveau(waves);
+		niveau1 = game.global.currentLevel = new Niveau(waves);
 		button = new LabelButton(game, game.world.centerX - 95, 400, 'wood_frame', 'Next Wave', niveau1.defend, niveau1, 'black');
 		//button = game.add.button(game.world.centerX - 95, 400, 'button', niveau1.defend, niveau1);
 		button.scale.x = 0.3;
@@ -169,6 +176,7 @@ var level1State = {
 		}
 		else if (niveau1.phase === "constructing") {
 			button.visible = true;
+			
 		}
 
 		if (niveau1.hero.dead) {

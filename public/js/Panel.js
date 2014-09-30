@@ -15,5 +15,7 @@ Panel.prototype.show=function(){
 };
 
 Panel.prototype.hide=function(){
-    
+    while(this.shown.length>0){
+        (this.shown.pop()).destroy();
+    }
 };

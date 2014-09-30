@@ -22,7 +22,7 @@ Hero.prototype.die = function() {
 
 Hero.prototype.getHit = function(hero,monster) {
 	if (!this.dead) {
-        this.life -= monster.strength;
+        this.life -= monster.sprite.entity.strength;
         if (this.life <= 0) {
             this.life = 0;
             //this.die();

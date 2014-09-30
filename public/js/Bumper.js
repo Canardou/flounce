@@ -10,7 +10,7 @@ var Bumper = function(damage, x, y) {
     this.entity = game.add.sprite(x, y);
     this.design = game.add.sprite(x, y, 'bumper' + this.type, 0);
     this.design.anchor.setTo(0.5, 0.5);
-    game.physics.p2.enableBody(this.entity);
+    game.physics.p2.enableBody(this.entity,true);
 
     this.entity.body.setCircle(20);
     this.entity.body.kinematic = true;
@@ -80,5 +80,10 @@ Bumper.prototype.decreaseHeat = function() {
             this.design.loadTexture('bumper' + this.type, 0);
     }
 };
+
+Bumper.prototype.destroy=function(){
+    this.entity.destroy();
+    this.design.destroy();
+}
 
 inh(Bumper, Building);
