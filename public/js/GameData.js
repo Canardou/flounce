@@ -24,11 +24,11 @@ GameData.prototype.getCookie = function(cname) {
 
 //Check if the user already exists : if not => TO DO
 GameData.prototype.checkCookie = function() {
-    var user=this.getCookie("username");
+    var user=this.getCookie('username');
     if (user !== "") {
-        this.currentLvl = this.getCookie(currentLvl);
-		this.username =  this.getCookie(username);
-		this.topScore = this.getCookie(topScore);
+        this.currentLvl = this.getCookie('currentLvl');
+        this.username =  this.getCookie('username');
+        this.topScore = this.getCookie('topScore');
     } else {
        //user = prompt("Please enter your name:","");
        this.currentLvl = 0;

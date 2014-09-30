@@ -43,7 +43,6 @@ Wave.prototype.monsterTime = function(that){
 
 Wave.prototype.start = function(){
 	this.monsterTime(this);
-	
 };
 
 //To know if the wave has monster to invoke

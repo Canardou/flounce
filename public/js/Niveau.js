@@ -38,7 +38,7 @@ Niveau.prototype.construct = function(){
 
 Niveau.prototype.endLevel = function(){
 	console.log("endOfLevel");
-	if (this.waves.length === 0 && (niveau1.hero.monsterKilledDuringCurrentWave === niveau1.currentWave.totalMonster)) {
+	if (this.waves.length === 0 && (this.hero.monsterKilledDuringCurrentWave === this.currentWave.totalMonster)) {
 		console.log("You won !");
 		game.global.scoreMonster = this.hero.points;
 		game.global.scoreLife = this.hero.life;

@@ -32,7 +32,7 @@ var Paddle = function(damage, x, y, orientation, small, initial_angle, angle_max
             }
             else {
                 this.paddle = generate_paddle(50, 0, 'paddle_right');
-                this.paddle.body.loadPolygon('paddle_physics', 'flipper_right');
+                this.paddle.body.loadPolygon('paddle_physics', 'paddle_right_reg');
             }
             this.orientation = 1;
 
@@ -45,7 +45,7 @@ var Paddle = function(damage, x, y, orientation, small, initial_angle, angle_max
             }
             else {
                 this.paddle = generate_paddle(-50, 0, 'paddle_left');
-                this.paddle.body.loadPolygon('paddle_physics', 'flipper_left');
+                this.paddle.body.loadPolygon('paddle_physics', 'paddle_left_reg');
             }
             this.orientation = -1;
             break;

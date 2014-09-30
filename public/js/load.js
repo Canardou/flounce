@@ -23,6 +23,7 @@ var loadState = {
 		game.load.image('paddle_left', 'asset/sprites/paddle_left.png');
 		game.load.image('background', 'asset/sprites/design.jpg');
 		game.load.image('hint', 'asset/sprites/hint.png');
+		game.load.image('wood_frame', 'asset/sprites/wood_panel.png');
 		game.load.spritesheet('button', 'asset/sprites/GreenButton.png');
 		game.load.physics('paddle_physics', 'asset/physics/physics.json');
 		for(var i=0;i<3;i++){
@@ -32,9 +33,7 @@ var loadState = {
 
     create: function() {
 		//Start the menu
-		//game.state.start('level');
-
-
-		game.state.start('level1');
+		game.state.start('menu');
+		//game.state.start('level1');
     }
 };

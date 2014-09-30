@@ -1,9 +1,9 @@
 /*global Phaser game*/
 var level1State = {
 	preload: function() {
-		// var button;
-		// var niveau1;
-		// var hero;
+		//var button;
+		//var niveau1;
+		//var hero;
 	},
 
 	create: function() {
@@ -39,12 +39,12 @@ var level1State = {
 				"strength": 20
 			}],*/
 			[{
-				"number": 2,
+				"number": 12,
 				"type": "Guy",
-				"life": 20,
+				"life": 200,
 				"gold": 20,
 				"value": 1,
-				"strength": 20
+				"strength": 2
 			}]
 			/*,
 						[{
@@ -97,12 +97,12 @@ var level1State = {
 		//Locations
 		var background = game.add.sprite(320, 520, 'background');
 		var paddle_right = new Paddle({
-			base: 50,
-			max: 150
+			base: 5,
+			max: 6
 		}, 460, 950, 'right');
 		var paddle_left = new Paddle({
-			base: 50,
-			max: 150
+			base: 5,
+			max: 6
 		}, 200, 950, 'left');
 
 		var bumper = new Bumper({
@@ -157,10 +157,10 @@ var level1State = {
 
 		//Begining of the level
 		niveau1 = new Niveau(waves);
-		button = new LabelButton(game, game.world.centerX - 95, 400, 'button', 'Next Wave', niveau1.defend, niveau1);
+		button = new LabelButton(game, game.world.centerX - 95, 400, 'wood_frame', 'Next Wave', niveau1.defend, niveau1, 'black');
 		//button = game.add.button(game.world.centerX - 95, 400, 'button', niveau1.defend, niveau1);
-		button.scale.x = 0.2;
-		button.scale.y = 0.2;
+		button.scale.x = 0.3;
+		button.scale.y = 0.3;
 	},
 
 	update: function() {
