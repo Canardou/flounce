@@ -68,6 +68,7 @@ Building.prototype.onDragStop = function(sprite, pointer) {
     this.entity.body.x = pointer.x;
     this.entity.body.y = pointer.y;
     sprite.scale.set(1, 1);
+    game.global.currentLevel.hero.gold -= 500; // TODO mettre la vrai valeur de la tour !
     if(this.panel){
         this.panel.reset();
         this.panel=null;
