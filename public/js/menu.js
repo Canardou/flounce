@@ -6,7 +6,7 @@ var menuState = {
 	create: function() {
 
 		game.physics.startSystem(Phaser.Physics.P2JS);
-		game.physics.p2.setBoundsToWorld(true, true, false, true, false);
+		game.physics.p2.setBoundsToWorld(true, true, false, false, false);
 		game.physics.p2.gravity.y = 300;
 		game.physics.p2.setImpactEvents(true);
 		game.global.playerCollisionGroup = game.physics.p2.createCollisionGroup();
@@ -21,7 +21,7 @@ var menuState = {
 
 		console.log("Entrée dans le menu");
 		var data = new GameData();
-
+		var her = new Hero(0,0,0);
 		// Display the name of the game
 		var nameLabel = game.add.text(game.world.centerX, 80, 'Flounce', {
 			font: '50px Arial',
@@ -38,7 +38,7 @@ var menuState = {
 
 		//Animation du menu
 		var monstersToCreate = [
-		{"number": 7, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20, "entry": 'all'}
+		{"number": 2000, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":20, "entry": 'all'}
 		];
 
 		var wave1 = new Wave(monstersToCreate, 1);
