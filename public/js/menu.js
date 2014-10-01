@@ -6,6 +6,7 @@ var menuState = {
 	create: function() {
 
 		game.physics.startSystem(Phaser.Physics.P2JS);
+		game.physics.p2.setBoundsToWorld(true, true, false, true, false);
 		game.physics.p2.gravity.y = 300;
 		game.physics.p2.setImpactEvents(true);
 		game.global.playerCollisionGroup = game.physics.p2.createCollisionGroup();
