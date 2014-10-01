@@ -1,6 +1,6 @@
 /*global game,pi,cos,sin,def,isDef,rand from utils.js*/
 var Paddle = function(damage, x, y, orientation, small, initial_angle, angle_max, speed) {
-    Building.call(this,damage);
+    //Building.call(this,damage);
     //Constants and functions
     this.initial_angle = def(initial_angle, 0.7);
     this.angle_max = def(angle_max, 0.9);
@@ -96,5 +96,3 @@ Paddle.prototype.destroy = function() {
     this.paddle.pivotPoint.destroy();
     this.paddle.destroy();
 };
-
-inh(Paddle,Building);

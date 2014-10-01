@@ -27,13 +27,15 @@ Building.prototype.hit = function(building, enemy) {
     //Gestion de collision
     if (enemy.sprite !== null) {
         var entity = enemy.sprite.entity;
-        if (entity.lastCollision != building) {
+        if (entity.lastCollision.length===0 || entity.lastCollision[0] != building) {
             var retour = this.getDamage(building, enemy);
             if (retour.damage !== 0) {
+                //text !
                 console.log(retour.damage);
-                entity.lastCollision = building;
-                game.time.events.add(200, function() {
-                        entity.lastCollision = null;
+                entity.lastCollision.unshift(building);
+                game.time.events.add(1000, function() {
+                    if(entity.sprite)
+                        entity.lastCollision.pop();
                     }, this);
                 entity.getHit(retour.damage); //DAMAGE!
                 return retour;

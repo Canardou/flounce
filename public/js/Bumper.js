@@ -25,7 +25,8 @@ Bumper.prototype.hit = function(bumper, part) {
     //Gestion de collision
     if (part.sprite !== null) {
         var entity = part.sprite.entity;
-        if (entity.lastCollision != bumper) {
+        if (entity.lastCollision.length === 0 || entity.lastCollision[0] != bumper) {
+
             if (this.heat < this.heatLimit && !this.overHeat) {
                 this.heat++;
                 if (this.heat >= this.heatLimit)
@@ -33,15 +34,40 @@ Bumper.prototype.hit = function(bumper, part) {
                 else if (this.heat > this.heatLimit / 2)
                     this.design.loadTexture('bumper' + this.type, 1);
                 var retour = this.getDamage(bumper, part);
-                if (retour.damage != 0) {
+                var angle = Math.atan2(bumper.y - entity.body.y, bumper.x - entity.body.x);
+                if (retour.damage !== 0) {
+                    //text !
+                    var combo = entity.combo;
+                    if (combo > 0) {
+                        var onoma = game.add.text(this.entity.x - 25 * cos(angle), this.entity.y - 25 * sin(angle), 'x' + (combo+1), {
+                            font: ''+(combo*7+20)+'px "bd_cartoon_shoutregular"',
+                            fill: '#A50000'
+                        });
+                        onoma.anchor.set(0.5);
+                        onoma.tween = game.add.tween(onoma);
+                        onoma.tween.to({
+                            angle: 10
+                        }, 1000, Phaser.Easing.Linear.None, true, 0, false);
+                        onoma.tween.onComplete.add(function() {
+                            onoma.destroy();
+                        });
+                    }
                     console.log(retour.damage);
-                    entity.lastCollision = bumper;
-                    game.time.events.add(200, function() {
-                        entity.lastCollision = null;
+                    entity.lastCollision.unshift(bumper);
+                    entity.combo++;
+                    game.time.events.add(500, function() {
+                        if (entity) {
+                            entity.lastCollision.pop();
+                        }
+                    }, this);
+                    game.time.events.add(1000, function() {
+                        if (entity) {
+                            entity.combo--;
+                        }
                     }, this);
                     entity.getHit(retour.damage); //DAMAGE!
                 }
-                var angle = Math.atan2(bumper.y - entity.body.y, bumper.x - entity.body.x);
+
                 if (entity.life > 0) {
                     part.velocity.x = -2000 * cos(angle);
                     part.velocity.y = -2000 * sin(angle);
@@ -81,7 +107,7 @@ Bumper.prototype.decreaseHeat = function() {
     }
 };
 
-Bumper.prototype.destroy=function(){
+Bumper.prototype.destroy = function() {
     this.entity.destroy();
     this.design.destroy();
 }

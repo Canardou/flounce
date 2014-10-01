@@ -9,7 +9,8 @@ var Monster = function(life, gold, value, strength, decay, hero) {
     this.isDestroy = false;
     this.parts = [];
     this.constraints = [];
-    this.lastCollision = null;
+    this.lastCollision = [];
+    this.combo=0;
     this.hero = hero;
 };
 
