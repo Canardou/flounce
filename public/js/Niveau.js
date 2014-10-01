@@ -11,6 +11,7 @@ var Niveau = function(waves, initialHeroLife, initialHeroGold, difficulty, avail
 	this.availableTower = def(availableTower,1);
 	this.design = def(design, true);
 	this.phase = "beginning"; // to find if it will be a fight or a contruct phase.
+	this.countWave = 0;
 	this.currentWave = new Wave(this.waves[0], this.hero, 1);
 	this.won = false;
 	this.panel = new Panel();
@@ -21,9 +22,10 @@ Niveau.prototype.defend = function(){
 	console.log("phase de défense");
 	this.phase = "defending";
 	this.currentWave.totalMonster = 0;
+	this.countWave++;
 	if(this.waves.length > 0){
 		this.panel.hide();
-		var waveToStart = new Wave(this.waves.pop(), this.hero, 1);
+		var waveToStart = new Wave(this.waves.pop(), this.hero, this.countWave);
 		this.currentWave = waveToStart;
 		console.log("Nombre de monstres: " + this.currentWave.totalMonster);
 		waveToStart.start();

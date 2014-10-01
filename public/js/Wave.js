@@ -13,9 +13,18 @@ var Wave = function(monstersToCreate, hero, number, entrees) {
 };
 
 Wave.prototype.popMonster = function(type, life, gold, value, strength, entree){
-	var entreeToUse = def(entree, floor(rand(this.entrees.length, 0)));
+	var entreeToUse;
+	if(entree === 'all')
+	{
+		entreeToUse = floor(rand(this.entrees.length, 0));
+	}
+	else{
+		entreeToUse = entree;
+	}
+
+	
 	var aliveMonster;
-	var weigth = 1;//+(number/10);
+	var weigth = 1;//+(this.number/10);
 	if(type === "Guy") {
 		aliveMonster = new Guy(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,life * weigth, gold * weigth, value * weigth, strength, false, this.hero);
 	}
@@ -30,7 +39,7 @@ Wave.prototype.popMonster = function(type, life, gold, value, strength, entree){
 
 Wave.prototype.monsterTime = function(that){
 	var toSummon= that.monstersToCreate.pop();
-	game.time.events.repeat(Phaser.Timer.HALF, toSummon.number, that.popMonster, that, toSummon.type,toSummon.life,toSummon.gold, toSummon.value,toSummon.strength);
+	game.time.events.repeat(Phaser.Timer.HALF, toSummon.number, that.popMonster, that, toSummon.type,toSummon.life,toSummon.gold, toSummon.value,toSummon.strength, toSummon.entry);
 	if(that.monstersToCreate.length > 0){
 		setTimeout(function(){that.monsterTime(that);}, Phaser.Timer.HALF * toSummon.number);
 	}

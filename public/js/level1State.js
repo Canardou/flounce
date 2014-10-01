@@ -9,81 +9,49 @@ var level1State = {
 	create: function() {
 
 		var waves = [
-			/*[{
-				"number": 2,
-				"type": "Guy",
-				"life": 20,
-				"gold": 20,
-				"value": 1,
-				"strength": 20
-			}, {
+			[{
 				"number": 4,
 				"type": "Guy",
-				"life": 20,
+				"life": 200,
 				"gold": 20,
-				"value": 1,
-				"strength": 20
+				"value": 1000,
+				"strength": 10,
+				"entry": 'all'
 			}, {
 				"number": 8,
 				"type": "Guy",
-				"life": 20,
+				"life": 30,
 				"gold": 20,
-				"value": 1,
-				"strength": 20
+				"value": 200,
+				"strength": 2,
+				"entry": 1
 			}, {
-				"number": 1,
+				"number": 10,
 				"type": "Guy",
-				"life": 20,
+				"life": 15,
 				"gold": 20,
-				"value": 1,
-				"strength": 20
-			}],*/
+				"value": 170,
+				"strength": 2,
+				"entry": 'all'
+			}],
 			[{
-				"number": 12,
+				"number": 3,
 				"type": "Guy",
-				"life": 70,
+				"life": 25,
 				"gold": 20,
-				"value": 1,
-				"strength": 2
+				"value": 150,
+				"strength": 2,
+				"entry": 'all'
 			}],
 			[{
 				"number": 2,
 				"type": "Guy",
-				"life": 50,
-				"gold": 20,
-				"value": 1,
-				"strength": 2
+				"life": 20,
+				"gold": 10,
+				"value": 100,
+				"strength": 1,
+				"entry": 0
 			}],
-			/*,
-						[{
-							"number": 2,
-							"type": "Guy",
-							"life": 20,
-							"gold": 20,
-							"value": 1,
-							"strength": 20
-						}, {
-							"number": 4,
-							"type": "Guy",
-							"life": 20,
-							"gold": 20,
-							"value": 1,
-							"strength": 20
-						}, {
-							"number": 8,
-							"type": "Guy",
-							"life": 20,
-							"gold": 20,
-							"value": 1,
-							"strength": 20
-						}, {
-							"number": 1,
-							"type": "Guy",
-							"life": 20,
-							"gold": 20,
-							"value": 1,
-							"strength": 20
-						}]*/
 		];
 
 		game.physics.startSystem(Phaser.Physics.P2JS);
