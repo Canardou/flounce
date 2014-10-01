@@ -21,7 +21,7 @@ var loadState = {
 		game.load.image('guy_head', 'asset/sprites/guy_head.png');
 		game.load.image('paddle_right', 'asset/sprites/paddle_right.png');
 		game.load.image('paddle_left', 'asset/sprites/paddle_left.png');
-		game.load.image('background', 'asset/sprites/design.jpg');
+		game.load.image('background', 'asset/sprites/patron.png');
 		game.load.image('hint', 'asset/sprites/hint.png');
 		game.load.image('wood_frame', 'asset/sprites/wood_panel.png');
 		game.load.spritesheet('button', 'asset/sprites/GreenButton.png');
