@@ -104,7 +104,9 @@ var level1State = {
 		background.body.loadPolygon('paddle_physics', 'lower_pipe');
 		background.body.loadPolygon('paddle_physics', 'higer_pipe');
 		background.body.setCollisionGroup(game.global.playerCollisionGroup);
-		background.body.collides(game.global.enemiesCollisionGroup, this.hit, this);
+		
+		background.body.collides(game.global.enemiesCollisionGroup, function(wall,part){part.sprite.entity.combo=0;}, this);
+		
 		background.body.collides(game.global.limbsCollisionGroup);
 		game.physics.p2.world.setGlobalStiffness = Number.MAX_VALUE;
 		game.physics.p2.world.setGlobalRelaxation = 1;

@@ -45,12 +45,18 @@ Bumper.prototype.hit = function(bumper, part) {
                         });
                         onoma.anchor.set(0.5);
                         onoma.tween = game.add.tween(onoma);
+                        onoma.tween2 = game.add.tween(onoma);
                         onoma.tween.to({
                             angle: 10
-                        }, 1000, Phaser.Easing.Linear.None, true, 0, false);
-                        onoma.tween.onComplete.add(function() {
+                        }, 500);
+                        onoma.tween2.to({
+                            angle: -20, alpha:0
+                        }, 500);
+                        onoma.tween.chain(onoma.tween2);
+                        onoma.tween2.onComplete.add(function() {
                             onoma.destroy();
                         });
+                        onoma.tween.start();
                     }
                     console.log(retour.damage);
                     entity.lastCollision.unshift(bumper);
@@ -60,9 +66,10 @@ Bumper.prototype.hit = function(bumper, part) {
                             entity.lastCollision.pop();
                         }
                     }, this);
-                    game.time.events.add(1000, function() {
+                    game.time.events.add(2000, function() {
                         if (entity) {
-                            entity.combo--;
+                            if(entity.combo>0)
+                                entity.combo--;
                         }
                     }, this);
                     entity.getHit(retour.damage); //DAMAGE!
