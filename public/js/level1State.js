@@ -13,23 +13,25 @@ var level1State = {
 				"number": 4,
 				"type": "Guy",
 				"life": 200,
-				"gold": 20,
+				"gold": 200,
 				"value": 1000,
 				"strength": 10,
 				"entry": 'all'
-			}, {
+			}],
+			[{
 				"number": 8,
 				"type": "Guy",
 				"life": 30,
-				"gold": 20,
+				"gold": 200,
 				"value": 200,
 				"strength": 2,
 				"entry": 1
-			}, {
+			}],
+			[{
 				"number": 10,
 				"type": "Guy",
 				"life": 15,
-				"gold": 20,
+				"gold": 200,
 				"value": 170,
 				"strength": 2,
 				"entry": 'all'
@@ -38,7 +40,7 @@ var level1State = {
 				"number": 3,
 				"type": "Guy",
 				"life": 25,
-				"gold": 20,
+				"gold": 200,
 				"value": 150,
 				"strength": 2,
 				"entry": 'all'
@@ -47,7 +49,7 @@ var level1State = {
 				"number": 2,
 				"type": "Guy",
 				"life": 20,
-				"gold": 10,
+				"gold": 100,
 				"value": 100,
 				"strength": 1,
 				"entry": 0
@@ -114,6 +116,8 @@ var level1State = {
 		//Add the inputs and the associated functions
 		var key_P = game.input.keyboard.addKey(Phaser.Keyboard.P);
 		var key_A = game.input.keyboard.addKey(Phaser.Keyboard.A);
+		var key_M = game.input.keyboard.addKey(Phaser.Keyboard.M);
+		var key_Q = game.input.keyboard.addKey(Phaser.Keyboard.Q);
 
 		key_P.onDown.add(function() {
 			paddle_right.up();
@@ -135,9 +139,22 @@ var level1State = {
 			paddle_left.down();
 		});
 
+		key_M.onDown.add(function() {
+			game.physics.p2.gravity.x += 1000;
+		});
 
-		
-		
+		key_M.onUp.add(function() {
+			game.physics.p2.gravity.x -= 1000;
+		});
+
+		key_Q.onDown.add(function() {
+			game.physics.p2.gravity.x -= 1000;
+		});
+
+		key_Q.onUp.add(function() {
+			game.physics.p2.gravity.x += 1000;
+		});
+
 
 		//Begining of the level
 		niveau1 = game.global.currentLevel = new Niveau(waves);

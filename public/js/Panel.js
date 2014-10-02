@@ -17,7 +17,8 @@ Panel.prototype.show = function() {
             max: 20
         }, 150 * (i + 1), 1075);
         this.shown.push(tower);
-        if(game.global.currentLevel.hero.gold >= 500){
+        tower.allowMouseOver(); //En construction
+        if(game.global.currentLevel.hero.gold >= tower.cost){
             tower.allowDrag();
     }
         tower.panel=this;
@@ -34,7 +35,8 @@ Panel.prototype.reset = function() {
             max: 20
         }, 150 * (i + 1), 1075);
         this.shown.push(tower);
-        if(game.global.currentLevel.hero.gold >= 500){
+         tower.allowMouseOver(); //En construction
+        if(game.global.currentLevel.hero.gold >= tower.cost){
             tower.allowDrag();
         }
         tower.panel=this;
