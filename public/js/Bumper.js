@@ -37,6 +37,8 @@ Bumper.prototype.hit = function(bumper, part) {
                 var angle = Math.atan2(bumper.y - entity.body.y, bumper.x - entity.body.x);
                 if (retour.damage !== 0) {
                     //text !
+                    this.totalDamage += retour.damage;
+                    this.monsterHits++;
                     var combo = entity.combo;
                     if (combo > 0) {
                         var onoma = game.add.text(this.entity.x - 25 * cos(angle), this.entity.y - 25 * sin(angle), 'x' + (combo+1), {

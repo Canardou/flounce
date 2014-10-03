@@ -1,7 +1,3 @@
-// En attendant que tu designes les boutons un par un avec leur propre texte sur 'toshop on pourra leur mettre un chtit text.
-// Du coup si tu peux juste faire un joli cadre de bouton en mode bois bien design (style paddle stylé)
-// Ca servira pour les menus et next waves.
-// PS pense a le faire bien gros pour pouvoir le resize dans différent truc
 var LabelButton = function(game, x, y, key, label, callback,
                        callbackContext, labelColor, overFrame, outFrame, downFrame, upFrame){
     Phaser.Button.call(this, game, x, y, key, callback,

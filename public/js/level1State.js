@@ -69,6 +69,7 @@ var level1State = {
 		game.global.onTop = [];
 		game.global.fade_out = [];
 
+
 		//game.physics.setBoundsToWorld(true, true, false, true, false);
 		game.physics.p2.updateBoundsCollisionGroup();
 		// Collision group

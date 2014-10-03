@@ -24,6 +24,8 @@ var loadState = {
 		game.load.image('background', 'asset/sprites/patron.png');
 		game.load.image('hint', 'asset/sprites/hint.png');
 		game.load.image('wood_frame', 'asset/sprites/wood_panel.png');
+		game.load.image('delete', 'asset/sprites/deleteButton.png');
+		game.load.image('upgrade', 'asset/sprites/upgrade.png');
 		game.load.spritesheet('button', 'asset/sprites/GreenButton.png');
 		game.load.physics('paddle_physics', 'asset/physics/physics.json');
 		for(var i=0;i<3;i++){

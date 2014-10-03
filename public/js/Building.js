@@ -9,6 +9,11 @@ var Building = function(damage, cost) {
         critOdds: def(damage.critOdds, 1)
     };
     this.cost = def(cost, 500);
+    this.deleteButton;
+    this.upgradeButton;
+    this.totalDamage = 0;
+    this.monsterHits = 0;
+    //this.stats;
 };
 
 Building.prototype.getDamage = function(body1, body2) {
@@ -55,8 +60,8 @@ Building.prototype.allowDrag = function() {
 };
 
 Building.prototype.stopDrag = function() {
-    //this.design.inputEnabled = false;
-    this.design.input.disableDrag(true);
+    this.design.input.disableDrag();
+    this.design.events.onInputOver.remove(this.descriptTower, this);
 };
 
 Building.prototype.onDragStart = function(sprite, pointer) {
@@ -84,7 +89,7 @@ Building.prototype.onDragStop = function(sprite, pointer) {
 
 Building.prototype.allowClick = function(){
     this.design.inputEnabled = true;
-    this.design.input.disableDrag(true);
+    this.design.input.disableDrag();
     this.design.input.useHandCursor = true;
     this.design.events.onInputUp.add(this.statsTower, this);
 };
@@ -95,13 +100,65 @@ Building.prototype.allowMouseOver = function(){
 };
 
 Building.prototype.statsTower = function(){
-    console.log("test success");
     //Show the delete button
-    //Show the stats
+    if(game.global.currentLevel.phase === "constructing"){
+        game.input.onDown.add(this.hideButtons, this);
+        this.deleteButton = game.add.button(this.entity.body.x, this.entity.body.y, 'delete');
+        this.deleteButton.onInputDown.add(this.deleteTower, this);
+        this.deleteButton.input.useHandCursor = true;
+        this.deleteButton.scale.x = 0.25;
+        this.deleteButton.scale.y = 0.25;
+        //Upgrade Button
+        this.upgradeButton = game.add.button(this.entity.body.x - 40, this.entity.body.y, 'upgrade');
+        this.upgradeButton.onInputDown.add(this.upgradeTower, this);
+        this.upgradeButton.input.useHandCursor = true;
+        this.upgradeButton.scale.x = 0.25;
+        this.upgradeButton.scale.y = 0.25;
+    }
+
+    //Show the stats (number of monster touched && damage dealt)
+    stats = "Damage dealt: "+this.totalDamage+"\nMonster hits: "+this.monsterHits;
+    var style = {
+        'font': 'bold 175% Arial',
+        'fill': 'white'
+    };
+    this.stats = game.add.text(this.entity.body.x - 50, this.entity.body.y + 30, stats, style);
+    
 };
 
 Building.prototype.descriptTower = function(){
-    console.log("Description test success");
-    //Show the delete button
-    //Show the stats
+    //console.log("Description test success");
+    //Cost, damage, percentage of crits and explanation of the tower
 };
+
+Building.prototype.deleteTower = function(){
+    game.global.currentLevel.hero.gold += ceil(this.cost * 0.75); //Va pour les 75%...
+    game.input.onDown.remove(this.hideButtons, this);
+    this.deleteButton.destroy();
+    this.upgradeButton.destroy();
+    this.design.destroy();
+    this.entity.destroy();
+    this.destroy();
+};
+
+Building.prototype.upgradeTower = function(){
+    //Will depend on the tower ! Abstract Method !! 
+    //To redefine inside each tower.
+    /*game.global.currentLevel.hero.gold -= ceil(this.cost*2.5);
+    this.damage.base *= 1.5;
+    this.damage.max = this.damage.base
+    etc...
+    */
+    console.log("upgrade !!!");
+};
+
+Building.prototype.hideButtons = function(){
+    if(!this.deleteButton.input.checkPointerOver(game.input.mousePointer) && !this.upgradeButton.input.checkPointerOver(game.input.mousePointer)){
+            this.deleteButton.destroy();
+            this.upgradeButton.destroy();
+            this.stats.destroy();
+            game.input.onDown.remove(this.hideButtons, this);
+    }
+
+};
+
