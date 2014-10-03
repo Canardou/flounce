@@ -68,12 +68,6 @@ Bumper.prototype.hit = function(bumper, part) {
                             entity.lastCollision.pop();
                         }
                     }, this);
-                    game.time.events.add(2000, function() {
-                        if (entity) {
-                            if(entity.combo>0)
-                                entity.combo--;
-                        }
-                    }, this);
                     entity.getHit(retour.damage); //DAMAGE!
                 }
 

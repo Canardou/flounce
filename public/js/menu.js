@@ -14,8 +14,11 @@ var menuState = {
 		game.global.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.limbsCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.voidCollisionGroup = game.physics.p2.createCollisionGroup();
-		game.global.onBottom = [];
-		game.global.onTop = [];
+		game.global.depth=[];
+		for(var i=0;i<10;i++){
+			game.global.depth[i] = game.add.group();
+			game.world.bringToTop(game.global.depth[i]);
+		}
 		game.global.fade_out = [];
 		game.physics.p2.updateBoundsCollisionGroup();
 

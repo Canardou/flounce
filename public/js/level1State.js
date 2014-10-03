@@ -65,8 +65,11 @@ var level1State = {
 		game.global.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.limbsCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.voidCollisionGroup = game.physics.p2.createCollisionGroup();
-		game.global.onBottom = [];
-		game.global.onTop = [];
+		game.global.depth=[];
+		for(var i=0;i<10;i++){
+			game.global.depth[i] = game.add.group();
+			game.world.bringToTop(game.global.depth[i]);
+		}
 		game.global.fade_out = [];
 
 
@@ -97,6 +100,7 @@ var level1State = {
 		
 
 		game.physics.p2.enableBody(background);
+		game.global.depth[0].add(background);
 		background.body.static = true;
 		background.body.clearShapes();
 		background.body.loadPolygon('paddle_physics', 'right_wall');
