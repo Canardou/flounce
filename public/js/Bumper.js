@@ -1,14 +1,15 @@
 var Bumper = function(damage, x, y) {
     Building.call(this, damage);
 
-    this.type = 1;
+    this.levelMax = 2;
 
     this.heatLimit = 5;
     this.heat = 0;
     this.overHeat = false;
 
+
     this.entity = game.add.sprite(x, y);
-    this.design = game.add.sprite(x, y, 'bumper' + this.type, 0);
+    this.design = game.add.sprite(x, y, 'bumper' + this.level, 0);
     this.design.anchor.setTo(0.5, 0.5);
     game.physics.p2.enableBody(this.entity);
 
@@ -30,9 +31,9 @@ Bumper.prototype.hit = function(bumper, part) {
             if (this.heat < this.heatLimit && !this.overHeat) {
                 this.heat++;
                 if (this.heat >= this.heatLimit)
-                    this.design.loadTexture('bumper' + this.type, 2);
+                    this.design.loadTexture('bumper' + this.level, 2);
                 else if (this.heat > this.heatLimit / 2)
-                    this.design.loadTexture('bumper' + this.type, 1);
+                    this.design.loadTexture('bumper' + this.level, 1);
                 var retour = this.getDamage(bumper, part);
                 var angle = Math.atan2(bumper.y - entity.body.y, bumper.x - entity.body.x);
                 if (retour.damage !== 0) {
@@ -41,8 +42,8 @@ Bumper.prototype.hit = function(bumper, part) {
                     this.monsterHits++;
                     var combo = entity.combo;
                     if (combo > 0) {
-                        var onoma = game.add.text(this.entity.x - 25 * cos(angle), this.entity.y - 25 * sin(angle), 'x' + (combo+1), {
-                            font: ''+(combo*7+20)+'px "bd_cartoon_shoutregular"',
+                        var onoma = game.add.text(this.entity.x - 25 * cos(angle), this.entity.y - 25 * sin(angle), 'x' + (combo + 1), {
+                            font: '' + (combo * 7 + 20) + 'px "bd_cartoon_shoutregular"',
                             fill: '#A50000'
                         });
                         onoma.anchor.set(0.5);
@@ -52,7 +53,8 @@ Bumper.prototype.hit = function(bumper, part) {
                             angle: 10
                         }, 500);
                         onoma.tween2.to({
-                            angle: -20, alpha:0
+                            angle: -20,
+                            alpha: 0
                         }, 500);
                         onoma.tween.chain(onoma.tween2);
                         onoma.tween2.onComplete.add(function() {
@@ -102,17 +104,50 @@ Bumper.prototype.decreaseHeat = function() {
             this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
         }
         if (this.overHeat)
-            this.design.loadTexture('bumper' + this.type, 2);
+            this.design.loadTexture('bumper' + this.level, 2);
         else if (this.heat > this.heatLimit / 2)
-            this.design.loadTexture('bumper' + this.type, 1);
+            this.design.loadTexture('bumper' + this.level, 1);
         else
-            this.design.loadTexture('bumper' + this.type, 0);
+            this.design.loadTexture('bumper' + this.level, 0);
     }
 };
 
 Bumper.prototype.destroy = function() {
     this.entity.destroy();
     this.design.destroy();
+}
+
+Bumper.prototype.upgrade = function() {
+    this.level++;
+    this.design.loadTexture('bumper' + this.level, 0);
+    this.heatLimit += 2;
+    switch (this.level) {
+        case 1:
+            this.damage = {
+                base: 10,
+                max: 20,
+                critMult: 2,
+                critOdds: 1
+            };
+            //default
+            break;
+        case 2:
+            this.damage = {
+                base: 15,
+                max: 35,
+                critMult: 2.5,
+                critOdds: 1
+            };
+            break;
+        case 3:
+            this.damage = {
+                base: 20,
+                max: 50,
+                critMult: 3,
+                critOdds: 1
+            };
+            break;
+    }
 }
 
 inh(Bumper, Building);
