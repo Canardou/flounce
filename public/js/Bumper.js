@@ -23,6 +23,8 @@ var Bumper = function(damage, x, y) {
     game.time.events.loop(Phaser.Timer.SECOND, this.decreaseHeat, this);
 };
 
+Bumper.inherits(Building);
+
 Bumper.prototype.hit = function(bumper, part) {
     //Gestion de collision
     if (part.sprite !== null) {
@@ -31,7 +33,7 @@ Bumper.prototype.hit = function(bumper, part) {
 
             if (this.heat < this.heatLimit && !this.overHeat) {
                 this.heat++;
-                if (this.heat >= this.heatLimit)
+                if (this.heat > this.heatLimit)
                     this.design.loadTexture('bumper' + this.level, 2);
                 else if (this.heat > this.heatLimit / 2)
                     this.design.loadTexture('bumper' + this.level, 1);
@@ -116,8 +118,10 @@ Bumper.prototype.decreaseHeat = function() {
 
 Bumper.prototype.destroy = function() {
     this.entity.destroy();
-    this.design.destroy();
+    this.entity = null;
+    this.design = null;
 };
+
 
 Bumper.prototype.upgrade = function() {
     this.level++;
@@ -152,4 +156,37 @@ Bumper.prototype.upgrade = function() {
     }
 };
 
-inh(Bumper, Building);
+Bumper.prototype.checkValidity = function(bool) {
+    if (bool) {
+        this.check = game.add.sprite(this.design.x, this.design.y);
+        this.check.entity = this;
+        game.physics.p2.enableBody(this.check, true);
+        this.check.body.kinematic=true;
+        this.check.body.setCircle(60);
+        this.check.event = game.time.events.loop(100, function() {
+            console.log(this.check.body.overlap);
+            this.designCheck();
+            this.check.body.reset(this.design.x, this.design.y, true);
+            this.check.body.overlap=false;
+            
+        }, this);
+    }
+    else {
+        game.time.events.remove(this.check.event);
+        this.check.entity = null;
+        this.check.destroy();
+    }
+};
+
+Bumper.prototype.designCheck=function(){
+    if(this.check.body.overlap){
+        this.valid=false;
+        this.design.loadTexture('bumperError');
+    }
+    else{
+        this.valid=true;
+        this.design.loadTexture('bumper' + this.level, 0);
+    }
+    this.check.body.overlap=false;
+};
+

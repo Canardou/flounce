@@ -60,13 +60,16 @@ var level1State = {
 		game.physics.p2.setBoundsToWorld(true, true, false, true, false);
 		game.physics.p2.gravity.y = 300;
 		game.physics.p2.setImpactEvents(true);
+		
+
 		game.global.playerCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.wallsCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.limbsCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.voidCollisionGroup = game.physics.p2.createCollisionGroup();
-		game.global.depth=[];
-		for(var i=0;i<10;i++){
+		game.global.checkCollisionGroup = game.physics.p2.createCollisionGroup();
+		game.global.depth = [];
+		for (var i = 0; i < 10; i++) {
 			game.global.depth[i] = game.add.group();
 			game.world.bringToTop(game.global.depth[i]);
 		}
@@ -96,7 +99,7 @@ var level1State = {
 
 		var test_hint = new Hint("P", 5, 430, 1000);
 
-		
+
 
 		game.physics.p2.enableBody(background);
 		game.global.depth[0].add(background);
@@ -110,10 +113,13 @@ var level1State = {
 		background.body.loadPolygon('paddle_physics', 'lower_pipe');
 		background.body.loadPolygon('paddle_physics', 'higer_pipe');
 		background.body.setCollisionGroup(game.global.playerCollisionGroup);
-		
-		background.body.collides(game.global.enemiesCollisionGroup, function(wall,part){part.sprite.entity.combo=0;}, this);
-		
+
+		background.body.collides(game.global.enemiesCollisionGroup, function(wall, part) {
+			part.sprite.entity.combo = 0;
+		}, this);
+
 		background.body.collides(game.global.limbsCollisionGroup);
+		background.body.collides(game.global.checkCollisionGroup);
 		game.physics.p2.world.setGlobalStiffness = Number.MAX_VALUE;
 		game.physics.p2.world.setGlobalRelaxation = 1;
 
@@ -126,12 +132,12 @@ var level1State = {
 		key_P.onDown.add(function() {
 			paddle_right.up();
 		});
-		
+
 		key_P.onUp.add(function() {
 			paddle_right.down();
 		});
-		
-		key_P.onHoldCallBack=(function() {
+
+		key_P.onHoldCallBack = (function() {
 			paddle_right.down();
 		});
 
@@ -196,8 +202,8 @@ var level1State = {
 	},
 
 	render: function() {
-		game.debug.text('Monsters Score: '+ game.global.currentLevel.hero.points, 10, 10);
-		game.debug.text('Health Point: '+game.global.currentLevel.hero.life, 10, 25);
-		game.debug.text('Gold: '+game.global.currentLevel.hero.gold, 10, 40);
+		game.debug.text('Monsters Score: ' + game.global.currentLevel.hero.points, 10, 10);
+		game.debug.text('Health Point: ' + game.global.currentLevel.hero.life, 10, 25);
+		game.debug.text('Gold: ' + game.global.currentLevel.hero.gold, 10, 40);
 	},
 };

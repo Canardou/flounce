@@ -43,7 +43,8 @@ var loadState = {
 		game.load.audio('bump1', 'asset/sounds/bump.wav');
 		game.load.audio('bump2', 'asset/sounds/otherBump.wav');
 		game.load.audio('startingWave', 'asset/sounds/ring_bell.wav');
-
+		game.load.image('bumperError', 'asset/sprites/bumperError.png');
+		game.load.image('bumperDisable', 'asset/sprites/bumperDisable.png');
     },
 
     create: function() {

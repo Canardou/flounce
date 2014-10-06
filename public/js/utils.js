@@ -3,6 +3,9 @@ var cos = Math.cos;
 var sin = Math.sin;
 var floor = Math.floor;
 var ceil = Math.ceil;
+Function.prototype.inherits = function(parent) {
+  this.prototype = Object.create(parent.prototype);
+}
 var inh=function(dst, src, crush){
 	for(var e in src.prototype){
 		if(!(e in dst.prototype)||crush)
