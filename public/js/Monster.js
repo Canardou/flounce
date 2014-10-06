@@ -40,6 +40,7 @@ Monster.prototype.dieWithoutGlory = function() {
 Monster.prototype.getHit = function(damage) {
     if (!this.dead) {
         this.life -= damage;
+        this.playSound();
         if (this.life <= 0) {
             this.dead = true;
             this.life = 0;

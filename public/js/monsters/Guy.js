@@ -1,6 +1,15 @@
 /*global Monster,game,pi,cos,sin,def,isDef,rand,inh from utils.js*/
 var Guy = function(x, y, life, gold, value, strengh, decay, hero) {
     Monster.call(this, life, gold, value, strengh, decay, hero);
+
+    //Test sons
+    this.guyPain1 = game.add.audio('guyPain1');
+    this.guyPain1.volume = 0.1;
+    this.guyPain2 = game.add.audio('guyPain2');
+    this.guyPain2.volume = 0.5;
+    this.guyPain3 = game.add.audio('guyPain3');
+    this.guyPain3.volume = 0.5;
+
     //Guuuuuuuyyyyy !
     var chest = game.add.sprite(x, y, 'guy_body');
     this.parts.push(chest);
@@ -113,8 +122,23 @@ var Guy = function(x, y, life, gold, value, strengh, decay, hero) {
         game.global.depth[2].add(this.parts[i]);
     }
     
-    
     this.updateCollision();
+};
+
+Guy.prototype.playSound = function() {
+    var soundNumber = floor(rand(4,1));
+
+    switch (soundNumber){
+        case 1:
+            this.guyPain1.play();
+            break;
+        case 2:
+            this.guyPain2.play();
+            break;
+        case 3:
+            this.guyPain3.play();
+            break;
+    }
 };
 
 inh(Guy, Monster);

@@ -11,6 +11,8 @@ var loadState = {
 
 
 		//Loading assets
+		//
+		//Loading image
 		game.load.image('guy_body', 'asset/sprites/guy_body.png');
 		game.load.image('guy_hand', 'asset/sprites/guy_hand.png');
 		game.load.image('guy_arm', 'asset/sprites/guy_arm.png');
@@ -27,10 +29,21 @@ var loadState = {
 		game.load.image('delete', 'asset/sprites/deleteButton.png');
 		game.load.image('upgrade', 'asset/sprites/upgrade.png');
 		game.load.spritesheet('button', 'asset/sprites/GreenButton.png');
-		game.load.physics('paddle_physics', 'asset/physics/physics.json');
 		for(var i=0;i<3;i++){
 			game.load.spritesheet('bumper'+i, 'asset/sprites/bumper'+i+'.png',60,60);
 		}
+
+		//Loading physics
+		game.load.physics('paddle_physics', 'asset/physics/physics.json');
+
+		//Loading Sounds
+		game.load.audio('guyPain1', 'asset/sounds/guy_pain1.wav');
+		game.load.audio('guyPain2', 'asset/sounds/guy_pain2.ogg');
+		game.load.audio('guyPain3', 'asset/sounds/guy_pain3.wav');
+		game.load.audio('bump1', 'asset/sounds/bump.wav');
+		game.load.audio('bump2', 'asset/sounds/otherBump.wav');
+		game.load.audio('startingWave', 'asset/sounds/ring_bell.wav');
+
     },
 
     create: function() {

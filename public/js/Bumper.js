@@ -1,6 +1,7 @@
 var Bumper = function(damage, x, y) {
     Building.call(this, damage);
-
+    this.bump1 = game.add.audio('bump1');
+    this.bump2 = game.add.audio('bump2');
     this.levelMax = 2;
 
     this.heatLimit = 5;
@@ -70,6 +71,7 @@ Bumper.prototype.hit = function(bumper, part) {
                             entity.lastCollision.pop();
                         }
                     }, this);
+                    this.bump1.play();
                     entity.getHit(retour.damage); //DAMAGE!
                 }
 
@@ -115,7 +117,7 @@ Bumper.prototype.decreaseHeat = function() {
 Bumper.prototype.destroy = function() {
     this.entity.destroy();
     this.design.destroy();
-}
+};
 
 Bumper.prototype.upgrade = function() {
     this.level++;
@@ -148,6 +150,6 @@ Bumper.prototype.upgrade = function() {
             };
             break;
     }
-}
+};
 
 inh(Bumper, Building);

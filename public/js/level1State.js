@@ -75,9 +75,8 @@ var level1State = {
 
 		//game.physics.setBoundsToWorld(true, true, false, true, false);
 		game.physics.p2.updateBoundsCollisionGroup();
-		// Collision group
 
-		//Design of the level
+		//Design of the level//
 
 		//Locations
 		var background = game.add.sprite(320, 520, 'background');
@@ -174,10 +173,6 @@ var level1State = {
 		}
 		else if (game.global.currentLevel.phase === "constructing") {
 			button.visible = true;
-		}
-
-		if (game.global.currentLevel.hero.dead) {
-			alert("mouru");
 		}
 
 		if (game.global.currentLevel.hero.monsterKilledDuringCurrentWave === game.global.currentLevel.currentWave.totalMonster) {

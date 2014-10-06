@@ -163,20 +163,6 @@ Building.prototype.upgradeTower = function() {
 };
 
 Building.prototype.hideButtons = function() {
-    console.log(game.global.currentLevel.phase);
-    /*if (game.global.currentLevel.phase === "defending") {
-        console.log("hiding stats buttons");
-        this.stats.destroy();
-        game.input.onDown.remove(this.hideButtons, this);
-    }
-    else if (!this.deleteButton.input.checkPointerOver(game.input.mousePointer) && !this.upgradeButton.input.checkPointerOver(game.input.mousePointer)) {
-        console.log("hiding all buttons");
-        this.deleteButton.destroy();
-        this.upgradeButton.destroy();
-        this.stats.destroy();
-        game.input.onDown.remove(this.hideButtons, this);
-    }*/
-
     if(this.deleteButton && !this.deleteButton.input.checkPointerOver(game.input.mousePointer)){
         if(this.upgradeButton && !this.upgradeButton.input.checkPointerOver(game.input.mousePointer)){
             this.upgradeButton.destroy();
