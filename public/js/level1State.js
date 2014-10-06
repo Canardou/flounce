@@ -61,6 +61,24 @@ var level1State = {
 		game.physics.p2.gravity.y = 300;
 		game.physics.p2.setImpactEvents(true);
 		
+		game.global.sensors=[];
+		game.physics.p2.world.on("beginContact",function(event){
+			console.log(event.bodyA);
+          for(var i=0; i<game.global.sensors.length; i++){
+            var s = game.global.sensors[i];
+            if(event.bodyA == s || event.bodyB == s){
+              s.overlap++;
+            }
+          }
+        });
+        game.physics.p2.world.on("endContact",function(event){
+          for(var i=0; i<game.global.sensors.length; i++){
+            var s = game.global.sensors[i];
+            if(event.bodyA == s || event.bodyB == s){
+              s.overlap--;
+            }
+          }
+        });
 
 		game.global.playerCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.wallsCollisionGroup = game.physics.p2.createCollisionGroup();

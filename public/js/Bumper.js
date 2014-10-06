@@ -159,14 +159,16 @@ Bumper.prototype.checkValidity = function(bool) {
         this.check = game.add.sprite(this.design.x, this.design.y);
         this.check.entity = this;
         game.physics.p2.enableBody(this.check, true);
-        this.check.body.kinematic=true;
         this.check.body.setCircle(60);
+        this.check.body.gravityScale=0;
+        this.check.body.data.shapes[0].sensor=true;
+        this.check.body.overlap=0;
+        game.global.sensors.push(this.check.body);
         this.check.event = game.time.events.loop(100, function() {
             console.log(this.check.body.overlap);
             this.designCheck();
-            this.check.body.reset(this.design.x, this.design.y, true);
-            this.check.body.overlap=false;
-            
+            this.check.body.reset(this.design.x,this.design.y,true);
+            this.check.body.data.shapes[0].sensor=true;
         }, this);
     }
     else {
@@ -177,7 +179,7 @@ Bumper.prototype.checkValidity = function(bool) {
 };
 
 Bumper.prototype.designCheck=function(){
-    if(this.check.body.overlap){
+    if(this.check.body.overlap>0){
         this.valid=false;
         this.design.loadTexture('bumperError');
     }
@@ -185,6 +187,5 @@ Bumper.prototype.designCheck=function(){
         this.valid=true;
         this.design.loadTexture('bumper' + this.level, 0);
     }
-    this.check.body.overlap=false;
 }
 
