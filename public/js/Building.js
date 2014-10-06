@@ -127,6 +127,9 @@ Building.prototype.statsTower = function() {
             this.upgradeButton.scale.x = 0.25;
             this.upgradeButton.scale.y = 0.25;
         }
+        else{
+            //Have to make a litte "MAX" sign in red
+        }
     }
 
     //Show the stats (number of monster touched && damage dealt)
@@ -156,13 +159,6 @@ Building.prototype.deleteTower = function() {
 };
 
 Building.prototype.upgradeTower = function() {
-    //Will depend on the tower ! Abstract Method !! 
-    //To redefine inside each tower.
-    /*game.global.currentLevel.hero.gold -= ceil(this.cost*2.5);
-    this.damage.base *= 1.5;
-    this.damage.max = this.damage.base
-    etc...
-    */
     if (game.global.currentLevel.hero.gold >= this.cost) {
         game.global.currentLevel.hero.gold -= this.cost;
         this.upgrade();
@@ -172,15 +168,29 @@ Building.prototype.upgradeTower = function() {
 };
 
 Building.prototype.hideButtons = function() {
-    if (game.global.currentLevel.phase === "defending") {
+    console.log(game.global.currentLevel.phase);
+    /*if (game.global.currentLevel.phase === "defending") {
+        console.log("hiding stats buttons");
         this.stats.destroy();
         game.input.onDown.remove(this.hideButtons, this);
     }
     else if (!this.deleteButton.input.checkPointerOver(game.input.mousePointer) && !this.upgradeButton.input.checkPointerOver(game.input.mousePointer)) {
+        console.log("hiding all buttons");
         this.deleteButton.destroy();
         this.upgradeButton.destroy();
         this.stats.destroy();
         game.input.onDown.remove(this.hideButtons, this);
+    }*/
+
+    if(this.deleteButton && !this.deleteButton.input.checkPointerOver(game.input.mousePointer)){
+        if(this.upgradeButton && !this.upgradeButton.input.checkPointerOver(game.input.mousePointer)){
+            this.upgradeButton.destroy();
+            this.deleteButton.destroy();
+        }
     }
+    if(this.stats){
+        this.stats.destroy();
+    }
+    //game.input.onDown.remove(this.hideButtons, this);
 
 };
