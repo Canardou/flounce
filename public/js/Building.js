@@ -16,6 +16,7 @@ var Building = function(damage, cost) {
     this.totalDamage = 0;
     this.monsterHits = 0;
     this.stats;
+    this.valid = false;
 };
 
 Building.prototype.getDamage = function(body1, body2) {
@@ -72,6 +73,7 @@ Building.prototype.onDragStart = function(sprite, pointer) {
     if (this.panel) {
         this.panel.shown.splice(this, 1);
     }
+    this.checkValidity(true);
 };
 
 Building.prototype.onDragStop = function(sprite, pointer) {
@@ -80,13 +82,20 @@ Building.prototype.onDragStop = function(sprite, pointer) {
     this.entity.body.x = pointer.x;
     this.entity.body.y = pointer.y;
     sprite.scale.set(1, 1);
-    game.global.currentLevel.hero.gold -= this.cost;
     if (this.panel) {
         this.panel.reset();
         this.panel = null;
         this.stopDrag();
         this.allowClick();
     }
+    this.checkValidity(false);
+    if (this.valid) {
+        game.global.currentLevel.hero.gold -= this.cost;
+    }
+    else{
+        this.destroy();
+    }
+
 };
 
 Building.prototype.allowClick = function() {
@@ -143,10 +152,7 @@ Building.prototype.deleteTower = function() {
         this.upgradeButton.destroy();
     }
     this.stats.destroy();
-    this.design.destroy();
-    this.entity.destroy();
-    this.entity = null;
-    this.design = null;
+    this.destroy();
 };
 
 Building.prototype.upgradeTower = function() {
@@ -163,7 +169,6 @@ Building.prototype.upgradeTower = function() {
     }
     if (this.level === this.levelMax)
         this.upgradeButton.destroy();
-    console.log("upgrade !!!");
 };
 
 Building.prototype.hideButtons = function() {

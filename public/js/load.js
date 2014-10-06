@@ -31,6 +31,8 @@ var loadState = {
 		for(var i=0;i<3;i++){
 			game.load.spritesheet('bumper'+i, 'asset/sprites/bumper'+i+'.png',60,60);
 		}
+		game.load.image('bumperError', 'asset/sprites/bumperError.png');
+		game.load.image('bumperDisable', 'asset/sprites/bumperDisable.png');
     },
 
     create: function() {
