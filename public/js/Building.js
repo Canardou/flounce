@@ -88,6 +88,7 @@ Building.prototype.onDragStop = function(sprite, pointer) {
         this.stopDrag();
         this.allowClick();
     }
+    this.designCheck();
     this.checkValidity(false);
     if (this.valid) {
         game.global.currentLevel.hero.gold -= this.cost;

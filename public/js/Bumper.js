@@ -12,6 +12,7 @@ var Bumper = function(damage, x, y) {
     this.entity = game.add.sprite(x, y);
     this.design = game.add.sprite(x, y, 'bumper' + this.level, 0);
     this.design.anchor.setTo(0.5, 0.5);
+    game.global.depth[5].add(this.design);
     game.physics.p2.enableBody(this.entity);
 
     this.entity.body.setCircle(20);
@@ -92,6 +93,8 @@ Bumper.prototype.hit = function(bumper, part) {
                 }, 100, Phaser.Easing.Linear.None, true, 0, false);
             }
             else if (this.overHeat === false) {
+                game.global.depth[5].remove(this.design);
+                game.global.depth[1].add(this.design);
                 this.overHeat = true;
                 this.entity.body.setCollisionGroup(game.global.voidCollisionGroup);
             }
@@ -104,6 +107,8 @@ Bumper.prototype.decreaseHeat = function() {
     if (this.heat > 0) {
         this.heat--;
         if (this.heat <= 0 && this.overHeat) {
+            game.global.depth[1].remove(this.design);
+            game.global.depth[5].add(this.design);
             this.overHeat = false;
             this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
         }
@@ -118,6 +123,7 @@ Bumper.prototype.decreaseHeat = function() {
 
 Bumper.prototype.destroy = function() {
     this.entity.destroy();
+    this.design.destroy();
     this.entity = null;
     this.design = null;
 };
@@ -158,17 +164,20 @@ Bumper.prototype.upgrade = function() {
 
 Bumper.prototype.checkValidity = function(bool) {
     if (bool) {
-        this.check = game.add.sprite(this.design.x, this.design.y);
+        this.check = game.add.sprite(this.design.x, this.design.y, 'circle');
+        game.global.depth[3].add(this.check);
         this.check.entity = this;
-        game.physics.p2.enableBody(this.check, true);
-        this.check.body.kinematic=true;
-        this.check.body.setCircle(60);
-        this.check.event = game.time.events.loop(100, function() {
-            console.log(this.check.body.overlap);
+        game.physics.p2.enableBody(this.check);
+        this.check.body.clearShapes();
+        var sensorShape = this.check.body.addCircle(60);
+        sensorShape.sensor=true;
+        this.check.body.overlap = 0;
+        this.check.body.setCollisionGroup(game.global.enemiesCollisionGroup);
+        this.check.body.collides([game.global.playerCollisionGroup,game.global.wallsCollisionGroup]);
+        game.global.sensors.push(this.check.body);
+        this.check.event = game.time.events.loop(50, function() {
             this.designCheck();
-            this.check.body.reset(this.design.x, this.design.y, true);
-            this.check.body.overlap=false;
-            
+            //this.check.body.angularVelocity = 1;
         }, this);
     }
     else {
@@ -178,15 +187,18 @@ Bumper.prototype.checkValidity = function(bool) {
     }
 };
 
-Bumper.prototype.designCheck=function(){
-    if(this.check.body.overlap){
-        this.valid=false;
+Bumper.prototype.designCheck = function() {
+    this.check.body.reset(this.design.x,this.design.y,true);
+    if (this.check.body.overlap > 0) {
+        this.valid = false;
         this.design.loadTexture('bumperError');
+        this.design.scale.set(0.5, 0.5);
+        this.check.tint=0xFFFFFF;
     }
-    else{
-        this.valid=true;
+    else {
+        this.valid = true;
         this.design.loadTexture('bumper' + this.level, 0);
+        this.design.scale.set(1, 1);
+        this.check.tint=0x00FFFF;
     }
-    this.check.body.overlap=false;
 };
-
