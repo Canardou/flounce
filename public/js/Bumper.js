@@ -93,8 +93,8 @@ Bumper.prototype.hit = function(bumper, part) {
                 }, 100, Phaser.Easing.Linear.None, true, 0, false);
             }
             else if (this.overHeat === false) {
-                game.global.depth[5].splice(this.design);
-                game.global.depth[2].add(this.design);
+                game.global.depth[5].remove(this.design);
+                game.global.depth[1].add(this.design);
                 this.overHeat = true;
                 this.entity.body.setCollisionGroup(game.global.voidCollisionGroup);
             }
@@ -107,7 +107,7 @@ Bumper.prototype.decreaseHeat = function() {
     if (this.heat > 0) {
         this.heat--;
         if (this.heat <= 0 && this.overHeat) {
-            game.global.depth[2].splice(this.design);
+            game.global.depth[1].remove(this.design);
             game.global.depth[5].add(this.design);
             this.overHeat = false;
             this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
