@@ -11,6 +11,7 @@ Panel.prototype.setTowers = function(towers) {
 
 Panel.prototype.show = function() {
     this.design = game.add.sprite(0, 1000, 'wood_frame');
+    game.global.depth[4].add(this.design);
     if(game.global.currentLevel.countWave === 1)
         var showGold = new TextHint('Oh my Gold !', 80, 50, '#E8B71A');
     for (var i = 0; i < this.towers.length; i++) {
