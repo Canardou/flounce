@@ -50,6 +50,7 @@ Bumper.prototype.hit = function(bumper, part) {
                             font: '' + (combo * 7 + 20) + 'px "bd_cartoon_shoutregular"',
                             fill: '#A50000'
                         });
+                        game.global.currentLevel.hero.points += (combo+1) * 10;
                         onoma.anchor.set(0.5);
                         onoma.tween = game.add.tween(onoma);
                         onoma.tween2 = game.add.tween(onoma);
