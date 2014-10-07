@@ -118,6 +118,7 @@ Bumper.prototype.decreaseHeat = function() {
 
 Bumper.prototype.destroy = function() {
     this.entity.destroy();
+    this.design.destroy();
     this.entity = null;
     this.design = null;
 };
