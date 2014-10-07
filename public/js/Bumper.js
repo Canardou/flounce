@@ -156,19 +156,21 @@ Bumper.prototype.upgrade = function() {
 
 Bumper.prototype.checkValidity = function(bool) {
     if (bool) {
-        this.check = game.add.sprite(this.design.x, this.design.y);
+        this.check = game.add.sprite(this.design.x, this.design.y, 'circle');
         this.check.entity = this;
-        game.physics.p2.enableBody(this.check, true);
-        this.check.body.setCircle(60);
-        this.check.body.gravityScale=0;
-        this.check.body.data.shapes[0].sensor=true;
-        this.check.body.overlap=0;
+        game.physics.p2.enableBody(this.check);
+        this.check.body.clearShapes();
+        var sensorShape = this.check.body.addCircle(60);
+        sensorShape.sensor=true;
+        this.check.body.overlap = 0;
+        this.check.body.setCollisionGroup(game.global.enemiesCollisionGroup);
+        this.check.body.collides([game.global.playerCollisionGroup,game.global.wallsCollisionGroup]);
         game.global.sensors.push(this.check.body);
-        this.check.event = game.time.events.loop(100, function() {
+        this.check.event = game.time.events.loop(50, function() {
             console.log(this.check.body.overlap);
             this.designCheck();
             this.check.body.reset(this.design.x,this.design.y,true);
-            this.check.body.data.shapes[0].sensor=true;
+            this.check.body.angularVelocity = 1;
         }, this);
     }
     else {
@@ -178,14 +180,17 @@ Bumper.prototype.checkValidity = function(bool) {
     }
 };
 
-Bumper.prototype.designCheck=function(){
-    if(this.check.body.overlap>0){
-        this.valid=false;
+Bumper.prototype.designCheck = function() {
+    if (this.check.body.overlap > 0) {
+        this.valid = false;
         this.design.loadTexture('bumperError');
+        this.design.scale.set(0.5, 0.5);
+        this.check.tint=0xFFFFFF;
     }
-    else{
-        this.valid=true;
+    else {
+        this.valid = true;
         this.design.loadTexture('bumper' + this.level, 0);
+        this.design.scale.set(1, 1);
+        this.check.tint=0x00FFFF;
     }
 }
-

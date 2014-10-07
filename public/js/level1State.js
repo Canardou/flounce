@@ -63,10 +63,10 @@ var level1State = {
 		
 		game.global.sensors=[];
 		game.physics.p2.world.on("beginContact",function(event){
-			console.log(event.bodyA);
           for(var i=0; i<game.global.sensors.length; i++){
             var s = game.global.sensors[i];
-            if(event.bodyA == s || event.bodyB == s){
+            if(event.bodyA.parent == s || event.bodyB.parent == s){
+            	console.log("in");
               s.overlap++;
             }
           }
@@ -74,7 +74,8 @@ var level1State = {
         game.physics.p2.world.on("endContact",function(event){
           for(var i=0; i<game.global.sensors.length; i++){
             var s = game.global.sensors[i];
-            if(event.bodyA == s || event.bodyB == s){
+            if(event.bodyA.parent == s || event.bodyB.parent == s){
+            	console.log("out");
               s.overlap--;
             }
           }

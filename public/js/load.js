@@ -28,6 +28,7 @@ var loadState = {
 		game.load.image('upgrade', 'asset/sprites/upgrade.png');
 		game.load.spritesheet('button', 'asset/sprites/GreenButton.png');
 		game.load.physics('paddle_physics', 'asset/physics/physics.json');
+		game.load.image('circle', 'asset/sprites/placement.png');
 		for(var i=0;i<3;i++){
 			game.load.spritesheet('bumper'+i, 'asset/sprites/bumper'+i+'.png',60,60);
 		}
