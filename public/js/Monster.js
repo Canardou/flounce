@@ -23,7 +23,7 @@ Monster.prototype.die = function() {
         this.destroy();
         this.hero.monsterKilledDuringCurrentWave++;
         this.hero.gold += this.gold;
-        this.hero.points += this.value;
+        this.hero.points += this.value * this.combo;
     }
 
 };

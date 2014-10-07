@@ -14,7 +14,7 @@ var level1State = {
 				"type": "Guy",
 				"life": 200,
 				"gold": 200,
-				"value": 1000,
+				"value": 10,
 				"strength": 10,
 				"entry": 'all'
 			}],
@@ -23,7 +23,7 @@ var level1State = {
 				"type": "Guy",
 				"life": 30,
 				"gold": 200,
-				"value": 200,
+				"value": 5,
 				"strength": 2,
 				"entry": 1
 			}],
@@ -32,7 +32,7 @@ var level1State = {
 				"type": "Guy",
 				"life": 15,
 				"gold": 200,
-				"value": 170,
+				"value": 5,
 				"strength": 2,
 				"entry": 'all'
 			}],
@@ -41,7 +41,7 @@ var level1State = {
 				"type": "Guy",
 				"life": 25,
 				"gold": 200,
-				"value": 150,
+				"value": 5,
 				"strength": 2,
 				"entry": 'all'
 			}],
@@ -50,7 +50,7 @@ var level1State = {
 				"type": "Guy",
 				"life": 20,
 				"gold": 100,
-				"value": 100,
+				"value": 5,
 				"strength": 1,
 				"entry": 0
 			}],
