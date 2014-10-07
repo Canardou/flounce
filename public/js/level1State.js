@@ -97,9 +97,8 @@ var level1State = {
 			max: 20
 		}, 150, 300);
 
-		var test_hint = new Hint("P", 5, 430, 1000);
-
-
+		var P_hint = new Hint("P", 5, 430, 1000);
+		var Q_hint = new Hint("Q", 5, 230, 1000);
 
 		game.physics.p2.enableBody(background);
 		game.global.depth[0].add(background);
@@ -168,7 +167,11 @@ var level1State = {
 
 		//Begining of the level
 		niveau1 = game.global.currentLevel = new Niveau(waves);
-		button = new LabelButton(game, game.world.centerX - 95, 400, 'wood_frame', 'Next Wave', game.global.currentLevel.defend, game.global.currentLevel, 'black');
+		button = new LabelButton(game, game.world.centerX - 95, 400, 'wood_frame', 'Start Wave', game.global.currentLevel.defend, game.global.currentLevel, 'black');
+		button.onInputUp.add(function(){
+			if(game.global.currentLevel.countWave === 1)
+				var firstBumperHint = new TextHint('Ho... poor enemies...', 150, 350);
+		}, this);
 		button.scale.x = 0.3;
 		button.scale.y = 0.3;
 	},

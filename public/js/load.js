@@ -28,6 +28,8 @@ var loadState = {
 		game.load.image('wood_frame', 'asset/sprites/wood_panel.png');
 		game.load.image('delete', 'asset/sprites/deleteButton.png');
 		game.load.image('upgrade', 'asset/sprites/upgrade.png');
+		game.load.image('bumperError', 'asset/sprites/bumperError.png');
+		game.load.image('bumperDisable', 'asset/sprites/bumperDisable.png');
 		game.load.spritesheet('button', 'asset/sprites/GreenButton.png');
 		for(var i=0;i<3;i++){
 			game.load.spritesheet('bumper'+i, 'asset/sprites/bumper'+i+'.png',60,60);
@@ -42,9 +44,8 @@ var loadState = {
 		game.load.audio('guyPain3', 'asset/sounds/guy_pain3.wav');
 		game.load.audio('bump1', 'asset/sounds/bump.wav');
 		game.load.audio('bump2', 'asset/sounds/otherBump.wav');
-		game.load.audio('startingWave', 'asset/sounds/ring_bell.wav');
-		game.load.image('bumperError', 'asset/sprites/bumperError.png');
-		game.load.image('bumperDisable', 'asset/sprites/bumperDisable.png');
+		game.load.audio('startingWave', 'asset/sounds/darkGong.wav');
+
     },
 
     create: function() {

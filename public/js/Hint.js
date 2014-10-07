@@ -14,8 +14,8 @@ var Hint = function(text, duration, x, y, size) {
         this.entity = game.add.sprite(x, y, 'hint');
         this.entity.scale.set(this.size);
         this.entity.anchor.setTo(0.5,0.5);
-        this.entity.lifespan = duration * 1000;
-        this.entity.fadespan = duration * 200;
+        this.entity.lifespan = this.duration * 1000;
+        this.entity.fadespan = this.duration * 200;
         game.global.fade_out.push(this.entity);
         this.entity.bringToTop();
         this.entity.tween = game.add.tween(this.entity);

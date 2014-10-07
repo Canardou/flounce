@@ -18,6 +18,7 @@ var Monster = function(life, gold, value, strength, decay, hero) {
 //When a monster is killed
 Monster.prototype.die = function() {
     this.dead = true;
+    this.playSound();
     if (this.isDestroy === false) {
         this.destroy();
         this.hero.monsterKilledDuringCurrentWave++;
@@ -40,7 +41,6 @@ Monster.prototype.dieWithoutGlory = function() {
 Monster.prototype.getHit = function(damage) {
     if (!this.dead) {
         this.life -= damage;
-        this.playSound();
         if (this.life <= 0) {
             this.dead = true;
             this.life = 0;
