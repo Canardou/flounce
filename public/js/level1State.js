@@ -202,6 +202,20 @@ var level1State = {
 				element.alpha = element.lifespan / element.fadespan;
 		}
 
+		if(game.global.currentLevel.hero.life <= 0){
+			//Play sound You loose + New state to create...
+			var gameOver = game.add.text(game.world.centerX, game.world.centerY, "You lose");
+			gameOver.fill = '#700E0D';
+			gameOver.anchor.setTo(0.5);
+			gameOver.fontSize = 80;
+			gameOver.tween = game.add.tween(gameOver);
+			gameOver.tween.to({angle : 360}, 2000, null, true, 0, 1, false);
+			gameOver.scale.x = 0.1;
+			gameOver.scale.y = 0.1;
+			gameOver.scaleTween = game.add.tween(gameOver.scale);
+			gameOver.scaleTween.to({x: 1, y: 1}, 6000, null, true).onComplete.add(function() {gameOver.destroy(); /* Start new state*/}, this);
+		}
+
 	},
 
 	render: function() {
