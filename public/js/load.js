@@ -28,6 +28,7 @@ var loadState = {
 		game.load.image('wood_frame', 'asset/sprites/wood_panel.png');
 		game.load.image('delete', 'asset/sprites/deleteButton.png');
 		game.load.image('upgrade', 'asset/sprites/upgrade.png');
+		game.load.image('bone', 'asset/sprites/bone.png');
 		game.load.spritesheet('button', 'asset/sprites/GreenButton.png');
 		for(var i=0;i<3;i++){
 			game.load.spritesheet('bumper'+i, 'asset/sprites/bumper'+i+'.png',60,60);
