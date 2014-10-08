@@ -101,15 +101,15 @@ var level1State = {
 		//Design of the level//
 
 		//Locations
-		var background = game.add.sprite(320, 520, 'background');
+		var background = game.add.sprite(game.global.width/2, game.global.height/2, 'walls');
 		var paddle_right = new Paddle({
 			base: 5,
 			max: 6
-		}, 460, 950, 'right');
+		}, 460, 990, 'right');
 		var paddle_left = new Paddle({
 			base: 5,
 			max: 6
-		}, 200, 950, 'left');
+		}, 180, 990, 'left');
 
 		var bumper = new Bumper({
 			base: 10,
@@ -118,18 +118,14 @@ var level1State = {
 
 		var P_hint = new Hint("P", 5, 430, 1000);
 		var Q_hint = new Hint("Q", 5, 230, 1000);
-
-		game.physics.p2.enableBody(background);
-		game.global.depth[0].add(background);
+		
+		game.physics.p2.enableBody(background, true);
+		game.global.depth[2].add(background);
+		
 		background.body.static = true;
 		background.body.clearShapes();
-		background.body.loadPolygon('paddle_physics', 'right_wall');
-		background.body.loadPolygon('paddle_physics', 'left_wall');
-		background.body.loadPolygon('paddle_physics', 'left_little_thing');
-		background.body.loadPolygon('paddle_physics', 'right_thing');
-		background.body.loadPolygon('paddle_physics', 'middle_diamond');
-		background.body.loadPolygon('paddle_physics', 'lower_pipe');
-		background.body.loadPolygon('paddle_physics', 'higer_pipe');
+		background.body.loadPolygon('paddle_physics', 'walls');
+		
 		background.body.setCollisionGroup(game.global.playerCollisionGroup);
 
 		background.body.collides(game.global.enemiesCollisionGroup, function(wall, part) {

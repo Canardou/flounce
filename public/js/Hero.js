@@ -5,10 +5,10 @@ var Hero = function(life, gold, power){
 	this.power = def(power, false);
 	this.dead = false;
     this.monsterKilledDuringCurrentWave = 0;
-    var heigth = 1100;
-    this.entity = game.add.sprite(game.global.width/2, game.global.heigth-(1138-heigth)/2);
+    var height = 1100;
+    this.entity = game.add.sprite(game.global.width/2, game.global.height-(1138-height)/2);
     game.physics.p2.enableBody(this.entity,true);
-    this.entity.body.setRectangle(640,1138-heigth);
+    this.entity.body.setRectangle(640,1138-height);
     this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
     this.entity.body.collides(game.global.enemiesCollisionGroup, this.getHit, this);
     this.entity.renderable=false;
