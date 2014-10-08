@@ -122,6 +122,8 @@ var level1State = {
 		var P_hint = new Hint("P", 5, 430, 1000);
 		var Q_hint = new Hint("Q", 5, 230, 1000);
 
+		var infos = new InfoPanel();
+
 		game.physics.p2.enableBody(walls);
 		game.global.depth[0].add(background);
 		game.global.depth[0].add(walls);
@@ -200,7 +202,7 @@ var level1State = {
 
 		//Begining of the level
 		niveau1 = game.global.currentLevel = new Niveau(waves, 1);
-		button = new LabelButton(game, game.world.centerX, game.world.centerY-100, 'wood_frame', 'Start Wave', game.global.currentLevel.defend, game.global.currentLevel, 'black');
+		button = new LabelButton(game, game.world.centerX, game.world.centerY-100, 'wood_frame', 'Spacebar ?', game.global.currentLevel.defend, game.global.currentLevel, 'black');
 		button.onInputUp.add(function(){
 			if(game.global.currentLevel.countWave === 1)
 				var firstBumperHint = new TextHint('Ho... poor enemies...', 150, 350);
@@ -238,8 +240,8 @@ var level1State = {
 	},
 
 	render: function() {
-		game.debug.text('Monsters Score: ' + game.global.currentLevel.hero.points, 10, 10);
-		game.debug.text('Health Point: ' + game.global.currentLevel.hero.life, 10, 25);
-		game.debug.text('Gold: ' + game.global.currentLevel.hero.gold, 10, 40);
+		game.debug.text('Points: ' + game.global.currentLevel.hero.points, 495, 990);
+		game.debug.text('Health Points: ' + game.global.currentLevel.hero.life, 495, 1010);
+		game.debug.text('Gold: ' + game.global.currentLevel.hero.gold, 495, 1030);
 	},
 };
