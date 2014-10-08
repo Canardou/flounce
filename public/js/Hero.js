@@ -3,7 +3,8 @@ var Hero = function(life, gold, power){
 	this.points = 0;
 	this.gold = def(gold, 2000);
 	this.power = def(power, false);
-	this.dead = false;
+    this.dead = false;
+	this.deadSound = game.add.audio('loose');
     this.monsterKilledDuringCurrentWave = 0;
     var heigth = 1100;
     this.entity = game.add.sprite(game.global.width/2, game.global.heigth-(1138-heigth)/2);
@@ -13,19 +14,32 @@ var Hero = function(life, gold, power){
     this.entity.body.collides(game.global.enemiesCollisionGroup, this.getHit, this);
     this.entity.renderable=false;
     this.entity.body.static=true;
-    console.log("Mon héro : "+this.life+' '+this.gold);
 };
 
 Hero.prototype.die = function() {
     this.dead = true;
+    if(game.global.currentLevel.hero.life <= 0){
+        //Play sound You loose + New state to create...
+        var gameOver = game.add.text(game.world.centerX, game.world.centerY, "You lose");
+        gameOver.fill = '#700E0D';
+        gameOver.anchor.setTo(0.5);
+        gameOver.fontSize = 80;
+        gameOver.tween = game.add.tween(gameOver);
+        gameOver.tween.to({angle : 360}, 1500, null, true, 0, 1, false);
+        gameOver.scale.x = 0.1;
+        gameOver.scale.y = 0.1;
+        gameOver.scaleTween = game.add.tween(gameOver.scale);
+        gameOver.scaleTween.to({x: 1, y: 1}, 6000, null, true).onComplete.add(function() {gameOver.destroy();}, this);
+        this.deadSound.play();
+    }
 };
 
 Hero.prototype.getHit = function(hero,monster) {
 	if (!this.dead) {
         this.life -= monster.sprite.entity.strength;
-        if (this.life < 0) {
+        if (this.life <= 0) {
             this.life = 0;
-            //this.die();
+            this.die();
         }
         this.gold -= monster.sprite.entity.gold;
         if(this.gold < 0){

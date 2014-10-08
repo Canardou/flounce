@@ -23,7 +23,8 @@ var loadState = {
 		game.load.image('guy_head', 'asset/sprites/guy_head.png');
 		game.load.image('paddle_right', 'asset/sprites/paddle_right.png');
 		game.load.image('paddle_left', 'asset/sprites/paddle_left.png');
-		game.load.image('background', 'asset/sprites/patron.png');
+		game.load.image('walllvl1', 'asset/sprites/walls.png');
+		game.load.image('background', 'asset/sprites/background.png');
 		game.load.image('hint', 'asset/sprites/hint.png');
 		game.load.image('wood_frame', 'asset/sprites/wood_panel.png');
 		game.load.image('delete', 'asset/sprites/deleteButton.png');
@@ -48,6 +49,7 @@ var loadState = {
 		game.load.audio('bump1', 'asset/sounds/bump.wav');
 		game.load.audio('bump2', 'asset/sounds/otherBump.wav');
 		game.load.audio('startingWave', 'asset/sounds/darkGong.wav');
+		game.load.audio('loose', 'asset/sounds/youLose.wav');
 
     },
 

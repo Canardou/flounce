@@ -66,7 +66,7 @@ var level1State = {
           for(var i=0; i<game.global.sensors.length; i++){
             var s = game.global.sensors[i];
             if(event.bodyA.parent == s || event.bodyB.parent == s){
-            	console.log("in");
+               console.log("in");
               s.overlap++;
             }
           }
@@ -75,8 +75,8 @@ var level1State = {
           for(var i=0; i<game.global.sensors.length; i++){
             var s = game.global.sensors[i];
             if(event.bodyA.parent == s || event.bodyB.parent == s){
-            	console.log("out");
-              s.overlap--;
+				console.log("out");
+				s.overlap--;
             }
           }
         });
@@ -100,8 +100,11 @@ var level1State = {
 
 		//Design of the level//
 
+		//Background
+		var background = game.add.sprite(0, 100, 'background');
+
 		//Locations
-		var background = game.add.sprite(320, 520, 'background');
+		var walls = game.add.sprite(320, 570, 'walllvl1');
 		var paddle_right = new Paddle({
 			base: 5,
 			max: 6
@@ -119,25 +122,26 @@ var level1State = {
 		var P_hint = new Hint("P", 5, 430, 1000);
 		var Q_hint = new Hint("Q", 5, 230, 1000);
 
-		game.physics.p2.enableBody(background);
+		game.physics.p2.enableBody(walls);
 		game.global.depth[0].add(background);
-		background.body.static = true;
-		background.body.clearShapes();
-		background.body.loadPolygon('paddle_physics', 'right_wall');
-		background.body.loadPolygon('paddle_physics', 'left_wall');
-		background.body.loadPolygon('paddle_physics', 'left_little_thing');
-		background.body.loadPolygon('paddle_physics', 'right_thing');
-		background.body.loadPolygon('paddle_physics', 'middle_diamond');
-		background.body.loadPolygon('paddle_physics', 'lower_pipe');
-		background.body.loadPolygon('paddle_physics', 'higer_pipe');
-		background.body.setCollisionGroup(game.global.playerCollisionGroup);
+		game.global.depth[0].add(walls);
+		walls.body.static = true;
+		walls.body.clearShapes();
+		walls.body.loadPolygon('paddle_physics', 'right_wall');
+		walls.body.loadPolygon('paddle_physics', 'left_wall');
+		walls.body.loadPolygon('paddle_physics', 'left_little_thing');
+		walls.body.loadPolygon('paddle_physics', 'right_thing');
+		walls.body.loadPolygon('paddle_physics', 'middle_diamond');
+		walls.body.loadPolygon('paddle_physics', 'lower_pipe');
+		walls.body.loadPolygon('paddle_physics', 'higer_pipe');
+		walls.body.setCollisionGroup(game.global.playerCollisionGroup);
 
-		background.body.collides(game.global.enemiesCollisionGroup, function(wall, part) {
+		walls.body.collides(game.global.enemiesCollisionGroup, function(wall, part) {
 			part.sprite.entity.combo = 0;
 		}, this);
 
-		background.body.collides(game.global.limbsCollisionGroup);
-		background.body.collides(game.global.checkCollisionGroup);
+		walls.body.collides(game.global.limbsCollisionGroup);
+		walls.body.collides(game.global.checkCollisionGroup);
 		game.physics.p2.world.setGlobalStiffness = Number.MAX_VALUE;
 		game.physics.p2.world.setGlobalRelaxation = 1;
 
@@ -219,20 +223,6 @@ var level1State = {
 			var element = groupFadeOut[p];
 			if (element.lifespan < element.fadespan)
 				element.alpha = element.lifespan / element.fadespan;
-		}
-
-		if(game.global.currentLevel.hero.life <= 0){
-			//Play sound You loose + New state to create...
-			var gameOver = game.add.text(game.world.centerX, game.world.centerY, "You lose");
-			gameOver.fill = '#700E0D';
-			gameOver.anchor.setTo(0.5);
-			gameOver.fontSize = 80;
-			gameOver.tween = game.add.tween(gameOver);
-			gameOver.tween.to({angle : 360}, 2000, null, true, 0, 1, false);
-			gameOver.scale.x = 0.1;
-			gameOver.scale.y = 0.1;
-			gameOver.scaleTween = game.add.tween(gameOver.scale);
-			gameOver.scaleTween.to({x: 1, y: 1}, 6000, null, true).onComplete.add(function() {gameOver.destroy(); /* Start new state*/}, this);
 		}
 
 	},
