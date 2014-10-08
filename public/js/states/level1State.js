@@ -150,6 +150,7 @@ var level1State = {
 		var key_A = game.input.keyboard.addKey(Phaser.Keyboard.A);
 		var key_M = game.input.keyboard.addKey(Phaser.Keyboard.M);
 		var key_Q = game.input.keyboard.addKey(Phaser.Keyboard.Q);
+		var spacebar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
 		key_P.onDown.add(function() {
 			paddle_right.up();
@@ -187,23 +188,32 @@ var level1State = {
 			game.physics.p2.gravity.x += 1000;
 		});
 
+		spacebar.onUp.add(function() {
+			if(game.global.currentLevel.phase === "beginning"){
+				game.global.currentLevel.defend();
+			}
+			if (game.global.currentLevel.phase === "constructing" && !game.global.currentLevel.hero.dead) {
+				game.global.currentLevel.defend();
+			}
+		});
+
 
 		//Begining of the level
-		niveau1 = game.global.currentLevel = new Niveau(waves);
-		button = new LabelButton(game, game.world.centerX - 95, 400, 'wood_frame', 'Start Wave', game.global.currentLevel.defend, game.global.currentLevel, 'black');
+		niveau1 = game.global.currentLevel = new Niveau(waves, 1);
+		button = new LabelButton(game, game.world.centerX, game.world.centerY-100, 'wood_frame', 'Start Wave', game.global.currentLevel.defend, game.global.currentLevel, 'black');
 		button.onInputUp.add(function(){
 			if(game.global.currentLevel.countWave === 1)
 				var firstBumperHint = new TextHint('Ho... poor enemies...', 150, 350);
 		}, this);
-		button.scale.x = 0.3;
-		button.scale.y = 0.3;
+		button.scale.x = 0.4;
+		button.scale.y = 0.4;
 	},
 
 	update: function() {
 		if (game.global.currentLevel.phase === "defending") {
 			button.visible = false;
 		}
-		else if (game.global.currentLevel.phase === "constructing") {
+		else if (game.global.currentLevel.phase === "constructing" && !game.global.currentLevel.hero.dead) {
 			button.visible = true;
 		}
 
