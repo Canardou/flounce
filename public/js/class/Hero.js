@@ -29,7 +29,7 @@ Hero.prototype.die = function() {
         gameOver.scale.x = 0.1;
         gameOver.scale.y = 0.1;
         gameOver.scaleTween = game.add.tween(gameOver.scale);
-        gameOver.scaleTween.to({x: 1, y: 1}, 6000, null, true).onComplete.add(function() {gameOver.destroy();}, this);
+        gameOver.scaleTween.to({x: 1, y: 1}, 6000, null, true).onComplete.add(function() {gameOver.destroy();game.state.start('loose');}, this);
         this.deadSound.play();
     }
 };
