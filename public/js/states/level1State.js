@@ -100,19 +100,16 @@ var level1State = {
 
 		//Design of the level//
 
-		//Background
-		var background = game.add.sprite(0, 100, 'background');
-
 		//Locations
-		var walls = game.add.sprite(320, 570, 'walllvl1');
+		var background = game.add.sprite(game.global.width/2, game.global.height/2, 'walls');
 		var paddle_right = new Paddle({
 			base: 5,
 			max: 6
-		}, 460, 950, 'right');
+		}, 460, 990, 'right');
 		var paddle_left = new Paddle({
 			base: 5,
 			max: 6
-		}, 200, 950, 'left');
+		}, 180, 990, 'left');
 
 		var bumper = new Bumper({
 			base: 10,
@@ -121,29 +118,24 @@ var level1State = {
 
 		var P_hint = new Hint("P", 5, 430, 1000);
 		var Q_hint = new Hint("Q", 5, 230, 1000);
+		
+		game.physics.p2.enableBody(background);
+		game.global.depth[2].add(background);
+		
+		background.body.static = true;
+		background.body.clearShapes();
+		background.body.loadPolygon('paddle_physics', 'walls');
+		
+		background.body.setCollisionGroup(game.global.playerCollisionGroup);
 
 		var infos = new InfoPanel();
 
-		game.physics.p2.enableBody(walls);
-		game.global.depth[0].add(background);
-		game.global.depth[0].add(walls);
-		walls.body.static = true;
-		walls.body.clearShapes();
-		walls.body.loadPolygon('paddle_physics', 'right_wall');
-		walls.body.loadPolygon('paddle_physics', 'left_wall');
-		walls.body.loadPolygon('paddle_physics', 'left_little_thing');
-		walls.body.loadPolygon('paddle_physics', 'right_thing');
-		walls.body.loadPolygon('paddle_physics', 'middle_diamond');
-		walls.body.loadPolygon('paddle_physics', 'lower_pipe');
-		walls.body.loadPolygon('paddle_physics', 'higer_pipe');
-		walls.body.setCollisionGroup(game.global.playerCollisionGroup);
-
-		walls.body.collides(game.global.enemiesCollisionGroup, function(wall, part) {
+		background.body.collides(game.global.enemiesCollisionGroup, function(wall, part) {
 			part.sprite.entity.combo = 0;
 		}, this);
 
-		walls.body.collides(game.global.limbsCollisionGroup);
-		walls.body.collides(game.global.checkCollisionGroup);
+		background.body.collides(game.global.limbsCollisionGroup);
+		background.body.collides(game.global.checkCollisionGroup);
 		game.physics.p2.world.setGlobalStiffness = Number.MAX_VALUE;
 		game.physics.p2.world.setGlobalRelaxation = 1;
 

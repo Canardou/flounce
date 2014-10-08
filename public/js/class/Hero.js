@@ -6,10 +6,10 @@ var Hero = function(life, gold, power){
     this.dead = false;
 	this.deadSound = game.add.audio('loose');
     this.monsterKilledDuringCurrentWave = 0;
-    var heigth = 1100;
-    this.entity = game.add.sprite(game.global.width/2, game.global.heigth-(1138-heigth)/2);
+    var height = 1100;
+    this.entity = game.add.sprite(game.global.width/2, game.global.height-(1138-height)/2);
     game.physics.p2.enableBody(this.entity,true);
-    this.entity.body.setRectangle(640,1138-heigth);
+    this.entity.body.setRectangle(640,1138-height);
     this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
     this.entity.body.collides(game.global.enemiesCollisionGroup, this.getHit, this);
     this.entity.renderable=false;
@@ -29,7 +29,7 @@ Hero.prototype.die = function() {
         gameOver.scale.x = 0.1;
         gameOver.scale.y = 0.1;
         gameOver.scaleTween = game.add.tween(gameOver.scale);
-        gameOver.scaleTween.to({x: 1, y: 1}, 6000, null, true).onComplete.add(function() {gameOver.destroy(); game.state.start('loose');}, this);
+        gameOver.scaleTween.to({x: 1, y: 1}, 6000, null, true).onComplete.add(function() {gameOver.destroy();game.state.start('loose');}, this);
         this.deadSound.play();
     }
 };
