@@ -14,19 +14,18 @@ var Niveau = function(waves, initialHeroLife, initialHeroGold, difficulty, avail
 	this.countWave = 0;
 	this.currentWave = new Wave(this.waves[0], this.hero, 1);
 	this.won = false;
-	this.panel = new Panel();
+	this.panel = new TowerPanel();
 	this.startingWave = game.add.audio('startingWave');
 	this.startingWave.volume = 0.2;
 };
 
  
 Niveau.prototype.defend = function(){
-	console.log("phase de défense");
 	this.phase = "defending";
 	this.currentWave.totalMonster = 0;
 	this.countWave++;
 	if(this.waves.length > 0){
-		this.panel.hide();
+		this.panel.greyTower();
 		var waveToStart = new Wave(this.waves.pop(), this.hero, this.countWave);
 		this.currentWave = waveToStart;
 		console.log("Nombre de monstres: " + this.currentWave.totalMonster);
@@ -39,23 +38,16 @@ Niveau.prototype.defend = function(){
 //When every monster have been killed
 Niveau.prototype.construct = function(){
 	this.phase = "constructing";
-	console.log("phase de construction");
 	this.hero.monsterKilledDuringCurrentWave = 0;
 	//Show all the consruction panel
 	this.panel.setTowers([Bumper]);
-	this.panel.show();
+	this.panel.activateTower();
 };
 
 Niveau.prototype.endLevel = function(){
-	console.log("endOfLevel");
 	if (this.waves.length === 0 && (this.hero.monsterKilledDuringCurrentWave === this.currentWave.totalMonster)) {
-		console.log("You won !");
 		game.global.scoreMonster = this.hero.points;
 		game.global.scoreLife = this.hero.life;
-		console.log(this.hero.life);
 		game.state.start('gameStats');
-		//Changement d'état, 
-		//passage au menu avec le niveau 2 de débloqué 
-		//Ou mieux etat de choix dynamique : continuer -> start état lvl2 || menu -> état menu
 	}
 };

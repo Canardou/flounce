@@ -48,7 +48,7 @@ var level1State = {
 			[{
 				"number": 2,
 				"type": "Guy",
-				"life": 20,
+				"life": 10,
 				"gold": 100,
 				"value": 5,
 				"strength": 1,
@@ -129,6 +129,7 @@ var level1State = {
 		background.body.setCollisionGroup(game.global.playerCollisionGroup);
 
 		var infos = new InfoPanel();
+		var dragNdropPanel = new TowerPanel();
 
 		background.body.collides(game.global.enemiesCollisionGroup, function(wall, part) {
 			part.sprite.entity.combo = 0;
@@ -189,16 +190,22 @@ var level1State = {
 			if (game.global.currentLevel.phase === "constructing" && !game.global.currentLevel.hero.dead) {
 				game.global.currentLevel.defend();
 			}
+			button.label.setText('Next Wave');
 		});
 
 
 		//Begining of the level
 		niveau1 = game.global.currentLevel = new Niveau(waves, 20);
 
-		button = new LabelButton(game, game.world.centerX, game.world.centerY+100, 'wood_frame', 'Spacebar ?', game.global.currentLevel.defend, game.global.currentLevel, 'black');
+		button = new LabelButton(game, game.world.centerX, game.world.centerY+100, 'wood_frame', 'Click or...', game.global.currentLevel.defend, game.global.currentLevel, 'white');
 		button.onInputUp.add(function(){
-			if(game.global.currentLevel.countWave === 1)
+			if(game.global.currentLevel.countWave === 1){
 				var firstBumperHint = new TextHint('Ho... poor enemies...', 300, 750);
+				button.label.setText('Spacebar ?');
+			}
+			else{
+				button.label.setText('Next Wave');
+			}
 		}, this);
 		button.scale.x = 0.4;
 		button.scale.y = 0.4;
