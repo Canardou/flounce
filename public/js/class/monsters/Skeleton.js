@@ -1,17 +1,9 @@
 /*global Monster,game,pi,cos,sin,def,isDef,rand,inh from utils.js*/
-var Guy = function(x, y, life, gold, value, strengh, decay, hero) {
+var Skeleton = function(x, y, life, gold, value, strengh, decay, hero) {
     Monster.call(this, life, gold, value, strengh, decay, hero);
 
-    //Test sons
-    this.guyPain1 = game.add.audio('guyPain1');
-    this.guyPain1.volume = 0.1;
-    this.guyPain2 = game.add.audio('guyPain2');
-    this.guyPain2.volume = 0.5;
-    this.guyPain3 = game.add.audio('guyPain3');
-    this.guyPain3.volume = 0.5;
-
     //Guuuuuuuyyyyy !
-    var chest = game.add.sprite(x, y, 'guy_body');
+    var chest = game.add.sprite(x, y, 'skeleton');
     this.parts.push(chest);
     game.physics.p2.enableBody(chest);
     chest.body.setRectangle(8, 16);
@@ -33,7 +25,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay, hero) {
     //head.rotation = game.physics.p2.createRotationalSpring(head, chest, 0, 5, 1);
     //this.constraints.push(head.rotation);
     //Arms
-    var left_arm = game.add.sprite(x - 4, y - 4, 'guy_arm');
+    var left_arm = game.add.sprite(x - 4, y - 4, 'bone');
     this.parts.push(left_arm);
     game.physics.p2.enableBody(left_arm);
     left_arm.body.setRectangle(4, 8);
@@ -41,7 +33,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay, hero) {
     left_arm.revolute.collideConnected = false;
     this.constraints.push(left_arm.revolute);
     
-    var left_hand = game.add.sprite(x - 4, y + 4, 'guy_hand');
+    var left_hand = game.add.sprite(x - 4, y + 4, 'bone');
     this.parts.push(left_hand);
     game.physics.p2.enableBody(left_hand);
     left_hand.body.setRectangle(4, 8);
@@ -53,7 +45,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay, hero) {
     left_hand.revolute.upperLimit = 1;
     this.constraints.push(left_hand.revolute);
     
-    var right_arm = game.add.sprite(x + 4, y - 4, 'guy_arm');
+    var right_arm = game.add.sprite(x + 4, y - 4, 'bone');
     this.parts.push(right_arm);
     game.physics.p2.enableBody(right_arm);
     right_arm.body.setRectangle(4, 8);
@@ -61,7 +53,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay, hero) {
     right_arm.revolute.collideConnected = false;
     this.constraints.push(right_arm.revolute);
     
-    var right_hand = game.add.sprite(x + 4, y + 4, 'guy_hand');
+    var right_hand = game.add.sprite(x + 4, y + 4, 'bone');
     this.parts.push(right_hand);
     game.physics.p2.enableBody(right_hand);
     right_hand.body.setRectangle(4, 8);
@@ -73,7 +65,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay, hero) {
     right_hand.revolute.upperLimit = 1;
     this.constraints.push(right_hand.revolute);
     //Legs
-    var left_leg = game.add.sprite(x - 2, y + 8, 'guy_leg');
+    var left_leg = game.add.sprite(x - 2, y + 8, 'bone');
     this.parts.push(left_leg);
     game.physics.p2.enableBody(left_leg);
     left_leg.body.setRectangle(4, 8);
@@ -85,7 +77,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay, hero) {
     left_leg.revolute.upperLimit = 1;
     this.constraints.push(left_leg.revolute);
     
-    var left_foot = game.add.sprite(x - 2, y + 16, 'guy_lfoot');
+    var left_foot = game.add.sprite(x - 2, y + 16, 'bone');
     this.parts.push(left_foot);
     game.physics.p2.enableBody(left_foot);
     left_foot.body.setRectangle(4, 8);
@@ -97,7 +89,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay, hero) {
     left_foot.revolute.upperLimit = 1;
     this.constraints.push(left_foot.revolute);
     
-    var right_leg = game.add.sprite(x + 2, y + 8, 'guy_leg');
+    var right_leg = game.add.sprite(x + 2, y + 8, 'bone');
     this.parts.push(right_leg);
     game.physics.p2.enableBody(right_leg);
     right_leg.body.setRectangle(4, 8);
@@ -109,7 +101,7 @@ var Guy = function(x, y, life, gold, value, strengh, decay, hero) {
     right_leg.revolute.upperLimit = 1.5;
     this.constraints.push(right_leg.revolute);
     
-    var right_foot = game.add.sprite(x + 2, y + 16, 'guy_rfoot');
+    var right_foot = game.add.sprite(x + 2, y + 16, 'bone');
     this.parts.push(right_foot);
     game.physics.p2.enableBody(right_foot);
     right_foot.body.setRectangle(4, 8);
@@ -129,20 +121,4 @@ var Guy = function(x, y, life, gold, value, strengh, decay, hero) {
     this.updateCollision();
 };
 
-Guy.prototype.playSound = function() {
-    var soundNumber = floor(rand(4,1));
-
-    switch (soundNumber){
-        case 1:
-            this.guyPain1.play();
-            break;
-        case 2:
-            this.guyPain2.play();
-            break;
-        case 3:
-            this.guyPain3.play();
-            break;
-    }
-};
-
-inh(Guy, Monster);
+inh(Skeleton, Monster);

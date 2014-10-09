@@ -23,7 +23,7 @@ var loadState = {
 		game.load.image('guy_head', 'asset/sprites/guy_head.png');
 		game.load.image('paddle_right', 'asset/sprites/paddle_right.png');
 		game.load.image('paddle_left', 'asset/sprites/paddle_left.png');
-		game.load.image('walls', 'asset/sprites/background.png');
+		game.load.image('walls', 'asset/sprites/walls.png');
 		game.load.image('hint', 'asset/sprites/hint.png');
 		game.load.image('wood_frame', 'asset/sprites/wood_panel.png');
 		game.load.image('delete', 'asset/sprites/deleteButton.png');
@@ -31,6 +31,8 @@ var loadState = {
 		game.load.image('bumperError', 'asset/sprites/bumperError.png');
 		game.load.image('bumperDisable', 'asset/sprites/bumperDisable.png');
 		game.load.image('bone', 'asset/sprites/bone.png');
+		game.load.image('skeleton', 'asset/sprites/squeletton_body.png');
+		game.load.spritesheet('button', 'asset/sprites/GreenButton.png');
 		game.load.physics('paddle_physics', 'asset/physics/physics.json');
 		game.load.image('circle', 'asset/sprites/placement.png');
 		game.load.image('heart', 'asset/sprites/heart.png');

@@ -38,7 +38,7 @@ var level1State = {
 			}],
 			[{
 				"number": 3,
-				"type": "Guy",
+				"type": "Skeleton",
 				"life": 25,
 				"gold": 200,
 				"value": 5,
@@ -114,12 +114,12 @@ var level1State = {
 		var bumper = new Bumper({
 			base: 10,
 			max: 20
-		}, 320, 800);
+		}, 320, 850);
 
 		var P_hint = new Hint("P", 5, 430, 1000);
 		var Q_hint = new Hint("Q", 5, 230, 1000);
 		
-		game.physics.p2.enableBody(background);
+		game.physics.p2.enableBody(background, true);
 		game.global.depth[2].add(background);
 		
 		background.body.static = true;

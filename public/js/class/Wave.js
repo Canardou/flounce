@@ -28,6 +28,9 @@ Wave.prototype.popMonster = function(type, life, gold, value, strength, entree){
 	if(type === "Guy") {
 		aliveMonster = new Guy(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,life * weigth, gold * weigth, value * weigth, strength, false, this.hero);
 	}
+	if(type === "Skeleton") {
+		aliveMonster = new Skeleton(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,life * weigth, gold * weigth, value * weigth, strength, false, this.hero);
+	}
 	/*
 	else if(monsterToCreate.type === "Cow") {
 		aliveMonster = new Cow(life * weigth, gold * weigth, value * weigth, strength, entreeToUse); 
