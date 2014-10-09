@@ -114,7 +114,7 @@ var level1State = {
 		var bumper = new Bumper({
 			base: 10,
 			max: 20
-		}, 150, 300);
+		}, 320, 800);
 
 		var P_hint = new Hint("P", 5, 430, 1000);
 		var Q_hint = new Hint("Q", 5, 230, 1000);
@@ -194,10 +194,11 @@ var level1State = {
 
 		//Begining of the level
 		niveau1 = game.global.currentLevel = new Niveau(waves, 20);
+
 		button = new LabelButton(game, game.world.centerX, game.world.centerY+100, 'wood_frame', 'Spacebar ?', game.global.currentLevel.defend, game.global.currentLevel, 'black');
 		button.onInputUp.add(function(){
 			if(game.global.currentLevel.countWave === 1)
-				var firstBumperHint = new TextHint('Ho... poor enemies...', 200, 500);
+				var firstBumperHint = new TextHint('Ho... poor enemies...', 300, 750);
 		}, this);
 		button.scale.x = 0.4;
 		button.scale.y = 0.4;
