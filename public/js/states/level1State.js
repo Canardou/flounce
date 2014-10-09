@@ -38,7 +38,7 @@ var level1State = {
 			}],
 			[{
 				"number": 3,
-				"type": "Guy",
+				"type": "Skeleton",
 				"life": 25,
 				"gold": 200,
 				"value": 5,
