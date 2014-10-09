@@ -119,7 +119,7 @@ var level1State = {
 		var P_hint = new Hint("P", 5, 430, 1000);
 		var Q_hint = new Hint("Q", 5, 230, 1000);
 		
-		game.physics.p2.enableBody(background, true);
+		game.physics.p2.enableBody(background);
 		game.global.depth[2].add(background);
 		
 		background.body.static = true;
