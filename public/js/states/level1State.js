@@ -194,10 +194,11 @@ var level1State = {
 
 		//Begining of the level
 		niveau1 = game.global.currentLevel = new Niveau(waves, 20);
-		button = new LabelButton(game, game.world.centerX, game.world.centerY-100, 'wood_frame', 'Spacebar ?', game.global.currentLevel.defend, game.global.currentLevel, 'black');
+
+		button = new LabelButton(game, game.world.centerX, game.world.centerY+100, 'wood_frame', 'Spacebar ?', game.global.currentLevel.defend, game.global.currentLevel, 'black');
 		button.onInputUp.add(function(){
 			if(game.global.currentLevel.countWave === 1)
-				var firstBumperHint = new TextHint('Ho... poor enemies...', 150, 350);
+				var firstBumperHint = new TextHint('Ho... poor enemies...', 300, 750);
 		}, this);
 		button.scale.x = 0.4;
 		button.scale.y = 0.4;
@@ -232,8 +233,8 @@ var level1State = {
 	},
 
 	render: function() {
-		game.debug.text('Points: ' + game.global.currentLevel.hero.points, 495, 990);
-		game.debug.text('Health Points: ' + game.global.currentLevel.hero.life, 495, 1010);
-		game.debug.text('Gold: ' + game.global.currentLevel.hero.gold, 495, 1030);
+		game.debug.text(game.global.currentLevel.hero.life, 525, 1020, 'rgb(255,255,255)', '20px "moderne_frakturregular"');
+		game.debug.text(game.global.currentLevel.hero.gold, 525, 1055, 'rgb(255,255,255)', '20px "moderne_frakturregular"');
+		game.debug.text(game.global.currentLevel.hero.points, 525, 1090, 'rgb(255,255,255)', '20px "moderne_frakturregular"');
 	},
 };

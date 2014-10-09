@@ -8,8 +8,9 @@ var Hero = function(life, gold, power) {
     this.monsterKilledDuringCurrentWave = 0;
     var height = 1100;
     this.entity = game.add.sprite(game.global.width / 2, game.global.height - (1138 - height) / 2);
-    game.physics.p2.enableBody(this.entity, true);
+    game.physics.p2.enableBody(this.entity);
     this.entity.body.setRectangle(640, 1138 - height);
+
     this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
     this.entity.body.collides(game.global.enemiesCollisionGroup, this.getHit, this);
     this.entity.renderable = false;
@@ -18,7 +19,7 @@ var Hero = function(life, gold, power) {
 
 Hero.prototype.die = function() {
     this.dead = true;
-    if (game.global.currentLevel && game.global.currentLevel!=null) {
+    if (game.global.currentLevel && game.global.currentLevel != null) {
         if (game.global.currentLevel.hero.life <= 0) {
             //Play sound You loose + New state to create...
             var gameOver = game.add.text(game.world.centerX, game.world.centerY, "You lose");

@@ -178,6 +178,5 @@ Building.prototype.hideButtons = function() {
     if(this.stats){
         this.stats.destroy();
     }
-    //game.input.onDown.remove(this.hideButtons, this);
 
 };

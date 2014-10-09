@@ -35,6 +35,9 @@ var loadState = {
 		game.load.spritesheet('button', 'asset/sprites/GreenButton.png');
 		game.load.physics('paddle_physics', 'asset/physics/physics.json');
 		game.load.image('circle', 'asset/sprites/placement.png');
+		game.load.image('heart', 'asset/sprites/heart.png');
+		game.load.image('points', 'asset/sprites/points.png');
+		game.load.spritesheet('gold', 'asset/sprites/coin_gold.png', 32, 32);
 		for(var i=0;i<3;i++){
 			game.load.spritesheet('bumper'+i, 'asset/sprites/bumper'+i+'.png',60,60);
 		}

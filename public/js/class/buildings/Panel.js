@@ -14,7 +14,8 @@ Panel.prototype.show = function() {
         this.design = game.add.sprite(0, 1000, 'wood_frame');
         game.global.depth[4].add(this.design);
         if(game.global.currentLevel.countWave === 1)
-            var showGold = new TextHint('Oh my Gold !', 80, 50, '#E8B71A');
+            var showGold = new TextHint('Oh my Gold !', 400, 1045, '#E8B71A');
+
         for (var i = 0; i < this.towers.length; i++) {
             var tower = new this.towers[i]({
                 base: 10,
@@ -55,4 +56,6 @@ Panel.prototype.hide = function() {
     while (this.shown.length > 0) {
         (this.shown.pop()).destroy();
     }
+    if(game.global.currentLevel.countWave === 2)
+        var showPoints = new TextHint('Hard score gamer ?', 360, 1080, '#ff7f00');
 };

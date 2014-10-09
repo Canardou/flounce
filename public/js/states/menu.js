@@ -24,7 +24,7 @@ var menuState = {
 
 		console.log("Entrée dans le menu");
 		var data = new GameData();
-		var her = new Hero(0,0,0);
+		var her = new Hero(200000,0,0);
 		// Display the name of the game
 		var nameLabel = game.add.text(game.world.centerX, 80, 'Flounce', {
 			font: '50px Arial',
