@@ -23,10 +23,3 @@ var rand = function(max, min) {
 	min = def(min, 0);
 	return Math.random() * (max - min) + min;
 };
-Array.prototype.sum = function(index) {
-	var sum=0;
-	for (var i = 0; i <= index; i++) {
-		sum += this[i]; //Iterate over your first array and then grab the second element add the values up
-	}
-	return sum;
-};

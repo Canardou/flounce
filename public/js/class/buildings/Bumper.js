@@ -2,12 +2,14 @@ var Bumper = function(damage, x, y) {
     Building.call(this, damage);
     this.bump1 = game.add.audio('bump1');
     this.bump2 = game.add.audio('bump2');
-    this.levelMax = 2;
+    this.levelMax = 3;
 
     this.heatLimit = 20;
+    this.cooldown = 100;
     this.heat = 0;
     this.overHeat = false;
-    this.cost = [375,525,850];
+    this.cost = [375,525,850,1200];
+    this.size=1;
 
 
     this.entity = game.add.sprite(x, y);
@@ -16,7 +18,7 @@ var Bumper = function(damage, x, y) {
     game.global.depth[5].add(this.design);
     game.physics.p2.enableBody(this.entity);
 
-    this.entity.body.setCircle(20);
+    this.entity.body.setCircle(this.size*20);
     this.entity.body.kinematic = true;
     this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
     this.entity.body.collides(game.global.enemiesCollisionGroup, this.hit, this);
@@ -34,13 +36,14 @@ Bumper.prototype.hit = function(bumper, part) {
         if (entity.lastCollision.length === 0 || entity.lastCollision[0] != bumper) {
 
             if (this.heat < this.heatLimit && !this.overHeat) {
-                this.heat+=10;
-                if (this.heat >= this.heatLimit) {
+                console.log(part.sprite.entity.strength);
+                this.heat+=part.sprite.entity.strength;
+                if (this.heat > this.heatLimit-10) {
                     this.design.loadTexture('bumper' + this.level, 2);
                     game.global.depth[5].remove(this.design);
                     game.global.depth[1].add(this.design);
                     this.overHeat = true;
-                    this.heat = 100;
+                    this.heat = this.cooldown;
                     this.entity.body.setCollisionGroup(game.global.voidCollisionGroup);
                 }
                 else if (this.heat > this.heatLimit / 2 - 10)
@@ -77,6 +80,7 @@ Bumper.prototype.hit = function(bumper, part) {
                     console.log(retour.damage);
                     entity.lastCollision.unshift(bumper);
                     entity.combo++;
+                    entity.comboCounter=20;
                     game.time.events.add(500, function() {
                         if (entity) {
                             entity.lastCollision.pop();
@@ -87,10 +91,11 @@ Bumper.prototype.hit = function(bumper, part) {
                 }
 
                 if (entity.life > 0) {
-                    part.velocity.x = -2000 * cos(angle);
-                    part.velocity.y = -2000 * sin(angle);
-                    entity.body.velocity.x = -3000 * cos(angle);
-                    entity.body.velocity.y = -3000 * sin(angle);
+                    part.sprite.entity.stop();
+                    part.velocity.x = -3000 * cos(angle);
+                    part.velocity.y = -3000 * sin(angle);
+                    entity.body.velocity.x = -5000 * cos(angle);
+                    entity.body.velocity.y = -5000 * sin(angle);
                 }
                 this.design.x = this.entity.x + 5 * cos(angle);
                 this.design.y = this.entity.y + 5 * sin(angle);
@@ -135,6 +140,15 @@ Bumper.prototype.upgrade = function() {
     this.level++;
     this.design.loadTexture('bumper' + this.level, 0);
     this.heatLimit += 20;
+    this.cooldown -= 5;
+    this.size*=1.08;
+    this.design.scale.set(this.size);
+    this.entity.body.setCircle(this.size*20);
+    this.entity.body.kinematic = true;
+    this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
+    this.entity.body.collides(game.global.enemiesCollisionGroup, this.hit, this);
+    this.entity.body.collides(game.global.limbsCollisionGroup);
+
     /*switch (this.level) {
         case 1:
             this.damage = {

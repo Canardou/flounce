@@ -1,10 +1,11 @@
 /*global game,pi,cos,sin,def,isDef,rand from utils.js*/
-var Monster = function(life, gold, value, strength, decay, hero) {
+var Monster = function(life, gold, value, strength, decay, damage, hero) {
     this.life = life;
     this.gold = gold;
     this.value = def(value, 10);
     this.strength = def(strength, 1);
     this.decay = def(decay, true);
+    this.damage = def(damage, 1);
     this.dead = false;
     this.isDestroy = false;
     this.parts = [];
@@ -13,17 +14,38 @@ var Monster = function(life, gold, value, strength, decay, hero) {
     this.body=null;
     this.combo = 0;
     this.hero = hero;
+    
+    this.comboCounter = 0;
+    
+    game.time.events.loop(Phaser.Timer.SECOND/10, this.stopComobo, this);
 };
+
+Monster.prototype.stopComobo = function(){
+    if(this.comboCounter>0){
+        this.comboCounter--;
+        if(this.comboCounter<=0){
+            this.combo=0;
+        }
+    }
+}
+
+Monster.prototype.stop = function(){
+    for (var item in this.parts) {
+        //this.parts[item].body.collideWorldBounds=true;
+        this.parts[item].body.velocity.y=0;
+        this.parts[item].body.velocity.x=0;
+    }
+}
 
 //When a monster is killed
 Monster.prototype.die = function() {
     this.dead = true;
     this.playSound();
     if (this.isDestroy === false) {
-        this.destroy();
         this.hero.monsterKilledDuringCurrentWave++;
         this.hero.gold += this.gold;
         this.hero.points += this.value * this.combo;
+        this.destroy();
     }
 
 };
