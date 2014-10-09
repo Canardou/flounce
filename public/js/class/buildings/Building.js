@@ -10,7 +10,7 @@ var Building = function(damage, cost) {
     };
     this.level = 0;
     this.levelMax = 0;
-    this.cost = def(cost, 500);
+    this.cost = 0;
     this.deleteButton;
     this.upgradeButton;
     this.totalDamage = 0;
@@ -148,7 +148,7 @@ Building.prototype.descriptTower = function() {
 };
 
 Building.prototype.deleteTower = function() {
-    game.global.currentLevel.hero.gold += ceil(this.cost * 0.75); //Va pour les 75%...
+    game.global.currentLevel.hero.gold += ceil(this.cost.sum(this.level)* 0.75); //Va pour les 75%...
     game.input.onDown.remove(this.hideButtons, this);
     this.deleteButton.destroy();
     if (this.level < this.levelMax) {

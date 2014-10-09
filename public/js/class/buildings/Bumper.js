@@ -7,6 +7,7 @@ var Bumper = function(damage, x, y) {
     this.heatLimit = 20;
     this.heat = 0;
     this.overHeat = false;
+    this.cost = [375,525,850];
 
 
     this.entity = game.add.sprite(x, y);
