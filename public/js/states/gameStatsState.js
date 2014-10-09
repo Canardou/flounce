@@ -7,10 +7,15 @@ var gameStatsState = {
 		console.log(game.global.scoreLife);
 
 		//Score
+		var total = (game.global.currentLevel.hero.points+game.global.currentLevel.hero.life*100+ game.global.currentLevel.hero.gold);
 		var scoreToPrint = 'Monsters Score: '+ game.global.currentLevel.hero.points+
 			'\nLife Score: '+game.global.currentLevel.hero.life+' x 100 = '+
 			game.global.currentLevel.hero.life*100+
-			'\nTotal: '+(game.global.currentLevel.hero.points+game.global.currentLevel.hero.life*100);
+			'\nGold Remaining: '+game.global.currentLevel.hero.gold+
+			'\nTotal: '+total;
+
+		var data = new GameData();
+		data.setCookie("topScore", total, game.global.EXPDATE);
 
 		var printScore = game.add.text(game.world.centerX, 150, scoreToPrint, { font: '30px Arial', fill: '#ffffff' });
 		printScore.anchor.setTo(0.5, 0.5);

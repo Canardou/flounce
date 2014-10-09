@@ -14,10 +14,15 @@
     font-weight: normal;
     font-style: normal;
 }
+
 /* end of Font Squirrel */
+
 .hiddenText { font-family: bd_cartoon_shoutregular; visibility: hidden;
 }
-
+.hiddenText2 { font-family: moderne_frakturregular; visibility: hidden;
+}
+.hiddenText3 { font-family: Indie Flower; visibility: hidden;
+}
 
 
 body {

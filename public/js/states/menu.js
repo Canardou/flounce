@@ -22,26 +22,34 @@ var menuState = {
 		game.global.fade_out = [];
 		game.physics.p2.updateBoundsCollisionGroup();
 
-		console.log("Entrée dans le menu");
+		var her = new Hero(1,0,0);
+		//GameData
 		var data = new GameData();
-		var her = new Hero(200000,0,0);
+
 		// Display the name of the game
 		var nameLabel = game.add.text(game.world.centerX, 80, 'Flounce', {
-			font: '50px Arial',
+			font: '50px moderne_frakturregular',
 			fill: '#ffffff'
 		});
 		nameLabel.anchor.setTo(0.5, 0.5);
 
 
 		//Menu
-		color = 'black';
+		color = 'white';
 		restart = new LabelButton(game, game.world.centerX, game.world.centerY, 'wood_frame', 'Level 1', function(){game.state.start('level1');}, game, color);
 		restart.scale.x = 0.5;
 		restart.scale.y = 0.5;
 
+		var score = game.add.text(50, 1100, "Best score: "+data.getCookie("topScore"));
+		score.fill = color;
+		score.style.font = '35px moderne_frakturregular';
+
+
+
+
 		//Animation du menu
 		var monstersToCreate = [
-		{"number": 2000, "type": "Skeleton", "life":20,"gold":20, "value": 1, "strength":20, "entry": 'all'}
+		{"number": 2000, "type": "Guy", "life":20,"gold":20, "value": 1, "strength":0, "entry": 'all'}
 		];
 
 		var wave1 = new Wave(monstersToCreate, 1);

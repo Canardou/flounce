@@ -38,6 +38,7 @@ var loadState = {
 		game.load.image('heart', 'asset/sprites/heart.png');
 		game.load.image('points', 'asset/sprites/points.png');
 		game.load.image('princess', 'asset/sprites/princess.png');
+		game.load.image('infobox', 'asset/sprites/infobox.png');
 		game.load.spritesheet('gold', 'asset/sprites/coin_gold.png', 32, 32);
 		for(var i=0;i<4;i++){
 			game.load.spritesheet('bumper'+i, 'asset/sprites/bumper'+i+'.png',60,60);

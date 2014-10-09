@@ -17,6 +17,7 @@ var Building = function(damage, cost) {
     this.monsterHits = 0;
     this.stats;
     this.valid = false;
+    this.infos;
 };
 
 Building.prototype.getDamage = function(body1, body2) {
@@ -92,6 +93,7 @@ Building.prototype.onDragStop = function(sprite, pointer) {
         //this.panel = null;
         this.stopDrag();
         this.allowClick();
+        this.allowMouseOver();
     }
     if(!this.valid){
         this.destroy();
@@ -109,6 +111,7 @@ Building.prototype.allowClick = function() {
 Building.prototype.allowMouseOver = function() {
     this.design.inputEnabled = true;
     this.design.events.onInputOver.add(this.descriptTower, this);
+    this.design.events.onInputOut.add(this.HideDescriptTower, this);
 };
 
 Building.prototype.statsTower = function() {
@@ -145,12 +148,34 @@ Building.prototype.statsTower = function() {
 
 Building.prototype.descriptTower = function() {
     //console.log("Description test success");
-    //Cost, damage, percentage of crits and explanation of the tower
+    this.infobox = game.add.sprite(180,960, 'infobox');
+    this.infobox.scale.y = 2.7;
+    this.infobox.scale.x = 1.05;
+    this.infobox.alpha = 0.9;
+    //Cost, damage, percentage of crits and description of the tower
+    this.infos = this.findInfos();
+    //Name of the tower
+    this.nameToAdd = game.add.text(185, 960, this.infos.name);
+    this.nameToAdd.style.fill = 'white';
+    this.nameToAdd.style.font = 'bold 25px Indie Flower';
+    //Description of the tower
+    this.descToAdd = game.add.text(185, 990, this.infos.description);
+    this.descToAdd.style.fill = 'white';
+    this.descToAdd.style.font = 'bold 20px Indie Flower';
+};
+
+Building.prototype.HideDescriptTower = function() {
+    this.infobox.destroy();
+    this.infobox = null;
+    this.nameToAdd.destroy();
+    this.nameToAdd = null;
+    this.descToAdd.destroy();
+    this.descToAdd = null;
 };
 
 Building.prototype.deleteTower = function() {
 
-    game.global.currentLevel.hero.gold += ceil(this.costCalcul()* 0.75); //Va pour les 75%...
+    game.global.currentLevel.hero.gold += ceil(this.costCalcul()* 0.75);
     game.input.onDown.remove(this.hideButtons, this);
     this.deleteButton.destroy();
     if (this.level < this.levelMax) {
@@ -171,6 +196,7 @@ Building.prototype.upgradeTower = function() {
 };
 
 Building.prototype.upgrade = function(){};
+Building.prototype.findInfos = function(){};
 
 Building.prototype.hideButtons = function() {
     if(this.deleteButton && !this.deleteButton.input.checkPointerOver(game.input.mousePointer)){

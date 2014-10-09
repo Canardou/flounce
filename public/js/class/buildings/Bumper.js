@@ -11,7 +11,6 @@ var Bumper = function(damage, x, y) {
     this.cost = [375,525,850,1200];
     this.size=1;
 
-
     this.entity = game.add.sprite(x, y);
     this.design = game.add.sprite(x, y, 'bumper' + this.level, 0);
     this.design.anchor.setTo(0.5, 0.5);
@@ -36,7 +35,6 @@ Bumper.prototype.hit = function(bumper, part) {
         if (entity.lastCollision.length === 0 || entity.lastCollision[0] != bumper) {
 
             if (this.heat < this.heatLimit && !this.overHeat) {
-                console.log(part.sprite.entity.strength);
                 this.heat+=part.sprite.entity.strength;
                 if (this.heat > this.heatLimit-10) {
                     this.design.loadTexture('bumper' + this.level, 2);
@@ -77,7 +75,6 @@ Bumper.prototype.hit = function(bumper, part) {
                         });
                         onoma.tween.start();
                     }
-                    console.log(retour.damage);
                     entity.lastCollision.unshift(bumper);
                     entity.combo++;
                     entity.comboCounter=20;
@@ -217,4 +214,35 @@ Bumper.prototype.designCheck = function() {
         this.design.scale.set(1, 1);
         this.check.tint = 0x00FFFF;
     }
+};
+
+
+Bumper.prototype.findInfos = function() {
+    var infos= {
+        name:'',
+        description:''
+    };
+    switch (this.level) {
+        case 0:
+            infos.name = 'Tiny Bumper (lvl 0)';
+            infos.description += 'Nice castle decoration';
+            break;
+        case 1:
+            infos.name+= 'Classic Bumper (lvl 1)';
+            infos.description += 'Simple bumper that kills guys';
+            break;
+        case 2:
+            infos.name+= 'Double Whoomper (lvl 2)';
+            infos.description += 'Well, the same but in different';
+            break;
+        case 3:
+            infos.name+= 'Doomper (lvl 3)';
+            infos.description += 'BOUUUM !';
+            break;
+    }
+    infos.description +='\nDamage: '+this.damage.base+'-'+this.damage.max+
+    '\nHeat limit: '+this.heatLimit+
+    '\nCooldown: '+this.cooldown;
+
+    return infos;
 };
