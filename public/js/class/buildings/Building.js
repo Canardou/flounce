@@ -6,7 +6,7 @@ var Building = function(damage, cost) {
         base: def(damage.base, 0),
         max: def(damage.max, 0),
         critMult: def(damage.critMult, 2),
-        critOdds: def(damage.critOdds, 1)
+        critOdds: def(damage.critOdds, 0)
     };
     this.level = 0;
     this.levelMax = 0;
