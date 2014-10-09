@@ -7,7 +7,7 @@ var LabelButton = function(game, x, y, key, label, callback,
     var color = def(labelColor, '#ff6600');
 
     this.style = {
-        'font': 'bold '+imageCache.width+'% Arial',
+        'font': 'bold '+imageCache.width+'% Helvetica',
         'fill': color
     };
     this.anchor.setTo(0.5, 0.5);

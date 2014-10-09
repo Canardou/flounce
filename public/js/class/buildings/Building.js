@@ -82,21 +82,20 @@ Building.prototype.onDragStop = function(sprite, pointer) {
     this.entity.body.x = pointer.x;
     this.entity.body.y = pointer.y;
     sprite.scale.set(1, 1);
-    if (this.panel) {
-        this.panel.reset();
-        this.panel = null;
-        this.stopDrag();
-        this.allowClick();
-    }
     this.designCheck();
     this.checkValidity(false);
-    if (this.valid) {
+    if (this.valid && game.global.currentLevel.hero.gold >= this.cost) {
         game.global.currentLevel.hero.gold -= this.cost;
     }
     else{
         this.destroy();
     }
-
+    if (this.panel) {
+        this.panel.reset();
+        //this.panel = null;
+        this.stopDrag();
+        this.allowClick();
+    }
 };
 
 Building.prototype.allowClick = function() {
@@ -129,7 +128,7 @@ Building.prototype.statsTower = function() {
             this.upgradeButton.scale.y = 0.25;
         }
         else{
-            //Have to make a litte "MAX" sign in red
+            //TODO : Have to make a litte "MAX" sign in red
         }
     }
 
@@ -163,10 +162,13 @@ Building.prototype.upgradeTower = function() {
     if (game.global.currentLevel.hero.gold >= this.cost) {
         game.global.currentLevel.hero.gold -= this.cost;
         this.upgrade();
+        this.panel.reset();
     }
     if (this.level === this.levelMax)
         this.upgradeButton.destroy();
 };
+
+Building.prototype.upgrade = function(){};
 
 Building.prototype.hideButtons = function() {
     if(this.deleteButton && !this.deleteButton.input.checkPointerOver(game.input.mousePointer)){

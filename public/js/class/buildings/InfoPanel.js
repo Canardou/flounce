@@ -28,5 +28,5 @@ var InfoPanel = function() {
 	this.points.tween.to({angle: 2}, 600, null, true, 0, 0, false).
 	to({angle: -2}, 600, null, true, 0, 0, false).loop();
 
-	game.global.depth[7].add(this.sprite);
+	game.global.depth[6].add(this.sprite);
 };
