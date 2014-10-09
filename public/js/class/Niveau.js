@@ -17,6 +17,9 @@ var Niveau = function(waves, initialHeroLife, initialHeroGold, difficulty, avail
 	this.panel = new TowerPanel();
 	this.startingWave = game.add.audio('startingWave');
 	this.startingWave.volume = 0.2;
+	this.panel.setTowers([Bumper]);
+	this.panel.activateTower();
+	this.panel.greyTower();
 };
 
  

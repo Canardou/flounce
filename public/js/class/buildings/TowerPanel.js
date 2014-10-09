@@ -28,13 +28,13 @@ TowerPanel.prototype.activateTower = function() {// A lancer dans Niveau.js lign
         }, 70, 1000 + (i * 75));
         this.shown.push(tower);
         tower.allowMouseOver(); //En construction
-        if(game.global.currentLevel.hero.gold >= tower.cost[0]){
+        if(game.global.currentLevel && game.global.currentLevel.hero.gold >= tower.cost[0]){
             tower.allowDrag();
     }
         tower.panel=this;
     }
 
-    if(game.global.currentLevel.countWave === 1)
+    if(game.global.currentLevel && game.global.currentLevel.countWave === 1)
         var showGold = new TextHint('Oh my Gold !', 400, 1045, '#E8B71A');
 };
 
@@ -70,7 +70,7 @@ TowerPanel.prototype.greyTower = function() {// A lancer dans Niveau.js ligne 29
 		//this.shown[i].events.onInputUp.removeAll();
 	}
 
-    if(game.global.currentLevel.countWave === 2)
+    if(game.global.currentLevel && game.global.currentLevel.countWave === 2)
         var showPoints = new TextHint('Hard score gamer ?', 360, 1080, '#ff7f00');
 };
 
