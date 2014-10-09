@@ -6,11 +6,11 @@ var Building = function(damage, cost) {
         base: def(damage.base, 0),
         max: def(damage.max, 0),
         critMult: def(damage.critMult, 2),
-        critOdds: def(damage.critOdds, 1)
+        critOdds: def(damage.critOdds, 0)
     };
     this.level = 0;
     this.levelMax = 0;
-    this.cost = def(cost, 500);
+    this.cost = [];
     this.deleteButton;
     this.upgradeButton;
     this.totalDamage = 0;
@@ -84,11 +84,8 @@ Building.prototype.onDragStop = function(sprite, pointer) {
     sprite.scale.set(1, 1);
     this.designCheck();
     this.checkValidity(false);
-    if (this.valid && game.global.currentLevel.hero.gold >= this.cost) {
-        game.global.currentLevel.hero.gold -= this.cost;
-    }
-    else{
-        this.destroy();
+    if (this.valid && game.global.currentLevel.hero.gold >= this.cost[0]) {
+        game.global.currentLevel.hero.gold -= this.cost[0];
     }
     if (this.panel) {
         this.panel.reset();
@@ -96,6 +93,10 @@ Building.prototype.onDragStop = function(sprite, pointer) {
         this.stopDrag();
         this.allowClick();
     }
+    if(!this.valid){
+        this.destroy();
+    }
+    
 };
 
 Building.prototype.allowClick = function() {
@@ -148,7 +149,8 @@ Building.prototype.descriptTower = function() {
 };
 
 Building.prototype.deleteTower = function() {
-    game.global.currentLevel.hero.gold += ceil(this.cost * 0.75); //Va pour les 75%...
+
+    game.global.currentLevel.hero.gold += ceil(this.costCalcul()* 0.75); //Va pour les 75%...
     game.input.onDown.remove(this.hideButtons, this);
     this.deleteButton.destroy();
     if (this.level < this.levelMax) {
@@ -159,8 +161,8 @@ Building.prototype.deleteTower = function() {
 };
 
 Building.prototype.upgradeTower = function() {
-    if (game.global.currentLevel.hero.gold >= this.cost) {
-        game.global.currentLevel.hero.gold -= this.cost;
+    if (game.global.currentLevel.hero.gold >= this.cost[this.level+1]) {
+        game.global.currentLevel.hero.gold -= this.cost[this.level+1];
         this.upgrade();
         this.panel.reset();
     }
@@ -181,4 +183,12 @@ Building.prototype.hideButtons = function() {
         this.stats.destroy();
     }
 
+};
+
+Building.prototype.costCalcul = function() {
+	var sum = 0;
+	for (var i = 0; i <= this.level; i++) {
+		sum += this.cost[i]; //Iterate over your first array and then grab the second element add the values up
+	}
+	return sum;
 };

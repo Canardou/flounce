@@ -28,7 +28,7 @@ TowerPanel.prototype.activateTower = function() {// A lancer dans Niveau.js lign
         }, 70, 1000 + (i * 75));
         this.shown.push(tower);
         tower.allowMouseOver(); //En construction
-        if(game.global.currentLevel.hero.gold >= tower.cost){
+        if(game.global.currentLevel.hero.gold >= tower.cost[0]){
             tower.allowDrag();
     }
         tower.panel=this;
@@ -49,7 +49,7 @@ TowerPanel.prototype.reset = function() {
         }, 70, 1000 + (i * 75));
         this.shown.push(tower);
         tower.allowMouseOver(); //En construction
-        if(game.global.currentLevel.hero.gold >= tower.cost){
+        if(game.global.currentLevel.hero.gold >= tower.cost[0]){
             tower.allowDrag();
         }
         else{

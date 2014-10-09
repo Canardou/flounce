@@ -39,7 +39,7 @@ var loadState = {
 		game.load.image('points', 'asset/sprites/points.png');
 		game.load.image('princess', 'asset/sprites/princess.png');
 		game.load.spritesheet('gold', 'asset/sprites/coin_gold.png', 32, 32);
-		for(var i=0;i<3;i++){
+		for(var i=0;i<4;i++){
 			game.load.spritesheet('bumper'+i, 'asset/sprites/bumper'+i+'.png',60,60);
 		}
 

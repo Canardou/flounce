@@ -1,6 +1,6 @@
 /*global Monster,game,pi,cos,sin,def,isDef,rand,inh from utils.js*/
-var Skeleton = function(x, y, life, gold, value, strengh, decay, hero) {
-    Monster.call(this, life, gold, value, strengh, decay, hero);
+var Skeleton = function(x, y, life, gold, value, strengh, decay, damage, hero) {
+    Monster.call(this, life, gold, value, strengh, decay, damage, hero);
 
     //Guuuuuuuyyyyy !
     var chest = game.add.sprite(x, y, 'skeleton');

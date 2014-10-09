@@ -1,6 +1,6 @@
 /*global Monster,game,pi,cos,sin,def,isDef,rand,inh from utils.js*/
-var Guy = function(x, y, life, gold, value, strengh, decay, hero) {
-    Monster.call(this, life, gold, value, strengh, decay, hero);
+var Guy = function(x, y, life, gold, value, strength, decay, damage, hero) {
+    Monster.call(this, life, gold, value, strength, decay, damage, hero);
 
     //Test sons
     this.guyPain1 = game.add.audio('guyPain1');

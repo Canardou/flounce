@@ -15,7 +15,8 @@ var level1State = {
 				"life": 200,
 				"gold": 200,
 				"value": 10,
-				"strength": 10,
+				"strength": 20,
+				"damage": 2,
 				"entry": 'all'
 			}],
 			[{
@@ -24,7 +25,8 @@ var level1State = {
 				"life": 30,
 				"gold": 200,
 				"value": 5,
-				"strength": 2,
+				"strength": 15,
+				"damage": 1,
 				"entry": 1
 			}],
 			[{
@@ -33,7 +35,8 @@ var level1State = {
 				"life": 15,
 				"gold": 200,
 				"value": 5,
-				"strength": 2,
+				"strength": 12,
+				"damage": 1,
 				"entry": 'all'
 			}],
 			[{
@@ -42,7 +45,18 @@ var level1State = {
 				"life": 25,
 				"gold": 200,
 				"value": 5,
-				"strength": 2,
+				"strength": 10,
+				"damage": 1,
+				"entry": 'all'
+			}],
+			[{
+				"number": 1,
+				"type": "Guy",
+				"life": 38757389,
+				"gold": 200,
+				"value": 10,
+				"strength": 10,
+				"damage": 2,
 				"entry": 'all'
 			}],
 			[{
@@ -51,7 +65,8 @@ var level1State = {
 				"life": 10,
 				"gold": 100,
 				"value": 5,
-				"strength": 1,
+				"strength": 5,
+				"damage": 1,
 				"entry": 0
 			}],
 		];
@@ -60,26 +75,24 @@ var level1State = {
 		game.physics.p2.setBoundsToWorld(true, true, false, true, false);
 		game.physics.p2.gravity.y = 300;
 		game.physics.p2.setImpactEvents(true);
-		
-		game.global.sensors=[];
-		game.physics.p2.world.on("beginContact",function(event){
-          for(var i=0; i<game.global.sensors.length; i++){
-            var s = game.global.sensors[i];
-            if(event.bodyA.parent == s || event.bodyB.parent == s){
-               console.log("in");
-              s.overlap++;
-            }
-          }
-        });
-        game.physics.p2.world.on("endContact",function(event){
-          for(var i=0; i<game.global.sensors.length; i++){
-            var s = game.global.sensors[i];
-            if(event.bodyA.parent == s || event.bodyB.parent == s){
-				console.log("out");
-				s.overlap--;
-            }
-          }
-        });
+
+		game.global.sensors = [];
+		game.physics.p2.world.on("beginContact", function(event) {
+			for (var i = 0; i < game.global.sensors.length; i++) {
+				var s = game.global.sensors[i];
+				if (event.bodyA.parent == s || event.bodyB.parent == s) {
+					s.overlap++;
+				}
+			}
+		});
+		game.physics.p2.world.on("endContact", function(event) {
+			for (var i = 0; i < game.global.sensors.length; i++) {
+				var s = game.global.sensors[i];
+				if (event.bodyA.parent == s || event.bodyB.parent == s) {
+					s.overlap--;
+				}
+			}
+		});
 
 		game.global.playerCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.wallsCollisionGroup = game.physics.p2.createCollisionGroup();
@@ -101,7 +114,7 @@ var level1State = {
 		//Design of the level//
 
 		//Locations
-		var background = game.add.sprite(game.global.width/2, game.global.height/2, 'walls');
+		var background = game.add.sprite(game.global.width / 2, game.global.height / 2, 'walls');
 		var paddle_right = new Paddle({
 			base: 5,
 			max: 6
@@ -115,25 +128,26 @@ var level1State = {
 			base: 10,
 			max: 20
 		}, 320, 850);
+		
+		
 
 		var P_hint = new Hint("P", 5, 430, 1000);
 		var Q_hint = new Hint("Q", 5, 230, 1000);
-		
-		game.physics.p2.enableBody(background);
+
+		game.physics.p2.enableBody(background, true);
+
 		game.global.depth[2].add(background);
-		
+
 		background.body.static = true;
 		background.body.clearShapes();
 		background.body.loadPolygon('paddle_physics', 'walls');
-		
+
 		background.body.setCollisionGroup(game.global.playerCollisionGroup);
 
 		var infos = new InfoPanel();
 		var dragNdropPanel = new TowerPanel();
 
-		background.body.collides(game.global.enemiesCollisionGroup, function(wall, part) {
-			part.sprite.entity.combo = 0;
-		}, this);
+		background.body.collides(game.global.enemiesCollisionGroup);
 
 		background.body.collides(game.global.limbsCollisionGroup);
 		background.body.collides(game.global.checkCollisionGroup);
@@ -184,7 +198,7 @@ var level1State = {
 		});
 
 		spacebar.onUp.add(function() {
-			if(game.global.currentLevel.phase === "beginning"){
+			if (game.global.currentLevel.phase === "beginning") {
 				game.global.currentLevel.defend();
 			}
 			if (game.global.currentLevel.phase === "constructing" && !game.global.currentLevel.hero.dead) {
@@ -195,20 +209,23 @@ var level1State = {
 
 
 		//Begining of the level
-		niveau1 = game.global.currentLevel = new Niveau(waves, 20);
+		niveau1 = game.global.currentLevel = new Niveau(waves, 20, 2894758);
 
-		button = new LabelButton(game, game.world.centerX, game.world.centerY+100, 'wood_frame', 'Click or...', game.global.currentLevel.defend, game.global.currentLevel, 'white');
-		button.onInputUp.add(function(){
-			if(game.global.currentLevel.countWave === 1){
+		button = new LabelButton(game, game.world.centerX, game.world.centerY + 100, 'wood_frame', 'Click or...', game.global.currentLevel.defend, game.global.currentLevel, 'white');
+		button.onInputUp.add(function() {
+			if (game.global.currentLevel.countWave === 1) {
 				var firstBumperHint = new TextHint('Ho... poor enemies...', 300, 750);
 				button.label.setText('Spacebar ?');
 			}
-			else{
+			else {
 				button.label.setText('Next Wave');
 			}
 		}, this);
 		button.scale.x = 0.4;
 		button.scale.y = 0.4;
+		bumper.panel=game.global.currentLevel.panel;
+		bumper.allowMouseOver();
+		bumper.allowClick();
 	},
 
 	update: function() {
