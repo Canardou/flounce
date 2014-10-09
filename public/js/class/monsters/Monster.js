@@ -38,6 +38,8 @@ Monster.prototype.dieWithoutGlory = function() {
 
 };
 
+Monster.prototype.playSound=function(){};
+
 Monster.prototype.getHit = function(damage) {
     if (!this.dead) {
         this.life -= damage;
