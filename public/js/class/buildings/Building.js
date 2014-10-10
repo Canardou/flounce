@@ -88,6 +88,9 @@ Building.prototype.onDragStop = function(sprite, pointer) {
     if (this.valid && game.global.currentLevel.hero.gold >= this.cost[0]) {
         game.global.currentLevel.hero.gold -= this.cost[0];
     }
+    else{
+        this.HideDescriptTower();
+    }
     if (this.panel) {
         this.panel.reset();
         //this.panel = null;
