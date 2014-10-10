@@ -11,29 +11,31 @@ var Monster = function(life, gold, value, strength, decay, damage, hero) {
     this.parts = [];
     this.constraints = [];
     this.lastCollision = [];
-    this.body=null;
+    this.body = null;
     this.combo = 0;
     this.hero = hero;
-    
+
     this.comboCounter = 0;
-    
-    game.time.events.loop(Phaser.Timer.SECOND/10, this.stopComobo, this);
+
+    game.time.events.loop(Phaser.Timer.SECOND / 10, this.stopComobo, this);
 };
 
-Monster.prototype.stopComobo = function(){
-    if(this.comboCounter>0){
-        this.comboCounter--;
-        if(this.comboCounter<=0){
-            this.combo=0;
+Monster.prototype.stopComobo = function() {
+    if (!this.dead) {
+        if (this.comboCounter > 0) {
+            this.comboCounter--;
+            if (this.comboCounter <= 0) {
+                this.combo = 0;
+            }
         }
     }
 }
 
-Monster.prototype.stop = function(){
+Monster.prototype.stop = function() {
     for (var item in this.parts) {
         //this.parts[item].body.collideWorldBounds=true;
-        this.parts[item].body.velocity.y=0;
-        this.parts[item].body.velocity.x=0;
+        this.parts[item].body.velocity.y = 0;
+        this.parts[item].body.velocity.x = 0;
     }
 }
 
@@ -60,7 +62,7 @@ Monster.prototype.dieWithoutGlory = function() {
 
 };
 
-Monster.prototype.playSound=function(){};
+Monster.prototype.playSound = function() {};
 
 Monster.prototype.getHit = function(damage) {
     if (!this.dead) {
@@ -79,15 +81,15 @@ Monster.prototype.destroy = function() {
             game.physics.p2.removeConstraint(this.constraints[item]);
         for (var item in this.parts) {
             var that = this.parts[item];
-            
+
             //Remove parent class
-            that.entity=null;
-            
+            that.entity = null;
+
             that.body.setCollisionGroup(game.global.limbsCollisionGroup);
             that.body.collides([game.global.wallsCollisionGroup, game.global.playerCollisionGroup]);
             that.body.collideWorldBounds = false;
             that.checkWorldBounds = true;
-            
+
             /*that.events.onOutOfBounds.add(function() {
                 if (that) {
                     that.destroy();
@@ -99,13 +101,13 @@ Monster.prototype.destroy = function() {
             that.tween = game.add.tween(this.parts[item]).to({
                 alpha: 0
             }, 5000, Phaser.Easing.Exponential.In, true, 0, false).onComplete.add(function() {
-                    this.destroy();
-            },that);
+                this.destroy();
+            }, that);
         }
-        
+
         this.constraints = [];
         this.parts = [];
-        this.entity=null;
+        this.entity = null;
         this.isDestroy = true;
         this.body = null;
     }

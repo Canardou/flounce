@@ -35,6 +35,7 @@ var loadState = {
 		game.load.spritesheet('button', 'asset/sprites/GreenButton.png');
 		game.load.physics('paddle_physics', 'asset/physics/physics.json');
 		game.load.image('circle', 'asset/sprites/placement.png');
+		game.load.image('hand', 'asset/sprites/hand.png');
 		game.load.image('heart', 'asset/sprites/heart.png');
 		game.load.image('points', 'asset/sprites/points.png');
 		game.load.image('princess', 'asset/sprites/princess.png');
