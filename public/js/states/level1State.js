@@ -129,7 +129,6 @@ var level1State = {
 			max: 20
 		}, 320, 850);
 		
-		dragExample();
 
 		var P_hint = new Hint("P", 5, 430, 1000);
 		var Q_hint = new Hint("Q", 5, 230, 1000);
