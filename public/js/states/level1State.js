@@ -20,7 +20,7 @@ var level1State = {
 				"entry": 'all'
 			}],
 			[{
-				"number": 8,
+				"number": 6,
 				"type": "Guy",
 				"life": 30,
 				"gold": 200,
@@ -30,7 +30,7 @@ var level1State = {
 				"entry": 1
 			}],
 			[{
-				"number": 10,
+				"number": 6,
 				"type": "Guy",
 				"life": 15,
 				"gold": 200,

@@ -143,12 +143,12 @@ Building.prototype.statsTower = function() {
     }
 
     //Show the stats (number of monster touched && damage dealt)
-    stats = "Damage dealt: " + this.totalDamage + "\nMonster hits: " + this.monsterHits;
+    stats = "Monster hits: " + this.monsterHits;
     var style = {
         'font': 'bold 175% Arial',
         'fill': 'white'
     };
-    this.stats = game.add.text(this.entity.body.x - 50, this.entity.body.y + 30, stats, style);
+    this.stats = game.add.text(this.entity.body.x - 60, this.entity.body.y + 30, stats, style);
 
 };
 
@@ -271,6 +271,7 @@ Building.prototype.hideMoneyback = function() {
 Building.prototype.upgradeEffect = function() {
     if(this.stats){
         this.stats.destroy();
+        this.stats = null;
     }
     this.upgradeButton.infobox = game.add.sprite(this.entity.body.x-35,this.entity.body.y+30, 'infobox');
     this.upgradeButton.infobox.scale.y = 0.6;
