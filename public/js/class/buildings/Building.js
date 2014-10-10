@@ -123,6 +123,8 @@ Building.prototype.statsTower = function() {
         this.deleteButton.input.useHandCursor = true;
         this.deleteButton.scale.x = 0.25;
         this.deleteButton.scale.y = 0.25;
+        this.deleteButton.events.onInputOver.add(this.moneyback, this);
+        this.deleteButton.events.onInputOut.add(this.hideMoneyback, this);
         //Upgrade Button
         if (this.level < this.levelMax) {
             this.upgradeButton = game.add.button(this.entity.body.x - 40, this.entity.body.y, 'upgrade');
@@ -130,9 +132,13 @@ Building.prototype.statsTower = function() {
             this.upgradeButton.input.useHandCursor = true;
             this.upgradeButton.scale.x = 0.25;
             this.upgradeButton.scale.y = 0.25;
+            this.upgradeButton.events.onInputOver.add(this.upgradeEffect, this);
+            this.upgradeButton.events.onInputOut.add(this.hideUpgradeEffect, this);
         }
         else{
-            //TODO : Have to make a litte "MAX" sign in red
+            this.maxUpgrade = game.add.text(this.entity.body.x - 45, this.entity.body.y+5, 'MAX');
+            this.maxUpgrade.style.fill = '#FF1E02';
+            this.maxUpgrade.style.font = '18px bd_cartoon_shoutregular';
         }
     }
 
@@ -162,6 +168,10 @@ Building.prototype.descriptTower = function() {
     this.descToAdd = game.add.text(185, 990, this.infos.description);
     this.descToAdd.style.fill = 'white';
     this.descToAdd.style.font = 'bold 20px Indie Flower';
+    //Cost
+    this.showCost = game.add.text(340, 1020, 'Cost: '+this.costCalcul());
+    this.showCost.style.fill = 'white';
+    this.showCost.style.font = 'bold 20px Indie Flower';
 };
 
 Building.prototype.HideDescriptTower = function() {
@@ -171,15 +181,21 @@ Building.prototype.HideDescriptTower = function() {
     this.nameToAdd = null;
     this.descToAdd.destroy();
     this.descToAdd = null;
+    this.showCost.destroy();
+    this.showCost = null;
 };
 
 Building.prototype.deleteTower = function() {
 
     game.global.currentLevel.hero.gold += ceil(this.costCalcul()* 0.75);
     game.input.onDown.remove(this.hideButtons, this);
+    this.hideMoneyback();
     this.deleteButton.destroy();
     if (this.level < this.levelMax) {
         this.upgradeButton.destroy();
+    }
+    else{
+        this.maxUpgrade.destroy();
     }
     this.stats.destroy();
     this.destroy();
@@ -190,9 +206,16 @@ Building.prototype.upgradeTower = function() {
         game.global.currentLevel.hero.gold -= this.cost[this.level+1];
         this.upgrade();
         this.panel.reset();
+        this.hideUpgradeEffect();
+        this.upgradeEffect();
     }
-    if (this.level === this.levelMax)
+    if (this.level === this.levelMax){
+        this.hideUpgradeEffect();
         this.upgradeButton.destroy();
+        this.maxUpgrade = game.add.text(this.entity.body.x - 45, this.entity.body.y+5, 'MAX');
+        this.maxUpgrade.style.fill = '#FF1E02';
+        this.maxUpgrade.style.font = '18px bd_cartoon_shoutregular';
+    }
 };
 
 Building.prototype.upgrade = function(){};
@@ -201,7 +224,12 @@ Building.prototype.findInfos = function(){};
 Building.prototype.hideButtons = function() {
     if(this.deleteButton && !this.deleteButton.input.checkPointerOver(game.input.mousePointer)){
         if(this.upgradeButton && !this.upgradeButton.input.checkPointerOver(game.input.mousePointer)){
-            this.upgradeButton.destroy();
+            if(this.level === this.levelMax){
+                this.maxUpgrade.destroy();
+            }
+            else{
+                this.upgradeButton.destroy();
+            }
             this.deleteButton.destroy();
         }
     }
@@ -217,4 +245,47 @@ Building.prototype.costCalcul = function() {
 		sum += this.cost[i]; //Iterate over your first array and then grab the second element add the values up
 	}
 	return sum;
+};
+
+Building.prototype.moneyback = function() {
+    if(this.stats){
+        this.stats.destroy();
+    }
+    this.deleteButton.infobox = game.add.sprite(this.entity.body.x-35,this.entity.body.y+30, 'infobox');
+    this.deleteButton.infobox.scale.y = 0.6;
+    this.deleteButton.infobox.scale.x = 0.3;
+    this.deleteButton.infobox.alpha = 0.9;
+    this.deleteButton.infobox.text = game.add.text(this.entity.body.x-35, this.entity.body.y+30, '+'+ceil(this.costCalcul()*0.75));
+    this.deleteButton.infobox.text.style.fill = 'white';
+    this.deleteButton.infobox.text.style.font = '28px Indie Flower';
+    this.deleteButton.infobox.sprite = game.add.sprite(this.entity.body.x+18, this.entity.body.y+35, 'gold', 4);
+};
+
+Building.prototype.hideMoneyback = function() {
+    this.deleteButton.infobox.sprite.destroy();
+    this.deleteButton.infobox.text.destroy();
+    this.deleteButton.infobox.destroy();
+    this.deleteButton.infobox = null;
+};
+
+Building.prototype.upgradeEffect = function() {
+    if(this.stats){
+        this.stats.destroy();
+    }
+    this.upgradeButton.infobox = game.add.sprite(this.entity.body.x-35,this.entity.body.y+30, 'infobox');
+    this.upgradeButton.infobox.scale.y = 0.6;
+    this.upgradeButton.infobox.scale.x = 0.25;
+    this.upgradeButton.infobox.alpha = 0.9;
+    //Name of the tower
+    this.upgradeButton.infobox.text = game.add.text(this.entity.body.x-35, this.entity.body.y+30, '-'+this.cost[this.level]);
+    this.upgradeButton.infobox.text.style.fill = 'white';
+    this.upgradeButton.infobox.text.style.font = '28px Indie Flower';
+    this.upgradeButton.infobox.sprite = game.add.sprite(this.entity.body.x+10, this.entity.body.y+35, 'gold', 4);
+};
+
+Building.prototype.hideUpgradeEffect = function() {
+    this.upgradeButton.infobox.sprite.destroy();
+    this.upgradeButton.infobox.text.destroy();
+    this.upgradeButton.infobox.destroy();
+    this.upgradeButton.infobox = null;
 };
