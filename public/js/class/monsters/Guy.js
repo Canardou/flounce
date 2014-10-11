@@ -1,5 +1,5 @@
 /*global Monster,game,pi,cos,sin,def,isDef,rand,inh from utils.js*/
-var Guy = function(x, y, life, gold, value, strength, decay, damage, hero) {
+var Guy = function(x, y, life, gold, value, strength, decay, damage, hero, vx, vy) {
     Monster.call(this, life, gold, value, strength, decay, damage, hero);
 
     //Test sons
@@ -16,8 +16,8 @@ var Guy = function(x, y, life, gold, value, strength, decay, damage, hero) {
     game.physics.p2.enableBody(chest);
     chest.body.setRectangle(8, 16);
     this.body=chest.body;
-    this.body.velocity.x=Math.random()*2000-1000;
-    this.body.velocity.y=-Math.random()*1000;
+    this.body.velocity.x=def(vx,Math.random()*2000-1000);
+    this.body.velocity.y=-def(vy,Math.random()*1000);
     //Head
     var head = game.add.sprite(x, y - 13, 'guy_head');
     this.parts.push(head);

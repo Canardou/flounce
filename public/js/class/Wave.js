@@ -13,7 +13,7 @@ var Wave = function(monstersToCreate, hero, number, entrees) {
     this.entrees = def(entrees, [new Entree(100, -100), new Entree(400, -100)]);
 };
 
-Wave.prototype.popMonster = function(type, life, gold, value, strength, damage, entree){
+Wave.prototype.popMonster = function(type, life, gold, value, strength, damage, entree, vx, vy){
 	var entreeToUse;
 	if(entree === 'all')
 	{
@@ -27,10 +27,10 @@ Wave.prototype.popMonster = function(type, life, gold, value, strength, damage, 
 	var aliveMonster;
 	var weigth = 1;//+(this.number/10);
 	if(type === "Guy") {
-		aliveMonster = new Guy(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,life * weigth, gold * weigth, value * weigth, strength, false, damage, this.hero);
+		aliveMonster = new Guy(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,life * weigth, gold * weigth, value * weigth, strength, false, damage, this.hero, vx, vy);
 	}
-	else if(type === "Skeleton") {
-		aliveMonster = new Skeleton(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,life * weigth, gold * weigth, value * weigth, strength, false, damage, this.hero);
+	if(type === "Skeleton") {
+		aliveMonster = new Skeleton(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,life * weigth, gold * weigth, value * weigth, strength, false, damage, this.hero, vx, vy);
 	}
 	else if(type === "Break") {
 	}
@@ -40,8 +40,8 @@ Wave.prototype.popMonster = function(type, life, gold, value, strength, damage, 
 };
 
 Wave.prototype.monsterTime = function(that){
-	var toSummon = that.monstersToCreate.pop();
-	game.time.events.repeat(Phaser.Timer.HALF, toSummon.number, that.popMonster, that, toSummon.type,toSummon.life,toSummon.gold, toSummon.value,toSummon.strength,toSummon.damage, toSummon.entry);
+	var toSummon= that.monstersToCreate.pop();
+	game.time.events.repeat(Phaser.Timer.HALF, toSummon.number, that.popMonster, that, toSummon.type,toSummon.life,toSummon.gold, toSummon.value,toSummon.strength,toSummon.damage, toSummon.entry, toSummon.vx , toSummon.vy);
 	if(that.monstersToCreate.length > 0){
 		setTimeout(function(){that.monsterTime(that);}, Phaser.Timer.HALF * toSummon.number);
 	}
