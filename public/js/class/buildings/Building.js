@@ -110,7 +110,6 @@ Building.prototype.allowClick = function() {
     this.design.input.disableDrag();
     this.design.input.useHandCursor = true;
     this.design.events.onInputUp.add(this.statsTower, this);
-    this.design.events.onInputUp.add(this.HideDescriptTower, this);
 };
 
 Building.prototype.allowMouseOver = function() {

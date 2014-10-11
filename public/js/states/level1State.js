@@ -12,6 +12,7 @@ var level1State = {
 		game.physics.p2.setBoundsToWorld(true, true, false, true, false);
 		game.physics.p2.gravity.y = 300;
 		game.physics.p2.setImpactEvents(true);
+		game.physics.p2.enableBodySleeping=true;
 		
 		game.global.playerCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.wallsCollisionGroup = game.physics.p2.createCollisionGroup();
@@ -266,9 +267,6 @@ var level1State = {
 				}, Phaser.Timer.SECOND * 5);
 			}
 		}
-		
-		console.log("Monsters : "+game.global.monsters.length);
-		console.log("Towers : "+game.global.towers.length);
 	},
 
 	render: function() {
