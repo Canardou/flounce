@@ -10,6 +10,7 @@ var Wave = function(monstersToCreate, hero, number, entrees) {
     }
     this.end = false;
     this.hero = hero;
+    this.entrees = def(entrees, [new Entree(100, -100), new Entree(400, -100)]);
 };
 
 Wave.prototype.popMonster = function(type, life, gold, value, strength, damage, entree){

@@ -13,7 +13,6 @@ var Niveau = function(waves, initialHeroLife, initialHeroGold, entries, difficul
 	this.level=0;
 	this.phase = "beginning"; // to find if it will be a fight or a contruct phase.
 	this.countWave = 0;
-	this.currentWave = new Wave(this.waves[0], this.hero, 1, this.entries);
 	this.won = false;
 	this.panel = new TowerPanel();
 	this.startingWave = game.add.audio('startingWave');
@@ -22,6 +21,7 @@ var Niveau = function(waves, initialHeroLife, initialHeroGold, entries, difficul
 	this.panel.activateTower();
 	this.panel.greyTower();
 	this.entries = def(entries, [new Entree(100, -100), new Entree(400, -100)]);
+	this.currentWave = new Wave(this.waves[0], this.hero, 1, this.entries);
 };
 
  
