@@ -58,7 +58,7 @@ Bumper.prototype.hit = function(bumper, part) {
                             font: '' + (combo * 7 + 20) + 'px "bd_cartoon_shoutregular"',
                             fill: '#A50000'
                         });
-                        game.global.currentLevel.hero.points += (combo + 1) * 10;
+                        game.global.currentLevel.hero.changePoints((combo + 1) * 10);
                         onoma.anchor.set(0.5);
                         onoma.tween = game.add.tween(onoma);
                         onoma.tween2 = game.add.tween(onoma);
@@ -185,6 +185,7 @@ Bumper.prototype.checkValidity = function(bool) {
         this.check.body.clearShapes();
         var sensorShape = this.check.body.addCircle(60);
         sensorShape.sensor = true;
+        this.check.body.gravityScale = 0;
         this.check.body.overlap = 0;
         this.check.body.setCollisionGroup(game.global.enemiesCollisionGroup);
         this.check.body.collides([game.global.playerCollisionGroup, game.global.wallsCollisionGroup]);
@@ -226,7 +227,7 @@ Bumper.prototype.reset = function() {
         this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
     }
     this.design.loadTexture('bumper' + this.level, 0);
-}
+};
 
 
 Bumper.prototype.findInfos = function() {

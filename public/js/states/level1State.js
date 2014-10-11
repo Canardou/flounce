@@ -50,7 +50,27 @@ var level1State = {
 				"entry": 'all'
 			}],
 			[{
-				"number": 30,
+				"number": 10,
+				"type": "Skeleton",
+				"life": 25,
+				"gold": 200,
+				"value": 5,
+				"strength": 10,
+				"damage": 1,
+				"entry": 'all'
+			},
+			{
+				"number": 10,
+				"type": "Break",
+				"life": 25,
+				"gold": 200,
+				"value": 5,
+				"strength": 10,
+				"damage": 1,
+				"entry": 'all'
+			},
+			{
+				"number": 10,
 				"type": "Skeleton",
 				"life": 25,
 				"gold": 200,
@@ -144,7 +164,15 @@ var level1State = {
 			max: 6
 		}, 180, 990, 'left');
 
+<<<<<<< HEAD
 		
+=======
+		var bumper = new Bumper({
+			base: 10,
+			max: 20
+		}, 320, 850);
+		game.global.towers.push(bumper);
+>>>>>>> f328add85f2d8c41bb19f1e5293711bc0c0dd4e5
 		
 
 		var P_hint = new Hint("P", 5, 430, 1000);
@@ -197,20 +225,17 @@ var level1State = {
 			paddle_left.down();
 		});
 
-		key_M.onDown.add(function() {
-			game.physics.p2.gravity.x += 1000;
-		});
 
 		key_M.onUp.add(function() {
-			game.physics.p2.gravity.x -= 1000;
-		});
-
-		key_Q.onDown.add(function() {
-			game.physics.p2.gravity.x -= 1000;
+			for (var i in game.global.monsters) {
+				game.global.monsters[i].parts[0].body.velocity.x += 1000;
+			}
 		});
 
 		key_Q.onUp.add(function() {
-			game.physics.p2.gravity.x += 1000;
+			for (var i in game.global.monsters) {
+				game.global.monsters[i].parts[0].body.velocity.x -= 1000;
+			}
 		});
 
 		spacebar.onUp.add(function() {
@@ -225,7 +250,7 @@ var level1State = {
 
 
 		//Begining of the level
-		niveau1 = game.global.currentLevel = new Niveau(waves, 20, 2894758);
+		niveau1 = game.global.currentLevel = new Niveau(waves, 20, 0, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
 
 		button = new LabelButton(game, game.world.centerX, game.world.centerY + 100, 'wood_frame', 'Click or...', game.global.currentLevel.defend, game.global.currentLevel, 'white');
 		button.onInputUp.add(function() {
@@ -280,8 +305,6 @@ var level1State = {
 	},
 
 	render: function() {
-		//game.debug.text(game.global.currentLevel.hero.life, 525, 1020, 'rgb(255,255,255)', '20px "moderne_frakturregular"');
-		//game.debug.text(game.global.currentLevel.hero.gold, 525, 1055, 'rgb(255,255,255)', '20px "moderne_frakturregular"');
-		//game.debug.text(game.global.currentLevel.hero.points, 525, 1090, 'rgb(255,255,255)', '20px "moderne_frakturregular"');
+	
 	},
 };

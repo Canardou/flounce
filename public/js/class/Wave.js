@@ -2,7 +2,7 @@
 var Wave = function(monstersToCreate, hero, number, entrees) {
     this.monstersToCreate = monstersToCreate;
     this.hero = hero;
-    this.entrees = def(entrees, [new Entree(100, -100), new Entree(400, -100)]);
+    this.entrees = entrees;
     this.number = number;
     this.totalMonster = 0;
     for (var i = monstersToCreate.length - 1; i >= 0; i--) {
@@ -31,11 +31,9 @@ Wave.prototype.popMonster = function(type, life, gold, value, strength, damage, 
 	if(type === "Skeleton") {
 		aliveMonster = new Skeleton(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,life * weigth, gold * weigth, value * weigth, strength, false, damage, this.hero, vx, vy);
 	}
-	/*
-	else if(monsterToCreate.type === "Cow") {
-		aliveMonster = new Cow(life * weigth, gold * weigth, value * weigth, strength, entreeToUse); 
+	else if(type === "Break") {
 	}
-	else { //banan ;)
+	/*else { //banan ;)
 		aliveMonster = new Banan(life * weigth, gold * weigth, value * weigth, strength, entreeToUse);  
 	}*/
 };
@@ -56,7 +54,7 @@ Wave.prototype.start = function(){
 	this.monsterTime(this);
 };
 
-//To know if the wave has monster to invoke
+//To know if the wave has still monster to invoke
 Wave.prototype.isRunning = function(){
 	return (this.monstersToCreate.length > 0);
 };

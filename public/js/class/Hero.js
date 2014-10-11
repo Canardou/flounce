@@ -55,14 +55,14 @@ Hero.prototype.die = function() {
 
 Hero.prototype.getHit = function(hero, monster) {
     if (!this.dead) {
-        this.life -= monster.sprite.entity.damage;
+        this.changeLife(-monster.sprite.entity.damage);
         if (this.life <= 0) {
             this.life = 0;
             this.die();
         }
-        this.gold -= monster.sprite.entity.gold;
+        this.changeGold(-monster.sprite.entity.gold);
         if (this.gold < 0) {
-            this.gold = 0;
+            this.changeOld = 0;
         }
     }
     monster.sprite.entity.dieWithoutGlory();
