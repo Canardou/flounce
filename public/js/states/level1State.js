@@ -30,16 +30,6 @@ var level1State = {
 
 		var waves = [
 			[{
-				"number": 4,
-				"type": "Guy",
-				"life": 200,
-				"gold": 200,
-				"value": 10,
-				"strength": 20,
-				"damage": 2,
-				"entry": 'all'
-			}],
-			[{
 				"number": 6,
 				"type": "Guy",
 				"life": 30,
@@ -89,6 +79,32 @@ var level1State = {
 				"damage": 1,
 				"entry": 0
 			}],
+			[{
+				"number": 1,
+				"type": "Guy",
+				"life": 20,
+				"gold": 10,
+				"value": 10,
+				"strength": 5,
+				"damage": 2,
+				"entry": 0,
+				"vx":500,
+				"vy":30
+			},{
+				"number": 8,
+				"type":"break"
+			},{
+				"number": 1,
+				"type": "Guy",
+				"life": 20,
+				"gold": 10,
+				"value": 10,
+				"strength": 5,
+				"damage": 2,
+				"entry": 1,
+				"vx":5000,
+				"vy":1
+			}]
 		];
 
 		
@@ -128,11 +144,7 @@ var level1State = {
 			max: 6
 		}, 180, 990, 'left');
 
-		var bumper = new Bumper({
-			base: 10,
-			max: 20
-		}, 320, 850);
-		 game.global.towers.push(bumper);
+		
 		
 
 		var P_hint = new Hint("P", 5, 430, 1000);
@@ -227,9 +239,24 @@ var level1State = {
 		}, this);
 		button.scale.x = 0.4;
 		button.scale.y = 0.4;
-		bumper.panel=game.global.currentLevel.panel;
+		
+		var bumper = new Bumper({
+			base: 10,
+			max: 20
+		}, 155, 650);
+		 game.global.towers.push(bumper);
+		 bumper.panel=game.global.currentLevel.panel;
 		bumper.allowMouseOver();
 		bumper.allowClick();
+		bumper = new Bumper({
+			base: 10,
+			max: 20
+		}, 420, 550);
+		 game.global.towers.push(bumper);
+		 bumper.panel=game.global.currentLevel.panel;
+		bumper.allowMouseOver();
+		bumper.allowClick();
+		
 	},
 
 	update: function() {
