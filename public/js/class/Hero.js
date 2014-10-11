@@ -16,12 +16,12 @@ var Hero = function(life, gold, power) {
     this.entity.renderable = false;
     this.entity.body.static = true;
 
-    this.lifeText2 = game.add.text(526, 1001, this.life, {fill: 'black', font: '20px "moderne_frakturregular"'});
-    this.lifeText = game.add.text(525, 1000, this.life, {fill: 'white', font: '20px "moderne_frakturregular"'});
+    this.lifeText2 = game.add.text(526, 1001, ''+this.life, {fill: 'black', font: '20px "moderne_frakturregular"'});
+    this.lifeText = game.add.text(525, 1000, ''+this.life, {fill: 'white', font: '20px "moderne_frakturregular"'});
     this.pointsText2 = game.add.text(526, 1071, ''+this.points, {fill: 'black', font: '20px "moderne_frakturregular"'});
     this.pointsText = game.add.text(525, 1070, ''+this.points, {fill: 'white', font: '20px "moderne_frakturregular"'});
-    this.goldText2 = game.add.text(526, 1036, this.gold, {fill: 'black', font: '20px "moderne_frakturregular"'});
-    this.goldText = game.add.text(525, 1035, this.gold, {fill: 'white', font: '20px "moderne_frakturregular"'});
+    this.goldText2 = game.add.text(526, 1036, ''+this.gold, {fill: 'black', font: '20px "moderne_frakturregular"'});
+    this.goldText = game.add.text(525, 1035, ''+this.gold, {fill: 'white', font: '20px "moderne_frakturregular"'});
 
 };
 
@@ -60,10 +60,10 @@ Hero.prototype.getHit = function(hero, monster) {
             this.life = 0;
             this.die();
         }
-        this.changeGold(-monster.sprite.entity.gold);
+        /*this.changeGold(-monster.sprite.entity.gold);
         if (this.gold < 0) {
-            this.changeOld = 0;
-        }
+            this.changeGold (-(this.gold));
+        }*/
     }
     monster.sprite.entity.dieWithoutGlory();
 };

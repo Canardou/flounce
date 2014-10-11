@@ -50,6 +50,7 @@ Niveau.prototype.construct = function(){
 	if(this.countWave === 1 && this.level === 0)
 		dragExample();
 	this.hero.monsterKilledDuringCurrentWave = 0;
+	this.hero.changeGold(250);
 	//Show all the consruction panel
 	this.panel.setTowers([Bumper]);
 	this.panel.activateTower();

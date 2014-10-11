@@ -8,7 +8,7 @@ var Bumper = function(damage, x, y) {
     this.cooldown = 100;
     this.heat = 0;
     this.overHeat = false;
-    this.cost = [375, 525, 850, 1200];
+    this.cost = [375, 400, 425, 450];
     this.size = 1;
 
     this.entity = game.add.sprite(x, y);
@@ -237,7 +237,7 @@ Bumper.prototype.findInfos = function() {
     };
     switch (this.level) {
         case 0:
-            infos.name = 'Tiny Bumper (lvl 0)';
+            infos.name = 'Tiny Bumper (base)';
             infos.description += 'Nice castle decoration';
             break;
         case 1:

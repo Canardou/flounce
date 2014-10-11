@@ -29,101 +29,237 @@ var level1State = {
 		game.global.monsters = [];
 
 		var waves = [
-			[{
-				"number": 6,
+			[
+			{
+				"number": 12,
+				"type": "Guy",
+				"life": 50,
+				"gold": 25,
+				"value": 12,
+				"strength": 15,
+				"damage": 2,
+				"entry": 'all'
+			},
+			{
+				"number": 30,
+				"type": "Break"
+			},
+			{
+				"number": 12,
+				"type": "Guy",
+				"life": 50,
+				"gold": 25,
+				"value": 12,
+				"strength": 15,
+				"damage": 2,
+				"entry": 'all'
+			}],
+			[
+			{
+				"number": 12,
 				"type": "Guy",
 				"life": 30,
-				"gold": 200,
+				"gold": 25,
+				"value": 10,
+				"strength": 10,
+				"damage": 1,
+				"entry": 'all'
+			},
+			{
+				"number": 6,
+				"type": "Break"
+			},
+			{//Boss Wave
+				"number": 1,
+				"type": "Skeleton",
+				"life": 200,
+				"gold": 100,
+				"value": 25,
+				"strength": 20,
+				"damage": 5,
+				"entry": [0]
+			}],
+			[
+			{
+				"number": 10,
+				"type": "Guy",
+				"life": 30,
+				"gold": 25,
+				"value": 10,
+				"strength": 10,
+				"damage": 1,
+				"entry": 'all'
+			},
+			{
+				"number": 30,
+				"type": "Break"
+			},
+			{
+				"number": 6,
+				"type": "Skeleton",
+				"life": 20,
+				"gold": 15,
 				"value": 5,
 				"strength": 15,
 				"damage": 1,
-				"entry": 1
+				"entry": [0,1]
 			}],
-			[{
-				"number": 6,
-				"type": "Guy",
-				"life": 15,
-				"gold": 200,
-				"value": 5,
-				"strength": 12,
-				"damage": 1,
-				"entry": 'all'
-			}],
-			[{
-				"number": 10,
-				"type": "Skeleton",
-				"life": 25,
-				"gold": 200,
-				"value": 5,
-				"strength": 10,
-				"damage": 1,
-				"entry": 'all'
-			},
+			[
 			{
 				"number": 10,
-				"type": "Break",
-				"life": 25,
-				"gold": 200,
-				"value": 5,
-				"strength": 10,
-				"damage": 1,
-				"entry": 'all'
-			},
-			{
-				"number": 10,
-				"type": "Skeleton",
-				"life": 25,
-				"gold": 200,
-				"value": 5,
-				"strength": 10,
-				"damage": 1,
-				"entry": 'all'
-			}],
-			[{
-				"number": 1,
 				"type": "Guy",
-				"life": 100,
-				"gold": 200,
+				"life": 40,
+				"gold": 25,
 				"value": 10,
 				"strength": 10,
-				"damage": 2,
+				"damage": 1,
 				"entry": 'all'
+			},
+			{
+				"number": 10,
+				"type": "Guy",
+				"life": 40,
+				"gold": 25,
+				"value": 10,
+				"strength": 10,
+				"damage": 1,
+				"entry": [0,1]
 			}],
+			[
+			{
+				"number": 7,
+				"type": "Skeleton",
+				"life": 20,
+				"gold": 15,
+				"value": 5,
+				"strength": 7,
+				"damage": 1,
+				"entry": [0,1]
+			},
+			{
+				"number": 3,
+				"type": "Guy",
+				"life": 30,
+				"gold": 25,
+				"value": 5,
+				"strength": 7,
+				"damage": 1,
+				"entry": [2]
+			},
+			{
+				"number": 7,
+				"type": "Skeleton",
+				"life": 20,
+				"gold": 15,
+				"value": 5,
+				"strength": 7,
+				"damage": 1,
+				"entry": [0,1]
+			},
+			{
+				"number": 6,
+				"type":"Break"
+			},
+			{
+				"number": 1,
+				"type": "Guy",
+				"life": 30,
+				"gold": 25,
+				"value": 5,
+				"strength": 7,
+				"damage": 1,
+				"entry": [2]
+			}],
+			[{
+				"number": 20,
+				"type": "Skeleton",
+				"life": 20,
+				"gold": 15,
+				"value": 5,
+				"strength": 7,
+				"damage": 1,
+				"entry": [0,1]
+			}],
+
 			[{
 				"number": 2,
 				"type": "Guy",
-				"life": 10,
-				"gold": 100,
+				"life": 50,
+				"gold": 50,
+				"value": 10,
+				"strength": 10,
+				"damage": 2,
+				"entry": [0,1]
+			}],
+
+			[
+			{
+				"number": 5,
+				"type": "Guy",
+				"life": 20,
+				"gold": 25,
 				"value": 5,
 				"strength": 5,
 				"damage": 1,
-				"entry": 0
+				"entry": [0,1]
+			},
+			{
+				"number": 10,
+				"type":"Break"
+			},
+			{
+				"number": 5,
+				"type": "Guy",
+				"life": 20,
+				"gold": 25,
+				"value": 5,
+				"strength": 5,
+				"damage": 1,
+				"entry": [0,1]
 			}],
-			[{
+
+			[
+			{
+				"number": 4,
+				"type": "Guy",
+				"life": 20,
+				"gold": 25,
+				"value": 5,
+				"strength": 5,
+				"damage": 2,
+				"entry": [0,1],
+			},
+			{
+				"number": 10,
+				"type":"Break"
+			},
+			{
 				"number": 1,
 				"type": "Guy",
 				"life": 20,
-				"gold": 10,
-				"value": 10,
+				"gold": 25,
+				"value": 5,
 				"strength": 5,
 				"damage": 2,
-				"entry": 0,
-				"vx":500,
-				"vy":30
-			},{
-				"number": 8,
-				"type":"break"
-			},{
-				"number": 1,
-				"type": "Guy",
-				"life": 20,
-				"gold": 10,
-				"value": 10,
-				"strength": 5,
-				"damage": 2,
-				"entry": 1,
+				"entry": [1],
 				"vx":5000,
 				"vy":1
+			},
+			{
+				"number": 9,
+				"type":"Break"
+			},
+			{
+				"number": 1,
+				"type": "Guy",
+				"life": 20,
+				"gold": 25,
+				"value": 5,
+				"strength": 5,
+				"damage": 1,
+				"entry": [0],
+				"vx":500,
+				"vy":30
 			}]
 		];
 
@@ -240,7 +376,7 @@ var level1State = {
 
 
 		//Begining of the level
-		niveau1 = game.global.currentLevel = new Niveau(waves, 20, 0, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
+		niveau1 = game.global.currentLevel = new Niveau(waves, 20, 350, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
 
 		button = new LabelButton(game, game.world.centerX, game.world.centerY + 100, 'wood_frame', 'Click or...', game.global.currentLevel.defend, game.global.currentLevel, 'white');
 		button.onInputUp.add(function() {
@@ -259,18 +395,17 @@ var level1State = {
 			base: 10,
 			max: 20
 		}, 155, 650);
-		 game.global.towers.push(bumper);
-		 bumper.panel=game.global.currentLevel.panel;
+		game.global.towers.push(bumper);
 		bumper.allowMouseOver();
-		bumper.allowClick();
+
 		bumper = new Bumper({
 			base: 10,
 			max: 20
 		}, 420, 550);
-		 game.global.towers.push(bumper);
-		 bumper.panel=game.global.currentLevel.panel;
+
+		game.global.towers.push(bumper);
 		bumper.allowMouseOver();
-		bumper.allowClick();
+
 		
 	},
 

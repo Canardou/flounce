@@ -15,24 +15,26 @@ var Wave = function(monstersToCreate, hero, number, entrees) {
 
 Wave.prototype.popMonster = function(type, life, gold, value, strength, damage, entree, vx, vy){
 	var entreeToUse;
-	if(entree === 'all')
-	{
-		entreeToUse = floor(rand(this.entrees.length, 0));
+	if(entree){
+		if(entree === 'all')
+		{
+			entreeToUse = floor(rand(this.entrees.length, 0));
+		}
+		else{
+			entreeToUse = entree[floor(rand(entree.length, 0))];
+		}
 	}
-	else{
-		entreeToUse = entree;
-	}
-
 	
 	var aliveMonster;
 	var weigth = 1;//+(this.number/10);
 	if(type === "Guy") {
 		aliveMonster = new Guy(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,life * weigth, gold * weigth, value * weigth, strength, false, damage, this.hero, vx, vy);
 	}
-	if(type === "Skeleton") {
+	else if(type === "Skeleton") {
 		aliveMonster = new Skeleton(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,life * weigth, gold * weigth, value * weigth, strength, false, damage, this.hero, vx, vy);
 	}
 	else if(type === "Break") {
+		game.global.currentLevel.currentWave.totalMonster--;
 	}
 	/*else { //banan ;)
 		aliveMonster = new Banan(life * weigth, gold * weigth, value * weigth, strength, entreeToUse);  

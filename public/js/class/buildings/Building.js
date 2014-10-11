@@ -205,6 +205,7 @@ Building.prototype.deleteTower = function() {
     }
     this.stats.destroy();
     this.destroy();
+    this.panel.reset();
 };
 
 Building.prototype.upgradeTower = function() {
