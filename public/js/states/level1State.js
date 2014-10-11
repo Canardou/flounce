@@ -163,16 +163,6 @@ var level1State = {
 			base: 5,
 			max: 6
 		}, 180, 990, 'left');
-
-<<<<<<< HEAD
-		
-=======
-		var bumper = new Bumper({
-			base: 10,
-			max: 20
-		}, 320, 850);
-		game.global.towers.push(bumper);
->>>>>>> f328add85f2d8c41bb19f1e5293711bc0c0dd4e5
 		
 
 		var P_hint = new Hint("P", 5, 430, 1000);
