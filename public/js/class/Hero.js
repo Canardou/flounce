@@ -15,11 +15,19 @@ var Hero = function(life, gold, power) {
     this.entity.body.collides(game.global.enemiesCollisionGroup, this.getHit, this);
     this.entity.renderable = false;
     this.entity.body.static = true;
+
+    this.lifeText2 = game.add.text(526, 1001, this.life, {fill: 'black', font: '20px "moderne_frakturregular"'});
+    this.lifeText = game.add.text(525, 1000, this.life, {fill: 'white', font: '20px "moderne_frakturregular"'});
+    this.pointsText2 = game.add.text(526, 1071, ''+this.points, {fill: 'black', font: '20px "moderne_frakturregular"'});
+    this.pointsText = game.add.text(525, 1070, ''+this.points, {fill: 'white', font: '20px "moderne_frakturregular"'});
+    this.goldText2 = game.add.text(526, 1036, this.gold, {fill: 'black', font: '20px "moderne_frakturregular"'});
+    this.goldText = game.add.text(525, 1035, this.gold, {fill: 'white', font: '20px "moderne_frakturregular"'});
+
 };
 
 Hero.prototype.die = function() {
     this.dead = true;
-    if (game.global.currentLevel && game.global.currentLevel != null) {
+    if (game.global.currentLevel && game.global.currentLevel !== null) {
         if (game.global.currentLevel.hero.life <= 0) {
             //Play sound You loose + New state to create...
             var gameOver = game.add.text(game.world.centerX, game.world.centerY, "You lose");
@@ -66,3 +74,23 @@ Hero.prototype.usePower = function(powerName) {
         this.life += 5;
     }
 };
+
+Hero.prototype.changeGold = function(amount) {
+    this.gold += amount;
+    this.goldText2.setText(this.gold);
+    this.goldText.setText(this.gold);
+};
+
+Hero.prototype.changePoints = function(amount) {
+    this.points += amount;
+    this.pointsText2.setText(this.points);
+    this.pointsText.setText(this.points);
+};
+
+Hero.prototype.changeLife = function(amount) {
+    this.life += amount;
+    this.lifeText2.setText(this.life);
+    this.lifeText.setText(this.life);
+};
+
+
