@@ -19,7 +19,8 @@ var menuState = {
 			game.global.depth[i] = game.add.group();
 			game.world.bringToTop(game.global.depth[i]);
 		}
-		game.global.fade_out = [];
+		game.global.towers = [];
+		game.global.monsters = [];
 		game.physics.p2.updateBoundsCollisionGroup();
 
 		var her = new Hero(1,0,0);

@@ -14,30 +14,23 @@ var Hint = function(text, duration, x, y, size) {
         this.entity = game.add.sprite(x, y, 'hint');
         this.entity.scale.set(this.size);
         this.entity.anchor.setTo(0.5,0.5);
-        this.entity.lifespan = this.duration * 1000;
-        this.entity.fadespan = this.duration * 200;
-        game.global.fade_out.push(this.entity);
+        var lifespan = duration * 1000;
         this.entity.bringToTop();
         this.entity.tween = game.add.tween(this.entity);
         this.entity.tween.to({
-            angle: 5
-        }, 1000);
-        this.entity.tween.to({
-            angle: -5
-        }, 1000);
-        this.entity.tween.loop();
+            angle: 90,
+            alpha: 0
+        }, lifespan,Phaser.Easing.Linear.None, true);
+        this.entity.tween.onComplete.add(function(){this.destroy()},this.entity)
         
         //Better management of size needed
         this.text = game.add.text(x, y - this.size * 150, text);
         this.text.anchor.setTo(0.5);
         this.text.fontSize =75;
-        this.text.lifespan = duration * 1000;
+        
         this.text.tween = game.add.tween(this.text);
-        this.text.tween.to({alpha:1},500);
-        this.text.tween.to({alpha:0},500);
-        this.text.tween.loop();
-        this.entity.tween.start();
-        this.text.tween.start();
+        this.text.tween.to({alpha:0},lifespan,Phaser.Easing.Linear.None,true);
+        this.text.tween.onComplete.add(function(){this.destroy()},this.text)
         this.entity.events.onKilled.add(function() {    this.text.destroy();  }, this);
     }
 

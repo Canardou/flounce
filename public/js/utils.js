@@ -23,3 +23,13 @@ var rand = function(max, min) {
 	min = def(min, 0);
 	return Math.random() * (max - min) + min;
 };
+//http://stackoverflow.com/questions/5767325/remove-specific-element-from-an-array
+Object.defineProperty(Array.prototype, "remove", {
+    enumerable: false,
+    value: function (itemToRemove) {
+        var filteredArray = this.filter(function(item){
+            return item !== itemToRemove;
+        });
+        return filteredArray;
+    }
+});

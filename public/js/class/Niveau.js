@@ -42,6 +42,10 @@ Niveau.prototype.defend = function(){
 //When every monster have been killed
 Niveau.prototype.construct = function(){
 	this.phase = "constructing";
+	var towers = game.global.towers;
+	for(var i in towers){
+		towers[i].reset();
+	}
 	if(this.countWave==1 && this.level==0)
 		dragExample();
 	this.hero.monsterKilledDuringCurrentWave = 0;

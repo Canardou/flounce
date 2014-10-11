@@ -10,14 +10,24 @@ var dragExample = function() {
         tower.anchor.set(0.5);
         tower.tween = game.add.tween(tower).to({
             x: 450,
-            y: 450,
-            alpha:0
-        }, 4000, Phaser.Easing.Sinusoidal.InOut, true).onComplete.add(function() {tower.destroy()});
+            y: 450
+        }, 4000, Phaser.Easing.Sinusoidal.InOut, true).onComplete.add(function() {
+            tower.tween = game.add.tween(tower).to({
+                alpha: 0
+            }, 1000, Phaser.Easing.Linear.None, true).onComplete.add(function() {
+                tower.destroy()
+            });
+        });
         hand.bringToTop();
         hand.tween = game.add.tween(hand).to({
             x: 430,
-            y: 440,
-            alpha:0
-        }, 4000, Phaser.Easing.Sinusoidal.InOut, true).onComplete.add(function() {hand.destroy()});
+            y: 440
+        }, 4000, Phaser.Easing.Sinusoidal.InOut, true).onComplete.add(function() {
+            hand.tween = game.add.tween(hand).to({
+                alpha: 0
+            }, 1000, Phaser.Easing.Linear.None, true).onComplete.add(function() {
+                hand.destroy()
+            })
+        });
     }, hand);
 }

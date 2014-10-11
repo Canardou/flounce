@@ -7,6 +7,25 @@ var level1State = {
 	},
 
 	create: function() {
+		
+		game.physics.startSystem(Phaser.Physics.P2JS);
+		game.physics.p2.setBoundsToWorld(true, true, false, true, false);
+		game.physics.p2.gravity.y = 300;
+		game.physics.p2.setImpactEvents(true);
+		
+		game.global.playerCollisionGroup = game.physics.p2.createCollisionGroup();
+		game.global.wallsCollisionGroup = game.physics.p2.createCollisionGroup();
+		game.global.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
+		game.global.limbsCollisionGroup = game.physics.p2.createCollisionGroup();
+		game.global.voidCollisionGroup = game.physics.p2.createCollisionGroup();
+		game.global.checkCollisionGroup = game.physics.p2.createCollisionGroup();
+		game.global.depth = [];
+		for (var i = 0; i < 20; i++) {
+			game.global.depth[i] = game.add.group();
+			game.world.bringToTop(game.global.depth[i]);
+		}
+		game.global.towers = [];
+		game.global.monsters = [];
 
 		var waves = [
 			[{
@@ -71,10 +90,7 @@ var level1State = {
 			}],
 		];
 
-		game.physics.startSystem(Phaser.Physics.P2JS);
-		game.physics.p2.setBoundsToWorld(true, true, false, true, false);
-		game.physics.p2.gravity.y = 300;
-		game.physics.p2.setImpactEvents(true);
+		
 
 		game.global.sensors = [];
 		game.physics.p2.world.on("beginContact", function(event) {
@@ -93,19 +109,6 @@ var level1State = {
 				}
 			}
 		});
-
-		game.global.playerCollisionGroup = game.physics.p2.createCollisionGroup();
-		game.global.wallsCollisionGroup = game.physics.p2.createCollisionGroup();
-		game.global.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
-		game.global.limbsCollisionGroup = game.physics.p2.createCollisionGroup();
-		game.global.voidCollisionGroup = game.physics.p2.createCollisionGroup();
-		game.global.checkCollisionGroup = game.physics.p2.createCollisionGroup();
-		game.global.depth = [];
-		for (var i = 0; i < 10; i++) {
-			game.global.depth[i] = game.add.group();
-			game.world.bringToTop(game.global.depth[i]);
-		}
-		game.global.fade_out = [];
 
 
 		//game.physics.setBoundsToWorld(true, true, false, true, false);
@@ -128,6 +131,7 @@ var level1State = {
 			base: 10,
 			max: 20
 		}, 320, 850);
+		 game.global.towers.push(bumper);
 		
 
 		var P_hint = new Hint("P", 5, 430, 1000);
@@ -245,14 +249,9 @@ var level1State = {
 				}, Phaser.Timer.SECOND * 5);
 			}
 		}
-
-		var groupFadeOut = game.global.fade_out;
-		for (var p in groupFadeOut) {
-			var element = groupFadeOut[p];
-			if (element.lifespan < element.fadespan)
-				element.alpha = element.lifespan / element.fadespan;
-		}
-
+		
+		console.log("Monsters : "+game.global.monsters.length);
+		console.log("Towers : "+game.global.towers.length);
 	},
 
 	render: function() {

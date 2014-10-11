@@ -8,8 +8,8 @@ var Bumper = function(damage, x, y) {
     this.cooldown = 100;
     this.heat = 0;
     this.overHeat = false;
-    this.cost = [375,525,850,1200];
-    this.size=1;
+    this.cost = [375, 525, 850, 1200];
+    this.size = 1;
 
     this.entity = game.add.sprite(x, y);
     this.design = game.add.sprite(x, y, 'bumper' + this.level, 0);
@@ -17,13 +17,13 @@ var Bumper = function(damage, x, y) {
     game.global.depth[5].add(this.design);
     game.physics.p2.enableBody(this.entity);
 
-    this.entity.body.setCircle(this.size*20);
+    this.entity.body.setCircle(this.size * 20);
     this.entity.body.kinematic = true;
     this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
     this.entity.body.collides(game.global.enemiesCollisionGroup, this.hit, this);
     this.entity.body.collides(game.global.limbsCollisionGroup);
 
-    game.time.events.loop(Phaser.Timer.SECOND/10, this.decreaseHeat, this);
+    game.time.events.loop(Phaser.Timer.SECOND / 10, this.decreaseHeat, this);
 };
 
 Bumper.inherits(Building);
@@ -35,8 +35,8 @@ Bumper.prototype.hit = function(bumper, part) {
         if (entity.lastCollision.length === 0 || entity.lastCollision[0] != bumper) {
 
             if (this.heat < this.heatLimit && !this.overHeat) {
-                this.heat+=part.sprite.entity.strength;
-                if (this.heat > this.heatLimit-10) {
+                this.heat += part.sprite.entity.strength;
+                if (this.heat > this.heatLimit - 10) {
                     this.design.loadTexture('bumper' + this.level, 2);
                     game.global.depth[5].remove(this.design);
                     game.global.depth[1].add(this.design);
@@ -77,7 +77,7 @@ Bumper.prototype.hit = function(bumper, part) {
                     }
                     entity.lastCollision.unshift(bumper);
                     entity.combo++;
-                    entity.comboCounter=20;
+                    entity.comboCounter = 20;
                     game.time.events.add(500, function() {
                         if (entity) {
                             entity.lastCollision.pop();
@@ -126,6 +126,7 @@ Bumper.prototype.decreaseHeat = function() {
 };
 
 Bumper.prototype.destroy = function() {
+    game.global.towers = game.global.towers.remove(this);
     this.entity.destroy();
     this.design.destroy();
     this.entity = null;
@@ -138,9 +139,9 @@ Bumper.prototype.upgrade = function() {
     this.design.loadTexture('bumper' + this.level, 0);
     this.heatLimit += 20;
     this.cooldown -= 5;
-    this.size*=1.08;
+    this.size *= 1.08;
     this.design.scale.set(this.size);
-    this.entity.body.setCircle(this.size*20);
+    this.entity.body.setCircle(this.size * 20);
     this.entity.body.kinematic = true;
     this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
     this.entity.body.collides(game.global.enemiesCollisionGroup, this.hit, this);
@@ -216,11 +217,22 @@ Bumper.prototype.designCheck = function() {
     }
 };
 
+Bumper.prototype.reset = function() {
+    this.heat = 0;
+    if (this.overHeat) {
+        game.global.depth[1].remove(this.design);
+        game.global.depth[5].add(this.design);
+        this.overHeat = false;
+        this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
+    }
+    this.design.loadTexture('bumper' + this.level, 0);
+}
+
 
 Bumper.prototype.findInfos = function() {
-    var infos= {
-        name:'',
-        description:''
+    var infos = {
+        name: '',
+        description: ''
     };
     switch (this.level) {
         case 0:
@@ -228,21 +240,21 @@ Bumper.prototype.findInfos = function() {
             infos.description += 'Nice castle decoration';
             break;
         case 1:
-            infos.name+= 'Classic Bumper (lvl 1)';
+            infos.name += 'Classic Bumper (lvl 1)';
             infos.description += 'Simple bumper that kills guys';
             break;
         case 2:
-            infos.name+= 'Double Whoomper (lvl 2)';
+            infos.name += 'Double Whoomper (lvl 2)';
             infos.description += 'Well, the same but in different';
             break;
         case 3:
-            infos.name+= 'Doomper (lvl 3)';
+            infos.name += 'Doomper (lvl 3)';
             infos.description += 'BOUUUM !';
             break;
     }
-    infos.description +='\nDamage: '+this.damage.base+'-'+this.damage.max+
-    '\nHeat limit: '+this.heatLimit+
-    '\nCooldown: '+this.cooldown;
+    infos.description += '\nDamage: ' + this.damage.base + '-' + this.damage.max +
+        '\nHeat limit: ' + this.heatLimit +
+        '\nCooldown: ' + this.cooldown;
 
     return infos;
 };

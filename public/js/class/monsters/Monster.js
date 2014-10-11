@@ -1,5 +1,6 @@
 /*global game,pi,cos,sin,def,isDef,rand from utils.js*/
 var Monster = function(life, gold, value, strength, decay, damage, hero) {
+    game.global.monsters.push(this);
     this.life = life;
     this.gold = gold;
     this.value = def(value, 10);
@@ -77,6 +78,9 @@ Monster.prototype.getHit = function(damage) {
 
 Monster.prototype.destroy = function() {
     if (!this.isDestroy) {
+        var destroy =  function() {
+                this.destroy();
+            };
         for (var item in this.constraints)
             game.physics.p2.removeConstraint(this.constraints[item]);
         for (var item in this.parts) {
@@ -100,9 +104,7 @@ Monster.prototype.destroy = function() {
             //Make the parts disapear after 5 seconds, exponential fade out : slow at start
             that.tween = game.add.tween(this.parts[item]).to({
                 alpha: 0
-            }, 5000, Phaser.Easing.Exponential.In, true, 0, false).onComplete.add(function() {
-                this.destroy();
-            }, that);
+            }, 5000, Phaser.Easing.Exponential.In, true, 0, false).onComplete.add(destroy, that);
         }
 
         this.constraints = [];
@@ -110,6 +112,7 @@ Monster.prototype.destroy = function() {
         this.entity = null;
         this.isDestroy = true;
         this.body = null;
+        game.global.monsters = game.global.monsters.remove(this);
     }
 };
 
