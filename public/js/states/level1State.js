@@ -133,7 +133,7 @@ var level1State = {
 		var P_hint = new Hint("P", 5, 430, 1000);
 		var Q_hint = new Hint("Q", 5, 230, 1000);
 
-		game.physics.p2.enableBody(background, true);
+		game.physics.p2.enableBody(background);
 
 		game.global.depth[2].add(background);
 
@@ -256,8 +256,8 @@ var level1State = {
 	},
 
 	render: function() {
-		game.debug.text(game.global.currentLevel.hero.life, 525, 1020, 'rgb(255,255,255)', '20px "moderne_frakturregular"');
-		game.debug.text(game.global.currentLevel.hero.gold, 525, 1055, 'rgb(255,255,255)', '20px "moderne_frakturregular"');
-		game.debug.text(game.global.currentLevel.hero.points, 525, 1090, 'rgb(255,255,255)', '20px "moderne_frakturregular"');
+		//game.debug.text(game.global.currentLevel.hero.life, 525, 1020, 'rgb(255,255,255)', '20px "moderne_frakturregular"');
+		//game.debug.text(game.global.currentLevel.hero.gold, 525, 1055, 'rgb(255,255,255)', '20px "moderne_frakturregular"');
+		//game.debug.text(game.global.currentLevel.hero.points, 525, 1090, 'rgb(255,255,255)', '20px "moderne_frakturregular"');
 	},
 };
