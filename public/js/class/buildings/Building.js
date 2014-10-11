@@ -86,7 +86,7 @@ Building.prototype.onDragStop = function(sprite, pointer) {
     this.designCheck();
     this.checkValidity(false);
     if (this.valid && game.global.currentLevel.hero.gold >= this.cost[0]) {
-        game.global.currentLevel.hero.gold -= this.cost[0];
+        game.global.currentLevel.hero.changeGold(-this.cost[0]);
          game.global.towers.push(this);
     }
     else{
@@ -194,7 +194,7 @@ Building.prototype.HideDescriptTower = function() {
 
 Building.prototype.deleteTower = function() {
 
-    game.global.currentLevel.hero.gold += ceil(this.costCalcul() * 0.75);
+    game.global.currentLevel.hero.changeGold(ceil(this.costCalcul() * 0.75));
     game.input.onDown.remove(this.hideButtons, this);
     this.hideMoneyback();
     this.deleteButton.destroy();
@@ -210,7 +210,7 @@ Building.prototype.deleteTower = function() {
 
 Building.prototype.upgradeTower = function() {
     if (game.global.currentLevel.hero.gold >= this.cost[this.level + 1]) {
-        game.global.currentLevel.hero.gold -= this.cost[this.level + 1];
+        game.global.currentLevel.hero.changeGold(-this.cost[this.level + 1]);
         this.upgrade();
         this.panel.reset();
         this.hideUpgradeEffect();

@@ -184,20 +184,17 @@ var level1State = {
 			paddle_left.down();
 		});
 
-		key_M.onDown.add(function() {
-			game.physics.p2.gravity.x += 1000;
-		});
 
 		key_M.onUp.add(function() {
-			game.physics.p2.gravity.x -= 1000;
-		});
-
-		key_Q.onDown.add(function() {
-			game.physics.p2.gravity.x -= 1000;
+			for (var i in game.global.monsters) {
+				game.global.monsters[i].parts[0].body.velocity.x += 1000;
+			}
 		});
 
 		key_Q.onUp.add(function() {
-			game.physics.p2.gravity.x += 1000;
+			for (var i in game.global.monsters) {
+				game.global.monsters[i].parts[0].body.velocity.x -= 1000;
+			}
 		});
 
 		spacebar.onUp.add(function() {
