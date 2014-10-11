@@ -24,6 +24,9 @@
 .hiddenText3 { font-family: Indie Flower; visibility: hidden;
 }
 
+#hidden {
+    display:none
+}
 
 body {
     margin: 0;
