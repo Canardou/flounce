@@ -59,7 +59,27 @@ var level1State = {
 				"entry": 'all'
 			}],
 			[{
-				"number": 30,
+				"number": 10,
+				"type": "Skeleton",
+				"life": 25,
+				"gold": 200,
+				"value": 5,
+				"strength": 10,
+				"damage": 1,
+				"entry": 'all'
+			},
+			{
+				"number": 10,
+				"type": "Break",
+				"life": 25,
+				"gold": 200,
+				"value": 5,
+				"strength": 10,
+				"damage": 1,
+				"entry": 'all'
+			},
+			{
+				"number": 10,
 				"type": "Skeleton",
 				"life": 25,
 				"gold": 200,
