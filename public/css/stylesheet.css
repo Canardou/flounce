@@ -25,7 +25,8 @@
 }
 
 #hidden {
-    display:none
+    position:absolute;
+    top:-100px;
 }
 
 body {
