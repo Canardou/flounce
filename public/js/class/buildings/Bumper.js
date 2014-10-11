@@ -185,6 +185,7 @@ Bumper.prototype.checkValidity = function(bool) {
         this.check.body.clearShapes();
         var sensorShape = this.check.body.addCircle(60);
         sensorShape.sensor = true;
+        this.check.body.gravityScale = 0;
         this.check.body.overlap = 0;
         this.check.body.setCollisionGroup(game.global.enemiesCollisionGroup);
         this.check.body.collides([game.global.playerCollisionGroup, game.global.wallsCollisionGroup]);

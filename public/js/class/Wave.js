@@ -2,7 +2,7 @@
 var Wave = function(monstersToCreate, hero, number, entrees) {
     this.monstersToCreate = monstersToCreate;
     this.hero = hero;
-    this.entrees = def(entrees, [new Entree(100, -100), new Entree(400, -100)]);
+    this.entrees = entrees;
     this.number = number;
     this.totalMonster = 0;
     for (var i = monstersToCreate.length - 1; i >= 0; i--) {

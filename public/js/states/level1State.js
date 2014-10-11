@@ -152,7 +152,7 @@ var level1State = {
 			base: 10,
 			max: 20
 		}, 320, 850);
-		 game.global.towers.push(bumper);
+		game.global.towers.push(bumper);
 		
 
 		var P_hint = new Hint("P", 5, 430, 1000);
@@ -230,7 +230,7 @@ var level1State = {
 
 
 		//Begining of the level
-		niveau1 = game.global.currentLevel = new Niveau(waves, 20, 2894758);
+		niveau1 = game.global.currentLevel = new Niveau(waves, 20, 0, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
 
 		button = new LabelButton(game, game.world.centerX, game.world.centerY + 100, 'wood_frame', 'Click or...', game.global.currentLevel.defend, game.global.currentLevel, 'white');
 		button.onInputUp.add(function() {
@@ -270,8 +270,6 @@ var level1State = {
 	},
 
 	render: function() {
-		//game.debug.text(game.global.currentLevel.hero.life, 525, 1020, 'rgb(255,255,255)', '20px "moderne_frakturregular"');
-		//game.debug.text(game.global.currentLevel.hero.gold, 525, 1055, 'rgb(255,255,255)', '20px "moderne_frakturregular"');
-		//game.debug.text(game.global.currentLevel.hero.points, 525, 1090, 'rgb(255,255,255)', '20px "moderne_frakturregular"');
+	
 	},
 };
