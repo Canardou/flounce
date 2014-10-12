@@ -155,21 +155,8 @@ var level1State = {
 				"strength": 7,
 				"damage": 1,
 				"entry": [0,1]
-			},
-			{
-				"number": 6,
-				"type":"Break"
-			},
-			{
-				"number": 1,
-				"type": "Guy",
-				"life": 30,
-				"gold": 25,
-				"value": 5,
-				"strength": 7,
-				"damage": 1,
-				"entry": [2]
-			}],
+			}
+			],
 			[{
 				"number": 20,
 				"type": "Skeleton",
@@ -181,7 +168,22 @@ var level1State = {
 				"entry": [0,1]
 			}],
 
-			[{
+			[
+			{
+				"number": 1,
+				"type": "Guy",
+				"life": 30,
+				"gold": 25,
+				"value": 5,
+				"strength": 7,
+				"damage": 1,
+				"entry": [2]
+			},
+			{
+				"number": 12,
+				"type":"Break"
+			},
+			{
 				"number": 2,
 				"type": "Guy",
 				"life": 50,
@@ -301,8 +303,8 @@ var level1State = {
 		}, 180, 990, 'left');
 		
 
-		var P_hint = new Hint("P", 5, 430, 1000);
-		var Q_hint = new Hint("Q", 5, 230, 1000);
+		var P_hint = new Hint("P", 8, 430, 1000);
+		var Q_hint = (game.global.language !== 'fr') ? new Hint("Q", 8, 230, 1000): new Hint("A", 5, 230, 1000);
 
 		game.physics.p2.enableBody(background);
 
@@ -330,6 +332,14 @@ var level1State = {
 		var key_M = game.input.keyboard.addKey(Phaser.Keyboard.M);
 		var key_Q = game.input.keyboard.addKey(Phaser.Keyboard.Q);
 		var spacebar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
+		if(game.global.language !== 'fr'){
+			key_A = game.input.keyboard.addKey(Phaser.Keyboard.Q);
+			key_Q = game.input.keyboard.addKey(Phaser.Keyboard.A);
+			key_M = game.input.keyboard.addKey(Phaser.Keyboard.L);
+		}
+
+
 
 		key_P.onDown.add(function() {
 			paddle_right.up();
@@ -376,7 +386,7 @@ var level1State = {
 
 
 		//Begining of the level
-		game.global.currentLevel = new Niveau(waves, 20, 350, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
+		game.global.currentLevel = new Niveau(waves, 200, 350, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
 
 		button = new LabelButton(game, game.world.centerX, game.world.centerY + 500, 'wood_frame', 'Click or...', game.global.currentLevel.defend, game.global.currentLevel, 'white');
 		button.onInputUp.add(function() {

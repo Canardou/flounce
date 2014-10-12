@@ -12,7 +12,9 @@ var gameStatsState = {
 			'\nTotal: '+total;
 
 		var data = new GameData();
-		data.setCookie("topScore", total, game.global.EXPDATE);
+		if(total > data.getCookie('topScore')+0){
+			data.setCookie("topScore", total, game.global.EXPDATE);
+		}
 
 		var printScore = game.add.text(game.world.centerX, 150, scoreToPrint, { font: '30px Arial', fill: '#ffffff' });
 		printScore.anchor.setTo(0.5, 0.5);

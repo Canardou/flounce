@@ -46,7 +46,7 @@ var menuState = {
 		score.style.font = '35px moderne_frakturregular';
 
 
-
+		game.global.language = window.navigator.userLanguage || window.navigator.language;
 
 		//Animation du menu
 		var monstersToCreate = [
