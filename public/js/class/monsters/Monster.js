@@ -18,7 +18,7 @@ var Monster = function(life, gold, value, strength, decay, damage, hero) {
 
     this.comboCounter = 0;
 
-    game.time.events.loop(Phaser.Timer.SECOND / 10, this.stopCombo, this);
+    this.loop = game.time.events.loop(Phaser.Timer.SECOND / 10, this.stopCombo, this);
 };
 
 Monster.prototype.stopCombo = function() {
@@ -48,6 +48,7 @@ Monster.prototype.die = function() {
         this.hero.monsterKilledDuringCurrentWave++;
         this.hero.changeGold(this.gold);
         this.hero.changePoints(this.value * this.combo);
+        game.time.events.remove(this.loop);
         this.destroy();
     }
 

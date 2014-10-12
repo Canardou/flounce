@@ -23,7 +23,7 @@ var Bumper = function(damage, x, y) {
     this.entity.body.collides(game.global.enemiesCollisionGroup, this.hit, this);
     this.entity.body.collides(game.global.limbsCollisionGroup);
 
-    game.time.events.loop(Phaser.Timer.SECOND / 10, this.decreaseHeat, this);
+    this.loop = game.time.events.loop(Phaser.Timer.SECOND / 10, this.decreaseHeat, this);
 };
 
 Bumper.inherits(Building);
@@ -127,6 +127,7 @@ Bumper.prototype.decreaseHeat = function() {
 
 Bumper.prototype.destroy = function() {
     game.global.towers = game.global.towers.remove(this);
+    game.time.events.remove(this.loop);
     this.entity.destroy();
     this.design.destroy();
     this.entity = null;
