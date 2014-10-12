@@ -55,17 +55,30 @@ Building.prototype.hit = function(building, enemy) {
     return {};
 };
 
-Building.prototype.allowDrag = function() {
+Building.prototype.allowInput = function() {
     this.design.inputEnabled = true;
-    this.design.input.enableDrag(true);
     this.design.input.useHandCursor = true;
+    this.design.events.onInputOver.add(this.descriptTower, this);
+    this.design.events.onInputUp.add(this.statsTower, this);
+    this.design.events.onInputOut.add(this.HideDescriptTower, this);
     this.design.events.onDragStart.add(this.onDragStart, this);
     this.design.events.onDragStop.add(this.onDragStop, this);
+}
+
+Building.prototype.allowClick = function() {
+    this.design.input.disableDrag();
+};
+
+Building.prototype.allowMouseOver = function() {
+
+};
+
+Building.prototype.allowDrag = function() {
+    this.design.input.enableDrag(true);
 };
 
 Building.prototype.stopDrag = function() {
     this.design.input.disableDrag();
-    this.design.events.onInputOver.remove(this.descriptTower, this);
 };
 
 Building.prototype.onDragStart = function(sprite, pointer) {
@@ -87,10 +100,7 @@ Building.prototype.onDragStop = function(sprite, pointer) {
     this.checkValidity(false);
     if (this.valid && game.global.currentLevel.hero.gold >= this.cost[0]) {
         game.global.currentLevel.hero.changeGold(-this.cost[0]);
-         game.global.towers.push(this);
-    }
-    else{
-        this.HideDescriptTower();
+        game.global.towers.push(this);
     }
     if (this.panel) {
         this.panel.reset();
@@ -103,19 +113,6 @@ Building.prototype.onDragStop = function(sprite, pointer) {
         this.destroy();
     }
 
-};
-
-Building.prototype.allowClick = function() {
-    this.design.inputEnabled = true;
-    this.design.input.disableDrag();
-    this.design.input.useHandCursor = true;
-    this.design.events.onInputUp.add(this.statsTower, this);
-};
-
-Building.prototype.allowMouseOver = function() {
-    this.design.inputEnabled = true;
-    this.design.events.onInputOver.add(this.descriptTower, this);
-    this.design.events.onInputOut.add(this.HideDescriptTower, this);
 };
 
 Building.prototype.statsTower = function() {
@@ -158,6 +155,7 @@ Building.prototype.statsTower = function() {
 
 Building.prototype.descriptTower = function() {
     //console.log("Description test success");
+    this.HideDescriptTower();
     this.infobox = game.add.sprite(180, 960, 'infobox');
     this.infobox.scale.y = 2.7;
     this.infobox.scale.x = 1.05;
@@ -280,20 +278,23 @@ Building.prototype.upgradeEffect = function() {
         this.stats.destroy();
         this.stats = null;
     }
+    this.hideUpgradeEffect();
     this.upgradeButton.infobox = game.add.sprite(this.entity.body.x - 35, this.entity.body.y + 30, 'infobox');
     this.upgradeButton.infobox.scale.y = 0.6;
     this.upgradeButton.infobox.scale.x = 0.25;
     this.upgradeButton.infobox.alpha = 0.9;
     //Name of the tower
-    this.upgradeButton.infobox.text = game.add.text(this.entity.body.x - 35, this.entity.body.y + 30, '-' + this.cost[this.level]);
+    this.upgradeButton.infobox.text = game.add.text(this.entity.body.x - 35, this.entity.body.y + 30, '-' + this.cost[this.level + 1]);
     this.upgradeButton.infobox.text.style.fill = 'white';
     this.upgradeButton.infobox.text.style.font = '28px Indie Flower';
     this.upgradeButton.infobox.sprite = game.add.sprite(this.entity.body.x + 10, this.entity.body.y + 35, 'gold', 4);
 };
 
 Building.prototype.hideUpgradeEffect = function() {
-    this.upgradeButton.infobox.sprite.destroy();
-    this.upgradeButton.infobox.text.destroy();
-    this.upgradeButton.infobox.destroy();
-    this.upgradeButton.infobox = null;
+    if (this.upgradeButton.infobox) {
+        this.upgradeButton.infobox.sprite.destroy();
+        this.upgradeButton.infobox.text.destroy();
+        this.upgradeButton.infobox.destroy();
+        this.upgradeButton.infobox = null;
+    }
 };

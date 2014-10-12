@@ -8,7 +8,7 @@ var Bumper = function(damage, x, y) {
     this.cooldown = 100;
     this.heat = 0;
     this.overHeat = false;
-    this.cost = [375, 400, 425, 450];
+    this.cost = [375, 375, 375, 375];
     this.size = 1;
 
     this.entity = game.add.sprite(x, y);
@@ -24,6 +24,8 @@ var Bumper = function(damage, x, y) {
     this.entity.body.collides(game.global.limbsCollisionGroup);
 
     this.loop = game.time.events.loop(Phaser.Timer.SECOND / 10, this.decreaseHeat, this);
+    
+    this.allowInput();
 };
 
 Bumper.inherits(Building);
