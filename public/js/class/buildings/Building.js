@@ -19,6 +19,7 @@ var Building = function(damage, cost) {
     this.valid = false;
     this.infos;
     this.drag = false;
+    this.buttons = false;
 };
 
 Building.prototype.getDamage = function(body1, body2) {
@@ -124,7 +125,8 @@ Building.prototype.onDragStop = function(sprite, pointer) {
 
 Building.prototype.statsTower = function() {
     //Show the delete button
-    if (!this.drag) {
+    if (!this.drag && !this.buttons) {
+        this.buttons = true;
         game.input.onDown.add(this.hideButtons, this); //Surcharge de game.input.onDown ? Penser à supprimer
         if (game.global.currentLevel.phase === "constructing") {
             this.deleteButton = game.add.button(this.entity.body.x, this.entity.body.y, 'delete');
@@ -238,16 +240,19 @@ Building.prototype.upgrade = function() {};
 Building.prototype.findInfos = function() {};
 
 Building.prototype.hideButtons = function() {
-    game.input.onDown.remove(this.hideButtons, this);
-    if (this.deleteButton && !this.deleteButton.input.checkPointerOver(game.input.mousePointer)) {
-        if (this.upgradeButton && !this.upgradeButton.input.checkPointerOver(game.input.mousePointer)) {
-            if (this.level === this.levelMax) {
-                this.maxUpgrade.destroy();
+    if (this.buttons) {
+        if (this.deleteButton && !this.deleteButton.input.checkPointerOver(game.input.mousePointer)) {
+            if (this.upgradeButton && !this.upgradeButton.input.checkPointerOver(game.input.mousePointer)) {
+                if (this.level === this.levelMax) {
+                    this.maxUpgrade.destroy();
+                }
+                else {
+                    this.upgradeButton.destroy();
+                }
+                this.deleteButton.destroy();
+                game.input.onDown.remove(this.hideButtons, this);
+                this.buttons = false;
             }
-            else {
-                this.upgradeButton.destroy();
-            }
-            this.deleteButton.destroy();
         }
     }
     if (this.stats) {
