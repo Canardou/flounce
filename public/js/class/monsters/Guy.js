@@ -7,8 +7,6 @@ var Guy = function(x, y, life, gold, value, strength, decay, damage, hero, vx, v
     this.guyPain1.volume = 0.1;
     this.guyPain2 = game.add.audio('guyPain2');
     this.guyPain2.volume = 0.5;
-    this.guyPain3 = game.add.audio('guyPain3');
-    this.guyPain3.volume = 0.5;
 
     //Guuuuuuuyyyyy !
     var chest = game.add.sprite(x, y, 'guy_body');
@@ -126,7 +124,7 @@ var Guy = function(x, y, life, gold, value, strength, decay, damage, hero, vx, v
 };
 
 Guy.prototype.playSound = function() {
-    var soundNumber = floor(rand(4,1));
+    var soundNumber = floor(rand(3,1));
 
     switch (soundNumber){
         case 1:
@@ -134,9 +132,6 @@ Guy.prototype.playSound = function() {
             break;
         case 2:
             this.guyPain2.play();
-            break;
-        case 3:
-            this.guyPain3.play();
             break;
     }
 };
