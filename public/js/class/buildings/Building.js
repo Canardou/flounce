@@ -104,66 +104,69 @@ Building.prototype.onDragStop = function(sprite, pointer) {
     if (this.valid && game.global.currentLevel.hero.gold >= this.cost[0]) {
         game.global.currentLevel.hero.changeGold(-this.cost[0]);
         game.global.towers.push(this);
-    }
-    if (this.panel) {
-        this.panel.reset();
-        //this.panel = null;
         this.stopDrag();
         this.allowClick();
         this.allowMouseOver();
     }
     if (!this.valid) {
-        if(this.stats)
+        if (this.stats)
             this.stats.destroy();
         this.HideDescriptTower();
         this.destroy();
     }
+    if (this.panel) {
+        this.panel.reset();
+        //this.panel = null;
+    }
+
 
 };
 
 Building.prototype.statsTower = function() {
     //Show the delete button
-    if(this.drag)
-        return;
-    game.input.onDown.add(this.hideButtons, this); //Surcharge de game.input.onDown ? Penser à supprimer
-    if (game.global.currentLevel.phase === "constructing") {
-        this.deleteButton = game.add.button(this.entity.body.x, this.entity.body.y, 'delete');
-        this.deleteButton.onInputDown.add(this.deleteTower, this);
-        this.deleteButton.input.useHandCursor = true;
-        this.deleteButton.scale.x = 0.25;
-        this.deleteButton.scale.y = 0.25;
-        this.deleteButton.events.onInputOver.add(this.moneyback, this);
-        this.deleteButton.events.onInputOut.add(this.hideMoneyback, this);
-        //Upgrade Button
-        if (this.level < this.levelMax) {
-            this.upgradeButton = game.add.button(this.entity.body.x - 40, this.entity.body.y, 'upgrade');
-            this.upgradeButton.onInputDown.add(this.upgradeTower, this);
-            this.upgradeButton.input.useHandCursor = true;
-            this.upgradeButton.scale.x = 0.25;
-            this.upgradeButton.scale.y = 0.25;
-            this.upgradeButton.events.onInputOver.add(this.upgradeEffect, this);
-            this.upgradeButton.events.onInputOut.add(this.hideUpgradeEffect, this);
+    if (!this.drag) {
+        game.input.onDown.add(this.hideButtons, this); //Surcharge de game.input.onDown ? Penser à supprimer
+        if (game.global.currentLevel.phase === "constructing") {
+            this.deleteButton = game.add.button(this.entity.body.x, this.entity.body.y, 'delete');
+            this.deleteButton.onInputDown.add(this.deleteTower, this);
+            this.deleteButton.input.useHandCursor = true;
+            this.deleteButton.scale.x = 0.25;
+            this.deleteButton.scale.y = 0.25;
+            this.deleteButton.events.onInputOver.add(this.moneyback, this);
+            this.deleteButton.events.onInputOut.add(this.hideMoneyback, this);
+            //Upgrade Button
+            if (this.level < this.levelMax) {
+                this.upgradeButton = game.add.button(this.entity.body.x - 40, this.entity.body.y, 'upgrade');
+                this.upgradeButton.onInputDown.add(this.upgradeTower, this);
+                this.upgradeButton.input.useHandCursor = true;
+                this.upgradeButton.scale.x = 0.25;
+                this.upgradeButton.scale.y = 0.25;
+                this.upgradeButton.events.onInputOver.add(this.upgradeEffect, this);
+                this.upgradeButton.events.onInputOut.add(this.hideUpgradeEffect, this);
+            }
+            else {
+                this.maxUpgrade = game.add.text(this.entity.body.x - 45, this.entity.body.y + 5, 'MAX');
+                this.maxUpgrade.style.fill = '#FF1E02';
+                this.maxUpgrade.style.font = '18px bd_cartoon_shoutregular';
+            }
         }
-        else {
-            this.maxUpgrade = game.add.text(this.entity.body.x - 45, this.entity.body.y + 5, 'MAX');
-            this.maxUpgrade.style.fill = '#FF1E02';
-            this.maxUpgrade.style.font = '18px bd_cartoon_shoutregular';
-        }
-    }
 
-    //Show the stats (number of monster touched && damage dealt)
-    stats = "Monster hits: " + this.monsterHits;
-    var style = {
-        'font': 'bold 175% Arial',
-        'fill': 'white'
-    };
-    this.stats = game.add.text(this.entity.body.x - 60, this.entity.body.y + 30, stats, style);
+
+        //Show the stats (number of monster touched && damage dealt)
+        stats = "Monster hits: " + this.monsterHits;
+        var style = {
+            'font': 'bold 175% Arial',
+            'fill': 'white'
+        };
+        this.stats = game.add.text(this.entity.body.x - 60, this.entity.body.y + 30, stats, style);
+    }
 
 };
 
 Building.prototype.descriptTower = function() {
     //console.log("Description test success");
     this.HideDescriptTower();
+
     this.infobox = game.add.sprite(180, 960, 'infobox');
     this.infobox.scale.y = 2.7;
     this.infobox.scale.x = 1.05;
@@ -198,7 +201,6 @@ Building.prototype.HideDescriptTower = function() {
 };
 
 Building.prototype.deleteTower = function() {
-
     game.global.currentLevel.hero.changeGold(ceil(this.costCalcul() * 0.75));
     game.input.onDown.remove(this.hideButtons, this);
     this.hideMoneyback();
@@ -209,7 +211,7 @@ Building.prototype.deleteTower = function() {
     else {
         this.maxUpgrade.destroy();
     }
-    if(this.stats)
+    if (this.stats)
         this.stats.destroy();
     this.destroy();
     this.panel.reset();
