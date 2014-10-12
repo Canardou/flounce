@@ -1,7 +1,8 @@
-var Hero = function(life, gold, power) {
+var Hero = function(life, gold, printText, power) {
     this.life = def(life, 20);
     this.points = 0;
     this.gold = def(gold, 2000);
+    this.printText = def(printText, true);
     this.power = def(power, false);
     this.dead = false;
     this.deadSound = game.add.audio('loose');
@@ -16,12 +17,23 @@ var Hero = function(life, gold, power) {
     this.entity.renderable = false;
     this.entity.body.static = true;
 
-    this.lifeText2 = game.add.text(526, 1001, ''+this.life, {fill: 'black', font: '25px "moderne_frakturregular"'});
-    this.lifeText = game.add.text(525, 1000, ''+this.life, {fill: 'white', font: '25px "moderne_frakturregular"'});
-    this.pointsText2 = game.add.text(526, 1071, ''+this.points, {fill: 'black', font: '25px "moderne_frakturregular"'});
-    this.pointsText = game.add.text(525, 1070, ''+this.points, {fill: 'white', font: '25px "moderne_frakturregular"'});
-    this.goldText2 = game.add.text(526, 1036, ''+this.gold, {fill: 'black', font: '25px "moderne_frakturregular"'});
-    this.goldText = game.add.text(525, 1035, ''+this.gold, {fill: 'white', font: '25px "moderne_frakturregular"'});
+    if(this.printText){
+        this.lifeText2 = game.add.text(526, 1001, ''+this.life, {fill: 'black', font: '25px "moderne_frakturregular"'});
+        this.lifeText = game.add.text(525, 1000, ''+this.life, {fill: 'white', font: '25px "moderne_frakturregular"'});
+        this.pointsText2 = game.add.text(526, 1071, ''+this.points, {fill: 'black', font: '25px "moderne_frakturregular"'});
+        this.pointsText = game.add.text(525, 1070, ''+this.points, {fill: 'white', font: '25px "moderne_frakturregular"'});
+        this.goldText2 = game.add.text(526, 1036, ''+this.gold, {fill: 'black', font: '25px "moderne_frakturregular"'});
+        this.goldText = game.add.text(525, 1035, ''+this.gold, {fill: 'white', font: '25px "moderne_frakturregular"'});
+    }
+    /*else{
+        this.lifeText2 = game.add.text(526, 1001, 0, {fill: 'black', font: '25px "moderne_frakturregular"'});
+        this.lifeText = game.add.text(525, 1000, 0, {fill: 'white', font: '25px "moderne_frakturregular"'});
+        this.pointsText2 = game.add.text(526, 1071, 0, {fill: 'black', font: '25px "moderne_frakturregular"'});
+        this.pointsText = game.add.text(525, 1070, 0, {fill: 'white', font: '25px "moderne_frakturregular"'});
+        this.goldText2 = game.add.text(526, 1036, 0, {fill: 'black', font: '25px "moderne_frakturregular"'});
+        this.goldText = game.add.text(525, 1035, 0, {fill: 'white', font: '25px "moderne_frakturregular"'});
+    }*/
+
 
     this.looseLife = game.add.audio('guyPain3');
     this.looseLife.volume = 0.5;
@@ -62,7 +74,7 @@ Hero.prototype.getHit = function(hero, monster) {
         if(monster.sprite.entity.damage >0){
             this.looseLife.play();
         }
-        
+
         if (this.life <= 0) {
             this.life = 0;
             this.die();
@@ -83,21 +95,28 @@ Hero.prototype.usePower = function(powerName) {
 };
 
 Hero.prototype.changeGold = function(amount) {
-    this.gold += amount;
-    this.goldText2.setText(this.gold);
-    this.goldText.setText(this.gold);
+    if(this.printText){
+        this.gold += amount;
+        this.goldText2.setText(this.gold);
+        this.goldText.setText(this.gold);
+    }
+
 };
 
 Hero.prototype.changePoints = function(amount) {
-    this.points += amount;
-    this.pointsText2.setText(this.points);
-    this.pointsText.setText(this.points);
+    if(this.printText){
+        this.points += amount;
+        this.pointsText2.setText(this.points);
+        this.pointsText.setText(this.points);
+    }
 };
 
 Hero.prototype.changeLife = function(amount) {
-    this.life += amount;
-    this.lifeText2.setText(this.life);
-    this.lifeText.setText(this.life);
+    if(this.printText){
+        this.life += amount;
+        this.lifeText2.setText(this.life);
+        this.lifeText.setText(this.life);
+    }
 };
 
 
