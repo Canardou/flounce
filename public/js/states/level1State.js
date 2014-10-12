@@ -226,7 +226,7 @@ var level1State = {
 				"gold": 25,
 				"value": 5,
 				"strength": 5,
-				"damage": 2,
+				"damage": 1,
 				"entry": [0,1],
 			},
 			{
@@ -240,7 +240,7 @@ var level1State = {
 				"gold": 25,
 				"value": 5,
 				"strength": 5,
-				"damage": 2,
+				"damage": 1,
 				"entry": [1],
 				"vx":5000,
 				"vy":1
@@ -376,7 +376,7 @@ var level1State = {
 
 
 		//Begining of the level
-		niveau1 = game.global.currentLevel = new Niveau(waves, 20, 350, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
+		game.global.currentLevel = new Niveau(waves, 20, 350, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
 
 		button = new LabelButton(game, game.world.centerX, game.world.centerY + 500, 'wood_frame', 'Click or...', game.global.currentLevel.defend, game.global.currentLevel, 'white');
 		button.onInputUp.add(function() {

@@ -64,13 +64,11 @@ TowerPanel.prototype.reset = function() {
     }
 };
 
-//Penser à changer dans building
-
-TowerPanel.prototype.greyTower = function() {// A lancer dans Niveau.js ligne 29
+TowerPanel.prototype.greyTower = function() {
 	for (var i = this.shown.length - 1; i >= 0; i--) {
 		this.shown[i].design.loadTexture('bumperDisable');
 		this.shown[i].design.scale.set(0.5);
-		//this.shown[i].input.disableDrag();
+		this.shown[i].design.input.disableDrag();
 		//this.shown[i].events.onInputUp.removeAll();
 	}
 

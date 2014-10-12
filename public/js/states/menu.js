@@ -37,7 +37,7 @@ var menuState = {
 
 		//Menu
 		color = 'white';
-		restart = new LabelButton(game, game.world.centerX, game.world.centerY, 'wood_frame', 'Level 1', function(){game.state.start('level1');}, game, color);
+		restart = new LabelButton(game, game.world.centerX, game.world.centerY, 'wood_frame', 'Level 1', function(){game.state.clearCurrentState(); game.state.start('level1');}, game, color);
 		restart.scale.x = 0.5;
 		restart.scale.y = 0.5;
 

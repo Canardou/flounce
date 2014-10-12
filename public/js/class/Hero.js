@@ -25,15 +25,6 @@ var Hero = function(life, gold, printText, power) {
         this.goldText2 = game.add.text(526, 1036, ''+this.gold, {fill: 'black', font: '25px "moderne_frakturregular"'});
         this.goldText = game.add.text(525, 1035, ''+this.gold, {fill: 'white', font: '25px "moderne_frakturregular"'});
     }
-    /*else{
-        this.lifeText2 = game.add.text(526, 1001, 0, {fill: 'black', font: '25px "moderne_frakturregular"'});
-        this.lifeText = game.add.text(525, 1000, 0, {fill: 'white', font: '25px "moderne_frakturregular"'});
-        this.pointsText2 = game.add.text(526, 1071, 0, {fill: 'black', font: '25px "moderne_frakturregular"'});
-        this.pointsText = game.add.text(525, 1070, 0, {fill: 'white', font: '25px "moderne_frakturregular"'});
-        this.goldText2 = game.add.text(526, 1036, 0, {fill: 'black', font: '25px "moderne_frakturregular"'});
-        this.goldText = game.add.text(525, 1035, 0, {fill: 'white', font: '25px "moderne_frakturregular"'});
-    }*/
-
 
     this.looseLife = game.add.audio('guyPain3');
     this.looseLife.volume = 0.5;
@@ -44,7 +35,6 @@ Hero.prototype.die = function() {
     this.dead = true;
     if (game.global.currentLevel && game.global.currentLevel !== null) {
         if (game.global.currentLevel.hero.life <= 0) {
-            //Play sound You loose + New state to create...
             var gameOver = game.add.text(game.world.centerX, game.world.centerY, "You lose");
             gameOver.fill = '#700E0D';
             gameOver.anchor.setTo(0.5);

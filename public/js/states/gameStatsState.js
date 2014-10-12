@@ -1,10 +1,7 @@
 /*global Phaser game*/
 var gameStatsState = {
 	create: function() {
-		
 		color = 'black';
-		console.log(game.global.scoreMonster);
-		console.log(game.global.scoreLife);
 
 		//Score
 		var total = (game.global.currentLevel.hero.points+game.global.currentLevel.hero.life*100+ game.global.currentLevel.hero.gold);
@@ -28,6 +25,12 @@ var gameStatsState = {
 		mainMenu = new LabelButton(game, game.world.centerX, game.world.centerY - 200, 'wood_frame', 'Menu', function(){game.state.start('menu');}, game, color);
 		mainMenu.scale.x = 0.5;
 		mainMenu.scale.y = 0.5;
+
+		//Reset global var
+		game.global.currentLevel = null;
+		game.global.towers = [];
+		game.global.monsters = [];
+
 
 	},
 };

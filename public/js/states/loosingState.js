@@ -1,7 +1,6 @@
 /*global Phaser game*/
 var loosingState = {
 	create: function() {
-		
 		color = 'black';
 		//Score
 		var scoreToPrint =
@@ -18,6 +17,11 @@ var loosingState = {
 		mainMenu = new LabelButton(game, game.world.centerX, game.world.centerY - 200, 'wood_frame', 'Menu', function(){game.state.start('menu');}, game, color);
 		mainMenu.scale.x = 0.5;
 		mainMenu.scale.y = 0.5;
+
+		//Reset global var
+		game.global.currentLevel = null;
+		game.global.towers = [];
+		game.global.monsters = [];
 
 	},
 };
