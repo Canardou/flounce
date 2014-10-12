@@ -23,7 +23,7 @@ var menuState = {
 		game.global.monsters = [];
 		game.physics.p2.updateBoundsCollisionGroup();
 
-		var her = new Hero(20,1);
+		var her = new Hero(20000,1);
 		//GameData
 		var data = new GameData();
 
@@ -50,7 +50,7 @@ var menuState = {
 
 		//Animation du menu
 		var monstersToCreate = [
-		{"number": 2000, "type": "Guy", "life":1,"gold":0, "value": 0, "strength":0, "entry": 'all'}
+		{"number": 2000, "type": "Guy", "life":1,"gold":0, "value": 0, "strength":0,"damage": 0,  "entry": [0,1]}
 		];
 
 		var wave1 = new Wave(monstersToCreate, 1);

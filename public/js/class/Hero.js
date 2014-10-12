@@ -59,7 +59,10 @@ Hero.prototype.die = function() {
 Hero.prototype.getHit = function(hero, monster) {
     if (!this.dead) {
         this.changeLife(-monster.sprite.entity.damage);
-        this.looseLife.play();
+        if(monster.sprite.entity.damage >0){
+            this.looseLife.play();
+        }
+        
         if (this.life <= 0) {
             this.life = 0;
             this.die();
