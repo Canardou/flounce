@@ -28,7 +28,7 @@ var InfoPanel = function() {
 	this.points.tween.to({angle: 2}, 600, null, true, 0, 0, false).
 	to({angle: -2}, 600, null, true, 0, 0, false).loop();
 
-	this.princess = game.add.sprite(290, 1060, 'princess');
+	this.princess = game.add.sprite(340, 1060, 'princess');
 	this.princess.scale.set(1);
 
 	game.global.depth[6].add(this.sprite);

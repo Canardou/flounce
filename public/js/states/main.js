@@ -27,6 +27,7 @@ window.onload = function(){
 	game.state.add('level1', level1State);
 	game.state.add('gameStats', gameStatsState);
 	game.state.add('loose', loosingState);
+	game.state.add('maxBump', maxBumpState);
 	
 	// Start the 'boot' state
 	game.state.start('boot');
