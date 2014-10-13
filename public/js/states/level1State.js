@@ -423,7 +423,10 @@ var level1State = {
 		bumper.drag = true;
 		game.global.towers.push(bumper);
 
-		
+		game.global.unblocks = [];
+		game.global.unblocks.push(new Unblock(270,420));
+		game.global.unblocks.push(new Unblock(100,740));
+		game.global.unblocks.push(new Unblock(540,700));
 	},
 
 	update: function() {
