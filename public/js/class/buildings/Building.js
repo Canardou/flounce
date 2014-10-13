@@ -174,6 +174,8 @@ Building.prototype.descriptTower = function() {
     this.infobox.scale.y = 2.7;
     this.infobox.scale.x = 1.05;
     this.infobox.alpha = 0.9;
+    this.infobox.inputEnabled = true;
+    this.infobox.events.onInputOver.add(this.HideDescriptTower,this);
     //Cost, damage, percentage of crits and description of the tower
     this.infos = this.findInfos();
     //Name of the tower
@@ -192,6 +194,7 @@ Building.prototype.descriptTower = function() {
 
 Building.prototype.HideDescriptTower = function() {
     if (this.infobox) {
+        this.infobox.events.onInputOver.removeAll();
         this.infobox.destroy();
         this.infobox = null;
         this.nameToAdd.destroy();
@@ -207,6 +210,8 @@ Building.prototype.deleteTower = function() {
     game.global.currentLevel.hero.changeGold(ceil(this.costCalcul() * 0.75));
     game.input.onDown.remove(this.hideButtons, this);
     this.hideMoneyback();
+    this.hideUpgradeEffect();
+    this.HideDescriptTower();
     this.deleteButton.destroy();
     if (this.level < this.levelMax) {
         this.upgradeButton.destroy();
@@ -278,6 +283,7 @@ Building.prototype.moneyback = function() {
     if (this.stats) {
         this.stats.destroy();
     }
+    this.hideMoneyback();
     this.deleteButton.infobox = game.add.sprite(this.entity.body.x - 35, this.entity.body.y + 30, 'infobox');
     this.deleteButton.infobox.scale.y = 0.6;
     this.deleteButton.infobox.scale.x = 0.3;
@@ -289,10 +295,12 @@ Building.prototype.moneyback = function() {
 };
 
 Building.prototype.hideMoneyback = function() {
-    this.deleteButton.infobox.sprite.destroy();
-    this.deleteButton.infobox.text.destroy();
-    this.deleteButton.infobox.destroy();
-    this.deleteButton.infobox = null;
+    if (this.deleteButton.infobox) {
+        this.deleteButton.infobox.sprite.destroy();
+        this.deleteButton.infobox.text.destroy();
+        this.deleteButton.infobox.destroy();
+        this.deleteButton.infobox = null;
+    }
 };
 
 Building.prototype.upgradeEffect = function() {
