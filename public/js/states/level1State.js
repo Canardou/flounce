@@ -416,14 +416,14 @@ var level1State = {
 		game.global.towers.push(bumper);
 		bumper.panel=game.global.currentLevel.panel;
 		
-		/*bumper = new Bumper({
+		bumper = new Bumper({
 			base: 10,
 			max: 20
 		}, 320, 1070);
 		bumper.drag = true;
 		bumper.heatLimit = 10;
-		game.global.towers.push(bumper);*/
-
+		game.global.towers.push(bumper);
+		
 		game.global.unblocks = [];
 		game.global.unblocks.push(new Unblock(270,420));
 		game.global.unblocks.push(new Unblock(100,740));

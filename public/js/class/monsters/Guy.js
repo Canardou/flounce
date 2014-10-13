@@ -2,7 +2,7 @@
 var Guy = function(x, y, life, gold, value, strength, decay, damage, hero, vx, vy) {
     Monster.call(this, life, gold, value, strength, decay, damage, hero);
 
-    //Test sons
+    //Sounds
     this.guyPain1 = game.add.audio('guyPain1');
     this.guyPain1.volume = 0.1;
     this.guyPain2 = game.add.audio('guyPain2');
