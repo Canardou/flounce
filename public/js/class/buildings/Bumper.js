@@ -9,15 +9,16 @@ var Bumper = function(damage, x, y) {
     this.heat = 0;
     this.overHeat = false;
     this.cost = [375, 375, 375, 375];
-    this.size = 1;
+    this.size = 0.5;
 
     this.entity = game.add.sprite(x, y);
     this.design = game.add.sprite(x, y, 'bumper' + this.level, 0);
+    this.design.scale.set(this.size);
     this.design.anchor.setTo(0.5, 0.5);
     game.global.depth[5].add(this.design);
     game.physics.p2.enableBody(this.entity);
 
-    this.entity.body.setCircle(this.size * 20);
+    this.entity.body.setCircle(this.size * 40);
     this.entity.body.kinematic = true;
     this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
     this.entity.body.collides(game.global.enemiesCollisionGroup, this.hit, this);
@@ -144,7 +145,7 @@ Bumper.prototype.upgrade = function() {
     this.cooldown -= 5;
     this.size *= 1.08;
     this.design.scale.set(this.size);
-    this.entity.body.setCircle(this.size * 20);
+    this.entity.body.setCircle(this.size * 40);
     this.entity.body.kinematic = true;
     this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
     this.entity.body.collides(game.global.enemiesCollisionGroup, this.hit, this);
@@ -210,13 +211,13 @@ Bumper.prototype.designCheck = function() {
     if (this.check.body.overlap > 0) {
         this.valid = false;
         this.design.loadTexture('bumperError');
-        this.design.scale.set(0.5, 0.5);
+        this.design.scale.set(this.size);
         this.check.tint = 0xFFFFFF;
     }
     else {
         this.valid = true;
         this.design.loadTexture('bumper' + this.level, 0);
-        this.design.scale.set(1, 1);
+        this.design.scale.set(this.size);
         this.check.tint = 0x00FFFF;
     }
 };

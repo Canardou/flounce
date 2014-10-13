@@ -7,6 +7,7 @@ var dragExample = function() {
         alpha: 1
     }, 3000, Phaser.Easing.Exponential.Out, true, 0, false).onComplete.add(function() {
         var tower = game.add.sprite(hand.x + 20, hand.y + 10, 'bumper0', 0);
+        tower.scale.set(0.5);
         tower.anchor.set(0.5);
         tower.tween = game.add.tween(tower).to({
             x: 450,

@@ -92,6 +92,7 @@ Building.prototype.onDragStart = function(sprite, pointer) {
         this.panel.shown.splice(this, 1);
     }
     this.checkValidity(true);
+    this.designCheck();
 };
 
 Building.prototype.onDragStop = function(sprite, pointer) {

@@ -42,7 +42,7 @@ var loadState = {
 		game.load.image('infobox', 'asset/sprites/infobox.png');
 		game.load.spritesheet('gold', 'asset/sprites/coin_gold.png', 32, 32);
 		for(var i=0;i<4;i++){
-			game.load.spritesheet('bumper'+i, 'asset/sprites/bumper'+i+'.png',60,60);
+			game.load.spritesheet('bumper'+i, 'asset/sprites/bumper'+i+'.png',120,120);
 		}
 
 		//Loading physics
