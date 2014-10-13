@@ -12,4 +12,4 @@ var Unblock = function(x, y){
     this.entity.pivotPoint.body.clearCollision(true, true);
     this.entity.constraint = game.physics.p2.createRevoluteConstraint(this.entity, [0,0],
         this.entity.pivotPoint, [0, 0]);
-}
+};
