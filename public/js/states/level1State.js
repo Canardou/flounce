@@ -172,15 +172,15 @@ var level1State = {
 			{
 				"number": 1,
 				"type": "Guy",
-				"life": 30,
-				"gold": 25,
+				"life": 50,
+				"gold": 50,
 				"value": 5,
-				"strength": 7,
+				"strength": 10,
 				"damage": 1,
 				"entry": [2]
 			},
 			{
-				"number": 12,
+				"number": 20,
 				"type":"Break"
 			},
 			{
@@ -419,7 +419,7 @@ var level1State = {
 		bumper = new Bumper({
 			base: 10,
 			max: 20
-		}, 320, 1050);
+		}, 320, 1070);
 		bumper.drag = true;
 		game.global.towers.push(bumper);
 
