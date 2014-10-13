@@ -115,7 +115,7 @@ var Skeleton = function(x, y, life, gold, value, strengh, decay, damage, hero) {
     
     for(var i in this.parts){
         this.parts[i].entity=this;
-        game.global.depth[2].add(this.parts[i]);
+        game.global.depth[1].add(this.parts[i]);
     }
     
     this.updateCollision();

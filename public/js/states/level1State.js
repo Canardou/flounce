@@ -415,6 +415,13 @@ var level1State = {
 
 		game.global.towers.push(bumper);
 		bumper.panel=game.global.currentLevel.panel;
+		
+		bumper = new Bumper({
+			base: 10,
+			max: 20
+		}, 320, 1050);
+		bumper.drag = true;
+		game.global.towers.push(bumper);
 
 		
 	},

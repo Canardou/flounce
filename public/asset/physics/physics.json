@@ -136,7 +136,7 @@
 				{
 					"density": 2, "friction": 0, "bounce": 0, 
 					"filter": { "categoryBits": 1, "maskBits": 65535 },
-					"shape": [   -10, 310  ,  80, 400  ,  80, 580 , 40, 600 , -10, 600 ]
+					"shape": [   -10, 310  ,  80, 380  ,  80, 580 , 40, 600 , -10, 600 ]
 				},
 				{
 					"density": 2, "friction": 0, "bounce": 0, 
