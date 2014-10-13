@@ -426,8 +426,7 @@ var level1State = {
 		else if (game.global.currentLevel.phase === "constructing" && !game.global.currentLevel.hero.dead) {
 			button.visible = true;
 		}
-
-		if (game.global.currentLevel.hero.monsterKilledDuringCurrentWave === game.global.currentLevel.currentWave.totalMonster) {
+		if (game.global.monsters.length ===0 && game.global.currentLevel.hero.monsterKilledDuringCurrentWave >= game.global.currentLevel.currentWave.totalMonster) {
 			if (game.global.currentLevel.waves.length > 0)
 				game.global.currentLevel.construct();
 			else if (!game.global.currentLevel.won) {
