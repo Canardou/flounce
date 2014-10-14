@@ -37,9 +37,13 @@ var menuState = {
 
 		//Menu
 		color = 'white';
-		restart = new LabelButton(game, game.world.centerX, game.world.centerY, 'wood_frame', 'Level 1', function(){game.state.clearCurrentState(); game.state.start('level1');}, game, color);
+		var restart = new LabelButton(game, game.world.centerX, game.world.centerY, 'wood_frame', 'Level 1', function(){game.state.clearCurrentState(); game.state.start('level1');}, game, color);
 		restart.scale.x = 0.5;
 		restart.scale.y = 0.5;
+
+		/*var maBumpMode = new LabelButton(game, game.world.centerX, game.world.centerY+300, 'wood_frame', 'Max Bump Mode', function(){game.state.clearCurrentState(); game.state.start('maxBump');}, game, color);
+		maBumpMode.scale.x = 0.5;
+		maBumpMode.scale.y = 0.5;*/
 
 		var score = game.add.text(50, 1100, "Best score: "+data.getCookie("topScore"));
 		score.fill = color;
