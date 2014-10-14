@@ -53,7 +53,10 @@ var menuState = {
 		{"number": 2000, "type": "Guy", "life":1,"gold":0, "value": 0, "strength":0,"damage": 0,  "entry": [0,1]}
 		];
 
-		var wave1 = new Wave(monstersToCreate, 1);
-		wave1.start();
+		//var wave1 = new Wave(monstersToCreate, 1);
+		//wave1.start();
 	},
+	update:function(){
+	//game.global.currentWave.update();
+	}
 };
