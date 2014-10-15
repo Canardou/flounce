@@ -7,6 +7,10 @@ var Hero = function(life, gold, printText, power) {
     this.dead = false;
     this.deadSound = game.add.audio('loose');
     this.monsterKilledDuringCurrentWave = 0;
+
+    this.lifeLostPerWave = [];
+    this.lifeLostPerWave[0] = 0;
+
     var height = 1100;
     this.entity = game.add.sprite(game.global.width / 2, game.global.height - (1138 - height) / 2);
     game.physics.p2.enableBody(this.entity);
@@ -51,7 +55,7 @@ Hero.prototype.die = function() {
                 y: 1
             }, 6000, null, true).onComplete.add(function() {
                 gameOver.destroy();
-                game.state.start('loose');
+                game.state.start('end');
             }, this);
             this.deadSound.play();
         }
@@ -62,6 +66,7 @@ Hero.prototype.getHit = function(hero, monster) {
     if (!this.dead) {
         this.changeLife(-monster.sprite.entity.damage);
         if(monster.sprite.entity.damage >0){
+            this.lifeLostPerWave[game.global.currentLevel.countWave]+= monster.sprite.entity.damage;
             this.looseLife.play();
         }
 
@@ -108,5 +113,20 @@ Hero.prototype.changeLife = function(amount) {
         this.lifeText.setText(this.life);
     }
 };
+
+Hero.prototype.destroy = function() {
+    this.lifeLostPerWave = [];
+    this.entity.destroy();
+    if(this.printText){
+        this.lifeText2.destroy();
+        this.lifeText.destroy();
+        this.pointsText2.destroy();
+        this.pointsText.destroy();
+        this.goldText2.destroy();
+        this.goldText.destroy();
+    }
+};
+
+
 
 

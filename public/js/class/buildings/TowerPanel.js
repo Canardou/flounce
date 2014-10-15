@@ -76,4 +76,10 @@ TowerPanel.prototype.greyTower = function() {
         var showPoints = new TextHint('Hard score gamer ?', 360, 1080, '#ff7f00');
 };
 
+TowerPanel.prototype.destroy = function() {
+    this.sprite.destroy();
+    this.shown = [];
+    this.towers = [];
+};
+
 

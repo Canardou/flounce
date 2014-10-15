@@ -1,13 +1,14 @@
 var LabelButton = function(game, x, y, key, label, callback,
-                       callbackContext, labelColor, overFrame, outFrame, downFrame, upFrame){
+                       callbackContext, labelColor, font, overFrame, outFrame, downFrame, upFrame){
     Phaser.Button.call(this, game, x, y, key, callback,
         callbackContext, overFrame, outFrame, downFrame, upFrame);
 
     var imageCache = game.cache.getImage(key);
     var color = def(labelColor, '#ff6600');
+    var fontToUse = def(font, 'Helvetica');
 
     this.style = {
-        'font': 'bold '+imageCache.width+'% Helvetica',
+        'font': 'bold '+imageCache.width+'% '+fontToUse,
         'fill': color
     };
     this.anchor.setTo(0.5, 0.5);

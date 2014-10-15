@@ -29,6 +29,7 @@ Niveau.prototype.defend = function(){
 	this.phase = "defending";
 	this.currentWave.totalMonster = 0;
 	this.countWave++;
+	this.hero.lifeLostPerWave[this.countWave] = 0;
 	if(this.waves.length > 0){
 		this.panel.greyTower();
 		var waveToStart = new Wave(this.waves.pop(), this.hero, this.countWave, this.entries);
@@ -58,6 +59,17 @@ Niveau.prototype.construct = function(){
 
 Niveau.prototype.endLevel = function(){
 	if (this.waves.length === 0 && (this.hero.monsterKilledDuringCurrentWave === this.currentWave.totalMonster)) {
-		game.state.start('gameStats');
+		game.state.start('end');
 	}
+};
+
+Niveau.prototype.destroy = function(){
+	if(this.hero)
+		this.hero.destroy();
+	if(this.panel)
+		this.panel.destroy();
+	if(this.entries)
+		this.entries = []; //Ask Olivier about memories with entries
+	//this.waves.hero = null -> nothing to destroy ? 
+
 };
