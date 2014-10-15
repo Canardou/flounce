@@ -383,7 +383,7 @@ var level1State = {
 
 
 		//Begining of the level
-		game.global.currentLevel = new Niveau(waves, 2, 350, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
+		game.global.currentLevel = new Niveau(waves, 20, 350, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
 
 		button = new LabelButton(game, game.world.centerX, game.world.centerY + 500, 'wood_frame', 'Click or...', game.global.currentLevel.defend, game.global.currentLevel, 'white');
 		button.onInputUp.add(function() {
