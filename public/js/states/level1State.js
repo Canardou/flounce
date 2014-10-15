@@ -28,7 +28,7 @@ var level1State = {
 		game.global.towers = [];
 		game.global.monsters = [];
 
-		var waves = [
+		var waves = [//To invert order go to Niveau.js lign 35
 			//Wawe 9
 			[{
 				"number": 6,
@@ -287,6 +287,27 @@ var level1State = {
 		game.physics.p2.updateBoundsCollisionGroup();
 
 		//Design of the level//
+		//Mute button 
+		var mute = game.add.sprite(600, 915, 'mute');
+		mute.scale.set(0.5);
+		mute.inputEnabled = true;
+		mute.input.useHandCursor = true;
+		mute.events.onInputUp.add(function(){
+			game.sound.mute = false;
+			mute.kill();
+			unMute.revive();
+		}, this);
+		mute.kill();
+		var unMute = game.add.sprite(600, 915, 'unMute');
+		unMute.scale.set(0.5);
+		unMute.inputEnabled = true;
+		unMute.input.useHandCursor = true;
+		unMute.events.onInputUp.add(function(){
+			game.sound.mute = true;
+			unMute.kill();
+			mute.revive();
+		}, this);
+
 
 		//Locations
 		var background = game.add.sprite(game.global.width / 2, game.global.height / 2, 'walls');

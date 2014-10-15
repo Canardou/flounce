@@ -36,11 +36,12 @@ Niveau.prototype.defend = function(){
 	}
 	if(this.waves.length > 0){
 		this.panel.greyTower();
-		var waveToStart = new Wave(this.waves.pop(), this.hero, this.countWave, this.entries);
+		var waveToStart = new Wave(this.waves.pop(), this.hero, this.countWave, this.entries);//To do : .shift instead of .pop()
 		this.currentWave = waveToStart;
 		console.log("Nombre de monstres: " + this.currentWave.totalMonster);
 		//waveToStart.start();
 		this.startingWave.play();
+		var waveHint = new TextHint('Wave n°'+this.countWave, 300, 200, 'white', 40, 8);
 	}
 	
 };
