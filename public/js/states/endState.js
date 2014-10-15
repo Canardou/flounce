@@ -111,12 +111,16 @@ var endState = {
 
 		var waveStats = '';
 		for (var i in game.global.currentLevel.hero.lifeLostPerWave) {
-			if(i % 2 === 0){
-				waveStats += 'n°'+ ((+i)+1)+': '+game.global.currentLevel.hero.lifeLostPerWave[i];
+			if(i !== '0'){
+				console.log(i);
+				if(i % 2 !== 0){
+					waveStats += 'n°'+ ((+i))+': '+game.global.currentLevel.hero.lifeLostPerWave[i];
+				}
+				else{
+					waveStats += '            n°'+ ((+i))+': '+game.global.currentLevel.hero.lifeLostPerWave[i]+ '\n';
+				}
 			}
-			else{
-				waveStats += '            n°'+ ((+i)+1)+': '+game.global.currentLevel.hero.lifeLostPerWave[i]+ '\n';
-			}
+			else{console.log(game.global.currentLevel.hero.lifeLostPerWave[i]);}
 		}
 		var waveStatsToDestroy = game.add.text(160, 400, waveStats, { font: '27px Indie Flower', fill: '#ffffff' });
 		waveStatsToDestroy.alpha = 0;
