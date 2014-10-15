@@ -25,8 +25,6 @@ window.onload = function(){
 	game.state.add('load', loadState);
 	game.state.add('menu', menuState);
 	game.state.add('level1', level1State);
-	game.state.add('gameStats', gameStatsState);
-	game.state.add('loose', loosingState);
 	game.state.add('maxBump', maxBumpState);
 	game.state.add('end', endState);
 	

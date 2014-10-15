@@ -117,12 +117,5 @@ var endState = {
 		waveStatsToDestroy.alpha = 0;
 		waveStatsToDestroy.tween = game.add.tween(waveStatsToDestroy).to({alpha: 1},2000,Phaser.Easing.Linear.None, false);
 		waveStatsGroup.add(detailsToDestroy);
-
-
-
-
-
-
-
 	},
 };
