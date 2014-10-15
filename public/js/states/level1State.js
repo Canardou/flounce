@@ -31,9 +31,9 @@ var level1State = {
 		var waves = [//To invert order go to Niveau.js lign 35
 			//Wawe 9
 			[{
-				"number": 12,
+				"number": 6,
 				"type": "Guy",
-				"life": 50,
+				"life": 100,
 				"gold": 25,
 				"value": 12,
 				"strength": 15,
@@ -45,9 +45,9 @@ var level1State = {
 				"type": "Break"
 			},
 			{
-				"number": 12,
+				"number": 6,
 				"type": "Guy",
-				"life": 50,
+				"life": 100,
 				"gold": 25,
 				"value": 12,
 				"strength": 15,
@@ -58,7 +58,7 @@ var level1State = {
 			[{
 				"number": 1,
 				"type": "Skeleton",
-				"life": 200,
+				"life": 300,
 				"gold": 100,
 				"value": 25,
 				"strength": 20,
@@ -70,9 +70,9 @@ var level1State = {
 				"type": "Break"
 			},
 			{
-				"number": 12,
+				"number": 7,
 				"type": "Guy",
-				"life": 30,
+				"life": 50,
 				"gold": 25,
 				"value": 10,
 				"strength": 10,
@@ -81,9 +81,9 @@ var level1State = {
 			}],
 			//Wawe 7
 			[{
-				"number": 6,
+				"number": 3,
 				"type": "Skeleton",
-				"life": 20,
+				"life": 40,
 				"gold": 15,
 				"value": 5,
 				"strength": 15,
@@ -91,13 +91,13 @@ var level1State = {
 				"entry": [0,1]
 			},
 			{
-				"number": 30,
+				"number": 20,
 				"type": "Break"
 			},
 			{
-				"number": 10,
+				"number": 5,
 				"type": "Guy",
-				"life": 30,
+				"life": 50,
 				"gold": 25,
 				"value": 10,
 				"strength": 10,
@@ -106,9 +106,9 @@ var level1State = {
 			}],
 			//Wawe 6
 			[{
-				"number": 10,
+				"number": 5,
 				"type": "Guy",
-				"life": 40,
+				"life": 50,
 				"gold": 25,
 				"value": 10,
 				"strength": 10,
@@ -116,9 +116,9 @@ var level1State = {
 				"entry": [0,1]
 			},
 			{
-				"number": 10,
+				"number": 5,
 				"type": "Guy",
-				"life": 40,
+				"life": 50,
 				"gold": 25,
 				"value": 10,
 				"strength": 10,
@@ -127,9 +127,9 @@ var level1State = {
 			}],
 			//Wawe 5
 			[{
-				"number": 7,
+				"number": 4,
 				"type": "Skeleton",
-				"life": 20,
+				"life": 40,
 				"gold": 15,
 				"value": 5,
 				"strength": 7,
@@ -139,17 +139,17 @@ var level1State = {
 			{
 				"number": 3,
 				"type": "Guy",
-				"life": 30,
+				"life": 50,
 				"gold": 25,
 				"value": 5,
-				"strength": 7,
+				"strength": 10,
 				"damage": 1,
 				"entry": [2]
 			},
 			{
-				"number": 7,
+				"number": 4,
 				"type": "Skeleton",
-				"life": 20,
+				"life": 40,
 				"gold": 15,
 				"value": 5,
 				"strength": 7,
@@ -158,9 +158,9 @@ var level1State = {
 			}],
 			//Wawe 4
 			[{
-				"number": 20,
+				"number": 10,
 				"type": "Skeleton",
-				"life": 20,
+				"life": 40,
 				"gold": 15,
 				"value": 5,
 				"strength": 7,
@@ -171,10 +171,10 @@ var level1State = {
 			[{
 				"number": 2,
 				"type": "Guy",
-				"life": 50,
+				"life": 70,
 				"gold": 50,
 				"value": 10,
-				"strength": 10,
+				"strength": 7,
 				"damage": 2,
 				"entry": [0,1]
 			},
@@ -185,18 +185,18 @@ var level1State = {
 			{
 				"number": 1,
 				"type": "Guy",
-				"life": 50,
+				"life": 70,
 				"gold": 50,
 				"value": 5,
-				"strength": 10,
+				"strength": 7,
 				"damage": 1,
 				"entry": [2]
 			}],
 			//Wawe 2
 			[{
-				"number": 5,
+				"number": 4,
 				"type": "Guy",
-				"life": 20,
+				"life": 30,
 				"gold": 25,
 				"value": 5,
 				"strength": 5,
@@ -208,9 +208,9 @@ var level1State = {
 				"type":"Break"
 			},
 			{
-				"number": 5,
+				"number": 4,
 				"type": "Guy",
-				"life": 20,
+				"life": 30,
 				"gold": 25,
 				"value": 5,
 				"strength": 5,
@@ -326,7 +326,7 @@ var level1State = {
 
 		game.physics.p2.enableBody(background);
 
-		game.global.depth[2].add(background);
+		game.global.depth[3].add(background);
 
 		background.body.static = true;
 		background.body.clearShapes();
@@ -404,7 +404,7 @@ var level1State = {
 
 
 		//Begining of the level
-		game.global.currentLevel = new Niveau(waves, 20, 350, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
+		game.global.currentLevel = new Niveau(waves, 20, 250, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
 
 		button = new LabelButton(game, game.world.centerX, game.world.centerY + 500, 'wood_frame', 'Click & die', game.global.currentLevel.defend, game.global.currentLevel, 'white');
 		button.onInputUp.add(function() {
@@ -434,6 +434,46 @@ var level1State = {
 		game.global.towers.push(bumper);
 		bumper.panel=game.global.currentLevel.panel;
 		
+		/*bumper = new Saw({
+			base: 10,
+			max: 20
+		}, 540, 200, 'right');
+
+		game.global.towers.push(bumper);
+		bumper.panel=game.global.currentLevel.panel;
+		
+		bumper = new Saw({
+			base: 10,
+			max: 20
+		}, 80, 480, 'left');
+
+		game.global.towers.push(bumper);
+		bumper.panel=game.global.currentLevel.panel;
+		
+		bumper = new Saw({
+			base: 10,
+			max: 20
+		}, 600, 420, 'right');
+
+		game.global.towers.push(bumper);
+		bumper.panel=game.global.currentLevel.panel;
+		
+		bumper = new Saw({
+			base: 10,
+			max: 20
+		}, 600, 620, 'right');
+
+		game.global.towers.push(bumper);
+		bumper.panel=game.global.currentLevel.panel;
+		
+		bumper = new Saw({
+			base: 10,
+			max: 20
+		}, 80, 210, 'left');
+
+		game.global.towers.push(bumper);
+		bumper.panel=game.global.currentLevel.panel;*/
+		
 		bumper = new Bumper({
 			base: 10,
 			max: 20
@@ -449,11 +489,11 @@ var level1State = {
 	},
 
 	update: function() {
-		for(var i in game.global.towers){
-			game.global.towers[i].update();
-		}
-		
+
 		if (game.global.currentLevel.phase === "defending") {
+			for(var i in game.global.towers){
+				game.global.towers[i].update();
+			}
 			game.global.currentLevel.currentWave.update();
 			button.visible = false;
 		}
