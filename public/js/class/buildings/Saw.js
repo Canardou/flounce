@@ -206,7 +206,7 @@ Saw.prototype.deleteTower = function() {
 
 Saw.prototype.decreaseHeat = function() {
     if (this.heat > 0) {
-        if (this.animation / 42 === Math.floor(this.animation / 42))
+        if (this.animation / 36 === Math.floor(this.animation / 36))
             this.heat--;
         this.design.body.x = this.x + this.direction * this.heat / this.heatLimit * 40;
         this.entity.pivotPoint.body.x = this.x + this.direction * this.heat / this.heatLimit * 40;
@@ -369,6 +369,8 @@ Saw.prototype.reset = function() {
     this.loop = 0;
     this.design.body.x = this.x + this.direction * this.heat / this.heatLimit * 40;
     this.entity.pivotPoint.body.x = this.x + this.direction * this.heat / this.heatLimit * 40;
+    this.design.body.y = this.y;
+    this.entity.pivotPoint.body.y = this.y;
     if (this.overHeat) {
         game.global.depth[1].remove(this.design);
         game.global.depth[5].add(this.design);
@@ -395,7 +397,7 @@ Saw.prototype.findInfos = function() {
     }
     infos.description += '\nDamage: ' + this.damage.base + '-' + this.damage.max +
         '\nHeat limit: ' + this.heatLimit +
-        '\nCooldown: ' + this.cooldown;
+        '\nSpeed: ' + this.speed;
 
     return infos;
 };
