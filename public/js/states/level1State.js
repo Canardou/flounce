@@ -406,7 +406,7 @@ var level1State = {
 		//Begining of the level
 		game.global.currentLevel = new Niveau(waves, 20, 250, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
 
-		button = new LabelButton(game, game.world.centerX, game.world.centerY + 500, 'wood_frame', 'Click or...', game.global.currentLevel.defend, game.global.currentLevel, 'white');
+		button = new LabelButton(game, game.world.centerX, game.world.centerY + 500, 'wood_frame', 'Click & die', game.global.currentLevel.defend, game.global.currentLevel, 'white');
 		button.onInputUp.add(function() {
 			if (game.global.currentLevel.countWave === 1) {
 				var firstBumperHint = new TextHint('Ho... poor enemies...', 300, 750);
@@ -501,7 +501,12 @@ var level1State = {
 			button.visible = false;
 		}
 		else if (game.global.currentLevel.phase === "constructing" && !game.global.currentLevel.hero.dead) {
-			button.visible = true;
+			if(game.global.currentLevel.countWave === 1){
+				game.time.events.add(5000, function(){button.visible = true;});
+			}
+			else{
+				button.visible = true;
+			}
 		}
 		if (game.global.monsters.length ===0 && game.global.currentLevel.hero.monsterKilledDuringCurrentWave >= game.global.currentLevel.currentWave.totalMonster) {
 			if (game.global.currentLevel.waves.length > 0)
