@@ -41,6 +41,7 @@ var loadState = {
 		game.load.image('infobox', 'asset/sprites/infobox.png');
 		game.load.image('mute', 'asset/sprites/mute.png');
 		game.load.image('unMute', 'asset/sprites/unMute.png');
+		game.load.image('help', 'asset/sprites/help.png');
 		game.load.spritesheet('gold', 'asset/sprites/coin_gold.png', 32, 32);
 		for(var i=0;i<4;i++){
 			game.load.spritesheet('bumper'+i, 'asset/sprites/bumper'+i+'.png',120,120);

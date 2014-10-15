@@ -30,6 +30,11 @@ var InfoPanel = function() {
 
 	this.princess = game.add.sprite(340, 1060, 'princess');
 	this.princess.scale.set(1);
+	this.help = game.add.sprite(390,1040, 'help');
+	this.help.text = game.add.text(400, 1050, 'Help', {
+        'font': '20px "Indie Flower"',
+        'fill': 'white'
+    });
 
 	game.global.depth[6].add(this.sprite);
 };
