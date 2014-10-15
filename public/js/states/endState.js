@@ -52,7 +52,12 @@ var endState = {
 		buttons.add(restartButton);
 		restartButton.inputEnabled = true;
 		restartButton.input.useHandCursor = true;
-		restartButton.events.onInputUp.add(function(){game.state.start('level1');}, this);
+		restartButton.events.onInputUp.add(function(){
+			for (var i in thingToDestroy) {
+				thingToDestroy[i].destroy();
+			}
+			game.state.start('level1');
+		}, this);
 
 		var restartText = game.add.text(restartButton.x + ((this.die) ? (+70) : (+50)), restartButton.y + 20, ((this.die) ? 'Try again' : 'Wanna restart ?'), { font: '35px Indie Flower', fill: '#ffffff' });
 		buttons.add(restartText);
@@ -116,6 +121,13 @@ var endState = {
 		var waveStatsToDestroy = game.add.text(160, 400, waveStats, { font: '27px Indie Flower', fill: '#ffffff' });
 		waveStatsToDestroy.alpha = 0;
 		waveStatsToDestroy.tween = game.add.tween(waveStatsToDestroy).to({alpha: 1},2000,Phaser.Easing.Linear.None, false);
-		waveStatsGroup.add(detailsToDestroy);
+		waveStatsGroup.add(waveStatsToDestroy);
+
+
+		//Reset global variables
+		game.global.currentLevel.destroy();
+		game.global.currentLevel = null;
+		game.global.towers = [];
+		game.global.monsters = [];
 	},
 };

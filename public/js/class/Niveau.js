@@ -62,3 +62,14 @@ Niveau.prototype.endLevel = function(){
 		game.state.start('end');
 	}
 };
+
+Niveau.prototype.destroy = function(){
+	if(this.hero)
+		this.hero.destroy();
+	if(this.panel)
+		this.panel.destroy();
+	if(this.entries)
+		this.entries = []; //Ask Olivier about memories with entries
+	//this.waves.hero = null -> nothing to destroy ? 
+
+};

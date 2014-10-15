@@ -432,8 +432,6 @@ var level1State = {
 			game.global.towers[i].update();
 		}
 		
-		
-		
 		if (game.global.currentLevel.phase === "defending") {
 			game.global.currentLevel.currentWave.update();
 			button.visible = false;

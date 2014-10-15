@@ -114,4 +114,19 @@ Hero.prototype.changeLife = function(amount) {
     }
 };
 
+Hero.prototype.destroy = function() {
+    this.lifeLostPerWave = [];
+    this.entity.destroy();
+    if(this.printText){
+        this.lifeText2.destroy();
+        this.lifeText.destroy();
+        this.pointsText2.destroy();
+        this.pointsText.destroy();
+        this.goldText2.destroy();
+        this.goldText.destroy();
+    }
+};
+
+
+
 

@@ -2,7 +2,6 @@
 var Wave = function(monstersToCreate, hero, number, entrees) {
     this.monstersToCreate = monstersToCreate;
     this.hero = hero;
-    this.entrees = entrees;
     this.number = number;
     this.totalMonster = 0;
     for (var i = monstersToCreate.length - 1; i >= 0; i--) {
@@ -27,8 +26,7 @@ Wave.prototype.update = function(){
 		}
 		this.loop=0;
 	}
-	
-}
+};
 
 Wave.prototype.popMonster = function(toSummon){
 	var entreeToUse;
