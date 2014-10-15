@@ -30,6 +30,10 @@ Niveau.prototype.defend = function(){
 	this.currentWave.totalMonster = 0;
 	this.countWave++;
 	this.hero.lifeLostPerWave[this.countWave] = 0;
+	var towers = game.global.towers;
+	for(var i in towers){
+		towers[i].restart();
+	}
 	if(this.waves.length > 0){
 		this.panel.greyTower();
 		var waveToStart = new Wave(this.waves.pop(), this.hero, this.countWave, this.entries);

@@ -13,7 +13,7 @@ var Building = function(damage, cost) {
     this.cost = [];
     this.deleteButton;
     this.upgradeButton;
-    this.totalDamage = 0;
+    this.monsterHitsTotal = 0;
     this.monsterHits = 0;
     this.stats;
     this.valid = false;
@@ -156,7 +156,7 @@ Building.prototype.statsTower = function() {
 
 
         //Show the stats (number of monster touched && damage dealt)
-        stats = "Monster hits: " + this.monsterHits;
+        stats = "Current wave : " + this.monsterHits +  "\nTotal : " + this.monsterHitsTotal;
         var style = {
             'font': 'bold 175% Arial',
             'fill': 'white'
@@ -224,6 +224,10 @@ Building.prototype.deleteTower = function() {
     this.destroy();
     this.panel.reset();
 };
+
+Building.prototype.restart = function(){
+    this.monsterHits=0;
+}
 
 Building.prototype.upgradeTower = function() {
     if (game.global.currentLevel.hero.gold >= this.cost[this.level + 1]) {

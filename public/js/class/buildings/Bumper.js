@@ -5,10 +5,10 @@ var Bumper = function(damage, x, y) {
     this.levelMax = 3;
 
     this.heatLimit = 20;
-    this.cooldown = 100;
+    this.cooldown = 120;
     this.heat = 0;
     this.overHeat = false;
-    this.cost = [375, 375, 375, 375];
+    this.cost = [300, 325, 350, 375];
     this.size = 0.5;
 
     this.entity = game.add.sprite(x, y);
@@ -48,7 +48,7 @@ Bumper.prototype.hit = function(bumper, part) {
                     this.heat = this.cooldown;
                     this.entity.body.setCollisionGroup(game.global.voidCollisionGroup);
                 }
-                else if (this.heat > this.heatLimit / 2 - 10)
+                else if (this.heat > this.heatLimit / 2 - 10 && this.heat!=0)
                     this.design.loadTexture('bumper' + this.level, 1);
                 var retour = this.getDamage(bumper, part);
                 var angle = Math.atan2(bumper.y - entity.body.y, bumper.x - entity.body.x);
@@ -56,6 +56,7 @@ Bumper.prototype.hit = function(bumper, part) {
                     //text !
                     this.totalDamage += retour.damage;
                     this.monsterHits++;
+                    this.monsterHitsTotal++;
                     var combo = entity.combo;
                     if (combo > 0) {
                         var onoma = game.add.text(this.entity.x - 25 * cos(angle), this.entity.y - 25 * sin(angle), 'x' + (combo + 1), {
@@ -111,6 +112,12 @@ Bumper.prototype.hit = function(bumper, part) {
     return {};
 };
 
+Bumper.prototype.disable = function(){
+    this.design.loadTexture('bumperDisable');
+    this.design.scale.set(0.5);
+}
+
+
 Bumper.prototype.update = function(){
     this.loop++;
     if(this.loop>=6){
@@ -130,7 +137,7 @@ Bumper.prototype.decreaseHeat = function() {
         }
         if (this.overHeat)
             this.design.loadTexture('bumper' + this.level, 2);
-        else if (this.heat > this.heatLimit / 2 - 10)
+        else if (this.heat > this.heatLimit / 2 - 10  && this.heat!=0)
             this.design.loadTexture('bumper' + this.level, 1);
         else
             this.design.loadTexture('bumper' + this.level, 0);
@@ -151,7 +158,7 @@ Bumper.prototype.upgrade = function() {
     this.level++;
     this.design.loadTexture('bumper' + this.level, 0);
     this.heatLimit += 20;
-    this.cooldown -= 5;
+    this.cooldown -= 10;
     this.size *= 1.08;
     this.design.scale.set(this.size);
     this.entity.body.setCircle(this.size * 40);

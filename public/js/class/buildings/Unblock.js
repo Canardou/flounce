@@ -1,11 +1,11 @@
 var Unblock = function(x, y){
-    this.entity = game.add.sprite(x, y+4);
+    this.entity = game.add.sprite(x, y+2);
     game.physics.p2.enableBody(this.entity);
 
-    this.entity.body.setCircle(6);
+    this.entity.body.setCircle(5);
     this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
     this.entity.body.collides(game.global.enemiesCollisionGroup);
-    this.entity.pivotPoint = game.add.sprite(x,y+4);
+    this.entity.pivotPoint = game.add.sprite(x,y+2);
     //Physics of the pivot : static, no collision, revolute constraint with upper/lower limit
     game.physics.p2.enable(this.entity.pivotPoint);
     this.entity.pivotPoint.body.static = true;

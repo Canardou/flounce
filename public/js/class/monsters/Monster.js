@@ -124,3 +124,9 @@ Monster.prototype.updateCollision = function() {
         this.parts[item].body.collides([game.global.enemiesCollisionGroup, game.global.wallsCollisionGroup, game.global.playerCollisionGroup]);
     }
 };
+
+Monster.prototype.tintAll = function(tint) {
+    for (var item in this.parts) {
+        this.parts[item].tint=tint;
+    }
+};
