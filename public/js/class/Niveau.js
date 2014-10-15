@@ -35,7 +35,7 @@ Niveau.prototype.defend = function(){
 		var waveToStart = new Wave(this.waves.pop(), this.hero, this.countWave, this.entries);
 		this.currentWave = waveToStart;
 		console.log("Nombre de monstres: " + this.currentWave.totalMonster);
-		waveToStart.start();
+		//waveToStart.start();
 		this.startingWave.play();
 	}
 	

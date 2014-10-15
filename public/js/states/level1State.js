@@ -29,8 +29,8 @@ var level1State = {
 		game.global.monsters = [];
 
 		var waves = [
-			[
-			{
+			//Wawe 9
+			[{
 				"number": 12,
 				"type": "Guy",
 				"life": 50,
@@ -54,22 +54,8 @@ var level1State = {
 				"damage": 2,
 				"entry": 'all'
 			}],
-			[
-			{
-				"number": 12,
-				"type": "Guy",
-				"life": 30,
-				"gold": 25,
-				"value": 10,
-				"strength": 10,
-				"damage": 1,
-				"entry": 'all'
-			},
-			{
-				"number": 6,
-				"type": "Break"
-			},
-			{//Boss Wave
+			//Wawe 8 boss
+			[{
 				"number": 1,
 				"type": "Skeleton",
 				"life": 200,
@@ -78,8 +64,36 @@ var level1State = {
 				"strength": 20,
 				"damage": 5,
 				"entry": [0]
+			},
+			{
+				"number": 6,
+				"type": "Break"
+			},
+			{
+				"number": 12,
+				"type": "Guy",
+				"life": 30,
+				"gold": 25,
+				"value": 10,
+				"strength": 10,
+				"damage": 1,
+				"entry": 'all'
 			}],
-			[
+			//Wawe 7
+			[{
+				"number": 6,
+				"type": "Skeleton",
+				"life": 20,
+				"gold": 15,
+				"value": 5,
+				"strength": 15,
+				"damage": 1,
+				"entry": [0,1]
+			},
+			{
+				"number": 30,
+				"type": "Break"
+			},
 			{
 				"number": 10,
 				"type": "Guy",
@@ -89,22 +103,18 @@ var level1State = {
 				"strength": 10,
 				"damage": 1,
 				"entry": 'all'
-			},
-			{
-				"number": 30,
-				"type": "Break"
-			},
-			{
-				"number": 6,
-				"type": "Skeleton",
-				"life": 20,
-				"gold": 15,
-				"value": 5,
-				"strength": 15,
+			}],
+			//Wawe 6
+			[{
+				"number": 10,
+				"type": "Guy",
+				"life": 40,
+				"gold": 25,
+				"value": 10,
+				"strength": 10,
 				"damage": 1,
 				"entry": [0,1]
-			}],
-			[
+			},
 			{
 				"number": 10,
 				"type": "Guy",
@@ -114,19 +124,9 @@ var level1State = {
 				"strength": 10,
 				"damage": 1,
 				"entry": 'all'
-			},
-			{
-				"number": 10,
-				"type": "Guy",
-				"life": 40,
-				"gold": 25,
-				"value": 10,
-				"strength": 10,
-				"damage": 1,
-				"entry": [0,1]
 			}],
-			[
-			{
+			//Wawe 5
+			[{
 				"number": 7,
 				"type": "Skeleton",
 				"life": 20,
@@ -155,8 +155,8 @@ var level1State = {
 				"strength": 7,
 				"damage": 1,
 				"entry": [0,1]
-			}
-			],
+			}],
+			//Wawe 4
 			[{
 				"number": 20,
 				"type": "Skeleton",
@@ -167,8 +167,21 @@ var level1State = {
 				"damage": 1,
 				"entry": [0,1]
 			}],
-
-			[
+			//Wawe 3
+			[{
+				"number": 2,
+				"type": "Guy",
+				"life": 50,
+				"gold": 50,
+				"value": 10,
+				"strength": 10,
+				"damage": 2,
+				"entry": [0,1]
+			},
+			{
+				"number": 20,
+				"type":"Break"
+			},
 			{
 				"number": 1,
 				"type": "Guy",
@@ -178,24 +191,9 @@ var level1State = {
 				"strength": 10,
 				"damage": 1,
 				"entry": [2]
-			},
-			{
-				"number": 20,
-				"type":"Break"
-			},
-			{
-				"number": 2,
-				"type": "Guy",
-				"life": 50,
-				"gold": 50,
-				"value": 10,
-				"strength": 10,
-				"damage": 2,
-				"entry": [0,1]
 			}],
-
-			[
-			{
+			//Wawe 2
+			[{
 				"number": 5,
 				"type": "Guy",
 				"life": 20,
@@ -219,20 +217,21 @@ var level1State = {
 				"damage": 1,
 				"entry": [0,1]
 			}],
-
-			[
-			{
-				"number": 4,
+			//Wawe 1
+			[{
+				"number": 1,
 				"type": "Guy",
 				"life": 20,
 				"gold": 25,
 				"value": 5,
 				"strength": 5,
 				"damage": 1,
-				"entry": [0,1],
+				"entry": [0],
+				"vx":500,
+				"vy":30
 			},
 			{
-				"number": 10,
+				"number": 9,
 				"type":"Break"
 			},
 			{
@@ -248,20 +247,18 @@ var level1State = {
 				"vy":1
 			},
 			{
-				"number": 9,
+				"number": 10,
 				"type":"Break"
 			},
 			{
-				"number": 1,
+				"number": 4,
 				"type": "Guy",
 				"life": 20,
 				"gold": 25,
 				"value": 5,
 				"strength": 5,
 				"damage": 1,
-				"entry": [0],
-				"vx":500,
-				"vy":30
+				"entry": [0,1],
 			}]
 		];
 
@@ -431,7 +428,14 @@ var level1State = {
 	},
 
 	update: function() {
+		for(var i in game.global.towers){
+			game.global.towers[i].update();
+		}
+		
+		
+		
 		if (game.global.currentLevel.phase === "defending") {
+			game.global.currentLevel.currentWave.update();
 			button.visible = false;
 		}
 		else if (game.global.currentLevel.phase === "constructing" && !game.global.currentLevel.hero.dead) {

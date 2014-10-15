@@ -87,7 +87,7 @@ Building.prototype.stopDrag = function() {
 Building.prototype.onDragStart = function(sprite, pointer) {
     //Empty for the moment
     this.drag = true;
-    sprite.scale.set(1.2, 1.2);
+    sprite.scale.set(0.7, 0.7);
     if (this.panel) {
         this.panel.shown.splice(this, 1);
     }
@@ -100,7 +100,7 @@ Building.prototype.onDragStop = function(sprite, pointer) {
     this.design.y = pointer.y;
     this.entity.body.x = pointer.x;
     this.entity.body.y = pointer.y;
-    sprite.scale.set(1, 1);
+    sprite.scale.set(0.5, 0.5);
     this.designCheck();
     this.checkValidity(false);
     if (this.valid && game.global.currentLevel.hero.gold >= this.cost[0]) {

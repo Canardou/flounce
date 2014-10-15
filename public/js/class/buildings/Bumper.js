@@ -24,7 +24,8 @@ var Bumper = function(damage, x, y) {
     this.entity.body.collides(game.global.enemiesCollisionGroup, this.hit, this);
     this.entity.body.collides(game.global.limbsCollisionGroup);
 
-    this.loop = game.time.events.loop(Phaser.Timer.SECOND / 10, this.decreaseHeat, this);
+    //this.loop = game.time.events.loop(Phaser.Timer.SECOND / 10, this.decreaseHeat, this);
+    this.loop=0;
     
     this.allowInput();
 };
@@ -109,6 +110,14 @@ Bumper.prototype.hit = function(bumper, part) {
     }
     return {};
 };
+
+Bumper.prototype.update = function(){
+    this.loop++;
+    if(this.loop>=6){
+        this.decreaseHeat();
+        this.loop=0;
+    }
+}
 
 Bumper.prototype.decreaseHeat = function() {
     if (this.heat > 0) {

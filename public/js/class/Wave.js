@@ -11,29 +11,46 @@ var Wave = function(monstersToCreate, hero, number, entrees) {
     this.end = false;
     this.hero = hero;
     this.entrees = def(entrees, [new Entree(100, -100), new Entree(400, -100)]);
+    this.loop=0;
 };
 
-Wave.prototype.popMonster = function(type, life, gold, value, strength, damage, entree, vx, vy){
+Wave.prototype.update = function(){
+	this.loop++;
+	if(this.loop>=30){
+		if(this.monstersToCreate.length > 0){
+			if(this.monstersToCreate[0].number > 0){
+				this.monstersToCreate[0].number--;
+				this.popMonster(this.monstersToCreate[0]);
+			}
+			else
+				this.monstersToCreate.shift();
+		}
+		this.loop=0;
+	}
+	
+}
+
+Wave.prototype.popMonster = function(toSummon){
 	var entreeToUse;
-	if(entree){
-		if(entree === 'all')
+	if(toSummon.entry){
+		if(toSummon.entry === 'all')
 		{
 			entreeToUse = floor(rand(this.entrees.length, 0));
 		}
 		else{
-			entreeToUse = entree[floor(rand(entree.length, 0))];
+			entreeToUse = toSummon.entry[floor(rand(toSummon.entry.length, 0))];
 		}
 	}
 	
 	var aliveMonster;
 	var weigth = 1;//+(this.number/10);
-	if(type === "Guy") {
-		aliveMonster = new Guy(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,life * weigth, gold * weigth, value * weigth, strength, false, damage, this.hero, vx, vy);
+	if(toSummon.type === "Guy") {
+		aliveMonster = new Guy(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,toSummon.life * weigth, toSummon.gold * weigth,  toSummon.value * weigth, toSummon.strength, false, toSummon.damage, this.hero,  toSummon.vx, toSummon.vy);
 	}
-	else if(type === "Skeleton") {
-		aliveMonster = new Skeleton(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,life * weigth, gold * weigth, value * weigth, strength, false, damage, this.hero, vx, vy);
+	else if(toSummon.type === "Skeleton") {
+		aliveMonster = new Skeleton(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,toSummon.life * weigth, toSummon.gold * weigth,  toSummon.value * weigth, toSummon.strength, false, toSummon.damage, this.hero,  toSummon.vx, toSummon.vy);
 	}
-	else if(type === "Break") {
+	else if(toSummon.type === "Break") {
 		game.global.currentLevel.currentWave.totalMonster--;
 	}
 	/*else { //banan ;)
@@ -41,9 +58,9 @@ Wave.prototype.popMonster = function(type, life, gold, value, strength, damage, 
 	}*/
 };
 
-Wave.prototype.monsterTime = function(that){
+/*Wave.prototype.monsterTime = function(that){
 	var toSummon= that.monstersToCreate.pop();
-	game.time.events.repeat(Phaser.Timer.HALF, toSummon.number, that.popMonster, that, toSummon.type,toSummon.life,toSummon.gold, toSummon.value,toSummon.strength,toSummon.damage, toSummon.entry, toSummon.vx , toSummon.vy);
+	//game.time.events.repeat(Phaser.Timer.HALF, toSummon.number, that.popMonster, that, toSummon.type,toSummon.life,toSummon.gold, toSummon.value,toSummon.strength,toSummon.damage, toSummon.entry, toSummon.vx , toSummon.vy);
 	if(that.monstersToCreate.length > 0){
 		setTimeout(function(){that.monsterTime(that);}, Phaser.Timer.HALF * toSummon.number);
 	}
@@ -55,7 +72,7 @@ Wave.prototype.monsterTime = function(that){
 
 Wave.prototype.start = function(){
 	this.monsterTime(this);
-};
+};*/
 
 //To know if the wave has still monster to invoke
 Wave.prototype.isRunning = function(){
