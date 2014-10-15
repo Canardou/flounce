@@ -30,6 +30,7 @@ var loadState = {
 		game.load.image('upgrade', 'asset/sprites/upgrade.png');
 		game.load.image('bumperError', 'asset/sprites/bumperError.png');
 		game.load.image('bumperDisable', 'asset/sprites/bumperDisable.png');
+		game.load.image('sawError', 'asset/sprites/sawErr.png');
 		game.load.image('bone', 'asset/sprites/bone.png');
 		game.load.image('bone_purp', 'asset/sprites/bone_purp.png');
 		game.load.image('skeleton', 'asset/sprites/squeletton_body.png');

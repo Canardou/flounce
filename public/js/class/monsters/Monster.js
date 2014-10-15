@@ -17,9 +17,18 @@ var Monster = function(life, gold, value, strength, decay, damage, hero) {
     this.hero = hero;
 
     this.comboCounter = 0;
+    this.loop = 0;
 
-    this.loop = game.time.events.loop(Phaser.Timer.SECOND / 10, this.stopCombo, this);
+    //this.loop = game.time.events.loop(Phaser.Timer.SECOND / 10, this.stopCombo, this);
 };
+
+Monster.prototype.update = function(){
+    this.loop++;
+    if(this.loop>=6){
+         this.stopCombo();
+         this.loop=0;
+    }
+}
 
 Monster.prototype.stopCombo = function() {
     if (!this.dead) {

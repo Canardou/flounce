@@ -1,13 +1,14 @@
 var TowerPanel = function() {
-	this.sprite = game.add.sprite(0, 950, 'wood_frame');
-	this.sprite.scale.x = 0.24;
-	this.sprite.scale.y = 0.8;
+    this.sprite = game.add.sprite(0, 950, 'wood_frame');
+    this.sprite.scale.x = 0.24;
+    this.sprite.scale.y = 0.8;
 
-	this.towers = [];
+    this.towers = [];
     this.shown = [];
+    this.saws = [];
     this.design;
 
-	game.global.depth[4].add(this.sprite);
+    game.global.depth[4].add(this.sprite);
 };
 
 
@@ -15,30 +16,30 @@ TowerPanel.prototype.setTowers = function(towers) {
     this.towers = towers;
 };
 
-TowerPanel.prototype.activateTower = function() {// A lancer dans Niveau.js ligne 46
-    if(this.shown){
-		while (this.shown.length > 0) {
-			(this.shown.pop()).destroy();
-		}
+TowerPanel.prototype.activateTower = function() { // A lancer dans Niveau.js ligne 46
+    if (this.shown) {
+        while (this.shown.length > 0) {
+            (this.shown.pop()).destroy();
+        }
     }
     for (var i = 0; i < this.towers.length; i++) {
-        
+
         var tower = new this.towers[i]({
             base: 10,
             max: 20
         }, 70, 1000 + (i * 75));
         this.shown.push(tower);
-        tower.drag=true;
-        if(game.global.currentLevel && game.global.currentLevel.hero.gold >= tower.cost[0]){
+        tower.drag = true;
+        if (game.global.currentLevel && game.global.currentLevel.hero.gold >= tower.cost[0]) {
             tower.allowDrag();
         }
-        else{
+        else {
             tower.disable();
         }
-        tower.panel=this;
+        tower.panel = this;
     }
 
-    if(game.global.currentLevel && game.global.currentLevel.countWave === 1)
+    if (game.global.currentLevel && game.global.currentLevel.countWave === 1)
         var showGold = new TextHint('Oh my Gold !', 400, 1045, '#E8B71A');
 };
 
@@ -52,25 +53,28 @@ TowerPanel.prototype.reset = function() {
             max: 20
         }, 70, 1000 + (i * 75));
         this.shown.push(tower);
-        tower.drag=true;
-        if(game.global.currentLevel && game.global.currentLevel.hero.gold >= tower.cost[0]){
+        tower.drag = true;
+        if (game.global.currentLevel && game.global.currentLevel.hero.gold >= tower.cost[0]) {
             tower.allowDrag();
         }
-        else{
-			tower.disable();
+        else {
+            tower.disable();
         }
-        tower.panel=this;
+        tower.panel = this;
     }
 };
 
 TowerPanel.prototype.greyTower = function() {
-	for (var i = this.shown.length - 1; i >= 0; i--) {
-		this.shown[i].disable();
-		this.shown[i].design.input.disableDrag();
-		//this.shown[i].events.onInputUp.removeAll();
-	}
+    for (var i = this.shown.length - 1; i >= 0; i--) {
+        this.shown[i].disable();
+        this.shown[i].design.input.disableDrag();
+        //this.shown[i].events.onInputUp.removeAll();
+    }
+    for (var i in this.saws) {
+        this.saws[i].hide();
+    }
 
-    if(game.global.currentLevel && game.global.currentLevel.countWave === 2)
+    if (game.global.currentLevel && game.global.currentLevel.countWave === 2)
         var showPoints = new TextHint('Hard score gamer ?', 360, 1080, '#ff7f00');
 };
 
@@ -79,5 +83,3 @@ TowerPanel.prototype.destroy = function() {
     this.shown = [];
     this.towers = [];
 };
-
-

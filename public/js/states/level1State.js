@@ -434,45 +434,45 @@ var level1State = {
 		game.global.towers.push(bumper);
 		bumper.panel=game.global.currentLevel.panel;
 		
-		/*bumper = new Saw({
+		bumper = new Saw({
 			base: 10,
 			max: 20
-		}, 540, 200, 'right');
+		}, 545, 200, 'right', true);
 
-		game.global.towers.push(bumper);
+		game.global.currentLevel.panel.saws.push(bumper);
 		bumper.panel=game.global.currentLevel.panel;
 		
 		bumper = new Saw({
 			base: 10,
 			max: 20
-		}, 80, 480, 'left');
+		}, 75, 480, 'left', true);
 
-		game.global.towers.push(bumper);
+		game.global.currentLevel.panel.saws.push(bumper);
 		bumper.panel=game.global.currentLevel.panel;
 		
 		bumper = new Saw({
 			base: 10,
 			max: 20
-		}, 600, 420, 'right');
+		}, 605, 420, 'right', true);
 
-		game.global.towers.push(bumper);
+		game.global.currentLevel.panel.saws.push(bumper);
 		bumper.panel=game.global.currentLevel.panel;
 		
 		bumper = new Saw({
 			base: 10,
 			max: 20
-		}, 600, 620, 'right');
+		}, 605, 620, 'right', true);
 
-		game.global.towers.push(bumper);
+		game.global.currentLevel.panel.saws.push(bumper);
 		bumper.panel=game.global.currentLevel.panel;
 		
 		bumper = new Saw({
 			base: 10,
 			max: 20
-		}, 80, 210, 'left');
+		}, 75, 210, 'left', true);
 
-		game.global.towers.push(bumper);
-		bumper.panel=game.global.currentLevel.panel;*/
+		game.global.currentLevel.panel.saws.push(bumper);
+		bumper.panel=game.global.currentLevel.panel;
 		
 		bumper = new Bumper({
 			base: 10,
@@ -493,6 +493,9 @@ var level1State = {
 		if (game.global.currentLevel.phase === "defending") {
 			for(var i in game.global.towers){
 				game.global.towers[i].update();
+			}
+			for(var i in game.global.monsters){
+				game.global.monsters[i].update();
 			}
 			game.global.currentLevel.currentWave.update();
 			button.visible = false;
