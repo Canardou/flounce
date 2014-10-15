@@ -19,11 +19,11 @@ var Saw = function(damage, x, y, orientation, real) {
     this.x = x;
     this.y = y;
 
-    this.heatLimit = 30;
+    this.heatLimit = 40;
     this.cooldown = 100;
     this.heat = 0;
     this.overHeat = false;
-    this.cost = [500, 750];
+    this.cost = [500, 600];
     this.size = 0.7;
 
     this.design = game.add.sprite(x, y, 'saw', this.level + 1);
@@ -195,7 +195,7 @@ Saw.prototype.deleteTower = function() {
     var that=this;
     this.panel.saws.push(that);
     game.global.towers=game.global.towers.remove(that);
-    this.heatLimit = 30;
+    this.heatLimit = 40;
     this.speed = 1;
     this.level = 0;
     this.monsterHitsTotal = 0;
@@ -237,7 +237,7 @@ Saw.prototype.upgrade = function() {
     else
         this.design.loadTexture('saw', this.level + 2);
     this.speed++;
-    this.heatLimit += 50;
+    this.heatLimit += 40;
     //this.cooldown -= 5;
     /*this.size *= 1.08;
     this.design.scale.set(this.size);
