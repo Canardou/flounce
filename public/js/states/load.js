@@ -33,7 +33,6 @@ var loadState = {
 		game.load.image('bone', 'asset/sprites/bone.png');
 		game.load.image('skeleton', 'asset/sprites/squeletton_body.png');
 		game.load.spritesheet('button', 'asset/sprites/GreenButton.png');
-		game.load.physics('paddle_physics', 'asset/physics/physics.json');
 		game.load.image('circle', 'asset/sprites/placement.png');
 		game.load.image('hand', 'asset/sprites/hand.png');
 		game.load.image('heart', 'asset/sprites/heart.png');
@@ -44,7 +43,7 @@ var loadState = {
 		for(var i=0;i<4;i++){
 			game.load.spritesheet('bumper'+i, 'asset/sprites/bumper'+i+'.png',120,120);
 		}
-
+		game.load.spritesheet('saw', 'asset/sprites/razor.png',120,120);
 		//Loading physics
 		game.load.physics('paddle_physics', 'asset/physics/physics.json');
 

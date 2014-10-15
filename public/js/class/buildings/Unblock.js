@@ -13,3 +13,9 @@ var Unblock = function(x, y){
     this.entity.constraint = game.physics.p2.createRevoluteConstraint(this.entity, [0,0],
         this.entity.pivotPoint, [0, 0]);
 };
+
+Unblock.prototype.destroy = function(){
+    game.physics.p2.removeConstraint(this.entity.constraint);
+    this.entity.pivotPoint.destroy();
+    this.entity.destroy();
+}
