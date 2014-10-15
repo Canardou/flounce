@@ -303,8 +303,8 @@ var level1State = {
 		}, 180, 990, 'left');
 		
 
-		var P_hint = new Hint("P", 8, 430, 1000);
-		var Q_hint = (game.global.language !== 'fr') ? new Hint("Q", 8, 230, 1000): new Hint("A", 5, 230, 1000);
+		var P_hint = new Hint("P", 10, 430, 1000);
+		var Q_hint = (game.global.language !== 'fr') ? new Hint("Q", 10, 230, 1000): new Hint("A", 10, 230, 1000);
 
 		game.physics.p2.enableBody(background);
 
