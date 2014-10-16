@@ -18,10 +18,17 @@ Wave.prototype.update = function(){
 	if(this.loop>=30){
 		if(this.monstersToCreate.length > 0){
 			if(this.monstersToCreate[0].number > 0){
-				this.monstersToCreate[0].number--;
-				this.popMonster(this.monstersToCreate[0]);
+				if(this.monstersToCreate[0].type=="Condition"){
+					if(game.global.monsters.length<this.monstersToCreate[0].number)
+						this.monstersToCreate[0].number=0;
+				}
+				else{
+					this.monstersToCreate[0].number--;
+					if(this.monstersToCreate[0].type!=="Break")
+						this.popMonster(this.monstersToCreate[0]);
+				}
 			}
-			else
+			if(this.monstersToCreate[0].number<=0)
 				this.monstersToCreate.shift();
 		}
 		this.loop=0;

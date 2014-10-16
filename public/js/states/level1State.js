@@ -7,13 +7,13 @@ var level1State = {
 	},
 
 	create: function() {
-		
+
 		game.physics.startSystem(Phaser.Physics.P2JS);
 		game.physics.p2.setBoundsToWorld(true, true, false, true, false);
 		game.physics.p2.gravity.y = 300;
 		game.physics.p2.setImpactEvents(true);
-		game.physics.p2.enableBodySleeping=true;
-		
+		game.physics.p2.enableBodySleeping = true;
+
 		game.global.playerCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.wallsCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.global.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
@@ -28,7 +28,7 @@ var level1State = {
 		game.global.towers = [];
 		game.global.monsters = [];
 
-		var waves = [//To invert order go to Niveau.js lign 35
+		var waves = [ //To invert order go to Niveau.js lign 35
 			//Wawe 9
 			[{
 				"number": 6,
@@ -39,12 +39,10 @@ var level1State = {
 				"strength": 15,
 				"damage": 2,
 				"entry": 'all'
-			},
-			{
+			}, {
 				"number": 30,
 				"type": "Break"
-			},
-			{
+			}, {
 				"number": 6,
 				"type": "Guy",
 				"life": 100,
@@ -64,12 +62,10 @@ var level1State = {
 				"strength": 20,
 				"damage": 5,
 				"entry": [0]
-			},
-			{
+			}, {
 				"number": 6,
 				"type": "Break"
-			},
-			{
+			}, {
 				"number": 7,
 				"type": "Guy",
 				"life": 50,
@@ -88,13 +84,11 @@ var level1State = {
 				"value": 5,
 				"strength": 15,
 				"damage": 1,
-				"entry": [0,1]
-			},
-			{
+				"entry": [0, 1]
+			}, {
 				"number": 20,
 				"type": "Break"
-			},
-			{
+			}, {
 				"number": 5,
 				"type": "Guy",
 				"life": 50,
@@ -113,9 +107,8 @@ var level1State = {
 				"value": 10,
 				"strength": 10,
 				"damage": 1,
-				"entry": [0,1]
-			},
-			{
+				"entry": [0, 1]
+			}, {
 				"number": 5,
 				"type": "Guy",
 				"life": 50,
@@ -134,9 +127,8 @@ var level1State = {
 				"value": 5,
 				"strength": 7,
 				"damage": 1,
-				"entry": [0,1]
-			},
-			{
+				"entry": [0, 1]
+			}, {
 				"number": 3,
 				"type": "Guy",
 				"life": 50,
@@ -145,8 +137,7 @@ var level1State = {
 				"strength": 10,
 				"damage": 1,
 				"entry": [2]
-			},
-			{
+			}, {
 				"number": 4,
 				"type": "Skeleton",
 				"life": 40,
@@ -154,7 +145,7 @@ var level1State = {
 				"value": 5,
 				"strength": 7,
 				"damage": 1,
-				"entry": [0,1]
+				"entry": [0, 1]
 			}],
 			//Wawe 4
 			[{
@@ -165,7 +156,7 @@ var level1State = {
 				"value": 5,
 				"strength": 7,
 				"damage": 1,
-				"entry": [0,1]
+				"entry": [0, 1]
 			}],
 			//Wawe 3
 			[{
@@ -176,13 +167,11 @@ var level1State = {
 				"value": 10,
 				"strength": 7,
 				"damage": 2,
-				"entry": [0,1]
-			},
-			{
+				"entry": [0, 1]
+			}, {
 				"number": 20,
-				"type":"Break"
-			},
-			{
+				"type": "Break"
+			}, {
 				"number": 1,
 				"type": "Guy",
 				"life": 70,
@@ -201,13 +190,11 @@ var level1State = {
 				"value": 5,
 				"strength": 5,
 				"damage": 1,
-				"entry": [0,1]
-			},
-			{
+				"entry": [0, 1]
+			}, {
 				"number": 10,
-				"type":"Break"
-			},
-			{
+				"type": "Break"
+			}, {
 				"number": 4,
 				"type": "Guy",
 				"life": 30,
@@ -215,7 +202,7 @@ var level1State = {
 				"value": 5,
 				"strength": 5,
 				"damage": 1,
-				"entry": [0,1]
+				"entry": [0, 1]
 			}],
 			//Wawe 1
 			[{
@@ -227,14 +214,12 @@ var level1State = {
 				"strength": 5,
 				"damage": 1,
 				"entry": [0],
-				"vx":500,
-				"vy":30
-			},
-			{
+				"vx": 500,
+				"vy": 30
+			}, {
 				"number": 9,
-				"type":"Break"
-			},
-			{
+				"type": "Break"
+			}, {
 				"number": 1,
 				"type": "Guy",
 				"life": 20,
@@ -243,14 +228,12 @@ var level1State = {
 				"strength": 5,
 				"damage": 1,
 				"entry": [1],
-				"vx":5000,
-				"vy":1
-			},
-			{
-				"number": 10,
-				"type":"Break"
-			},
-			{
+				"vx": 5000,
+				"vy": 1
+			}, {
+				"number": 1,
+				"type": "Condition"
+			}, {
 				"number": 4,
 				"type": "Guy",
 				"life": 20,
@@ -258,11 +241,11 @@ var level1State = {
 				"value": 5,
 				"strength": 5,
 				"damage": 1,
-				"entry": [0,1],
+				"entry": [0, 1],
 			}]
 		];
 
-		
+
 
 		game.global.sensors = [];
 		game.physics.p2.world.on("beginContact", function(event) {
@@ -292,7 +275,7 @@ var level1State = {
 		mute.scale.set(0.5);
 		mute.inputEnabled = true;
 		mute.input.useHandCursor = true;
-		mute.events.onInputUp.add(function(){
+		mute.events.onInputUp.add(function() {
 			game.sound.mute = false;
 			mute.kill();
 			unMute.revive();
@@ -302,7 +285,7 @@ var level1State = {
 		unMute.scale.set(0.5);
 		unMute.inputEnabled = true;
 		unMute.input.useHandCursor = true;
-		unMute.events.onInputUp.add(function(){
+		unMute.events.onInputUp.add(function() {
 			game.sound.mute = true;
 			unMute.kill();
 			mute.revive();
@@ -319,10 +302,10 @@ var level1State = {
 			base: 5,
 			max: 6
 		}, 180, 990, 'left');
-		
+
 
 		var P_hint = new Hint("P", 10, 430, 1000);
-		var Q_hint = (game.global.language !== 'fr') ? new Hint("Q", 10, 230, 1000): new Hint("A", 10, 230, 1000);
+		var Q_hint = (game.global.language !== 'fr') ? new Hint("Q", 10, 230, 1000) : new Hint("A", 10, 230, 1000);
 
 		game.physics.p2.enableBody(background);
 
@@ -351,7 +334,7 @@ var level1State = {
 		var key_Q = game.input.keyboard.addKey(Phaser.Keyboard.Q);
 		var spacebar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-		if(game.global.language !== 'fr'){
+		if (game.global.language !== 'fr') {
 			key_A = game.input.keyboard.addKey(Phaser.Keyboard.Q);
 			key_Q = game.input.keyboard.addKey(Phaser.Keyboard.A);
 			key_M = game.input.keyboard.addKey(Phaser.Keyboard.L);
@@ -418,13 +401,13 @@ var level1State = {
 		}, this);
 		button.scale.x = 0.4;
 		button.scale.y = 0.4;
-		
+
 		var bumper = new Bumper({
 			base: 10,
 			max: 20
 		}, 155, 650);
 		game.global.towers.push(bumper);
-		bumper.panel=game.global.currentLevel.panel;
+		bumper.panel = game.global.currentLevel.panel;
 
 		bumper = new Bumper({
 			base: 10,
@@ -432,48 +415,48 @@ var level1State = {
 		}, 420, 550);
 
 		game.global.towers.push(bumper);
-		bumper.panel=game.global.currentLevel.panel;
-		
+		bumper.panel = game.global.currentLevel.panel;
+
 		bumper = new Saw({
 			base: 10,
 			max: 20
 		}, 540, 200, 'right', true);
 
 		game.global.currentLevel.panel.saws.push(bumper);
-		bumper.panel=game.global.currentLevel.panel;
-		
+		bumper.panel = game.global.currentLevel.panel;
+
 		bumper = new Saw({
 			base: 10,
 			max: 20
 		}, 80, 480, 'left', true);
 
 		game.global.currentLevel.panel.saws.push(bumper);
-		bumper.panel=game.global.currentLevel.panel;
-		
+		bumper.panel = game.global.currentLevel.panel;
+
 		bumper = new Saw({
 			base: 10,
 			max: 20
 		}, 600, 420, 'right', true);
 
 		game.global.currentLevel.panel.saws.push(bumper);
-		bumper.panel=game.global.currentLevel.panel;
-		
+		bumper.panel = game.global.currentLevel.panel;
+
 		bumper = new Saw({
 			base: 10,
 			max: 20
 		}, 600, 620, 'right', true);
 
 		game.global.currentLevel.panel.saws.push(bumper);
-		bumper.panel=game.global.currentLevel.panel;
-		
+		bumper.panel = game.global.currentLevel.panel;
+
 		bumper = new Saw({
 			base: 10,
 			max: 20
 		}, 80, 210, 'left', true);
 
 		game.global.currentLevel.panel.saws.push(bumper);
-		bumper.panel=game.global.currentLevel.panel;
-		
+		bumper.panel = game.global.currentLevel.panel;
+
 		bumper = new Bumper({
 			base: 10,
 			max: 20
@@ -481,46 +464,49 @@ var level1State = {
 		bumper.drag = true;
 		bumper.heatLimit = 10;
 		game.global.towers.push(bumper);
-		
+
 		game.global.unblocks = [];
-		game.global.unblocks.push(new Unblock(270,420));
-		game.global.unblocks.push(new Unblock(100,740));
-		game.global.unblocks.push(new Unblock(540,700));
+		game.global.unblocks.push(new Unblock(270, 420));
+		game.global.unblocks.push(new Unblock(100, 740));
+		game.global.unblocks.push(new Unblock(540, 700));
 	},
 
 	update: function() {
 
 		if (game.global.currentLevel.phase === "defending") {
-			for(var i in game.global.towers){
+			for (var i in game.global.towers) {
 				game.global.towers[i].update();
 			}
-			for(var i in game.global.monsters){
+			for (var i in game.global.monsters) {
 				game.global.monsters[i].update();
 			}
 			game.global.currentLevel.currentWave.update();
 			button.visible = false;
+			if (game.global.monsters.length === 0 && !game.global.currentLevel.currentWave.isRunning()) {
+				if (game.global.currentLevel.waves.length > 0)
+					game.global.currentLevel.construct();
+				else if (!game.global.currentLevel.won) {
+					game.global.currentLevel.won = true;
+					setTimeout(function() {
+						game.global.currentLevel.endLevel();
+					}, Phaser.Timer.SECOND * 5);
+				}
+			}
 		}
 		else if (game.global.currentLevel.phase === "constructing" && !game.global.currentLevel.hero.dead) {
-			if(game.global.currentLevel.countWave === 1){
-				game.time.events.add(5000, function(){button.visible = true;});
+			if (game.global.currentLevel.countWave === 1) {
+				game.time.events.add(5000, function() {
+					button.visible = true;
+				});
 			}
-			else{
+			else {
 				button.visible = true;
 			}
 		}
-		if (game.global.monsters.length ===0 && game.global.currentLevel.hero.monsterKilledDuringCurrentWave >= game.global.currentLevel.currentWave.totalMonster) {
-			if (game.global.currentLevel.waves.length > 0)
-				game.global.currentLevel.construct();
-			else if (!game.global.currentLevel.won) {
-				game.global.currentLevel.won = true;
-				setTimeout(function() {
-					game.global.currentLevel.endLevel();
-				}, Phaser.Timer.SECOND * 5);
-			}
-		}
+
 	},
 
 	render: function() {
-	
+
 	},
 };
