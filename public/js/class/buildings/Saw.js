@@ -20,7 +20,6 @@ var Saw = function(damage, x, y, orientation, real) {
     this.y = y;
 
     this.heatLimit = 40;
-    this.cooldown = 100;
     this.heat = 0;
     this.overHeat = false;
     this.cost = [500, 600];
@@ -59,6 +58,7 @@ var Saw = function(damage, x, y, orientation, real) {
     this.loop = 0;
     this.animation = 0;
     this.speed = 1;
+    this.cooldown = 0;
 
     this.allowInput();
     if (real) {
@@ -115,6 +115,7 @@ Saw.prototype.hit = function(bumper, part) {
                     //text !
                     this.totalDamage += retour.damage;
                     this.monsterHits++;
+                    this.monsterHitsTotal++;
                     var combo = entity.combo;
                     if (combo > 0) {
                         var onoma = game.add.text(this.entity.x - 25 * cos(angle), this.entity.y - 25 * sin(angle), 'x' + (combo + 1), {
@@ -167,6 +168,7 @@ Saw.prototype.update = function() {
     this.loop++;
     this.animation += this.speed;
     if (this.loop >= 6) {
+        this.cooldown++;
         this.decreaseHeat();
         this.loop = 0;
     }
@@ -206,8 +208,10 @@ Saw.prototype.deleteTower = function() {
 
 Saw.prototype.decreaseHeat = function() {
     if (this.heat > 0) {
-        if (this.animation / 36 === Math.floor(this.animation / 36))
+        if (this.cooldown >= 6 / this.speed){
             this.heat--;
+            this.cooldown=0;
+        }
         this.design.body.x = this.x + this.direction * this.heat / this.heatLimit * 40;
         this.entity.pivotPoint.body.x = this.x + this.direction * this.heat / this.heatLimit * 40;
     }
