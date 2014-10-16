@@ -41,11 +41,11 @@ Monster.prototype.stopCombo = function() {
     }
 }
 
-Monster.prototype.stop = function() {
+Monster.prototype.stop = function(x,y) {
     for (var item in this.parts) {
         //this.parts[item].body.collideWorldBounds=true;
-        this.parts[item].body.velocity.y = 0;
-        this.parts[item].body.velocity.x = 0;
+        this.parts[item].body.velocity.y = y;
+        this.parts[item].body.velocity.x = x;
     }
 }
 

@@ -196,6 +196,14 @@
 					"filter": { "categoryBits": 1, "maskBits": 65535 },
 					"shape": [ 650,880 , 650,1100,  460,1100 , 460,980, 560,880 ]
 				}
+		],
+		"rubick": [
+			
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   40, 5  ,  75, 15  ,  70, 62 , 40,75 , 18, 60 , 5,15  ]
+				}
 		]
 		
 	}
