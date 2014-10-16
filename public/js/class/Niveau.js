@@ -17,7 +17,7 @@ var Niveau = function(waves, initialHeroLife, initialHeroGold, entries, difficul
 	this.panel = new TowerPanel();
 	this.startingWave = game.add.audio('startingWave');
 	this.startingWave.volume = 0.5;
-	this.panel.setTowers([Bumper]);
+	//this.panel.setTowers([Bumper]);
 	this.panel.activateTower();
 	this.panel.greyTower();
 	this.entries = def(entries, [new Entree(100, -100), new Entree(400, -100)]);
@@ -53,15 +53,14 @@ Niveau.prototype.construct = function(){
 	for(var i in towers){
 		towers[i].reset();
 	}
-	if(this.countWave === 1 && this.level === 0)
+	if(this.countWave === 1 && this.level === 0){
 		dragExample();
+		Saw.prototype.available=2;
+	}
 	this.hero.monsterKilledDuringCurrentWave = 0;
 	this.hero.changeGold(250);
 	//Show all the consruction panel
-	if(this.countWave>3 && this.level === 0)
-		this.panel.setTowers([Bumper,Saw]);
-	else
-		this.panel.setTowers([Bumper]);
+	this.panel.setTowers([Bumper,Saw]);
 	this.panel.activateTower();
 };
 

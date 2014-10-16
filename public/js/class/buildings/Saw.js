@@ -9,6 +9,8 @@ var Saw = function(damage, x, y, orientation, real) {
         critMult: def(damage.critMult, 2),
         critOdds: def(damage.critOdds, 0)
     };
+    
+    
 
     this.direction = 1;
     if (orientation == 'left') {
@@ -59,6 +61,7 @@ var Saw = function(damage, x, y, orientation, real) {
     this.animation = 0;
     this.speed = 1;
     this.cooldown = 0;
+    
 
     this.allowInput();
     if (real) {
@@ -204,6 +207,7 @@ Saw.prototype.deleteTower = function() {
     this.monsterHits = 0;
     this.reset();
     this.hide();
+    this.panel.reset();
 };
 
 Saw.prototype.decreaseHeat = function() {
@@ -283,6 +287,7 @@ Saw.prototype.upgrade = function() {
 Saw.prototype.checkValidity = function(bool) {
     if (bool) {
         this.current=null;
+        this.valid=false;
         game.physics.p2.removeConstraint(this.entity.constraint);
         this.entity.constraint = null;
         this.entity.body.destroy();
@@ -321,6 +326,7 @@ Saw.prototype.disable = function() {
 }
 
 Saw.prototype.designCheck = function() {
+    this.valid=false;
     if (this.entity) {
         for (var i in this.panel.saws) {
             if (Math.sqrt((this.entity.x - this.panel.saws[i].entity.x) * (this.entity.x - this.panel.saws[i].entity.x) + (this.entity.y - this.panel.saws[i].entity.y) * (this.entity.y - this.panel.saws[i].entity.y)) < 80){
@@ -332,8 +338,6 @@ Saw.prototype.designCheck = function() {
                 this.panel.saws[i].entity.loadTexture('sawError');
         }
     }
-    else
-        this.valid = false;
     /*this.check.body.reset(this.design.x, this.design.y, true);
     if (this.check.body.overlap > 0) {
         this.valid = false;

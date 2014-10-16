@@ -22,6 +22,8 @@ var Building = function(damage, cost) {
     this.buttons = false;
 };
 
+Building.prototype.available = 0;
+
 Building.prototype.getDamage = function(body1, body2) {
     if (rand(100, 0) < this.damage.critOdds)
         return {
