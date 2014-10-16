@@ -31,21 +31,36 @@ var level1State = {
 		var waves = [ //To invert order go to Niveau.js lign 35
 			//Wawe 9
 			[{
-				"number": 6,
+				"number": 5,
 				"type": "Guy",
-				"life": 100,
+				"life": 80,
 				"gold": 25,
 				"value": 12,
 				"strength": 15,
 				"damage": 2,
 				"entry": 'all'
-			}, {
+			},{
 				"number": 30,
 				"type": "Break"
-			}, {
-				"number": 6,
+			},{
+				"number": 7,
 				"type": "Guy",
-				"life": 100,
+				"life": 80,
+				"gold": 25,
+				"value": 12,
+				"strength": 15,
+				"damage": 2,
+				"entry": 'all'
+			},{
+				"number": 7,
+				"type": "Condition"
+			},{
+				"number": 15,
+				"type": "Break"
+			},{
+				"number": 7,
+				"type": "Guy",
+				"life": 80,
 				"gold": 25,
 				"value": 12,
 				"strength": 15,
@@ -63,10 +78,22 @@ var level1State = {
 				"damage": 5,
 				"entry": [0]
 			}, {
-				"number": 6,
+				"number": 10,
 				"type": "Break"
 			}, {
 				"number": 7,
+				"type": "Guy",
+				"life": 50,
+				"gold": 25,
+				"value": 10,
+				"strength": 10,
+				"damage": 1,
+				"entry": 'all'
+			},{
+				"number": 4,
+				"type": "Condition"
+			},{
+				"number": 4,
 				"type": "Guy",
 				"life": 50,
 				"gold": 25,
@@ -86,10 +113,10 @@ var level1State = {
 				"damage": 1,
 				"entry": [0, 1]
 			}, {
-				"number": 20,
-				"type": "Break"
+				"number": 1,
+				"type": "Condition"
 			}, {
-				"number": 5,
+				"number": 7,
 				"type": "Guy",
 				"life": 50,
 				"gold": 25,
@@ -100,7 +127,7 @@ var level1State = {
 			}],
 			//Wawe 6
 			[{
-				"number": 5,
+				"number": 7,
 				"type": "Guy",
 				"life": 50,
 				"gold": 25,
@@ -108,8 +135,23 @@ var level1State = {
 				"strength": 10,
 				"damage": 1,
 				"entry": [0, 1]
+			},{
+				"number": 3,
+				"type": "Condition"
 			}, {
 				"number": 5,
+				"type": "Guy",
+				"life": 50,
+				"gold": 25,
+				"value": 10,
+				"strength": 10,
+				"damage": 1,
+				"entry": 'all'
+			},{
+				"number": 5,
+				"type": "Condition"
+			}, {
+				"number": 3,
 				"type": "Guy",
 				"life": 50,
 				"gold": 25,
@@ -137,8 +179,11 @@ var level1State = {
 				"strength": 10,
 				"damage": 1,
 				"entry": [2]
+			},{
+				"number": 5,
+				"type": "Condition"
 			}, {
-				"number": 4,
+				"number": 7,
 				"type": "Skeleton",
 				"life": 40,
 				"gold": 15,
@@ -149,7 +194,19 @@ var level1State = {
 			}],
 			//Wawe 4
 			[{
-				"number": 10,
+				"number": 7,
+				"type": "Skeleton",
+				"life": 40,
+				"gold": 15,
+				"value": 5,
+				"strength": 7,
+				"damage": 1,
+				"entry": [0, 1]
+			},{
+				"number": 5,
+				"type": "Condition"
+			},{
+				"number": 7,
 				"type": "Skeleton",
 				"life": 40,
 				"gold": 15,

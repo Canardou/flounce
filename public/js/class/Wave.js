@@ -3,10 +3,6 @@ var Wave = function(monstersToCreate, hero, number, entrees) {
     this.monstersToCreate = monstersToCreate;
     this.hero = hero;
     this.number = number;
-    this.totalMonster = 0;
-    for (var i = monstersToCreate.length - 1; i >= 0; i--) {
-		this.totalMonster+=monstersToCreate[i].number;
-    }
     this.end = false;
     this.hero = hero;
     this.entrees = def(entrees, [new Entree(100, -100), new Entree(400, -100)]);
@@ -57,9 +53,6 @@ Wave.prototype.popMonster = function(toSummon){
 	}
 	else if(toSummon.type === "Rubick") {
 		aliveMonster = new Rubick(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,toSummon.life * weigth, toSummon.gold * weigth,  toSummon.value * weigth, toSummon.strength, false, toSummon.damage, this.hero,  toSummon.vx, toSummon.vy);
-	}
-	else if(toSummon.type === "Break") {
-		game.global.currentLevel.currentWave.totalMonster--;
 	}
 	/*else { //banan ;)
 		aliveMonster = new Banan(life * weigth, gold * weigth, value * weigth, strength, entreeToUse);  
