@@ -156,10 +156,7 @@ Saw.prototype.hit = function(bumper, part) {
 
                 if (entity.life > 0) {
                     //part.sprite.entity.stop();
-                    part.velocity.x = -2000 * cos(angle + this.direction * pi / 2);
-                    entity.body.velocity.x = -3000 * cos(angle + this.direction * pi / 2);
-                    part.velocity.y = -2000 * sin(angle + this.direction * pi / 2);
-                    entity.body.velocity.y = -3000 * sin(angle + this.direction * pi / 2);;
+                    part.sprite.entity.stop(-500 * cos(angle + this.direction * pi / 2),-400 * sin(angle + this.direction * pi / 2));
                 }
             }
         }

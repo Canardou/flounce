@@ -56,9 +56,9 @@ var level1State = {
 			}],
 			//Wawe 8 boss
 			[{
-				"number": 1,
-				"type": "Skeleton",
-				"life": 300,
+				"number": 3,
+				"type": "Rubick",
+				"life": 100,
 				"gold": 100,
 				"value": 25,
 				"strength": 20,
@@ -219,9 +219,9 @@ var level1State = {
 			}],
 			//Wawe 1
 			[{
-				"number": 80,
-				"type": "Rubick",
-				"life": 200,
+				"number": 1,
+				"type": "Guy",
+				"life": 20,
 				"gold": 25,
 				"value": 5,
 				"strength": 5,

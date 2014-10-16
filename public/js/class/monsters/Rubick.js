@@ -4,7 +4,7 @@ var Rubick = function(x, y, life, gold, value, strength, decay, damage, hero, vx
 
     this.lifeMax=life;
     //Guuuuuuuyyyyy !
-    var chest = game.add.sprite(x, y, 'rubick', 0);
+    var chest = game.add.sprite(x, y, 'rubick', Math.floor(Math.random()*2));
     this.parts.push(chest);
     chest.scale.set(0.3);
     game.physics.p2.enableBody(chest);
@@ -12,8 +12,8 @@ var Rubick = function(x, y, life, gold, value, strength, decay, damage, hero, vx
     //chest.body.clearShapes();
     //chest.body.loadPolygon('paddle_physics', 'rubick');
     this.body=chest.body;
-    this.body.velocity.x=def(vx,0);
-    this.body.velocity.y=-def(vy,0);
+    this.body.velocity.x=def(vx,Math.random()*200-100);
+    this.body.velocity.y=-def(vy,Math.random()*100);
     chest.entity=this;
     game.global.depth[1].add(chest);
     
