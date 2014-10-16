@@ -167,33 +167,27 @@ Bumper.prototype.upgrade = function() {
     this.entity.body.collides(game.global.enemiesCollisionGroup, this.hit, this);
     this.entity.body.collides(game.global.limbsCollisionGroup);
 
-    /*switch (this.level) {
+    switch (this.level) {
         case 1:
             this.damage = {
-                base: 10,
-                max: 20,
-                critMult: 2,
-                critOdds: 1
+                base: 12,
+                max: 22
             };
             //default
             break;
         case 2:
             this.damage = {
                 base: 15,
-                max: 35,
-                critMult: 2.5,
-                critOdds: 1
+                max: 25
             };
             break;
         case 3:
             this.damage = {
                 base: 20,
-                max: 50,
-                critMult: 3,
-                critOdds: 1
+                max: 35
             };
             break;
-    }*/
+    }
 };
 
 Bumper.prototype.checkValidity = function(bool) {

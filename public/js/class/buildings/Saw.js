@@ -4,8 +4,8 @@ var Saw = function(damage, x, y, orientation, real) {
     this.bump2 = game.add.audio('bump2');
     this.levelMax = 1;
     this.damage = {
-        base: 5,
-        max: 10,
+        base: 12,
+        max: 22,
         critMult: def(damage.critMult, 2),
         critOdds: def(damage.critOdds, 0)
     };
@@ -232,11 +232,11 @@ Saw.prototype.destroy = function() {
 
 Saw.prototype.show = function() {
     this.design.revive();
-}
+};
 
 Saw.prototype.hide = function() {
     this.design.kill();
-}
+};
 
 Saw.prototype.upgrade = function() {
     this.level++;
@@ -246,6 +246,12 @@ Saw.prototype.upgrade = function() {
         this.design.loadTexture('saw', this.level + 2);
     this.speed++;
     this.heatLimit += 40;
+    this.damage = {
+                base: 20,
+                max: 35,
+                critMult: 2,
+                critOdds: 1
+            };
     //this.cooldown -= 5;
     /*this.size *= 1.08;
     this.design.scale.set(this.size);
