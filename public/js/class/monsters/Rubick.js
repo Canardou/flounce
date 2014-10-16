@@ -6,10 +6,11 @@ var Rubick = function(x, y, life, gold, value, strength, decay, damage, hero, vx
     //Guuuuuuuyyyyy !
     var chest = game.add.sprite(x, y, 'rubick', 0);
     this.parts.push(chest);
-    chest.scale.set(0.5);
+    chest.scale.set(0.3);
     game.physics.p2.enableBody(chest);
-    chest.body.clearShapes();
-    chest.body.loadPolygon('paddle_physics', 'rubick');
+    chest.body.setRectangle(30,30);
+    //chest.body.clearShapes();
+    //chest.body.loadPolygon('paddle_physics', 'rubick');
     this.body=chest.body;
     this.body.velocity.x=def(vx,0);
     this.body.velocity.y=-def(vy,0);

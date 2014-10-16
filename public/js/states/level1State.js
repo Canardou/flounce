@@ -219,7 +219,7 @@ var level1State = {
 			}],
 			//Wawe 1
 			[{
-				"number": 1,
+				"number": 80,
 				"type": "Rubick",
 				"life": 200,
 				"gold": 25,
