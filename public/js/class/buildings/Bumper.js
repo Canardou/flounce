@@ -93,11 +93,7 @@ Bumper.prototype.hit = function(bumper, part) {
                 }
 
                 if (entity.life > 0) {
-                    part.sprite.entity.stop();
-                    part.velocity.x = -3000 * cos(angle);
-                    part.velocity.y = -3000 * sin(angle);
-                    entity.body.velocity.x = -5000 * cos(angle);
-                    entity.body.velocity.y = -5000 * sin(angle);
+                    part.sprite.entity.stop(-500 * cos(angle),-500 * sin(angle));
                 }
                 this.design.x = this.entity.x + 5 * cos(angle);
                 this.design.y = this.entity.y + 5 * sin(angle);

@@ -220,8 +220,8 @@ var level1State = {
 			//Wawe 1
 			[{
 				"number": 1,
-				"type": "Guy",
-				"life": 20,
+				"type": "Rubick",
+				"life": 200,
 				"gold": 25,
 				"value": 5,
 				"strength": 5,
@@ -437,7 +437,7 @@ var level1State = {
 		bumper = new Saw({
 			base: 10,
 			max: 20
-		}, 545, 200, 'right', true);
+		}, 540, 200, 'right', true);
 
 		game.global.currentLevel.panel.saws.push(bumper);
 		bumper.panel=game.global.currentLevel.panel;
@@ -445,7 +445,7 @@ var level1State = {
 		bumper = new Saw({
 			base: 10,
 			max: 20
-		}, 75, 480, 'left', true);
+		}, 80, 480, 'left', true);
 
 		game.global.currentLevel.panel.saws.push(bumper);
 		bumper.panel=game.global.currentLevel.panel;
@@ -453,7 +453,7 @@ var level1State = {
 		bumper = new Saw({
 			base: 10,
 			max: 20
-		}, 605, 420, 'right', true);
+		}, 600, 420, 'right', true);
 
 		game.global.currentLevel.panel.saws.push(bumper);
 		bumper.panel=game.global.currentLevel.panel;
@@ -461,7 +461,7 @@ var level1State = {
 		bumper = new Saw({
 			base: 10,
 			max: 20
-		}, 605, 620, 'right', true);
+		}, 600, 620, 'right', true);
 
 		game.global.currentLevel.panel.saws.push(bumper);
 		bumper.panel=game.global.currentLevel.panel;
@@ -469,7 +469,7 @@ var level1State = {
 		bumper = new Saw({
 			base: 10,
 			max: 20
-		}, 75, 210, 'left', true);
+		}, 80, 210, 'left', true);
 
 		game.global.currentLevel.panel.saws.push(bumper);
 		bumper.panel=game.global.currentLevel.panel;
