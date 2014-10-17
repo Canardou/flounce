@@ -63,7 +63,7 @@ Niveau.prototype.construct = function(){
 };
 
 Niveau.prototype.endLevel = function(){
-	if (this.waves.length === 0 && (this.hero.monsterKilledDuringCurrentWave === this.currentWave.totalMonster)) {
+	if (this.waves.length === 0 && game.global.monsters.length === 0 && !game.global.currentLevel.currentWave.isRunning()) {
 		game.state.start('end');
 	}
 };
