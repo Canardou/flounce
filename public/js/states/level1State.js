@@ -29,6 +29,38 @@ var level1State = {
 		game.global.monsters = [];
 
 		var waves = [ //To invert order go to Niveau.js lign 35
+			//Wave 10
+			[{
+				"number": 1,
+				"type": "Rubick",
+				"life": 500,
+				"gold": 500,
+				"value": 100,
+				"strength": 20,
+				"damage": 5,
+				"entry": 'all'
+			},{
+				"number": 5,
+				"type": "Guy",
+				"life": 80,
+				"gold": 25,
+				"value": 12,
+				"strength": 15,
+				"damage": 1,
+				"entry": 'all'
+			}, {
+				"number": 2,
+				"type": "Condition"
+			},{
+				"number": 5,
+				"type": "Guy",
+				"life": 80,
+				"gold": 25,
+				"value": 12,
+				"strength": 15,
+				"damage": 1,
+				"entry": 'all'
+			}],
 			//Wawe 9
 			[{
 				"number": 5,
@@ -37,27 +69,27 @@ var level1State = {
 				"gold": 25,
 				"value": 12,
 				"strength": 15,
-				"damage": 2,
+				"damage": 1,
 				"entry": 'all'
-			},{
+			}, {
 				"number": 30,
 				"type": "Break"
-			},{
+			}, {
 				"number": 7,
 				"type": "Guy",
 				"life": 80,
 				"gold": 25,
 				"value": 12,
 				"strength": 15,
-				"damage": 2,
+				"damage": 1,
 				"entry": 'all'
-			},{
+			}, {
 				"number": 7,
 				"type": "Condition"
-			},{
+			}, {
 				"number": 15,
 				"type": "Break"
-			},{
+			}, {
 				"number": 7,
 				"type": "Guy",
 				"life": 80,
@@ -75,7 +107,7 @@ var level1State = {
 				"gold": 100,
 				"value": 25,
 				"strength": 20,
-				"damage": 5,
+				"damage": 3,
 				"entry": [0]
 			}, {
 				"number": 10,
@@ -89,10 +121,10 @@ var level1State = {
 				"strength": 10,
 				"damage": 1,
 				"entry": 'all'
-			},{
+			}, {
 				"number": 4,
 				"type": "Condition"
-			},{
+			}, {
 				"number": 4,
 				"type": "Guy",
 				"life": 50,
@@ -135,7 +167,7 @@ var level1State = {
 				"strength": 10,
 				"damage": 1,
 				"entry": [0, 1]
-			},{
+			}, {
 				"number": 3,
 				"type": "Condition"
 			}, {
@@ -147,7 +179,7 @@ var level1State = {
 				"strength": 10,
 				"damage": 1,
 				"entry": 'all'
-			},{
+			}, {
 				"number": 5,
 				"type": "Condition"
 			}, {
@@ -179,7 +211,7 @@ var level1State = {
 				"strength": 10,
 				"damage": 1,
 				"entry": [2]
-			},{
+			}, {
 				"number": 5,
 				"type": "Condition"
 			}, {
@@ -202,10 +234,10 @@ var level1State = {
 				"strength": 7,
 				"damage": 1,
 				"entry": [0, 1]
-			},{
+			}, {
 				"number": 5,
 				"type": "Condition"
-			},{
+			}, {
 				"number": 7,
 				"type": "Skeleton",
 				"life": 40,
