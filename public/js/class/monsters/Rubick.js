@@ -12,6 +12,7 @@ var Rubick = function(x, y, life, gold, value, strength, decay, damage, hero, vx
     //chest.body.clearShapes();
     //chest.body.loadPolygon('paddle_physics', 'rubick');
     this.body=chest.body;
+    this.body.mass = 25;
     this.body.velocity.x=def(vx,Math.random()*200-100);
     this.body.velocity.y=-def(vy,Math.random()*100);
     chest.entity=this;

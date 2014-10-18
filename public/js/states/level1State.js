@@ -22,6 +22,14 @@ var level1State = {
         game.global.limbsCollisionGroup = game.physics.p2.createCollisionGroup();
         game.global.voidCollisionGroup = game.physics.p2.createCollisionGroup();
         game.global.checkCollisionGroup = game.physics.p2.createCollisionGroup();
+
+        game.global.monsterMaterial = game.physics.p2.createMaterial('monsterMaterial');
+        game.global.wallMaterial = game.physics.p2.createMaterial('wallMaterial');
+
+        /*game.global.contactMaterial = game.physics.p2.createContactMaterial(game.global.monsterMaterial, game.global.wallMaterial, {
+                restitution : 0.5
+            });*/
+
         game.global.depth = [];
         for (var i = 0; i < 20; i++) {
             game.global.depth[i] = game.add.group();
@@ -62,278 +70,279 @@ var level1State = {
                 "strength": 15,
                 "damage": 1,
                 "entry": 'all'
-            }],
-            //Wawe 9
-            [{
-                "number": 5,
-                "type": "Guy",
-                "life": 80,
-                "gold": 25,
-                "value": 12,
-                "strength": 15,
-                "damage": 1,
-                "entry": 'all'
-            }, {
-                "number": 20,
-                "type": "Break"
-            }, {
-                "number": 7,
-                "type": "Guy",
-                "life": 80,
-                "gold": 25,
-                "value": 12,
-                "strength": 15,
-                "damage": 1,
-                "entry": 'all'
-            }, {
-                "number": 7,
-                "type": "Condition"
-            }, {
-                "number": 15,
-                "type": "Break"
-            }, {
-                "number": 7,
-                "type": "Guy",
-                "life": 80,
-                "gold": 25,
-                "value": 12,
-                "strength": 15,
-                "damage": 2,
-                "entry": 'all'
-            }],
-            //Wawe 8 boss
-            [{
-                "number": 3,
-                "type": "Charlie",
-                "life": 100,
-                "gold": 100,
-                "value": 25,
-                "strength": 20,
-                "damage": 3,
-                "entry": [0]
-            }, {
-                "number": 10,
-                "type": "Break"
-            }, {
-                "number": 7,
-                "type": "Guy",
-                "life": 50,
-                "gold": 25,
-                "value": 10,
-                "strength": 10,
-                "damage": 1,
-                "entry": 'all'
-            }, {
-                "number": 4,
-                "type": "Condition"
-            }, {
-                "number": 7,
-                "type": "Guy",
-                "life": 50,
-                "gold": 25,
-                "value": 10,
-                "strength": 10,
-                "damage": 1,
-                "entry": 'all'
-            }],
-            //Wawe 7
-            [{
-                "number": 3,
-                "type": "Skeleton",
-                "life": 40,
-                "gold": 15,
-                "value": 5,
-                "strength": 15,
-                "damage": 1,
-                "entry": [0, 1]
-            }, {
-                "number": 1,
-                "type": "Condition"
-            }, {
-                "number": 7,
-                "type": "Guy",
-                "life": 50,
-                "gold": 25,
-                "value": 10,
-                "strength": 10,
-                "damage": 1,
-                "entry": 'all'
-            }],
-            //Wawe 6
-            [{
-                "number": 7,
-                "type": "Guy",
-                "life": 50,
-                "gold": 25,
-                "value": 10,
-                "strength": 10,
-                "damage": 1,
-                "entry": [0, 1]
-            }, {
-                "number": 3,
-                "type": "Condition"
-            }, {
-                "number": 5,
-                "type": "Guy",
-                "life": 50,
-                "gold": 25,
-                "value": 10,
-                "strength": 10,
-                "damage": 1,
-                "entry": 'all'
-            }, {
-                "number": 5,
-                "type": "Condition"
-            }, {
-                "number": 3,
-                "type": "Guy",
-                "life": 50,
-                "gold": 25,
-                "value": 10,
-                "strength": 10,
-                "damage": 1,
-                "entry": 'all'
-            }],
-            //Wawe 5
-            [{
-                "number": 4,
-                "type": "Skeleton",
-                "life": 40,
-                "gold": 15,
-                "value": 5,
-                "strength": 7,
-                "damage": 1,
-                "entry": [0, 1]
-            }, {
-                "number": 3,
-                "type": "Guy",
-                "life": 50,
-                "gold": 25,
-                "value": 5,
-                "strength": 10,
-                "damage": 1,
-                "entry": [2]
-            }, {
-                "number": 5,
-                "type": "Condition"
-            }, {
-                "number": 7,
-                "type": "Skeleton",
-                "life": 40,
-                "gold": 15,
-                "value": 5,
-                "strength": 7,
-                "damage": 1,
-                "entry": [0, 1]
-            }],
-            //Wawe 4
-            [{
-                "number": 7,
-                "type": "Skeleton",
-                "life": 40,
-                "gold": 15,
-                "value": 5,
-                "strength": 7,
-                "damage": 1,
-                "entry": [0, 1]
-            }, {
-                "number": 5,
-                "type": "Condition"
-            }, {
-                "number": 7,
-                "type": "Skeleton",
-                "life": 40,
-                "gold": 15,
-                "value": 5,
-                "strength": 7,
-                "damage": 1,
-                "entry": [0, 1]
-            }],
-            //Wawe 3
-            [{
-                "number": 2,
-                "type": "Guy",
-                "life": 70,
-                "gold": 50,
-                "value": 10,
-                "strength": 7,
-                "damage": 2,
-                "entry": [0, 1]
-            }, {
-                "number": 20,
-                "type": "Break"
-            }, {
-                "number": 1,
-                "type": "Guy",
-                "life": 70,
-                "gold": 50,
-                "value": 5,
-                "strength": 7,
-                "damage": 1,
-                "entry": [2]
-            }],
-            //Wawe 2
-            [{
-                "number": 4,
-                "type": "Guy",
-                "life": 30,
-                "gold": 25,
-                "value": 5,
-                "strength": 5,
-                "damage": 1,
-                "entry": [0, 1]
-            }, {
-                "number": 10,
-                "type": "Break"
-            }, {
-                "number": 4,
-                "type": "Guy",
-                "life": 30,
-                "gold": 25,
-                "value": 5,
-                "strength": 5,
-                "damage": 1,
-                "entry": [0, 1]
-            }],
-            //Wawe 1
-            [{
-                "number": 1,
-                "type": "Guy",
-                "life": 20,
-                "gold": 25,
-                "value": 5,
-                "strength": 5,
-                "damage": 1,
-                "entry": [0],
-                "vx": 500,
-                "vy": 30
-            }, {
-                "number": 9,
-                "type": "Break"
-            }, {
-                "number": 1,
-                "type": "Guy",
-                "life": 20,
-                "gold": 25,
-                "value": 5,
-                "strength": 5,
-                "damage": 1,
-                "entry": [1],
-                "vx": 5000,
-                "vy": 1
-            }, {
-                "number": 1,
-                "type": "Condition"
-            }, {
-                "number": 4,
-                "type": "Guy",
-                "life": 20,
-                "gold": 25,
-                "value": 5,
-                "strength": 5,
-                "damage": 1,
-                "entry": [0, 1],
             }]
+            /*,
+                        //Wawe 9
+                        [{
+                            "number": 5,
+                            "type": "Guy",
+                            "life": 80,
+                            "gold": 25,
+                            "value": 12,
+                            "strength": 15,
+                            "damage": 1,
+                            "entry": 'all'
+                        }, {
+                            "number": 20,
+                            "type": "Break"
+                        }, {
+                            "number": 7,
+                            "type": "Guy",
+                            "life": 80,
+                            "gold": 25,
+                            "value": 12,
+                            "strength": 15,
+                            "damage": 1,
+                            "entry": 'all'
+                        }, {
+                            "number": 7,
+                            "type": "Condition"
+                        }, {
+                            "number": 15,
+                            "type": "Break"
+                        }, {
+                            "number": 7,
+                            "type": "Guy",
+                            "life": 80,
+                            "gold": 25,
+                            "value": 12,
+                            "strength": 15,
+                            "damage": 2,
+                            "entry": 'all'
+                        }],
+                        //Wawe 8 boss
+                        [{
+                            "number": 3,
+                            "type": "Charlie",
+                            "life": 100,
+                            "gold": 100,
+                            "value": 25,
+                            "strength": 20,
+                            "damage": 3,
+                            "entry": [0]
+                        }, {
+                            "number": 10,
+                            "type": "Break"
+                        }, {
+                            "number": 7,
+                            "type": "Guy",
+                            "life": 50,
+                            "gold": 25,
+                            "value": 10,
+                            "strength": 10,
+                            "damage": 1,
+                            "entry": 'all'
+                        }, {
+                            "number": 4,
+                            "type": "Condition"
+                        }, {
+                            "number": 7,
+                            "type": "Guy",
+                            "life": 50,
+                            "gold": 25,
+                            "value": 10,
+                            "strength": 10,
+                            "damage": 1,
+                            "entry": 'all'
+                        }],
+                        //Wawe 7
+                        [{
+                            "number": 3,
+                            "type": "Skeleton",
+                            "life": 40,
+                            "gold": 15,
+                            "value": 5,
+                            "strength": 15,
+                            "damage": 1,
+                            "entry": [0, 1]
+                        }, {
+                            "number": 1,
+                            "type": "Condition"
+                        }, {
+                            "number": 7,
+                            "type": "Guy",
+                            "life": 50,
+                            "gold": 25,
+                            "value": 10,
+                            "strength": 10,
+                            "damage": 1,
+                            "entry": 'all'
+                        }],
+                        //Wawe 6
+                        [{
+                            "number": 7,
+                            "type": "Guy",
+                            "life": 50,
+                            "gold": 25,
+                            "value": 10,
+                            "strength": 10,
+                            "damage": 1,
+                            "entry": [0, 1]
+                        }, {
+                            "number": 3,
+                            "type": "Condition"
+                        }, {
+                            "number": 5,
+                            "type": "Guy",
+                            "life": 50,
+                            "gold": 25,
+                            "value": 10,
+                            "strength": 10,
+                            "damage": 1,
+                            "entry": 'all'
+                        }, {
+                            "number": 5,
+                            "type": "Condition"
+                        }, {
+                            "number": 3,
+                            "type": "Guy",
+                            "life": 50,
+                            "gold": 25,
+                            "value": 10,
+                            "strength": 10,
+                            "damage": 1,
+                            "entry": 'all'
+                        }],
+                        //Wawe 5
+                        [{
+                            "number": 4,
+                            "type": "Skeleton",
+                            "life": 40,
+                            "gold": 15,
+                            "value": 5,
+                            "strength": 7,
+                            "damage": 1,
+                            "entry": [0, 1]
+                        }, {
+                            "number": 3,
+                            "type": "Guy",
+                            "life": 50,
+                            "gold": 25,
+                            "value": 5,
+                            "strength": 10,
+                            "damage": 1,
+                            "entry": [2]
+                        }, {
+                            "number": 5,
+                            "type": "Condition"
+                        }, {
+                            "number": 7,
+                            "type": "Skeleton",
+                            "life": 40,
+                            "gold": 15,
+                            "value": 5,
+                            "strength": 7,
+                            "damage": 1,
+                            "entry": [0, 1]
+                        }],
+                        //Wawe 4
+                        [{
+                            "number": 7,
+                            "type": "Skeleton",
+                            "life": 40,
+                            "gold": 15,
+                            "value": 5,
+                            "strength": 7,
+                            "damage": 1,
+                            "entry": [0, 1]
+                        }, {
+                            "number": 5,
+                            "type": "Condition"
+                        }, {
+                            "number": 7,
+                            "type": "Skeleton",
+                            "life": 40,
+                            "gold": 15,
+                            "value": 5,
+                            "strength": 7,
+                            "damage": 1,
+                            "entry": [0, 1]
+                        }],
+                        //Wawe 3
+                        [{
+                            "number": 2,
+                            "type": "Guy",
+                            "life": 70,
+                            "gold": 50,
+                            "value": 10,
+                            "strength": 7,
+                            "damage": 2,
+                            "entry": [0, 1]
+                        }, {
+                            "number": 20,
+                            "type": "Break"
+                        }, {
+                            "number": 1,
+                            "type": "Guy",
+                            "life": 70,
+                            "gold": 50,
+                            "value": 5,
+                            "strength": 7,
+                            "damage": 1,
+                            "entry": [2]
+                        }],
+                        //Wawe 2
+                        [{
+                            "number": 4,
+                            "type": "Guy",
+                            "life": 30,
+                            "gold": 25,
+                            "value": 5,
+                            "strength": 5,
+                            "damage": 1,
+                            "entry": [0, 1]
+                        }, {
+                            "number": 10,
+                            "type": "Break"
+                        }, {
+                            "number": 4,
+                            "type": "Guy",
+                            "life": 30,
+                            "gold": 25,
+                            "value": 5,
+                            "strength": 5,
+                            "damage": 1,
+                            "entry": [0, 1]
+                        }],
+                        //Wawe 1
+                        [{
+                            "number": 1,
+                            "type": "Guy",
+                            "life": 20,
+                            "gold": 25,
+                            "value": 5,
+                            "strength": 5,
+                            "damage": 1,
+                            "entry": [0],
+                            "vx": 500,
+                            "vy": 30
+                        }, {
+                            "number": 9,
+                            "type": "Break"
+                        }, {
+                            "number": 1,
+                            "type": "Guy",
+                            "life": 20,
+                            "gold": 25,
+                            "value": 5,
+                            "strength": 5,
+                            "damage": 1,
+                            "entry": [1],
+                            "vx": 5000,
+                            "vy": 1
+                        }, {
+                            "number": 1,
+                            "type": "Condition"
+                        }, {
+                            "number": 4,
+                            "type": "Guy",
+                            "life": 20,
+                            "gold": 25,
+                            "value": 5,
+                            "strength": 5,
+                            "damage": 1,
+                            "entry": [0, 1],
+                        }]*/
         ];
 
 
@@ -415,8 +424,10 @@ var level1State = {
 
         background.body.collides(game.global.limbsCollisionGroup);
         background.body.collides(game.global.checkCollisionGroup);
+        background.body.setMaterial(game.global.wallMaterial);
+        console.log("yo");
         game.physics.p2.world.setGlobalStiffness = Number.MAX_VALUE;
-        game.physics.p2.world.setGlobalRelaxation = 1;
+        //game.physics.p2.world.setGlobalRelaxation = 1;
 
         //Add the inputs and the associated functions
         var key_P = game.input.keyboard.addKey(Phaser.Keyboard.P);
@@ -456,13 +467,13 @@ var level1State = {
 
         key_M.onUp.add(function() {
             for (var i in game.global.monsters) {
-                game.global.monsters[i].add(100,0);
+                game.global.monsters[i].add(100, 0);
             }
         });
 
         key_Q.onUp.add(function() {
             for (var i in game.global.monsters) {
-                game.global.monsters[i].add(-100,0);
+                game.global.monsters[i].add(-100, 0);
             }
         });
 
