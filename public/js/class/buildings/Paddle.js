@@ -5,6 +5,7 @@ var Paddle = function(damage, x, y, orientation, small, initial_angle, angle_max
     this.initial_angle = def(initial_angle, 0.7);
     this.angle_max = def(angle_max, 0.9);
     this.speed = def(speed, 12);
+    this.sound = game.add.audio('paddle1');
     /**
      * Generate the base of paddle, without the body physics
      * @param cx pivot point x
@@ -82,6 +83,7 @@ Paddle.prototype.up = function(x, y) {
         this.paddle.flipperConstraint.lowerLimit = this.orientation * this.initial_angle - this.angle_max;
     else
         this.paddle.flipperConstraint.upperLimit = this.orientation * this.initial_angle + this.angle_max;
+    this.sound.play();
 };
 
 Paddle.prototype.down = function(x, y) {

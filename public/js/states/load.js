@@ -61,6 +61,7 @@ var loadState = {
 		game.load.audio('bump2', 'asset/sounds/otherBump.wav');
 		game.load.audio('startingWave', 'asset/sounds/darkGong.wav');
 		game.load.audio('loose', 'asset/sounds/youLose.wav');
+		game.load.audio('paddle1', 'asset/sounds/paddle1.mp3');
 
     },
 

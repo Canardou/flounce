@@ -140,7 +140,6 @@ Monster.prototype.updateCollision = function() {
         this.parts[item].body.setCollisionGroup(game.global.enemiesCollisionGroup);
         this.parts[item].body.collides([game.global.enemiesCollisionGroup, game.global.wallsCollisionGroup, game.global.playerCollisionGroup]);
         this.parts[item].body.setMaterial(game.global.monsterMaterial);
-        console.log("Yo Guy");
     }
 };
 
