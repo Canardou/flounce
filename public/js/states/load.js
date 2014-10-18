@@ -32,7 +32,7 @@ var loadState = {
 		game.load.image('bumperDisable', 'asset/sprites/bumperDisable.png');
 		game.load.image('sawError', 'asset/sprites/sawErr.png');
 		game.load.image('bone', 'asset/sprites/bone.png');
-		game.load.image('bone_purp', 'asset/sprites/bone_purp.png');
+		game.load.image('charlie_bone', 'asset/sprites/bone_purp.png');
 		game.load.image('skeleton', 'asset/sprites/squeletton_body.png');
 		game.load.spritesheet('rubick', 'asset/sprites/rubick.png', 160, 160);
 		game.load.spritesheet('button', 'asset/sprites/GreenButton.png');

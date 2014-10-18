@@ -54,6 +54,9 @@ Wave.prototype.popMonster = function(toSummon){
 	else if(toSummon.type === "Rubick") {
 		aliveMonster = new Rubick(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,toSummon.life * weigth, toSummon.gold * weigth,  toSummon.value * weigth, toSummon.strength, false, toSummon.damage, this.hero,  toSummon.vx, toSummon.vy);
 	}
+	else if(toSummon.type === "Charlie") {
+		aliveMonster = new Skeleton(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y,toSummon.life * weigth, toSummon.gold * weigth,  toSummon.value * weigth, toSummon.strength, false, toSummon.damage, this.hero,  toSummon.vx, toSummon.vy, 1);
+	}
 	/*else { //banan ;)
 		aliveMonster = new Banan(life * weigth, gold * weigth, value * weigth, strength, entreeToUse);  
 	}*/

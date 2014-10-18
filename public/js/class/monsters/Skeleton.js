@@ -1,12 +1,16 @@
 /*global Monster,game,pi,cos,sin,def,isDef,rand,inh from utils.js*/
-var Skeleton = function(x, y, life, gold, value, strengh, decay, damage, hero) {
+var Skeleton = function(x, y, life, gold, value, strengh, decay, damage, hero, vx, vy, variation) {
     Monster.call(this, life, gold, value, strengh, decay, damage, hero);
-
-    //Guuuuuuuyyyyy !
+    var bones = 'bone';
+    if(variation === 1){
+        bones = 'charlie_bone';
+    }
+    //skeletoooooon !
     var chest = game.add.sprite(x, y, 'skeleton');
     this.parts.push(chest);
     game.physics.p2.enableBody(chest);
     chest.body.setRectangle(8, 16);
+
     this.body=chest.body;
     this.body.velocity.x=Math.random()*2000-1000;
     this.body.velocity.y=-Math.random()*1000;
@@ -25,7 +29,7 @@ var Skeleton = function(x, y, life, gold, value, strengh, decay, damage, hero) {
     //head.rotation = game.physics.p2.createRotationalSpring(head, chest, 0, 5, 1);
     //this.constraints.push(head.rotation);
     //Arms
-    var left_arm = game.add.sprite(x - 4, y - 4, 'bone');
+    var left_arm = game.add.sprite(x - 4, y - 4, bones);
     this.parts.push(left_arm);
     game.physics.p2.enableBody(left_arm);
     left_arm.body.setRectangle(4, 8);
@@ -33,7 +37,7 @@ var Skeleton = function(x, y, life, gold, value, strengh, decay, damage, hero) {
     left_arm.revolute.collideConnected = false;
     this.constraints.push(left_arm.revolute);
     
-    var left_hand = game.add.sprite(x - 4, y + 4, 'bone');
+    var left_hand = game.add.sprite(x - 4, y + 4, bones);
     this.parts.push(left_hand);
     game.physics.p2.enableBody(left_hand);
     left_hand.body.setRectangle(4, 8);
@@ -45,7 +49,7 @@ var Skeleton = function(x, y, life, gold, value, strengh, decay, damage, hero) {
     left_hand.revolute.upperLimit = 1;
     this.constraints.push(left_hand.revolute);
     
-    var right_arm = game.add.sprite(x + 4, y - 4, 'bone');
+    var right_arm = game.add.sprite(x + 4, y - 4, bones);
     this.parts.push(right_arm);
     game.physics.p2.enableBody(right_arm);
     right_arm.body.setRectangle(4, 8);
@@ -53,7 +57,7 @@ var Skeleton = function(x, y, life, gold, value, strengh, decay, damage, hero) {
     right_arm.revolute.collideConnected = false;
     this.constraints.push(right_arm.revolute);
     
-    var right_hand = game.add.sprite(x + 4, y + 4, 'bone');
+    var right_hand = game.add.sprite(x + 4, y + 4, bones);
     this.parts.push(right_hand);
     game.physics.p2.enableBody(right_hand);
     right_hand.body.setRectangle(4, 8);
@@ -65,7 +69,7 @@ var Skeleton = function(x, y, life, gold, value, strengh, decay, damage, hero) {
     right_hand.revolute.upperLimit = 1;
     this.constraints.push(right_hand.revolute);
     //Legs
-    var left_leg = game.add.sprite(x - 2, y + 8, 'bone');
+    var left_leg = game.add.sprite(x - 2, y + 8, bones);
     this.parts.push(left_leg);
     game.physics.p2.enableBody(left_leg);
     left_leg.body.setRectangle(4, 8);
@@ -77,7 +81,7 @@ var Skeleton = function(x, y, life, gold, value, strengh, decay, damage, hero) {
     left_leg.revolute.upperLimit = 1;
     this.constraints.push(left_leg.revolute);
     
-    var left_foot = game.add.sprite(x - 2, y + 16, 'bone');
+    var left_foot = game.add.sprite(x - 2, y + 16, bones);
     this.parts.push(left_foot);
     game.physics.p2.enableBody(left_foot);
     left_foot.body.setRectangle(4, 8);
@@ -89,7 +93,7 @@ var Skeleton = function(x, y, life, gold, value, strengh, decay, damage, hero) {
     left_foot.revolute.upperLimit = 1;
     this.constraints.push(left_foot.revolute);
     
-    var right_leg = game.add.sprite(x + 2, y + 8, 'bone');
+    var right_leg = game.add.sprite(x + 2, y + 8, bones);
     this.parts.push(right_leg);
     game.physics.p2.enableBody(right_leg);
     right_leg.body.setRectangle(4, 8);
@@ -101,7 +105,7 @@ var Skeleton = function(x, y, life, gold, value, strengh, decay, damage, hero) {
     right_leg.revolute.upperLimit = 1.5;
     this.constraints.push(right_leg.revolute);
     
-    var right_foot = game.add.sprite(x + 2, y + 16, 'bone');
+    var right_foot = game.add.sprite(x + 2, y + 16, bones);
     this.parts.push(right_foot);
     game.physics.p2.enableBody(right_foot);
     right_foot.body.setRectangle(4, 8);

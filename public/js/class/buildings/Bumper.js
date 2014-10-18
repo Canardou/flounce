@@ -25,8 +25,8 @@ var Bumper = function(damage, x, y) {
     this.entity.body.collides(game.global.limbsCollisionGroup);
 
     //this.loop = game.time.events.loop(Phaser.Timer.SECOND / 10, this.decreaseHeat, this);
-    this.loop=0;
-    
+    this.loop = 0;
+
     this.allowInput();
 };
 
@@ -47,8 +47,7 @@ Bumper.prototype.hit = function(bumper, part) {
                     this.overHeat = true;
                     this.heat = this.cooldown;
                     this.entity.body.setCollisionGroup(game.global.voidCollisionGroup);
-                }
-                else if (this.heat > this.heatLimit / 2 - 10 && this.heat!=0)
+                } else if (this.heat > this.heatLimit / 2 - 10 && this.heat != 0)
                     this.design.loadTexture('bumper' + this.level, 1);
                 var retour = this.getDamage(bumper, part);
                 var angle = Math.atan2(bumper.y - entity.body.y, bumper.x - entity.body.x);
@@ -93,7 +92,7 @@ Bumper.prototype.hit = function(bumper, part) {
                 }
 
                 if (entity.life > 0) {
-                    part.sprite.entity.stop(-500 * cos(angle),-500 * sin(angle));
+                    part.sprite.entity.stop(-700 * cos(angle), -700 * sin(angle));
                 }
                 this.design.x = this.entity.x + 5 * cos(angle);
                 this.design.y = this.entity.y + 5 * sin(angle);
@@ -108,17 +107,17 @@ Bumper.prototype.hit = function(bumper, part) {
     return {};
 };
 
-Bumper.prototype.disable = function(){
+Bumper.prototype.disable = function() {
     this.design.loadTexture('bumperDisable');
     this.design.scale.set(0.5);
 }
 
 
-Bumper.prototype.update = function(){
+Bumper.prototype.update = function() {
     this.loop++;
-    if(this.loop>=6){
+    if (this.loop >= 6) {
         this.decreaseHeat();
-        this.loop=0;
+        this.loop = 0;
     }
 }
 
@@ -133,7 +132,7 @@ Bumper.prototype.decreaseHeat = function() {
         }
         if (this.overHeat)
             this.design.loadTexture('bumper' + this.level, 2);
-        else if (this.heat > this.heatLimit / 2 - 10  && this.heat!=0)
+        else if (this.heat > this.heatLimit / 2 - 10 && this.heat != 0)
             this.design.loadTexture('bumper' + this.level, 1);
         else
             this.design.loadTexture('bumper' + this.level, 0);
@@ -204,8 +203,7 @@ Bumper.prototype.checkValidity = function(bool) {
             this.designCheck();
             //this.check.body.angularVelocity = 1;
         }, this);
-    }
-    else {
+    } else {
         game.time.events.remove(this.check.event);
         this.check.entity = null;
         this.check.destroy();
@@ -219,8 +217,7 @@ Bumper.prototype.designCheck = function() {
         this.design.loadTexture('bumperError');
         this.design.scale.set(this.size);
         this.check.tint = 0xFFFFFF;
-    }
-    else {
+    } else {
         this.valid = true;
         this.design.loadTexture('bumper' + this.level, 0);
         this.design.scale.set(this.size);

@@ -36,15 +36,15 @@ var level1State = {
                 "number": 1,
                 "type": "Rubick",
                 "life": 500,
-                "gold": 500,
+                "gold": 100,
                 "value": 100,
-                "strength": 20,
+                "strength": 30,
                 "damage": 5,
                 "entry": 'all'
             }, {
                 "number": 5,
                 "type": "Guy",
-                "life": 80,
+                "life": 100,
                 "gold": 25,
                 "value": 12,
                 "strength": 15,
@@ -54,9 +54,9 @@ var level1State = {
                 "number": 2,
                 "type": "Condition"
             }, {
-                "number": 5,
+                "number": 7,
                 "type": "Guy",
-                "life": 80,
+                "life": 100,
                 "gold": 25,
                 "value": 12,
                 "strength": 15,
@@ -74,7 +74,7 @@ var level1State = {
                 "damage": 1,
                 "entry": 'all'
             }, {
-                "number": 30,
+                "number": 20,
                 "type": "Break"
             }, {
                 "number": 7,
@@ -104,7 +104,7 @@ var level1State = {
             //Wawe 8 boss
             [{
                 "number": 3,
-                "type": "Rubick",
+                "type": "Charlie",
                 "life": 100,
                 "gold": 100,
                 "value": 25,
@@ -127,7 +127,7 @@ var level1State = {
                 "number": 4,
                 "type": "Condition"
             }, {
-                "number": 4,
+                "number": 7,
                 "type": "Guy",
                 "life": 50,
                 "gold": 25,
@@ -456,13 +456,13 @@ var level1State = {
 
         key_M.onUp.add(function() {
             for (var i in game.global.monsters) {
-                game.global.monsters[i].parts[0].body.velocity.x += 1000;
+                game.global.monsters[i].add(100,0);
             }
         });
 
         key_Q.onUp.add(function() {
             for (var i in game.global.monsters) {
-                game.global.monsters[i].parts[0].body.velocity.x -= 1000;
+                game.global.monsters[i].add(-100,0);
             }
         });
 
