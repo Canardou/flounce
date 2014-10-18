@@ -1,34 +1,68 @@
-/*global Phaser game*/
+/* 
+ *global Phaser game
+ */
 var level1State = {
     preload: function() {
-		//var button;
-		//var niveau1;
-		//var hero;
-	},
+        //var button;
+        //var niveau1;
+        //var hero;
+    },
 
-	create: function() {
+    create: function() {
 
-		game.physics.startSystem(Phaser.Physics.P2JS);
-		game.physics.p2.setBoundsToWorld(true, true, false, true, false);
-		game.physics.p2.gravity.y = 300;
-		game.physics.p2.setImpactEvents(true);
-		game.physics.p2.enableBodySleeping = true;
+        game.physics.startSystem(Phaser.Physics.P2JS);
+        game.physics.p2.setBoundsToWorld(true, true, false, true, false);
+        game.physics.p2.gravity.y = 300;
+        game.physics.p2.setImpactEvents(true);
+        game.physics.p2.enableBodySleeping = true;
 
-		game.global.playerCollisionGroup = game.physics.p2.createCollisionGroup();
-		game.global.wallsCollisionGroup = game.physics.p2.createCollisionGroup();
-		game.global.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
-		game.global.limbsCollisionGroup = game.physics.p2.createCollisionGroup();
-		game.global.voidCollisionGroup = game.physics.p2.createCollisionGroup();
-		game.global.checkCollisionGroup = game.physics.p2.createCollisionGroup();
-		game.global.depth = [];
-		for (var i = 0; i < 20; i++) {
-			game.global.depth[i] = game.add.group();
-			game.world.bringToTop(game.global.depth[i]);
-		}
-		game.global.towers = [];
-		game.global.monsters = [];
+        game.global.playerCollisionGroup = game.physics.p2.createCollisionGroup();
+        game.global.wallsCollisionGroup = game.physics.p2.createCollisionGroup();
+        game.global.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
+        game.global.limbsCollisionGroup = game.physics.p2.createCollisionGroup();
+        game.global.voidCollisionGroup = game.physics.p2.createCollisionGroup();
+        game.global.checkCollisionGroup = game.physics.p2.createCollisionGroup();
+        game.global.depth = [];
+        for (var i = 0; i < 20; i++) {
+            game.global.depth[i] = game.add.group();
+            game.world.bringToTop(game.global.depth[i]);
+        }
+        game.global.towers = [];
+        game.global.monsters = [];
 
-		var waves = [ //To invert order go to Niveau.js lign 35
+        var waves = [ //To invert order go to Niveau.js lign 35
+            //Wave 10
+            [{
+                "number": 1,
+                "type": "Rubick",
+                "life": 500,
+                "gold": 500,
+                "value": 100,
+                "strength": 20,
+                "damage": 5,
+                "entry": 'all'
+            }, {
+                "number": 5,
+                "type": "Guy",
+                "life": 80,
+                "gold": 25,
+                "value": 12,
+                "strength": 15,
+                "damage": 1,
+                "entry": 'all'
+            }, {
+                "number": 2,
+                "type": "Condition"
+            }, {
+                "number": 5,
+                "type": "Guy",
+                "life": 80,
+                "gold": 25,
+                "value": 12,
+                "strength": 15,
+                "damage": 1,
+                "entry": 'all'
+            }],
             //Wawe 9
             [{
                 "number": 5,
@@ -37,7 +71,7 @@ var level1State = {
                 "gold": 25,
                 "value": 12,
                 "strength": 15,
-                "damage": 2,
+                "damage": 1,
                 "entry": 'all'
             }, {
                 "number": 30,
@@ -49,7 +83,7 @@ var level1State = {
                 "gold": 25,
                 "value": 12,
                 "strength": 15,
-                "damage": 2,
+                "damage": 1,
                 "entry": 'all'
             }, {
                 "number": 7,
@@ -75,7 +109,7 @@ var level1State = {
                 "gold": 100,
                 "value": 25,
                 "strength": 20,
-                "damage": 5,
+                "damage": 3,
                 "entry": [0]
             }, {
                 "number": 10,
@@ -302,266 +336,265 @@ var level1State = {
             }]
         ];
 
-		game.global.sensors = [];
-		game.physics.p2.world.on("beginContact", function(event) {
-			for (var i = 0; i < game.global.sensors.length; i++) {
-				var s = game.global.sensors[i];
-				if (event.bodyA.parent == s || event.bodyB.parent == s) {
-					s.overlap++;
-				}
-			}
-		});
-		game.physics.p2.world.on("endContact", function(event) {
-			for (var i = 0; i < game.global.sensors.length; i++) {
-				var s = game.global.sensors[i];
-				if (event.bodyA.parent == s || event.bodyB.parent == s) {
-					s.overlap--;
-				}
-			}
-		});
 
 
-		//game.physics.setBoundsToWorld(true, true, false, true, false);
-		game.physics.p2.updateBoundsCollisionGroup();
-
-		//Design of the level//
-		//Mute button 
-		var mute = game.add.sprite(600, 915, 'mute');
-		mute.scale.set(0.5);
-		mute.inputEnabled = true;
-		mute.input.useHandCursor = true;
-		mute.events.onInputUp.add(function() {
-			game.sound.mute = false;
-			mute.kill();
-			unMute.revive();
-		}, this);
-		mute.kill();
-		var unMute = game.add.sprite(600, 915, 'unMute');
-		unMute.scale.set(0.5);
-		unMute.inputEnabled = true;
-		unMute.input.useHandCursor = true;
-		unMute.events.onInputUp.add(function() {
-			game.sound.mute = true;
-			unMute.kill();
-			mute.revive();
-		}, this);
+        game.global.sensors = [];
+        game.physics.p2.world.on("beginContact", function(event) {
+            for (var i = 0; i < game.global.sensors.length; i++) {
+                var s = game.global.sensors[i];
+                if (event.bodyA.parent == s || event.bodyB.parent == s) {
+                    s.overlap++;
+                }
+            }
+        });
+        game.physics.p2.world.on("endContact", function(event) {
+            for (var i = 0; i < game.global.sensors.length; i++) {
+                var s = game.global.sensors[i];
+                if (event.bodyA.parent == s || event.bodyB.parent == s) {
+                    s.overlap--;
+                }
+            }
+        });
 
 
-		//Locations
-		var background = game.add.sprite(game.global.width / 2, game.global.height / 2, 'walls');
-		var paddle_right = new Paddle({
-			base: 5,
-			max: 6
-		}, 460, 990, 'right');
-		var paddle_left = new Paddle({
-			base: 5,
-			max: 6
-		}, 180, 990, 'left');
+        //game.physics.setBoundsToWorld(true, true, false, true, false);
+        game.physics.p2.updateBoundsCollisionGroup();
+
+        //Design of the level//
+        //Mute button 
+        var mute = game.add.sprite(600, 915, 'mute');
+        mute.scale.set(0.5);
+        mute.inputEnabled = true;
+        mute.input.useHandCursor = true;
+        mute.events.onInputUp.add(function() {
+            game.sound.mute = false;
+            mute.kill();
+            unMute.revive();
+        }, this);
+        mute.kill();
+        var unMute = game.add.sprite(600, 915, 'unMute');
+        unMute.scale.set(0.5);
+        unMute.inputEnabled = true;
+        unMute.input.useHandCursor = true;
+        unMute.events.onInputUp.add(function() {
+            game.sound.mute = true;
+            unMute.kill();
+            mute.revive();
+        }, this);
 
 
-		var P_hint = new Hint("P", 10, 430, 1000);
-		var Q_hint = (game.global.language !== 'fr') ? new Hint("Q", 10, 230, 1000) : new Hint("A", 10, 230, 1000);
-
-		game.physics.p2.enableBody(background);
-
-		game.global.depth[3].add(background);
-
-		background.body.static = true;
-		background.body.clearShapes();
-		background.body.loadPolygon('paddle_physics', 'walls');
-
-		background.body.setCollisionGroup(game.global.playerCollisionGroup);
-
-		var infos = new InfoPanel();
-		var dragNdropPanel = new TowerPanel();
-
-		background.body.collides(game.global.enemiesCollisionGroup);
-
-		background.body.collides(game.global.limbsCollisionGroup);
-		background.body.collides(game.global.checkCollisionGroup);
-		game.physics.p2.world.setGlobalStiffness = Number.MAX_VALUE;
-		game.physics.p2.world.setGlobalRelaxation = 1;
-
-		//Add the inputs and the associated functions
-		var key_P = game.input.keyboard.addKey(Phaser.Keyboard.P);
-		var key_A = game.input.keyboard.addKey(Phaser.Keyboard.A);
-		var key_M = game.input.keyboard.addKey(Phaser.Keyboard.M);
-		var key_Q = game.input.keyboard.addKey(Phaser.Keyboard.Q);
-		var spacebar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-
-		if (game.global.language !== 'fr') {
-			key_A = game.input.keyboard.addKey(Phaser.Keyboard.Q);
-			key_Q = game.input.keyboard.addKey(Phaser.Keyboard.A);
-			key_M = game.input.keyboard.addKey(Phaser.Keyboard.L);
-		}
+        //Locations
+        var background = game.add.sprite(game.global.width / 2, game.global.height / 2, 'walls');
+        var paddle_right = new Paddle({
+            base: 5,
+            max: 6
+        }, 460, 990, 'right');
+        var paddle_left = new Paddle({
+            base: 5,
+            max: 6
+        }, 180, 990, 'left');
 
 
+        var P_hint = new Hint("P", 10, 430, 1000);
+        var Q_hint = (game.global.language !== 'fr') ? new Hint("Q", 10, 230, 1000) : new Hint("A", 10, 230, 1000);
 
-		key_P.onDown.add(function() {
-			paddle_right.up();
-		});
+        game.physics.p2.enableBody(background);
 
-		key_P.onUp.add(function() {
-			paddle_right.down();
-		});
+        game.global.depth[3].add(background);
 
-		key_P.onHoldCallBack = (function() {
-			paddle_right.down();
-		});
+        background.body.static = true;
+        background.body.clearShapes();
+        background.body.loadPolygon('paddle_physics', 'walls');
 
-		key_A.onDown.add(function() {
-			paddle_left.up();
-		});
+        background.body.setCollisionGroup(game.global.playerCollisionGroup);
 
-		key_A.onUp.add(function() {
-			paddle_left.down();
-		});
+        var infos = new InfoPanel();
+        var dragNdropPanel = new TowerPanel();
 
+        background.body.collides(game.global.enemiesCollisionGroup);
 
-		key_M.onUp.add(function() {
-			for (var i in game.global.monsters) {
-				game.global.monsters[i].parts[0].body.velocity.x += 1000;
-			}
-		});
+        background.body.collides(game.global.limbsCollisionGroup);
+        background.body.collides(game.global.checkCollisionGroup);
+        game.physics.p2.world.setGlobalStiffness = Number.MAX_VALUE;
+        game.physics.p2.world.setGlobalRelaxation = 1;
 
-		key_Q.onUp.add(function() {
-			for (var i in game.global.monsters) {
-				game.global.monsters[i].parts[0].body.velocity.x -= 1000;
-			}
-		});
+        //Add the inputs and the associated functions
+        var key_P = game.input.keyboard.addKey(Phaser.Keyboard.P);
+        var key_A = game.input.keyboard.addKey(Phaser.Keyboard.A);
+        var key_M = game.input.keyboard.addKey(Phaser.Keyboard.M);
+        var key_Q = game.input.keyboard.addKey(Phaser.Keyboard.Q);
+        var spacebar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-		spacebar.onUp.add(function() {
-			if (game.global.currentLevel.phase === "beginning") {
-				game.global.currentLevel.defend();
-			}
-			if (game.global.currentLevel.phase === "constructing" && !game.global.currentLevel.hero.dead) {
-				game.global.currentLevel.defend();
-			}
-			button.label.setText('Next Wave');
-		});
+        if (game.global.language !== 'fr') {
+            key_A = game.input.keyboard.addKey(Phaser.Keyboard.Q);
+            key_Q = game.input.keyboard.addKey(Phaser.Keyboard.A);
+            key_M = game.input.keyboard.addKey(Phaser.Keyboard.L);
+        }
 
 
-		//Begining of the level
-		game.global.currentLevel = new Niveau(waves, 20, 250, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
 
-		button = new LabelButton(game, game.world.centerX, game.world.centerY + 500, 'wood_frame', 'Click & die', game.global.currentLevel.defend, game.global.currentLevel, 'white');
-		button.onInputUp.add(function() {
-			if (game.global.currentLevel.countWave === 1) {
-				var firstBumperHint = new TextHint('Ho... poor enemies...', 300, 750);
-				button.label.setText('Spacebar ?');
-			}
-			else {
-				button.label.setText('Next Wave');
-			}
-		}, this);
-		button.scale.x = 0.4;
-		button.scale.y = 0.4;
+        key_P.onDown.add(function() {
+            paddle_right.up();
+        });
 
-		var bumper = new Bumper({
-			base: 10,
-			max: 20
-		}, 155, 650);
-		game.global.towers.push(bumper);
-		bumper.panel = game.global.currentLevel.panel;
+        key_P.onUp.add(function() {
+            paddle_right.down();
+        });
 
-		bumper = new Bumper({
-			base: 10,
-			max: 20
-		}, 420, 550);
+        key_P.onHoldCallBack = (function() {
+            paddle_right.down();
+        });
 
-		game.global.towers.push(bumper);
-		bumper.panel = game.global.currentLevel.panel;
+        key_A.onDown.add(function() {
+            paddle_left.up();
+        });
 
-		bumper = new Saw({
-			base: 10,
-			max: 20
-		}, 540, 200, 'right', true);
+        key_A.onUp.add(function() {
+            paddle_left.down();
+        });
 
-		game.global.currentLevel.panel.saws.push(bumper);
-		bumper.panel = game.global.currentLevel.panel;
 
-		bumper = new Saw({
-			base: 10,
-			max: 20
-		}, 80, 480, 'left', true);
+        key_M.onUp.add(function() {
+            for (var i in game.global.monsters) {
+                game.global.monsters[i].parts[0].body.velocity.x += 1000;
+            }
+        });
 
-		game.global.currentLevel.panel.saws.push(bumper);
-		bumper.panel = game.global.currentLevel.panel;
+        key_Q.onUp.add(function() {
+            for (var i in game.global.monsters) {
+                game.global.monsters[i].parts[0].body.velocity.x -= 1000;
+            }
+        });
 
-		bumper = new Saw({
-			base: 10,
-			max: 20
-		}, 600, 420, 'right', true);
+        spacebar.onUp.add(function() {
+            if (game.global.currentLevel.phase === "beginning") {
+                game.global.currentLevel.defend();
+            }
+            if (game.global.currentLevel.phase === "constructing" && !game.global.currentLevel.hero.dead) {
+                game.global.currentLevel.defend();
+            }
+            button.label.setText('Next Wave');
+        });
 
-		game.global.currentLevel.panel.saws.push(bumper);
-		bumper.panel = game.global.currentLevel.panel;
 
-		bumper = new Saw({
-			base: 10,
-			max: 20
-		}, 600, 620, 'right', true);
+        //Begining of the level
+        game.global.currentLevel = new Niveau(waves, 20, 250, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
 
-		game.global.currentLevel.panel.saws.push(bumper);
-		bumper.panel = game.global.currentLevel.panel;
+        button = new LabelButton(game, game.world.centerX, game.world.centerY + 500, 'wood_frame', 'Click & die', game.global.currentLevel.defend, game.global.currentLevel, 'white');
+        button.onInputUp.add(function() {
+            if (game.global.currentLevel.countWave === 1) {
+                var firstBumperHint = new TextHint('Ho... poor enemies...', 300, 750);
+                button.label.setText('Spacebar ?');
+            } else {
+                button.label.setText('Next Wave');
+            }
+        }, this);
+        button.scale.x = 0.4;
+        button.scale.y = 0.4;
 
-		bumper = new Saw({
-			base: 10,
-			max: 20
-		}, 80, 210, 'left', true);
+        var bumper = new Bumper({
+            base: 10,
+            max: 20
+        }, 155, 650);
+        game.global.towers.push(bumper);
+        bumper.panel = game.global.currentLevel.panel;
 
-		game.global.currentLevel.panel.saws.push(bumper);
-		bumper.panel = game.global.currentLevel.panel;
+        bumper = new Bumper({
+            base: 10,
+            max: 20
+        }, 420, 550);
 
-		bumper = new Bumper({
-			base: 10,
-			max: 20
-		}, 320, 1070);
-		bumper.drag = true;
-		bumper.heatLimit = 10;
-		game.global.towers.push(bumper);
+        game.global.towers.push(bumper);
+        bumper.panel = game.global.currentLevel.panel;
 
-		game.global.unblocks = [];
-		game.global.unblocks.push(new Unblock(270, 420));
-		game.global.unblocks.push(new Unblock(100, 740));
-		game.global.unblocks.push(new Unblock(540, 700));
-	},
+        bumper = new Saw({
+            base: 10,
+            max: 20
+        }, 540, 200, 'right', true);
 
-	update: function() {
+        game.global.currentLevel.panel.saws.push(bumper);
+        bumper.panel = game.global.currentLevel.panel;
 
-		if (game.global.currentLevel.phase === "defending") {
-			for (var i in game.global.towers) {
-				game.global.towers[i].update();
-			}
-			for (var i in game.global.monsters) {
-				game.global.monsters[i].update();
-			}
-			game.global.currentLevel.currentWave.update();
-			button.visible = false;
-			if (game.global.monsters.length === 0 && !game.global.currentLevel.currentWave.isRunning()) {
-				if (game.global.currentLevel.waves.length > 0)
-					game.global.currentLevel.construct();
-				else if (!game.global.currentLevel.won) {
-					game.global.currentLevel.won = true;
-					setTimeout(function() {
-						game.global.currentLevel.endLevel();
-					}, Phaser.Timer.SECOND * 5);
-				}
-			}
-		}
-		else if (game.global.currentLevel.phase === "constructing" && !game.global.currentLevel.hero.dead) {
-			if (game.global.currentLevel.countWave === 1) {
-				game.time.events.add(5000, function() {
-					button.visible = true;
-				});
-			}
-			else {
-				button.visible = true;
-			}
-		}
+        bumper = new Saw({
+            base: 10,
+            max: 20
+        }, 80, 480, 'left', true);
 
-	},
+        game.global.currentLevel.panel.saws.push(bumper);
+        bumper.panel = game.global.currentLevel.panel;
 
-	render: function() {
+        bumper = new Saw({
+            base: 10,
+            max: 20
+        }, 600, 420, 'right', true);
 
-	},
+        game.global.currentLevel.panel.saws.push(bumper);
+        bumper.panel = game.global.currentLevel.panel;
+
+        bumper = new Saw({
+            base: 10,
+            max: 20
+        }, 600, 620, 'right', true);
+
+        game.global.currentLevel.panel.saws.push(bumper);
+        bumper.panel = game.global.currentLevel.panel;
+
+        bumper = new Saw({
+            base: 10,
+            max: 20
+        }, 80, 210, 'left', true);
+
+        game.global.currentLevel.panel.saws.push(bumper);
+        bumper.panel = game.global.currentLevel.panel;
+
+        bumper = new Bumper({
+            base: 10,
+            max: 20
+        }, 320, 1070);
+        bumper.drag = true;
+        bumper.heatLimit = 10;
+        game.global.towers.push(bumper);
+
+        game.global.unblocks = [];
+        game.global.unblocks.push(new Unblock(270, 420));
+        game.global.unblocks.push(new Unblock(100, 740));
+        game.global.unblocks.push(new Unblock(540, 700));
+    },
+
+    update: function() {
+
+        if (game.global.currentLevel.phase === "defending") {
+            for (var i in game.global.towers) {
+                game.global.towers[i].update();
+            }
+            for (var i in game.global.monsters) {
+                game.global.monsters[i].update();
+            }
+            game.global.currentLevel.currentWave.update();
+            button.visible = false;
+            if (game.global.monsters.length === 0 && !game.global.currentLevel.currentWave.isRunning()) {
+                if (game.global.currentLevel.waves.length > 0)
+                    game.global.currentLevel.construct();
+                else if (!game.global.currentLevel.won) {
+                    game.global.currentLevel.won = true;
+                    setTimeout(function() {
+                        game.global.currentLevel.endLevel();
+                    }, Phaser.Timer.SECOND * 5);
+                }
+            }
+        } else if (game.global.currentLevel.phase === "constructing" && !game.global.currentLevel.hero.dead) {
+            if (game.global.currentLevel.countWave === 1) {
+                game.time.events.add(5000, function() {
+                    button.visible = true;
+                });
+            } else {
+                button.visible = true;
+            }
+        }
+
+    },
+
+    render: function() {
+
+    },
 };
