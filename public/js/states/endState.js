@@ -150,7 +150,6 @@ var endState = {
                     waveStats += '            n°' + ((+i)) + ': ' + game.global.currentLevel.hero.lifeLostPerWave[i] + '\n';
                 }
             } else {
-                console.log(game.global.currentLevel.hero.lifeLostPerWave[i]);
             }
         }
         var waveStatsToDestroy = game.add.text(160, 400, waveStats, {

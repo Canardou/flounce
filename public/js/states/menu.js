@@ -66,7 +66,7 @@ var menuState = {
         creditButton.inputEnabled = true;
         creditButton.input.useHandCursor = true;
         creditButton.events.onInputUp.add(function() {
-            game.state.start('level1');
+            game.state.start('credit');
         }, this);
 
         var creditText = game.add.text(creditButton.x, creditButton.y, 'Credit', {
@@ -75,7 +75,10 @@ var menuState = {
         });
         creditText.anchor.setTo(0.5, 0.5);
 
-
+        var optimized = game.add.text(game.world.centerX, game.world.centerY + 200, 'Optimized for Chrome');
+        optimized.fill = 'white';
+        optimized.style.font = '30px Indie Flower';
+        optimized.anchor.setTo(0.5, 0.5);
 
         var score = game.add.text(50, 1100, "Best score: " + data.getCookie("topScore"));
         score.fill = 'white';
