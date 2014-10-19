@@ -158,12 +158,16 @@ Building.prototype.statsTower = function() {
 
 
         //Show the stats (number of monster touched && damage dealt)
-        stats = "Current wave : " + this.monsterHits +  "\nTotal : " + this.monsterHitsTotal;
-        var style = {
-            'font': 'bold 175% Arial',
+        var stats = "Current wave: " + this.monsterHits +  "\n      Total: " + this.monsterHitsTotal;
+        this.statsInfobox = game.add.sprite(this.entity.body.x - 95, this.entity.body.y + 30, 'infobox');
+        this.statsInfobox.scale.y = 1;
+        this.statsInfobox.scale.x = 0.7;
+        this.statsInfobox.alpha = 0.9;
+
+        this.stats = game.add.text(this.entity.body.x - 85, this.entity.body.y + 30, stats, {
+            'font': '25px Indie Flower',
             'fill': 'white'
-        };
-        this.stats = game.add.text(this.entity.body.x - 60, this.entity.body.y + 30, stats, style);
+        });
     }
 
 };
@@ -273,6 +277,7 @@ Building.prototype.hideButtons = function() {
     }
     if (this.stats) {
         this.stats.destroy();
+        this.statsInfobox.destroy();
     }
 
 };

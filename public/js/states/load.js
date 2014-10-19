@@ -42,6 +42,7 @@ var loadState = {
 		game.load.image('heart', 'asset/sprites/heart.png');
 		game.load.image('points', 'asset/sprites/points.png');
 		game.load.image('princess', 'asset/sprites/princess.png');
+		game.load.image('bigPrincess', 'asset/sprites/princessBig.png');
 		game.load.image('infobox', 'asset/sprites/infobox.png');
 		game.load.image('mute', 'asset/sprites/mute.png');
 		game.load.image('unMute', 'asset/sprites/unMute.png');

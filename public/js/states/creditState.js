@@ -3,102 +3,120 @@ var creditState = {
     preload: function() {},
 
     create: function() {
+        //Handling all the sprite/text to destroy at the end of this state
+        var thingToDestroy = [];
 
-        game.physics.startSystem(Phaser.Physics.P2JS);
-        game.physics.p2.setBoundsToWorld(true, true, false, false, false);
-        game.physics.p2.gravity.y = 300;
-        game.physics.p2.setImpactEvents(true);
-        game.global.playerCollisionGroup = game.physics.p2.createCollisionGroup();
-        game.global.wallsCollisionGroup = game.physics.p2.createCollisionGroup();
-        game.global.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
-        game.global.limbsCollisionGroup = game.physics.p2.createCollisionGroup();
-        game.global.voidCollisionGroup = game.physics.p2.createCollisionGroup();
-        game.global.depth = [];
-        for (var i = 0; i < 10; i++) {
-            game.global.depth[i] = game.add.group();
-            game.world.bringToTop(game.global.depth[i]);
-        }
-        game.global.towers = [];
-        game.global.monsters = [];
-        game.physics.p2.updateBoundsCollisionGroup();
 
-        // Display the name of the game
-        var nameLabel = game.add.text(game.world.centerX, 80, 'Flounce', {
-            font: '100px Indie Flower',
+        //Flounce a flipper that bounce
+        var flipperText = game.add.text(game.world.centerX, 100, 'Flounce, a flipper which ', {
+            font: '50px Indie Flower',
             fill: '#ffffff'
         });
-        nameLabel.anchor.setTo(0.5, 0.5);
+        flipperText.anchor.setTo(0.5, 0.5);
+        thingToDestroy.push(flipperText);
 
-
-        //Menu
-
-        var levelButton = game.add.sprite(game.world.centerX, game.world.centerY - 300, 'infobox');
-        levelButton.anchor.setTo(0.5, 0.5);
-        levelButton.scale.y = 1.5;
-        levelButton.scale.x = 1.2;
-        levelButton.alpha = 0.9;
-        levelButton.inputEnabled = true;
-        levelButton.input.useHandCursor = true;
-        levelButton.events.onInputUp.add(function() {
-            game.state.start('level1');
-        }, this);
-
-        var levelText = game.add.text(levelButton.x, levelButton.y, 'Adventure', {
-            font: '35px Indie Flower',
+        var bounce = game.add.text(game.world.centerX, 140, 'bounce', {
+            font: '50px Indie Flower',
             fill: '#ffffff'
         });
-        levelText.anchor.setTo(0.5, 0.5);
+        bounce.anchor.setTo(0.5, 0.5);
+        thingToDestroy.push(bounce);
 
-        var score = game.add.text(50, 1100, "Best score: " + data.getCookie("topScore"));
-        score.fill = 'white';
-        score.style.font = '35px Indie Flower';
+        bounce.tween = game.add.tween(bounce).to({
+            y : 150
+        }, 400, Phaser.Easing.Linear.None, true, 0, true);
+        bounce.tween.loop();
 
-        //Credit
-        var creditButton = game.add.sprite(game.world.centerX, game.world.centerY - 150, 'infobox');
-        creditButton.anchor.setTo(0.5, 0.5);
-        creditButton.scale.y = 1.5;
-        creditButton.scale.x = 1.2;
-        creditButton.alpha = 0.9;
-        creditButton.inputEnabled = true;
-        creditButton.input.useHandCursor = true;
-        creditButton.events.onInputUp.add(function() {
-            game.state.start('level1');
-        }, this);
+        //Princess :D
+        var bigPrincess = game.add.sprite(100, 550, 'bigPrincess');
+        thingToDestroy.push(bigPrincess);
 
-        var creditText = game.add.text(creditButton.x, creditButton.y, 'Credit', {
-            font: '35px Indie Flower',
+        //InfoBox
+        var infobox = game.add.sprite(210, 350, 'infobox');
+        thingToDestroy.push(infobox);
+        infobox.scale.y = 3.5;
+        infobox.scale.x = 1.4;
+        infobox.alpha = 0.94
+
+        //The huge message that Tweeeeen Sorry it is 6:00am...
+        var creditText = game.add.text(infobox.x+200, infobox.y+100, 'A game made by...', {
+            font: '40px Indie Flower',
             fill: '#ffffff'
         });
         creditText.anchor.setTo(0.5, 0.5);
+        creditText.alpha = 0;
+        thingToDestroy.push(creditText);
+
+        creditText.tween = game.add.tween(creditText).to({
+            alpha: 1
+        }, 4000, Phaser.Easing.Linear.None, true);
+
+        creditText.tween.onComplete.add(function() {
+            creditText.tweenBis.start();
+        }, this);
+
+        creditText.tweenBis = game.add.tween(creditText).to({
+            alpha: 0
+        }, 4000, Phaser.Easing.Linear.None, false);
+
+        creditText.tweenBis.onComplete.add(function() {
+            creditText.setText('Olivier Hachette\n         &&\n Simon Robain');
+            creditText.tween2.start();
+        }, this);
+
+        creditText.tween2 = game.add.tween(creditText).to({
+            alpha: 1
+        }, 4000, Phaser.Easing.Linear.None, false);
+
+        creditText.tween2.onComplete.add(function() {
+            creditText.tween2Bis.start();
+        }, this);
+
+        creditText.tween2Bis = game.add.tween(creditText).to({
+            alpha: 0
+        }, 4000, Phaser.Easing.Linear.None, false);
+
+        creditText.tween2Bis.onComplete.add(function() {
+            creditText.setText('         For TDDD23\nat Linköping University');
+            creditText.tween3.start();
+        }, this);
+
+        creditText.tween3 = game.add.tween(creditText).to({
+            alpha: 1
+        }, 4000, Phaser.Easing.Linear.None, false);
+
+        creditText.tween3.onComplete.add(function() {
+            creditText.tween3Bis.start();
+        }, this);
+
+        creditText.tween3Bis = game.add.tween(creditText).to({
+            alpha: 0
+        }, 4000, Phaser.Easing.Linear.None, false)
+
+        creditText.tween3Bis.onComplete.add(function() {
+            creditText.setText('Thanks for kidnapping me !!\n\n   #StockhlomSyndrome');
+            creditText.fontSize = 30;
+            creditText.tween4.start();
+            //game.state.start('menu');
+        }, this);;
+
+        creditText.tween4 = game.add.tween(creditText).to({
+            alpha: 1
+        }, 4000, Phaser.Easing.Linear.None, false);
+
+        creditText.tween4.onComplete.add(function() {
+            creditText.tween4Bis.start();
+        }, this);
+
+        creditText.tween4Bis = game.add.tween(creditText).to({
+            alpha: 0
+        }, 4000, Phaser.Easing.Linear.None, false);
+
+        creditText.tween4Bis.onComplete.add(function() {
+            game.state.start('menu');
+        }, this);;
 
 
-
-        var score = game.add.text(50, 1100, "Best score: " + data.getCookie("topScore"));
-        score.fill = 'white';
-        score.style.font = '35px Indie Flower';
-
-        /*var maBumpMode = new LabelButton(game, game.world.centerX, game.world.centerY+300, 'wood_frame', 'Max Bump Mode', function(){game.state.clearCurrentState(); game.state.start('maxBump');}, game, color);
-        maBumpMode.scale.x = 0.5;
-        maBumpMode.scale.y = 0.5;*/
-
-        game.global.language = window.navigator.userLanguage || window.navigator.language;
-
-        //Animation du menu
-        var monstersToCreate = [{
-            "number": 2000,
-            "type": "Guy",
-            "life": 1,
-            "gold": 0,
-            "value": 0,
-            "strength": 0,
-            "damage": 0,
-            "entry": [0, 1]
-        }];
-
-        //var wave1 = new Wave(monstersToCreate, 1);
-        //wave1.start();
     },
-    update: function() {
-        //game.global.currentWave.update();
-    }
+    update: function() {}
 };

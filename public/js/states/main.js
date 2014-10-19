@@ -27,6 +27,7 @@ window.onload = function() {
     game.state.add('level1', level1State);
     game.state.add('maxBump', maxBumpState);
     game.state.add('end', endState);
+    game.state.add('credit', creditState);
 
     // Start the 'boot' state
     game.state.start('boot');
