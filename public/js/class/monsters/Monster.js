@@ -49,6 +49,14 @@ Monster.prototype.stop = function(x,y) {
     }
 }
 
+Monster.prototype.add = function(x,y) {
+    for (var item in this.parts) {
+        //this.parts[item].body.collideWorldBounds=true;
+        this.parts[item].body.velocity.y += y;
+        this.parts[item].body.velocity.x += x;
+    }
+}
+
 //When a monster is killed
 Monster.prototype.die = function() {
     this.dead = true;
@@ -131,6 +139,7 @@ Monster.prototype.updateCollision = function() {
         //this.parts[item].body.collideWorldBounds=true;
         this.parts[item].body.setCollisionGroup(game.global.enemiesCollisionGroup);
         this.parts[item].body.collides([game.global.enemiesCollisionGroup, game.global.wallsCollisionGroup, game.global.playerCollisionGroup]);
+        this.parts[item].body.setMaterial(game.global.monsterMaterial);
     }
 };
 

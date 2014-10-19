@@ -1,5 +1,5 @@
 /*global Monster,game,pi,cos,sin,def,isDef,rand,inh from utils.js*/
-var menuState = {
+var creditState = {
     preload: function() {},
 
     create: function() {
@@ -21,10 +21,6 @@ var menuState = {
         game.global.towers = [];
         game.global.monsters = [];
         game.physics.p2.updateBoundsCollisionGroup();
-
-        var her = new Hero(20000, 1, false);
-        //GameData
-        var data = new GameData();
 
         // Display the name of the game
         var nameLabel = game.add.text(game.world.centerX, 80, 'Flounce', {
