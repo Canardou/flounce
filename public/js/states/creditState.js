@@ -23,8 +23,8 @@ var creditState = {
         thingToDestroy.push(bounce);
 
         bounce.tween = game.add.tween(bounce).to({
-            y : 150
-        }, 400, Phaser.Easing.Linear.None, true, 0, true);
+            y: 150
+        }, 400, Phaser.Easing.Bounce.None, true, 0, true);
         bounce.tween.loop();
 
         //Princess :D
@@ -39,7 +39,7 @@ var creditState = {
         infobox.alpha = 0.94
 
         //The huge message that Tweeeeen Sorry it is 6:00am...
-        var creditText = game.add.text(infobox.x+200, infobox.y+100, 'A game made by...', {
+        var creditText = game.add.text(infobox.x + 200, infobox.y + 100, 'A game made by...', {
             font: '40px Indie Flower',
             fill: '#ffffff'
         });
@@ -60,7 +60,7 @@ var creditState = {
         }, 4000, Phaser.Easing.Linear.None, false);
 
         creditText.tweenBis.onComplete.add(function() {
-            creditText.setText('Olivier Hachette\n         &&\n Simon Robain');
+            creditText.setText('Olivier Hachette\n       &&\n Simon Robain');
             creditText.tween2.start();
         }, this);
 
@@ -77,7 +77,7 @@ var creditState = {
         }, 4000, Phaser.Easing.Linear.None, false);
 
         creditText.tween2Bis.onComplete.add(function() {
-            creditText.setText('         For TDDD23\nat Linköping University');
+            creditText.setText('     For TDDD23\nat Linköping University');
             creditText.tween3.start();
         }, this);
 
@@ -94,11 +94,15 @@ var creditState = {
         }, 4000, Phaser.Easing.Linear.None, false)
 
         creditText.tween3Bis.onComplete.add(function() {
+            creditText.style = {
+                font: '40px Indie Flower',
+                fill: '#ffffff'
+            };
             creditText.setText('Thanks for kidnapping me !!\n\n   #StockhlomSyndrome');
             creditText.fontSize = 30;
             creditText.tween4.start();
             //game.state.start('menu');
-        }, this);;
+        }, this);
 
         creditText.tween4 = game.add.tween(creditText).to({
             alpha: 1

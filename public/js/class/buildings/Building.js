@@ -113,8 +113,10 @@ Building.prototype.onDragStop = function(sprite, pointer) {
         this.allowMouseOver();
     }
     if (!this.valid) {
-        if (this.stats)
+        if (this.stats){
             this.stats.destroy();
+            this.statsInfobox.destroy();
+        }
         this.HideDescriptTower();
         this.destroy();
     }
@@ -225,8 +227,10 @@ Building.prototype.deleteTower = function() {
     else {
         this.maxUpgrade.destroy();
     }
-    if (this.stats)
+    if (this.stats){
         this.stats.destroy();
+        this.statsInfobox.destroy();
+    }
     this.destroy();
     this.panel.reset();
 };
@@ -293,6 +297,7 @@ Building.prototype.costCalcul = function() {
 Building.prototype.moneyback = function() {
     if (this.stats) {
         this.stats.destroy();
+        this.statsInfobox.destroy();
     }
     this.hideMoneyback();
     this.deleteButton.infobox = game.add.sprite(this.entity.body.x - 35, this.entity.body.y + 30, 'infobox');
@@ -317,6 +322,7 @@ Building.prototype.hideMoneyback = function() {
 Building.prototype.upgradeEffect = function() {
     if (this.stats) {
         this.stats.destroy();
+        this.statsInfobox.destroy();
         this.stats = null;
     }
     this.hideUpgradeEffect();
