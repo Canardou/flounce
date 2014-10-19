@@ -382,7 +382,9 @@ var level1State = {
 
 
 		//Locations
-		var background = game.add.sprite(game.global.width / 2, game.global.height / 2, 'walls');
+		var background = game.add.sprite(0, 0, 'background');
+		game.global.depth[0].add(background);
+		var walls = game.add.sprite(game.global.width / 2, game.global.height / 2, 'walls');
 		var paddle_right = new Paddle({
 			base: 5,
 			max: 6
@@ -396,23 +398,23 @@ var level1State = {
 		var P_hint = new Hint("P", 10, 430, 1000);
 		var Q_hint = (game.global.language !== 'fr') ? new Hint("Q", 10, 230, 1000) : new Hint("A", 10, 230, 1000);
 
-		game.physics.p2.enableBody(background);
+		game.physics.p2.enableBody(walls);
 
-		game.global.depth[3].add(background);
+		game.global.depth[3].add(walls);
 
-		background.body.static = true;
-		background.body.clearShapes();
-		background.body.loadPolygon('paddle_physics', 'walls');
+		walls.body.static = true;
+		walls.body.clearShapes();
+		walls.body.loadPolygon('paddle_physics', 'walls');
 
-		background.body.setCollisionGroup(game.global.playerCollisionGroup);
+		walls.body.setCollisionGroup(game.global.playerCollisionGroup);
 
 		var infos = new InfoPanel();
 		var dragNdropPanel = new TowerPanel();
 
-		background.body.collides(game.global.enemiesCollisionGroup);
+		walls.body.collides(game.global.enemiesCollisionGroup);
 
-		background.body.collides(game.global.limbsCollisionGroup);
-		background.body.collides(game.global.checkCollisionGroup);
+		walls.body.collides(game.global.limbsCollisionGroup);
+		walls.body.collides(game.global.checkCollisionGroup);
 		game.physics.p2.world.setGlobalStiffness = Number.MAX_VALUE;
 		game.physics.p2.world.setGlobalRelaxation = 1;
 
