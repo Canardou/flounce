@@ -23,6 +23,10 @@ var Guy = function(x, y, life, gold, value, strength, decay, damage, hero, vx, v
     head.body.setCircle(5);
     head.revolute = game.physics.p2.createRevoluteConstraint(head, [0, 5], chest, [0, -8]);
     head.revolute.collideConnected = false;
+    head.revolute.upperLimitEnabled = true;
+    head.revolute.lowerLimitEnabled = true;
+    head.revolute.lowerLimit = -0.5;
+    head.revolute.upperLimit = 0.5;
     this.constraints.push(head.revolute);
     //head.rotation = game.physics.p2.createRotationalSpring(head, chest, 0, 5, 1);
     //this.constraints.push(head.rotation);

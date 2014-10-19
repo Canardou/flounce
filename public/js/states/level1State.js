@@ -298,8 +298,8 @@ var level1State = {
             //Wawe 1
             [{
                 "number": 1,
-                "type": "Guy",
-                "life": 20,
+                "type": "Ghost",
+                "life": 2000,
                 "gold": 25,
                 "value": 5,
                 "strength": 5,

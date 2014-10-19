@@ -23,8 +23,8 @@ var Skeleton = function(x, y, life, gold, value, strengh, decay, damage, hero, v
     head.revolute.collideConnected = false;
     head.revolute.upperLimitEnabled = true;
     head.revolute.lowerLimitEnabled = true;
-    head.revolute.lowerLimit = -0.2;
-    head.revolute.upperLimit = 0.2;
+    head.revolute.lowerLimit = -0.5;
+    head.revolute.upperLimit = 0.5;
     this.constraints.push(head.revolute);
     //head.rotation = game.physics.p2.createRotationalSpring(head, chest, 0, 5, 1);
     //this.constraints.push(head.rotation);
