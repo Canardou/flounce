@@ -65,8 +65,7 @@ Monster.prototype.die = function() {
         this.hero.monsterKilledDuringCurrentWave++;
         this.hero.changeGold(this.gold);
         this.hero.changePoints(this.value * this.combo);
-        game.time.events.remove(this.loop);
-        this.destroy();
+        this.destroy(false);
     }
 
 };
@@ -75,7 +74,7 @@ Monster.prototype.die = function() {
 Monster.prototype.dieWithoutGlory = function() {
     this.dead = true;
     if (this.isDestroy === false) {
-        this.destroy();
+        this.destroy(true);
         this.hero.monsterKilledDuringCurrentWave++;
     }
 
