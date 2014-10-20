@@ -26,7 +26,7 @@ var upgradeExample = function() {
                     randomTower.HideDescriptTower();
                     randomTower.hideUpgradeEffect();
                     randomTower.hideMoneyback();
-                    randomTower.hideButtons(true);
+                    randomTower.hideButtons();
                 })
             });
         }, hand);

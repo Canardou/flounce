@@ -263,8 +263,8 @@ Building.prototype.findInfos = function() {};
 
 Building.prototype.hideButtons = function(force) {
     if (this.buttons) {
-        if (this.deleteButton && !this.deleteButton.input.checkPointerOver(game.input.mousePointer) || force) {
-            if (this.upgradeButton && !this.upgradeButton.input.checkPointerOver(game.input.mousePointer) || force) {
+        if (this.deleteButton && !this.deleteButton.input.checkPointerOver(game.input.mousePointer)) {
+            if (this.upgradeButton && !this.upgradeButton.input.checkPointerOver(game.input.mousePointer)) {
                 if (this.level === this.levelMax) {
                     this.maxUpgrade.destroy();
                 }
@@ -272,10 +272,6 @@ Building.prototype.hideButtons = function(force) {
                     this.upgradeButton.destroy();
                 }
                 this.deleteButton.destroy();
-                game.input.onDown.remove(this.hideButtons, this);
-                this.buttons = false;
-            }
-            else {
                 game.input.onDown.remove(this.hideButtons, this);
                 this.buttons = false;
             }

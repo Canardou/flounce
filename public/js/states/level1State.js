@@ -205,6 +205,15 @@ var level1State = {
             }],
             //Wawe 5
             [{
+                "number": 3,
+                "type": "Ghost",
+                "life": 50,
+                "gold": 20,
+                "value": 10,
+                "strength": 10,
+                "damage": 1,
+                "entry": [0, 1]
+            }, {
                 "number": 4,
                 "type": "Skeleton",
                 "life": 40,
@@ -212,16 +221,7 @@ var level1State = {
                 "value": 5,
                 "strength": 7,
                 "damage": 1,
-                "entry": [0, 1]
-            }, {
-                "number": 3,
-                "type": "Guy",
-                "life": 50,
-                "gold": 25,
-                "value": 5,
-                "strength": 10,
-                "damage": 1,
-                "entry": [2]
+                "entry": 'all'
             }, {
                 "number": 5,
                 "type": "Condition"
