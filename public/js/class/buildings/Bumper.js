@@ -172,14 +172,14 @@ Bumper.prototype.upgrade = function() {
             break;
         case 2:
             this.damage = {
-                base: 15,
-                max: 25
+                base: 14,
+                max: 24
             };
             break;
         case 3:
             this.damage = {
-                base: 20,
-                max: 35
+                base: 16,
+                max: 26
             };
             break;
     }

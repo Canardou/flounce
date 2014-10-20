@@ -2,9 +2,9 @@
 var Ghost = function(x, y, life, gold, value, strength, decay, damage, hero, vx, vy) {
     Monster.call(this, life, gold, value, strength, decay, damage, hero);
 
-    var head = game.add.sprite(x, y, 'guy_head');
+    var head = game.add.sprite(x, y, 'ghost0');
     this.parts.push(head);
-    game.physics.p2.enableBody(head, true);
+    game.physics.p2.enableBody(head);
     head.body.setCircle(12);
     this.body = head.body;
     this.body.velocity.x = def(vx, Math.random() * 2000 - 1000);
@@ -14,9 +14,9 @@ var Ghost = function(x, y, life, gold, value, strength, decay, damage, hero, vx,
 
 
     //Head
-    var chest = game.add.sprite(x, y - 16, 'guy_body');
+    var chest = game.add.sprite(x, y - 16, 'ghost1');
     this.parts.push(chest);
-    game.physics.p2.enableBody(chest, true);
+    game.physics.p2.enableBody(chest);
     chest.body.setRectangle(24, 20);
 
     chest.revolute = game.physics.p2.createRevoluteConstraint(head, [0, 12], chest, [0, -5]);
@@ -30,9 +30,9 @@ var Ghost = function(x, y, life, gold, value, strength, decay, damage, hero, vx,
     //head.rotation = game.physics.p2.createRotationalSpring(head, chest, 0, 5, 1);
     //this.constraints.push(head.rotation);
     //Arms
-    var chest2 = game.add.sprite(x, y - 24, 'guy_body');
+    var chest2 = game.add.sprite(x, y - 24, 'ghost2');
     this.parts.push(chest2);
-    game.physics.p2.enableBody(chest2, true);
+    game.physics.p2.enableBody(chest2);
     chest2.body.setRectangle(24, 20);
     chest2.revolute = game.physics.p2.createRevoluteConstraint(chest, [0, 5], chest2, [0, -5]);
     chest2.revolute.collideConnected = false;

@@ -47,9 +47,14 @@ var loadState = {
 		game.load.image('mute', 'asset/sprites/mute.png');
 		game.load.image('unMute', 'asset/sprites/unMute.png');
 		game.load.image('help', 'asset/sprites/help.png');
+		game.load.image('blocker', 'asset/sprites/blocker.png');
 		game.load.spritesheet('gold', 'asset/sprites/coin_gold.png', 32, 32);
+		game.load.spritesheet('rubick_parts', 'asset/sprites/rubick_parts.png', 20, 20);
 		for(var i=0;i<4;i++){
 			game.load.spritesheet('bumper'+i, 'asset/sprites/bumper'+i+'.png',120,120);
+		}
+		for(var i=0;i<3;i++){
+			game.load.image('ghost'+i, 'asset/sprites/ghost'+i+'.png');
 		}
 		game.load.spritesheet('saw', 'asset/sprites/razor.png',120,120);
 		//Loading physics

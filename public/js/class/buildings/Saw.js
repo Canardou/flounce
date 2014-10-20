@@ -4,8 +4,8 @@ var Saw = function(damage, x, y, orientation, real) {
     this.bump2 = game.add.audio('bump2');
     this.levelMax = 1;
     this.damage = {
-        base: 12,
-        max: 22,
+        base: 15,
+        max: 20,
         critMult: def(damage.critMult, 2),
         critOdds: def(damage.critOdds, 0)
     };
@@ -247,9 +247,7 @@ Saw.prototype.upgrade = function() {
     this.heatLimit += 40;
     this.damage = {
                 base: 20,
-                max: 35,
-                critMult: 2,
-                critOdds: 1
+                max: 25
             };
     //this.cooldown -= 5;
     /*this.size *= 1.08;

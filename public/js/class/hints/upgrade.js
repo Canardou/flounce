@@ -11,7 +11,8 @@ var upgradeExample = function() {
             y: randomTower.entity.y - 10,
             alpha: 1
         }, 3000, Phaser.Easing.Exponential.Out, true, 0, false).onComplete.add(function() {
-            randomTower.statsTower();
+            if(game.global.currentLevel.phase=="constructing")
+                randomTower.statsTower();
             hand.bringToTop();
             hand.tween = game.add.tween(hand).to({
                 x: randomTower.entity.x - 40,
