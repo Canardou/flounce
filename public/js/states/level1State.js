@@ -182,8 +182,8 @@ var level1State = {
                 "number": 3,
                 "type": "Condition"
             }, {
-                "number": 5,
-                "type": "Ghost",
+                "number": 7,
+                "type": "Guy",
                 "life": 50,
                 "gold": 25,
                 "value": 10,
@@ -215,13 +215,13 @@ var level1State = {
                 "entry": [0, 1]
             }, {
                 "number": 3,
-                "type": "Guy",
+                "type": "Ghost",
                 "life": 50,
                 "gold": 25,
-                "value": 5,
+                "value": 10,
                 "strength": 10,
                 "damage": 1,
-                "entry": [2]
+                "entry": 'all'
             }, {
                 "number": 5,
                 "type": "Condition"

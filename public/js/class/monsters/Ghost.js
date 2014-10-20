@@ -57,11 +57,13 @@ inh(Ghost, Monster);
 Ghost.prototype.update = function() {
     this.loop++;
     if (this.loop >= 6) {
-        this.moves ++;
-        if(this.moves>=3){
-        this.body.velocity.x = Math.random() * 500 - 250;
-        this.body.velocity.y = -Math.random() * 25;
-        this.moves=0;
+        this.moves++;
+        if (this.moves == 3 || this.moves == 6) {
+            this.body.velocity.x = Math.random() * 500 - 250;
+            if (this.moves == 6) {
+                this.body.velocity.y = -Math.random() * 50;
+                this.moves = 0;
+            }
         }
         this.stopCombo();
         this.loop = 0;
