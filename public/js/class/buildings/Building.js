@@ -105,14 +105,14 @@ Building.prototype.onDragStop = function(sprite, pointer) {
     sprite.scale.set(0.5, 0.5);
     this.designCheck();
     this.checkValidity(false);
-    if (this.valid && game.global.currentLevel.hero.gold >= this.cost[0]) {
+    if (this.valid && game.global.currentLevel.hero.gold >= this.cost[0] && game.global.currentLevel.phase=='constructing') {
         game.global.currentLevel.hero.changeGold(-this.cost[0]);
         game.global.towers.push(this);
         this.stopDrag();
         this.allowClick();
         this.allowMouseOver();
     }
-    if (!this.valid) {
+    if (!this.valid || game.global.currentLevel.phase!='constructing') {
         if (this.stats){
             this.stats.destroy();
             this.statsInfobox.destroy();

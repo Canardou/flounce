@@ -88,7 +88,7 @@ Saw.prototype.onDragStart = function(sprite, pointer) {
 
 Saw.prototype.onDragStop = function() {
     game.time.events.remove(this.check.event);
-    if (this.valid && game.global.currentLevel.hero.gold >= this.cost[0]) {
+    if (this.valid && game.global.currentLevel.hero.gold >= this.cost[0] && game.global.currentLevel.phase=='constructing') {
         game.global.currentLevel.hero.changeGold(-this.cost[0]);
         this.panel.saws=this.panel.saws.remove(this.current);
         game.global.towers.push(this.current);

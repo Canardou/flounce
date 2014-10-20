@@ -33,7 +33,7 @@ TowerPanel.prototype.activateTower = function() { // A lancer dans Niveau.js lig
         }, 70, 1000 + (i * 75));
         this.shown.push(tower);
         tower.drag = true;
-        if (tower.available < game.global.currentLevel.countWave && game.global.currentLevel && game.global.currentLevel.hero.gold >= tower.cost[0]) {
+        if (tower.available < game.global.currentLevel.countWave && game.global.currentLevel && game.global.currentLevel.hero.gold >= tower.cost[0] && game.global.currentLevel.phase=='constructing') {
             tower.allowDrag();
         }
         else {
@@ -52,32 +52,7 @@ TowerPanel.prototype.activateTower = function() { // A lancer dans Niveau.js lig
 };
 
 TowerPanel.prototype.reset = function() {
-    while (this.shown.length > 0) {
-        var tower = this.shown.pop();
-        if (tower.nonAvailable)
-            tower.nonAvailable.destroy();
-        tower.destroy();
-    }
-    for (var i = 0; i < this.towers.length; i++) {
-        var tower = new this.towers[i]({
-            base: 10,
-            max: 20
-        }, 70, 1000 + (i * 75));
-        this.shown.push(tower);
-        tower.drag = true;
-        if (tower.available < game.global.currentLevel.countWave && game.global.currentLevel && game.global.currentLevel.hero.gold >= tower.cost[0]) {
-            tower.allowDrag();
-        }
-        else {
-            if (tower.available >= game.global.currentLevel.countWave) {
-                tower.nonAvailable = game.add.text(tower.entity.x - 40, tower.entity.y - 5, 'Wave ' + (tower.available + 1));
-                tower.nonAvailable.style.fill = '#FF1E02';
-                tower.nonAvailable.style.font = '18px bd_cartoon_shoutregular';
-            }
-            tower.disable();
-        }
-        tower.panel = this;
-    }
+    this.activateTower();
 };
 
 TowerPanel.prototype.greyTower = function() {
