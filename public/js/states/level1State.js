@@ -43,7 +43,7 @@ var level1State = {
                 "value": 100,
                 "strength": 30,
                 "damage": 16,
-                "entry": 'all'
+                "entry": [0, 1]
             }, {
                 "number": 5,
                 "type": "Guy",
