@@ -165,15 +165,15 @@ Bumper.prototype.upgrade = function() {
     switch (this.level) {
         case 1:
             this.damage = {
-                base: 14,
-                max: 22
+                base: 13,
+                max: 21
             };
             //default
             break;
         case 2:
             this.damage = {
-                base: 18,
-                max: 24
+                base: 17,
+                max: 23
             };
             break;
         case 3:
