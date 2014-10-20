@@ -1,6 +1,10 @@
 /*global game,pi,cos,sin,def,isDef,rand from utils.js*/
 var TextHint = function(text, x, y, color, fontSize, duration) {
-	if(text.length >15){
+	if(text.length > 22){
+			this.scaler = 1.5;
+			this.infobox = game.add.sprite(x - 200, y - 30, 'infobox');
+	}
+	else if(text.length >15 && text.length <22){
 		this.scaler = 0.9;
 		this.infobox = game.add.sprite(x - 127, y - 30, 'infobox');
 	}

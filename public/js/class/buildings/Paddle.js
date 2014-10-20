@@ -6,6 +6,7 @@ var Paddle = function(damage, x, y, orientation, small, initial_angle, angle_max
     this.angle_max = def(angle_max, 0.9);
     this.speed = def(speed, 12);
     this.sound = game.add.audio('paddle1');
+    this.sound.volume = 0.3;
     /**
      * Generate the base of paddle, without the body physics
      * @param cx pivot point x

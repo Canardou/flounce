@@ -8,14 +8,14 @@ var creditState = {
 
 
         //Flounce a flipper that bounce
-        var flipperText = game.add.text(game.world.centerX, 100, 'Flounce, a flipper which ', {
+        var flipperText = game.add.text(game.world.centerX, 100, 'Flounce, a flipper that ', {
             font: '50px Indie Flower',
             fill: '#ffffff'
         });
         flipperText.anchor.setTo(0.5, 0.5);
         thingToDestroy.push(flipperText);
 
-        var bounce = game.add.text(game.world.centerX, 140, 'bounce', {
+        var bounce = game.add.text(game.world.centerX, 140, 'bounces', {
             font: '50px Indie Flower',
             fill: '#ffffff'
         });
@@ -94,14 +94,9 @@ var creditState = {
         }, 4000, Phaser.Easing.Linear.None, false)
 
         creditText.tween3Bis.onComplete.add(function() {
-            creditText.style = {
-                font: '40px Indie Flower',
-                fill: '#ffffff'
-            };
-            creditText.setText('Thanks for kidnapping me !!\n\n   #StockhlomSyndrome');
-            creditText.fontSize = 30;
+            creditText.setText('        Thanks\n  for kidnapping me !!\n#StockhlomSyndrome');
+            //creditText.fontSize = 30;
             creditText.tween4.start();
-            //game.state.start('menu');
         }, this);
 
         creditText.tween4 = game.add.tween(creditText).to({

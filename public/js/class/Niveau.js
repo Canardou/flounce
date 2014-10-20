@@ -59,6 +59,7 @@ Niveau.prototype.construct = function() {
 	}
 	if (this.countWave === 2 && this.level === 0) {
 		upgradeExample();
+		var upgradeHint = new TextHint('Don\'t forget to upgrade', 320, 850, '#7AE60D', 40, 8);
 	}
 	this.hero.monsterKilledDuringCurrentWave = 0;
 	this.hero.changeGold(250);
