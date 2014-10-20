@@ -40,7 +40,7 @@ var level1State = {
                 "type": "Rubick",
                 "life": 500,
                 "gold": 100,
-                "value": 40,
+                "value": 100,
                 "strength": 30,
                 "damage": 16,
                 "entry": 'all'
@@ -205,15 +205,6 @@ var level1State = {
             }],
             //Wawe 5
             [{
-                "number": 3,
-                "type": "Ghost",
-                "life": 50,
-                "gold": 20,
-                "value": 10,
-                "strength": 10,
-                "damage": 1,
-                "entry": [0, 1]
-            }, {
                 "number": 4,
                 "type": "Skeleton",
                 "life": 40,
@@ -221,7 +212,16 @@ var level1State = {
                 "value": 5,
                 "strength": 7,
                 "damage": 1,
-                "entry": 'all'
+                "entry": [0, 1]
+            }, {
+                "number": 3,
+                "type": "Guy",
+                "life": 50,
+                "gold": 25,
+                "value": 5,
+                "strength": 10,
+                "damage": 1,
+                "entry": [2]
             }, {
                 "number": 5,
                 "type": "Condition"
@@ -404,10 +404,6 @@ var level1State = {
             max: 6
         }, 180, 990, 'left');
 
-
-        var P_hint = new Hint("P", 10, 430, 1000);
-        var Q_hint = (game.global.language !== 'fr') ? new Hint("Q", 10, 230, 1000) : new Hint("A", 10, 230, 1000);
-
         game.physics.p2.enableBody(walls);
 
         game.global.depth[3].add(walls);
@@ -574,6 +570,9 @@ var level1State = {
         game.global.unblocks.push(new Unblock(270, 420));
         game.global.unblocks.push(new Unblock(100, 740));
         game.global.unblocks.push(new Unblock(540, 700));
+
+        var P_hint = new Hint("P", 10, 430, 1000);
+        var Q_hint = (game.global.language !== 'fr') ? new Hint("Q", 10, 230, 1000) : new Hint("A", 10, 230, 1000);
     },
 
     update: function() {
