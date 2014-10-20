@@ -40,7 +40,7 @@ var level1State = {
                 "type": "Rubick",
                 "life": 500,
                 "gold": 100,
-                "value": 100,
+                "value": 40,
                 "strength": 30,
                 "damage": 16,
                 "entry": 'all'

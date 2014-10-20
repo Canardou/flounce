@@ -3,7 +3,6 @@ var upgradeExample = function() {
     hand.alpha = 0;
     var randomTower;
     if (game.global.towers.length > 1) {
-        console.log(game.global.towers);
         randomTower = game.global.towers[Math.floor(Math.random() * (game.global.towers.length - 1) + 1)]
 
         hand.tween = game.add.tween(hand).to({
@@ -24,7 +23,10 @@ var upgradeExample = function() {
                     alpha: 0
                 }, 2000, Phaser.Easing.Linear.None, true).onComplete.add(function() {
                     hand.destroy();
-                    randomTower.hideButtons();
+                    randomTower.HideDescriptTower();
+                    randomTower.hideUpgradeEffect();
+                    randomTower.hideMoneyback();
+                    randomTower.hideButtons(true);
                 })
             });
         }, hand);

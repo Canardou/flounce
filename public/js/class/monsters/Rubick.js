@@ -103,7 +103,7 @@ Rubick.prototype.destroy = function(hero) {
         if (this.variation < 2 && !hero) {
 
             for (var i = 0; i < 4; i++) {
-                game.global.monsters.push(new Rubick(this.parts[0].x, this.parts[0].y, Math.floor(this.lifeMax / 2), Math.floor(this.gold / 2), Math.floor(this.value / 2), Math.floor(this.strength / 2), this.decay, Math.max(Math.floor(this.damage / 4),1), this.hero, Math.random() * 200 - 100, Math.random() * 200 - 100, this.variation + 1))
+                game.global.monsters.push(new Rubick(this.parts[0].x, this.parts[0].y, Math.floor(this.lifeMax / 2), 0, Math.floor(this.value / 2), Math.floor(this.strength / 2), this.decay, Math.max(Math.floor(this.damage / 4),1), this.hero, Math.random() * 200 - 100, Math.random() * 200 - 100, this.variation + 1))
             }
         }
         this.parts[0].destroy();
