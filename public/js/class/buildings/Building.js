@@ -89,6 +89,7 @@ Building.prototype.stopDrag = function() {
 Building.prototype.onDragStart = function(sprite, pointer) {
     //Empty for the moment
     this.drag = true;
+    this.panel.isDragged = true;
     sprite.scale.set(0.7, 0.7);
     if (this.panel) {
         this.panel.shown.splice(this, 1);
@@ -98,6 +99,7 @@ Building.prototype.onDragStart = function(sprite, pointer) {
 };
 
 Building.prototype.onDragStop = function(sprite, pointer) {
+    this.panel.isDragged = false;
     this.design.x = pointer.x;
     this.design.y = pointer.y;
     this.entity.body.x = pointer.x;

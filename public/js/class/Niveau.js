@@ -6,11 +6,11 @@ var Niveau = function(waves, initialHeroLife, initialHeroGold, entries, difficul
 	this.waves = waves;
 	this.hero = new Hero(initialHeroLife, initialHeroGold);
 	this.totalOfWave = waves.length;
-	console.log("Nombre de vagues de ce niveau 1: "+this.totalOfWave);
+	console.log("Nombre de vagues de ce niveau 1: " + this.totalOfWave);
 	this.difficulty = def(difficulty, "easy");
-	this.availableTower = def(availableTower,1);
+	this.availableTower = def(availableTower, 1);
 	this.design = def(design, true);
-	this.level=0;
+	this.level = 0;
 	this.phase = "beginning"; // to find if it will be a fight or a contruct phase.
 	this.countWave = 0;
 	this.won = false;
@@ -24,59 +24,61 @@ var Niveau = function(waves, initialHeroLife, initialHeroGold, entries, difficul
 	this.currentWave = new Wave(this.waves[0], this.hero, 1, this.entries);
 };
 
- 
-Niveau.prototype.defend = function(){
-	this.phase = "defending";
-	this.countWave++;
-	this.hero.lifeLostPerWave[this.countWave] = 0;
-	var towers = game.global.towers;
-	for(var i in towers){
-		towers[i].restart();
+
+Niveau.prototype.defend = function() {
+	if (this.panel.isDragged == false) {
+		this.phase = "defending";
+		this.countWave++;
+		this.hero.lifeLostPerWave[this.countWave] = 0;
+		var towers = game.global.towers;
+		for (var i in towers) {
+			towers[i].restart();
+		}
+		if (this.waves.length > 0) {
+			this.panel.greyTower();
+			var waveToStart = new Wave(this.waves.pop(), this.hero, this.countWave, this.entries); //To do : .shift instead of .pop()
+			this.currentWave = waveToStart;
+			//waveToStart.start();
+			this.startingWave.play();
+			var waveHint = new TextHint('Wave n°' + this.countWave, 300, 200, 'white', 40, 8);
+		}
 	}
-	if(this.waves.length > 0){
-		this.panel.greyTower();
-		var waveToStart = new Wave(this.waves.pop(), this.hero, this.countWave, this.entries);//To do : .shift instead of .pop()
-		this.currentWave = waveToStart;
-		//waveToStart.start();
-		this.startingWave.play();
-		var waveHint = new TextHint('Wave n°'+this.countWave, 300, 200, 'white', 40, 8);
-	}
-	
+
 };
 
 //When every monster have been killed
-Niveau.prototype.construct = function(){
+Niveau.prototype.construct = function() {
 	this.phase = "constructing";
 	var towers = game.global.towers;
-	for(var i in towers){
+	for (var i in towers) {
 		towers[i].reset();
 	}
-	if(this.countWave === 1 && this.level === 0){
+	if (this.countWave === 1 && this.level === 0) {
 		dragExample();
-		Saw.prototype.available=2;
+		Saw.prototype.available = 2;
 	}
-	if(this.countWave === 2 && this.level === 0){
+	if (this.countWave === 2 && this.level === 0) {
 		upgradeExample();
 	}
 	this.hero.monsterKilledDuringCurrentWave = 0;
 	this.hero.changeGold(250);
 	//Show all the consruction panel
-	this.panel.setTowers([Bumper,Saw]);
+	this.panel.setTowers([Bumper, Saw]);
 	this.panel.activateTower();
 };
 
-Niveau.prototype.endLevel = function(){
+Niveau.prototype.endLevel = function() {
 	if (this.waves.length === 0 && game.global.monsters.length === 0 && !game.global.currentLevel.currentWave.isRunning()) {
 		game.state.start('end');
 	}
 };
 
-Niveau.prototype.destroy = function(){
-	if(this.hero)
+Niveau.prototype.destroy = function() {
+	if (this.hero)
 		this.hero.destroy();
-	if(this.panel)
+	if (this.panel)
 		this.panel.destroy();
-	if(this.entries)
+	if (this.entries)
 		this.entries = []; //Ask Olivier about memories with entries
 	//this.waves.hero = null -> nothing to destroy ? 
 

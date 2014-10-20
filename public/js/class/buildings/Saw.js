@@ -73,6 +73,7 @@ Saw.inherits(Building);
 
 Saw.prototype.onDragStart = function(sprite, pointer) {
     //Empty for the moment
+    this.panel.isDragged = true;
     this.drag = true;
     sprite.scale.set(0.7, 0.7);
     if (this.panel) {
@@ -87,6 +88,7 @@ Saw.prototype.onDragStart = function(sprite, pointer) {
 };
 
 Saw.prototype.onDragStop = function() {
+    this.panel.isDragged = false;
     game.time.events.remove(this.check.event);
     if (this.valid && game.global.currentLevel.hero.gold >= this.cost[0] && game.global.currentLevel.phase=='constructing') {
         game.global.currentLevel.hero.changeGold(-this.cost[0]);

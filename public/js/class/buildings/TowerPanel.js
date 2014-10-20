@@ -7,6 +7,7 @@ var TowerPanel = function() {
     this.shown = [];
     this.saws = [];
     this.design;
+    this.isDragged = false;
 
     game.global.depth[4].add(this.sprite);
 };
