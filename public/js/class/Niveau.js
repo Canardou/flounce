@@ -55,6 +55,9 @@ Niveau.prototype.construct = function(){
 		dragExample();
 		Saw.prototype.available=2;
 	}
+	if(this.countWave === 2 && this.level === 0){
+		upgradeExample();
+	}
 	this.hero.monsterKilledDuringCurrentWave = 0;
 	this.hero.changeGold(250);
 	//Show all the consruction panel

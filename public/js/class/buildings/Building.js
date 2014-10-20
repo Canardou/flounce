@@ -281,8 +281,9 @@ Building.prototype.hideButtons = function() {
     }
     if (this.stats) {
         this.stats.destroy();
-        this.statsInfobox.destroy();
     }
+    if(this.statsInfobox)
+        this.statsInfobox.destroy();
 
 };
 

@@ -298,15 +298,15 @@ var level1State = {
             //Wawe 1
             [{
                 "number": 1,
-                "type": "Ghost",
-                "life": 2000,
+                "type": "Guy",
+                "life": 20,
                 "gold": 25,
                 "value": 5,
                 "strength": 5,
                 "damage": 1,
                 "entry": [0],
-                "vx": 500,
-                "vy": 30
+                "vx": 530,
+                "vy": 40
             }, {
                 "number": 9,
                 "type": "Break"
@@ -319,8 +319,8 @@ var level1State = {
                 "strength": 5,
                 "damage": 1,
                 "entry": [1],
-                "vx": 5000,
-                "vy": 1
+                "vx": 250,
+                "vy": 20
             }, {
                 "number": 1,
                 "type": "Condition"
@@ -493,6 +493,14 @@ var level1State = {
 		}, this);
 		button.scale.x = 0.4;
 		button.scale.y = 0.4;
+		
+		bumper = new Bumper({
+			base: 10,
+			max: 20
+		}, 320, 1070);
+		bumper.drag = true;
+		bumper.heatLimit = 10;
+		game.global.towers.push(bumper);
 
 		var bumper = new Bumper({
 			base: 10,
@@ -548,14 +556,6 @@ var level1State = {
 
 		game.global.currentLevel.panel.saws.push(bumper);
 		bumper.panel = game.global.currentLevel.panel;
-
-		bumper = new Bumper({
-			base: 10,
-			max: 20
-		}, 320, 1070);
-		bumper.drag = true;
-		bumper.heatLimit = 10;
-		game.global.towers.push(bumper);
 
 		game.global.unblocks = [];
 		game.global.unblocks.push(new Unblock(270, 420));
