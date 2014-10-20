@@ -345,10 +345,12 @@ Building.prototype.upgradeEffect = function() {
 };
 
 Building.prototype.hideUpgradeEffect = function() {
-    if (this.upgradeButton.infobox) {
-        this.upgradeButton.infobox.sprite.destroy();
-        this.upgradeButton.infobox.text.destroy();
-        this.upgradeButton.infobox.destroy();
-        this.upgradeButton.infobox = null;
+    if (this.upgradeButton) {
+        if (this.upgradeButton.infobox) {
+            this.upgradeButton.infobox.sprite.destroy();
+            this.upgradeButton.infobox.text.destroy();
+            this.upgradeButton.infobox.destroy();
+            this.upgradeButton.infobox = null;
+        }
     }
 };
