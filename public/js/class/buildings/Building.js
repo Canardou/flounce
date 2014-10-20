@@ -107,15 +107,15 @@ Building.prototype.onDragStop = function(sprite, pointer) {
     sprite.scale.set(0.5, 0.5);
     this.designCheck();
     this.checkValidity(false);
-    if (this.valid && game.global.currentLevel.hero.gold >= this.cost[0] && game.global.currentLevel.phase=='constructing') {
+    if (this.valid && game.global.currentLevel.hero.gold >= this.cost[0] && game.global.currentLevel.phase == 'constructing') {
         game.global.currentLevel.hero.changeGold(-this.cost[0]);
         game.global.towers.push(this);
         this.stopDrag();
         this.allowClick();
         this.allowMouseOver();
     }
-    if (!this.valid || game.global.currentLevel.phase!='constructing') {
-        if (this.stats){
+    if (!this.valid || game.global.currentLevel.phase != 'constructing') {
+        if (this.stats) {
             this.stats.destroy();
             this.statsInfobox.destroy();
         }
@@ -162,7 +162,7 @@ Building.prototype.statsTower = function() {
 
 
         //Show the stats (number of monster touched && damage dealt)
-        var stats = "Current wave: " + this.monsterHits +  "\n      Total: " + this.monsterHitsTotal;
+        var stats = "Current wave: " + this.monsterHits + "\n      Total: " + this.monsterHitsTotal;
         this.statsInfobox = game.add.sprite(this.entity.body.x - 95, this.entity.body.y + 30, 'infobox');
         this.statsInfobox.scale.y = 1;
         this.statsInfobox.scale.x = 0.7;
@@ -185,7 +185,7 @@ Building.prototype.descriptTower = function() {
     this.infobox.scale.x = 1.05;
     this.infobox.alpha = 0.9;
     this.infobox.inputEnabled = true;
-    this.infobox.events.onInputOver.add(this.HideDescriptTower,this);
+    this.infobox.events.onInputOver.add(this.HideDescriptTower, this);
     //Cost, damage, percentage of crits and description of the tower
     this.infos = this.findInfos();
     //Name of the tower
@@ -229,7 +229,7 @@ Building.prototype.deleteTower = function() {
     else {
         this.maxUpgrade.destroy();
     }
-    if (this.stats){
+    if (this.stats) {
         this.stats.destroy();
         this.statsInfobox.destroy();
     }
@@ -237,8 +237,8 @@ Building.prototype.deleteTower = function() {
     this.panel.reset();
 };
 
-Building.prototype.restart = function(){
-    this.monsterHits=0;
+Building.prototype.restart = function() {
+    this.monsterHits = 0;
 }
 
 Building.prototype.upgradeTower = function() {
@@ -261,7 +261,7 @@ Building.prototype.upgradeTower = function() {
 Building.prototype.upgrade = function() {};
 Building.prototype.findInfos = function() {};
 
-Building.prototype.hideButtons = function() {
+Building.prototype.hideButtons = function(force) {
     if (this.buttons) {
         if (this.deleteButton && !this.deleteButton.input.checkPointerOver(game.input.mousePointer)) {
             if (this.upgradeButton && !this.upgradeButton.input.checkPointerOver(game.input.mousePointer)) {
@@ -284,7 +284,7 @@ Building.prototype.hideButtons = function() {
     if (this.stats) {
         this.stats.destroy();
     }
-    if(this.statsInfobox)
+    if (this.statsInfobox)
         this.statsInfobox.destroy();
 
 };
@@ -341,10 +341,12 @@ Building.prototype.upgradeEffect = function() {
 };
 
 Building.prototype.hideUpgradeEffect = function() {
-    if (this.upgradeButton.infobox) {
-        this.upgradeButton.infobox.sprite.destroy();
-        this.upgradeButton.infobox.text.destroy();
-        this.upgradeButton.infobox.destroy();
-        this.upgradeButton.infobox = null;
+    if (this.upgradeButton) {
+        if (this.upgradeButton.infobox) {
+            this.upgradeButton.infobox.sprite.destroy();
+            this.upgradeButton.infobox.text.destroy();
+            this.upgradeButton.infobox.destroy();
+            this.upgradeButton.infobox = null;
+        }
     }
 };
