@@ -158,7 +158,7 @@ Saw.prototype.hit = function(bumper, part) {
 
                 if (entity.life > 0) {
                     //part.sprite.entity.stop();
-                    part.sprite.entity.add(-250 * cos(angle + this.direction * pi / 2),-200 * sin(angle + this.direction * pi / 2));
+                    part.sprite.entity.add(-300 * cos(angle + this.direction * pi / 2),-300 * sin(angle + this.direction * pi / 2));
                 }
             }
         }
@@ -247,7 +247,7 @@ Saw.prototype.upgrade = function() {
     this.heatLimit += 40;
     this.damage = {
                 base: 20,
-                max: 25
+                max: 30
             };
     //this.cooldown -= 5;
     /*this.size *= 1.08;
