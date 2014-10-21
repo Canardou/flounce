@@ -64,6 +64,7 @@ Hero.prototype.die = function() {
 
 Hero.prototype.getHit = function(hero, monster) {
     if (!this.dead) {
+        new TextGold(monster.x,monster.y,-monster.sprite.entity.damage);
         this.changeLife(-monster.sprite.entity.damage);
         if(monster.sprite.entity.damage >0){
             this.lifeLostPerWave[game.global.currentLevel.countWave]+= monster.sprite.entity.damage;

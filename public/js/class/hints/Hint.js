@@ -34,7 +34,7 @@ var Hint = function(text, duration, x, y, size) {
         this.text.tween = game.add.tween(this.text);
         this.text.tween.to({
             alpha: 0
-        }, lifespan, Phaser.Easing.Linear.None, true);
+        }, lifespan/10, Phaser.Easing.Linear.None, true, 0, 10, true);
         this.text.tween.onComplete.add(function() {
             this.destroy()
         }, this.text)

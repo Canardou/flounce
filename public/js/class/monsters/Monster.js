@@ -63,8 +63,9 @@ Monster.prototype.die = function() {
     this.playSound();
     if (this.isDestroy === false) {
         this.hero.monsterKilledDuringCurrentWave++;
+        new TextGold(this.body.x,this.body.y,this.gold);
         this.hero.changeGold(this.gold);
-        this.hero.changePoints(this.value * this.combo);
+        this.hero.changePoints(this.gold);
         this.destroy(false);
     }
 
