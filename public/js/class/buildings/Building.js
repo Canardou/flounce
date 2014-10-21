@@ -314,11 +314,13 @@ Building.prototype.moneyback = function() {
 };
 
 Building.prototype.hideMoneyback = function() {
-    if (this.deleteButton.infobox) {
-        this.deleteButton.infobox.sprite.destroy();
-        this.deleteButton.infobox.text.destroy();
-        this.deleteButton.infobox.destroy();
-        this.deleteButton.infobox = null;
+    if (this.deleteButton) {
+        if (this.deleteButton.infobox) {
+            this.deleteButton.infobox.sprite.destroy();
+            this.deleteButton.infobox.text.destroy();
+            this.deleteButton.infobox.destroy();
+            this.deleteButton.infobox = null;
+        }
     }
 };
 

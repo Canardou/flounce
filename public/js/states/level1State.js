@@ -426,7 +426,7 @@ var level1State = {
 
         walls.body.setCollisionGroup(game.global.playerCollisionGroup);
 
-        var infos = new InfoPanel();
+        var infoPanel = new InfoPanel();
         var dragNdropPanel = new TowerPanel();
 
         walls.body.collides(game.global.enemiesCollisionGroup);
@@ -496,7 +496,7 @@ var level1State = {
 
 
         //Begining of the level
-        game.global.currentLevel = new Niveau(waves, 20, 250, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
+        game.global.currentLevel = new Niveau(waves, 20, 250, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)],20);
 
         button = new LabelButton(game, game.world.centerX, game.world.centerY + 500, 'wood_frame', 'Click & die', game.global.currentLevel.defend, game.global.currentLevel, 'white');
         button.onInputUp.add(function() {
@@ -590,6 +590,7 @@ var level1State = {
     update: function() {
 
         if (game.global.currentLevel.phase === "defending") {
+            game.global.currentLevel.hero.addTime();
             for (var i in game.global.towers) {
                 game.global.towers[i].update();
             }

@@ -2,7 +2,7 @@
 var TextGold = function(x,y,quantity) {
 	var text="";
 	var base = 27;
-	var dividend = 20;
+	var dividend = 25;
 	if(quantity>=0){
 		text="+"+quantity;
 		this.color = "#D4AF37";
@@ -10,7 +10,7 @@ var TextGold = function(x,y,quantity) {
 	else{
 		text=""+quantity;
 		base=34;
-		dividend = 0.3;
+		dividend = 0.5;
 		this.color = "#660000";
 	}
 
@@ -21,5 +21,5 @@ var TextGold = function(x,y,quantity) {
     this.hint.style.font = this.fontSize+'px Indie Flower';
     this.hint.anchor.setTo(0.5);
     this.hint.tween = game.add.tween(this.hint);
-    this.hint.tween.to({y:y-50,alpha:0},2000, Phaser.Easing.Linear.None, true, 0).onComplete.add(function() {this.hint.destroy();;}, this);
+    this.hint.tween.to({y:y-base*2,alpha:0},2500, Phaser.Easing.Linear.None, true, 0).onComplete.add(function() {this.hint.destroy();;}, this);
 };

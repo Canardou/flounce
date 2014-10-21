@@ -7,7 +7,7 @@ var endState = {
         this.die = game.global.currentLevel.hero.dead;
 
         // Your score
-        var points = (game.global.currentLevel.hero.points + game.global.currentLevel.hero.life * 100 + game.global.currentLevel.hero.gold);
+        var points = (game.global.currentLevel.hero.points + game.global.currentLevel.hero.life * 100 + game.global.currentLevel.hero.scoreTime(game.global.currentLevel.minutes) + game.global.currentLevel.hero.gold);
 
         //Checking best score
         var data = new GameData();
@@ -43,7 +43,8 @@ var endState = {
         var details = '- Monsters Score: ' + game.global.currentLevel.hero.points +
             '\n- Life Score: ' + game.global.currentLevel.hero.life + ' x 100 = ' +
             game.global.currentLevel.hero.life * 100 +
-            '\n- Gold Remaining: ' + game.global.currentLevel.hero.gold;
+            '\n- Gold: ' + game.global.currentLevel.hero.gold +
+            '\n- Time ('+game.global.currentLevel.hero.minutes +':'+ (game.global.currentLevel.hero.seconds<10?('0'+game.global.currentLevel.hero.seconds):game.global.currentLevel.hero.seconds)  +') : ' + game.global.currentLevel.hero.scoreTime(game.global.currentLevel.minutes);
         var detailsToDestroy = game.add.text(160, 130, details, {
             font: '25px Indie Flower',
             fill: '#ffffff'

@@ -2,8 +2,9 @@
 //design and waves will be arrayObject or json files
 //design will have different constructibles types and their initial localisations
 
-var Niveau = function(waves, initialHeroLife, initialHeroGold, entries, difficulty, availableTower, design) {
+var Niveau = function(waves, initialHeroLife, initialHeroGold, entries, minutes, difficulty, availableTower, design) {
 	this.waves = waves;
+	this.minutes=minutes;
 	this.hero = new Hero(initialHeroLife, initialHeroGold);
 	this.totalOfWave = waves.length;
 	console.log("Nombre de vagues de ce niveau 1: " + this.totalOfWave);
@@ -62,6 +63,8 @@ Niveau.prototype.construct = function() {
 		var upgradeHint = new TextHint('Don\'t forget to upgrade', 320, 850, '#7AE60D', 40, 8);
 	}
 	this.hero.monsterKilledDuringCurrentWave = 0;
+	//Where is infopanel ?
+	new TextGold(this.hero.goldText.x+50,this.hero.goldText.y,250);
 	this.hero.changeGold(250);
 	//Show all the consruction panel
 	this.panel.setTowers([Bumper, Saw]);
