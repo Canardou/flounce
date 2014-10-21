@@ -33,11 +33,11 @@ var Saw = function(damage, x, y, orientation, real) {
     
     if (real){
         this.design.scale.set(this.size);
-        game.global.depth[2].add(this.design);
+        game.global.depth[6].add(this.design);
     }
     else{
         this.design.scale.set(0.5);
-        game.global.depth[5].add(this.design);
+        game.global.depth[17].add(this.design);
     }
     game.physics.p2.enableBody(this.entity);
 

@@ -51,7 +51,7 @@ var Rubick = function(x, y, life, gold, value, strength, decay, damage, hero, vx
         this.body.velocity.x = def(vx, Math.random() * 200 - 100);
         this.body.velocity.y = -def(vy, Math.random() * 100);
         chest.entity = this;
-        game.global.depth[1].add(chest);
+        game.global.depth[5].add(chest);
     }
 
     this.updateCollision();
@@ -99,6 +99,7 @@ Rubick.prototype.destroy = function(hero) {
             }, 5000, Phaser.Easing.Exponential.In, true, 0, false).onComplete.add(function() {
                 this.destroy();
             }, that);
+            game.global.depth[3].add(part);
         }
         if (this.variation < 2 && !hero) {
             var placement=[[10,10],[-10,10],[10,-10],[-10,-10]];

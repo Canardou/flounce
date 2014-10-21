@@ -121,7 +121,7 @@ var Guy = function(x, y, life, gold, value, strength, decay, damage, hero, vx, v
     
     for(var i in this.parts){
         this.parts[i].entity=this;
-        game.global.depth[1].add(this.parts[i]);
+        game.global.depth[4].add(this.parts[i]);
     }
     
     this.updateCollision();

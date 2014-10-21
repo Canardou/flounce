@@ -418,7 +418,7 @@ var level1State = {
 
         game.physics.p2.enableBody(walls);
 
-        game.global.depth[3].add(walls);
+        game.global.depth[10].add(walls);
 
         walls.body.static = true;
         walls.body.clearShapes();

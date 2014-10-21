@@ -119,6 +119,8 @@ Monster.prototype.destroy = function() {
             }, this); //Sprite must be dead before destroying it, so we must check*/
             //Remove out of bounds parts
             that.outOfBoundsKill = true;
+            game.global.depth[4].remove(that);
+            game.global.depth[3].add(that);
             //Make the parts disapear after 5 seconds, exponential fade out : slow at start
             that.tween = game.add.tween(this.parts[item]).to({
                 alpha: 0

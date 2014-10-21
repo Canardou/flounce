@@ -15,7 +15,7 @@ var Bumper = function(damage, x, y) {
     this.design = game.add.sprite(x, y, 'bumper' + this.level, 0);
     this.design.scale.set(this.size);
     this.design.anchor.setTo(0.5, 0.5);
-    game.global.depth[5].add(this.design);
+    game.global.depth[17].add(this.design);
     game.physics.p2.enableBody(this.entity);
 
     this.entity.body.setCircle(this.size * 40);
@@ -42,7 +42,7 @@ Bumper.prototype.hit = function(bumper, part) {
                 this.heat += part.sprite.entity.strength;
                 if (this.heat > this.heatLimit - 10) {
                     this.design.loadTexture('bumper' + this.level, 2);
-                    game.global.depth[5].remove(this.design);
+                    game.global.depth[17].remove(this.design);
                     game.global.depth[1].add(this.design);
                     this.overHeat = true;
                     this.heat = this.cooldown;
@@ -126,7 +126,7 @@ Bumper.prototype.decreaseHeat = function() {
         this.heat--;
         if (this.heat <= 0 && this.overHeat) {
             game.global.depth[1].remove(this.design);
-            game.global.depth[5].add(this.design);
+            game.global.depth[17].add(this.design);
             this.overHeat = false;
             this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
         }
@@ -188,7 +188,7 @@ Bumper.prototype.upgrade = function() {
 Bumper.prototype.checkValidity = function(bool) {
     if (bool) {
         this.check = game.add.sprite(this.design.x, this.design.y, 'circle');
-        game.global.depth[3].add(this.check);
+        game.global.depth[16].add(this.check);
         this.check.entity = this;
         game.physics.p2.enableBody(this.check);
         this.check.body.clearShapes();

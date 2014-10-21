@@ -15,7 +15,7 @@ var Paddle = function(damage, x, y, orientation, small, initial_angle, angle_max
      */
     var generate_paddle = function(cx, cy, img) {
         var paddle = game.add.sprite(x-cx, y-cy, img);
-        game.global.depth[4].add(paddle);
+        game.global.depth[12].add(paddle);
         paddle.pivotOffsetX = cx;
         paddle.pivotOffsetY = cy;
         game.physics.p2.enableBody(paddle);
