@@ -28,7 +28,7 @@ var endState = {
         //infobox
         var infobox = game.add.sprite(120, 80, 'infobox');
         thingToDestroy.push(infobox);
-        infobox.scale.y = 3.5;
+        infobox.scale.y = 3.7;
         infobox.scale.x = 1.2;
         infobox.alpha = 0.9;
 
@@ -104,7 +104,7 @@ var endState = {
         }, this);
 
         //More stats ?
-        var more = game.add.text(220, 240, 'More stats ?', {
+        var more = game.add.text(220, 270, 'More stats ?', {
             font: '25px Indie Flower',
             fill: '#7AE60D'
         });
