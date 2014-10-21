@@ -76,7 +76,7 @@ var level1State = {
             [{
                 "number": 5,
                 "type": "Guy",
-                "life": 70,
+                "life": 80,
                 "gold": 25,
                 "value": 12,
                 "strength": 15,
@@ -88,7 +88,7 @@ var level1State = {
             }, {
                 "number": 7,
                 "type": "Guy",
-                "life": 70,
+                "life": 80,
                 "gold": 25,
                 "value": 12,
                 "strength": 15,
@@ -103,7 +103,7 @@ var level1State = {
             }, {
                 "number": 7,
                 "type": "Guy",
-                "life": 70,
+                "life": 80,
                 "gold": 25,
                 "value": 12,
                 "strength": 15,
@@ -121,7 +121,7 @@ var level1State = {
                 "damage": 3,
                 "entry": [0]
             }, {
-                "number": 10,
+                "number": 15,
                 "type": "Break"
             }, {
                 "number": 7,
@@ -160,6 +160,18 @@ var level1State = {
                 "type": "Condition"
             }, {
                 "number": 7,
+                "type": "Guy",
+                "life": 50,
+                "gold": 25,
+                "value": 10,
+                "strength": 10,
+                "damage": 1,
+                "entry": 'all'
+            },{
+                "number": 15,
+                "type": "Break"
+            },{
+                "number": 3,
                 "type": "Guy",
                 "life": 50,
                 "gold": 25,
@@ -216,12 +228,12 @@ var level1State = {
             }, {
                 "number": 3,
                 "type": "Ghost",
-                "life": 50,
+                "life": 70,
                 "gold": 25,
                 "value": 10,
                 "strength": 10,
                 "damage": 1,
-                "entry": 'all'
+                "entry": [0,1]
             }, {
                 "number": 5,
                 "type": "Condition"
@@ -233,7 +245,7 @@ var level1State = {
                 "value": 5,
                 "strength": 7,
                 "damage": 1,
-                "entry": [0, 1]
+                "entry": 'all'
             }],
             //Wawe 4
             [{
@@ -256,7 +268,7 @@ var level1State = {
                 "value": 5,
                 "strength": 7,
                 "damage": 1,
-                "entry": [0, 1]
+                "entry": 'all'
             }],
             //Wawe 3
             [{
@@ -283,7 +295,7 @@ var level1State = {
             }],
             //Wawe 2
             [{
-                "number": 4,
+                "number": 5,
                 "type": "Guy",
                 "life": 30,
                 "gold": 25,
@@ -292,10 +304,10 @@ var level1State = {
                 "damage": 1,
                 "entry": [0, 1]
             }, {
-                "number": 10,
-                "type": "Break"
+                "number": 1,
+                "type": "Condition"
             }, {
-                "number": 4,
+                "number": 5,
                 "type": "Guy",
                 "life": 30,
                 "gold": 25,
@@ -484,7 +496,7 @@ var level1State = {
 
 
         //Begining of the level
-        game.global.currentLevel = new Niveau(waves, 25, 250, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
+        game.global.currentLevel = new Niveau(waves, 20, 250, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)]);
 
         button = new LabelButton(game, game.world.centerX, game.world.centerY + 500, 'wood_frame', 'Click & die', game.global.currentLevel.defend, game.global.currentLevel, 'white');
         button.onInputUp.add(function() {
