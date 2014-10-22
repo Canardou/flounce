@@ -17,7 +17,7 @@ var endState = {
         }
 
         //First message
-        var wonOrDie = game.add.text(110, 40, (this.die) ? 'You die...' : 'You won !!!', {
+        var wonOrDie = game.add.text(110, 40, (this.die) ? 'You died...' : 'You won!', {
             font: '50px Indie Flower',
             fill: '#ffffff'
         });
@@ -69,7 +69,7 @@ var endState = {
             game.state.start('level1');
         }, this);
 
-        var restartText = game.add.text(restartButton.x + ((this.die) ? (+70) : (+50)), restartButton.y + 20, ((this.die) ? 'Try again' : 'Wanna restart ?'), {
+        var restartText = game.add.text(restartButton.x + ((this.die) ? (+70) : (+50)), restartButton.y + 20, ((this.die) ? 'Try again' : 'Wanna restart?'), {
             font: '35px Indie Flower',
             fill: '#ffffff'
         });
@@ -104,7 +104,7 @@ var endState = {
         }, this);
 
         //More stats ?
-        var more = game.add.text(220, 270, 'More stats ?', {
+        var more = game.add.text(220, 270, 'More stats?', {
             font: '25px Indie Flower',
             fill: '#7AE60D'
         });
