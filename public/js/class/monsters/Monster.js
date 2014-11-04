@@ -1,4 +1,7 @@
 /*global game,pi,cos,sin,def,isDef,rand from utils.js*/
+/**
+ * monster base class
+ */
 var Monster = function(life, gold, value, strength, decay, damage, hero) {
     game.global.monsters.push(this);
     this.life = life;
@@ -19,7 +22,6 @@ var Monster = function(life, gold, value, strength, decay, damage, hero) {
     this.comboCounter = 0;
     this.loop = 0;
 
-    //this.loop = game.time.events.loop(Phaser.Timer.SECOND / 10, this.stopCombo, this);
 };
 
 Monster.prototype.update = function(){
@@ -43,7 +45,6 @@ Monster.prototype.stopCombo = function() {
 
 Monster.prototype.stop = function(x,y) {
     for (var item in this.parts) {
-        //this.parts[item].body.collideWorldBounds=true;
         this.parts[item].body.velocity.y = y;
         this.parts[item].body.velocity.x = x;
     }
@@ -51,7 +52,6 @@ Monster.prototype.stop = function(x,y) {
 
 Monster.prototype.add = function(x,y) {
     for (var item in this.parts) {
-        //this.parts[item].body.collideWorldBounds=true;
         this.parts[item].body.velocity.y += y;
         this.parts[item].body.velocity.x += x;
     }
@@ -112,11 +112,6 @@ Monster.prototype.destroy = function() {
             that.body.collideWorldBounds = false;
             that.checkWorldBounds = true;
 
-            /*that.events.onOutOfBounds.add(function() {
-                if (that) {
-                    that.destroy();
-                }
-            }, this); //Sprite must be dead before destroying it, so we must check*/
             //Remove out of bounds parts
             that.outOfBoundsKill = true;
             game.global.depth[4].remove(that);
@@ -138,7 +133,6 @@ Monster.prototype.destroy = function() {
 
 Monster.prototype.updateCollision = function() {
     for (var item in this.parts) {
-        //this.parts[item].body.collideWorldBounds=true;
         this.parts[item].body.setCollisionGroup(game.global.enemiesCollisionGroup);
         this.parts[item].body.collides([game.global.enemiesCollisionGroup, game.global.wallsCollisionGroup, game.global.playerCollisionGroup]);
         this.parts[item].body.setMaterial(game.global.monsterMaterial);

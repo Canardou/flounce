@@ -1,4 +1,7 @@
 /*global Monster,game,pi,cos,sin,def,isDef,rand,inh from utils.js*/
+/**
+ * Menu state
+ */
 var menuState = {
     preload: function() {},
 
@@ -102,10 +105,7 @@ var menuState = {
             "entry": [0, 1]
         }];
 
-        //var wave1 = new Wave(monstersToCreate, 1);
-        //wave1.start();
     },
     update: function() {
-        //game.global.currentWave.update();
     }
 };

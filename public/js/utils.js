@@ -6,12 +6,15 @@ var ceil = Math.ceil;
 Function.prototype.inherits = function(parent) {
 	this.prototype = Object.create(parent.prototype);
 }
+
+//To remove
 var inh = function(dst, src, crush) {
 	for (var e in src.prototype) {
 		if (!(e in dst.prototype) || crush)
 			dst.prototype[e] = src.prototype[e];
 	}
 };
+
 var isDef = function(arg) {
 	return (typeof arg !== 'undefined') ? true : false;
 };

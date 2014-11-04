@@ -1,3 +1,6 @@
+/**
+ * Generate the left panel with towers
+ */
 var TowerPanel = function() {
     this.sprite = game.add.sprite(0, 950, 'wood_frame');
     this.sprite.scale.x = 0.24;

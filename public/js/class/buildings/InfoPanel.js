@@ -1,3 +1,7 @@
+/**
+ * Icones on panels and wood frame
+ */
+
 var InfoPanel = function() {
 	this.sprite = game.add.sprite(485, 950, 'wood_frame');
 	this.sprite.scale.x = 0.24;

@@ -1,3 +1,6 @@
+/**
+ * Handle one level informations only
+ */
 var Hero = function(life, gold, printText, power) {
     this.life = def(life, 20);
     this.points = 0;
@@ -104,10 +107,6 @@ Hero.prototype.getHit = function(hero, monster) {
             this.life = 0;
             this.die();
         }
-        /*this.changeGold(-monster.sprite.entity.gold);
-        if (this.gold < 0) {
-            this.changeGold (-(this.gold));
-        }*/
     }
     monster.sprite.entity.dieWithoutGlory();
 };

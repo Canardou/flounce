@@ -1,4 +1,6 @@
-//var test=new Building({base:50,max:150});
+/**
+ * base class for all Buildings which deal damages
+ */
 var Building = function(damage, cost) {
     this.design;
     this.entity;

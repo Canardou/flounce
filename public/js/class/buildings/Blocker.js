@@ -1,3 +1,6 @@
+/**
+ * create a simple Blocker on the map
+ */
 var Blocker = function(x, y, angle){
     this.entity = game.add.sprite(x, y, 'blocker');
     game.physics.p2.enableBody(this.entity);

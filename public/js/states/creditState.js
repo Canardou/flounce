@@ -1,4 +1,8 @@
 /*global Monster,game,pi,cos,sin,def,isDef,rand,inh from utils.js*/
+/**
+ * Show the credits
+ * Should have an exit button
+ */
 var creditState = {
     preload: function() {},
 

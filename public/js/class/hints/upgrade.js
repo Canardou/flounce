@@ -1,3 +1,7 @@
+/**
+ * Animation of upgrade
+ */
+
 var upgradeExample = function() {
     var hand = game.add.sprite(game.global.width / 2, game.global.height * 2 / 3, 'hand');
     hand.alpha = 0;

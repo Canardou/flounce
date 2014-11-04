@@ -1,4 +1,7 @@
 /*global game,pi,cos,sin,def,isDef,rand from utils.js*/
+/**
+ * Text which move upward and disapear
+ */
 var TextGold = function(x,y,quantity) {
 	var text="";
 	var base = 27;

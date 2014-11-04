@@ -1,11 +1,8 @@
-/* 
- *global Phaser game
+/**
+ * Level 1
  */
 var level1State = {
     preload: function() {
-        //var button;
-        //var niveau1;
-        //var hero;
     },
 
     create: function() {
@@ -377,7 +374,6 @@ var level1State = {
         });
 
 
-        //game.physics.setBoundsToWorld(true, true, false, true, false);
         game.physics.p2.updateBoundsCollisionGroup();
 
         //Design of the level//
@@ -498,6 +494,7 @@ var level1State = {
         //Begining of the level
         game.global.currentLevel = new Niveau(waves, 20, 250, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)],20);
 
+        //!!!!!!!!!!GLOBAL TO REMOVE !!!!!!
         button = new LabelButton(game, game.world.centerX, game.world.centerY + 500, 'wood_frame', 'Click & die', game.global.currentLevel.defend, game.global.currentLevel, 'white');
         button.onInputUp.add(function() {
             if (game.global.currentLevel.countWave === 1) {

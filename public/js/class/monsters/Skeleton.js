@@ -1,4 +1,7 @@
 /*global Monster,game,pi,cos,sin,def,isDef,rand,inh from utils.js*/
+/**
+ * Skeleton : should be a guys variation
+ */
 var Skeleton = function(x, y, life, gold, value, strengh, decay, damage, hero, vx, vy, variation) {
     Monster.call(this, life, gold, value, strengh, decay, damage, hero);
     var bones = 'bone';
@@ -26,8 +29,6 @@ var Skeleton = function(x, y, life, gold, value, strengh, decay, damage, hero, v
     head.revolute.lowerLimit = -0.5;
     head.revolute.upperLimit = 0.5;
     this.constraints.push(head.revolute);
-    //head.rotation = game.physics.p2.createRotationalSpring(head, chest, 0, 5, 1);
-    //this.constraints.push(head.rotation);
     //Arms
     var left_arm = game.add.sprite(x - 4, y - 4, bones);
     this.parts.push(left_arm);

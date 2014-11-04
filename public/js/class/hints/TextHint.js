@@ -1,4 +1,7 @@
 /*global game,pi,cos,sin,def,isDef,rand from utils.js*/
+/**
+ * Text wich appear in a bubble and move slightly to catch gaze
+ */
 var TextHint = function(text, x, y, color, fontSize, duration) {
 	if(text.length > 22){
 			this.scaler = 1.5;
@@ -22,7 +25,7 @@ var TextHint = function(text, x, y, color, fontSize, duration) {
 	this.duration = def(duration, 5);
 	this.fontSize = def(fontSize, 30);
 	this.hint = game.add.text(x, y, text);
-	this.hint.style.fill = this.color;//"#FFA200"; //#1FDA9A
+	this.hint.style.fill = this.color;
     this.hint.style.font = this.fontSize+'px Indie Flower';
     this.hint.anchor.setTo(0.5);
     this.hint.lifespan = this.duration * 1000;

@@ -50,7 +50,6 @@ var maxBumpState = {
         });
 
 
-        //game.physics.setBoundsToWorld(true, true, false, true, false);
         game.physics.p2.updateBoundsCollisionGroup();
 
         //Design of the level//

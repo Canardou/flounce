@@ -1,7 +1,10 @@
 /*global Phaser game*/
 //design and waves will be arrayObject or json files
 //design will have different constructibles types and their initial localisations
-
+/**
+ * handle the creation of a level
+ * kind of the same as hero ?
+ */
 var Niveau = function(waves, initialHeroLife, initialHeroGold, entries, minutes, difficulty, availableTower, design) {
 	this.waves = waves;
 	this.minutes=minutes;
@@ -18,7 +21,6 @@ var Niveau = function(waves, initialHeroLife, initialHeroGold, entries, minutes,
 	this.panel = new TowerPanel();
 	this.startingWave = game.add.audio('startingWave');
 	this.startingWave.volume = 0.5;
-	//this.panel.setTowers([Bumper]);
 	this.panel.activateTower();
 	this.panel.greyTower();
 	this.entries = def(entries, [new Entree(100, -100), new Entree(400, -100)]);
@@ -39,7 +41,6 @@ Niveau.prototype.defend = function() {
 			this.panel.greyTower();
 			var waveToStart = new Wave(this.waves.pop(), this.hero, this.countWave, this.entries); //To do : .shift instead of .pop()
 			this.currentWave = waveToStart;
-			//waveToStart.start();
 			this.startingWave.play();
 			var waveHint = new TextHint('Wave n°' + this.countWave, 300, 200, 'white', 40, 8);
 		}
@@ -63,7 +64,6 @@ Niveau.prototype.construct = function() {
 		var upgradeHint = new TextHint('Don\'t forget to upgrade', 320, 850, '#7AE60D', 40, 8);
 	}
 	this.hero.monsterKilledDuringCurrentWave = 0;
-	//Where is infopanel ?
 	new TextGold(this.hero.goldText.x+50,this.hero.goldText.y,250);
 	this.hero.changeGold(250);
 	//Show all the consruction panel
@@ -83,7 +83,6 @@ Niveau.prototype.destroy = function() {
 	if (this.panel)
 		this.panel.destroy();
 	if (this.entries)
-		this.entries = []; //Ask Olivier about memories with entries
-	//this.waves.hero = null -> nothing to destroy ? 
+		this.entries = [];
 
 };

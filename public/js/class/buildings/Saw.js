@@ -1,3 +1,6 @@
+/**
+ * create a Saw (real or fake for panel)
+ */
 var Saw = function(damage, x, y, orientation, real) {
     Building.call(this, damage);
     this.bump1 = game.add.audio('bump1');
@@ -9,14 +12,13 @@ var Saw = function(damage, x, y, orientation, real) {
         critMult: def(damage.critMult, 2),
         critOdds: def(damage.critOdds, 0)
     };
-    
-    
+
+
 
     this.direction = 1;
     if (orientation == 'left') {
         this.direction = -1;
     }
-    //x=x+this.direction*5;
 
     this.x = x;
     this.y = y;
@@ -30,12 +32,12 @@ var Saw = function(damage, x, y, orientation, real) {
     this.design = game.add.sprite(x, y, 'saw', this.level + 1);
     this.entity = this.design;
     this.design.anchor.setTo(0.5, 0.5);
-    
-    if (real){
+
+    if (real) {
         this.design.scale.set(this.size);
         game.global.depth[6].add(this.design);
     }
-    else{
+    else {
         this.design.scale.set(0.5);
         game.global.depth[17].add(this.design);
     }
@@ -56,12 +58,11 @@ var Saw = function(damage, x, y, orientation, real) {
     this.entity.constraint.enableMotor();
     this.entity.constraint.setMotorSpeed(0);
 
-    //this.loop = game.time.events.loop(Phaser.Timer.SECOND / 10, this.decreaseHeat, this);
     this.loop = 0;
     this.animation = 0;
     this.speed = 1;
     this.cooldown = 0;
-    
+
 
     this.allowInput();
     if (real) {
@@ -72,7 +73,6 @@ var Saw = function(damage, x, y, orientation, real) {
 Saw.inherits(Building);
 
 Saw.prototype.onDragStart = function(sprite, pointer) {
-    //Empty for the moment
     this.panel.isDragged = true;
     this.drag = true;
     sprite.scale.set(0.7, 0.7);
@@ -84,15 +84,15 @@ Saw.prototype.onDragStart = function(sprite, pointer) {
     for (var i in this.panel.saws) {
         this.panel.saws[i].show();
     }
-    
+
 };
 
 Saw.prototype.onDragStop = function() {
     this.panel.isDragged = false;
     game.time.events.remove(this.check.event);
-    if (this.valid && game.global.currentLevel.hero.gold >= this.cost[0] && game.global.currentLevel.phase=='constructing') {
+    if (this.valid && game.global.currentLevel.hero.gold >= this.cost[0] && game.global.currentLevel.phase == 'constructing') {
         game.global.currentLevel.hero.changeGold(-this.cost[0]);
-        this.panel.saws=this.panel.saws.remove(this.current);
+        this.panel.saws = this.panel.saws.remove(this.current);
         game.global.towers.push(this.current);
     }
     for (var i in this.panel.saws) {
@@ -117,7 +117,6 @@ Saw.prototype.hit = function(bumper, part) {
                 var retour = this.getDamage(bumper, part);
                 var angle = Math.atan2(bumper.y - entity.body.y, bumper.x - entity.body.x);
                 if (retour.damage !== 0) {
-                    //text !
                     this.totalDamage += retour.damage;
                     this.monsterHits++;
                     this.monsterHitsTotal++;
@@ -157,8 +156,7 @@ Saw.prototype.hit = function(bumper, part) {
                 }
 
                 if (entity.life > 0) {
-                    //part.sprite.entity.stop();
-                    part.sprite.entity.add(-300 * cos(angle + this.direction * pi / 2),-300 * sin(angle + this.direction * pi / 2));
+                    part.sprite.entity.add(-300 * cos(angle + this.direction * pi / 2), -300 * sin(angle + this.direction * pi / 2));
                 }
             }
         }
@@ -196,9 +194,9 @@ Saw.prototype.deleteTower = function() {
     }
     if (this.stats)
         this.stats.destroy();
-    var that=this;
+    var that = this;
     this.panel.saws.push(that);
-    game.global.towers=game.global.towers.remove(that);
+    game.global.towers = game.global.towers.remove(that);
     this.heatLimit = 40;
     this.speed = 1;
     this.level = 0;
@@ -211,9 +209,9 @@ Saw.prototype.deleteTower = function() {
 
 Saw.prototype.decreaseHeat = function() {
     if (this.heat > 0) {
-        if (this.cooldown >= 6 / this.speed){
+        if (this.cooldown >= 6 / this.speed) {
             this.heat--;
-            this.cooldown=0;
+            this.cooldown = 0;
         }
         this.design.body.x = this.x + this.direction * this.heat / this.heatLimit * 40;
         this.entity.pivotPoint.body.x = this.x + this.direction * this.heat / this.heatLimit * 40;
@@ -246,51 +244,15 @@ Saw.prototype.upgrade = function() {
     this.speed++;
     this.heatLimit += 40;
     this.damage = {
-                base: 20,
-                max: 30
-            };
-    //this.cooldown -= 5;
-    /*this.size *= 1.08;
-    this.design.scale.set(this.size);
-    this.entity.body.setCircle(this.size * 40);
-    this.entity.body.kinematic = true;
-    this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
-    this.entity.body.collides(game.global.enemiesCollisionGroup, this.hit, this);
-    this.entity.body.collides(game.global.limbsCollisionGroup);*/
-
-    /*switch (this.level) {
-        case 1:
-            this.damage = {
-                base: 10,
-                max: 20,
-                critMult: 2,
-                critOdds: 1
-            };
-            //default
-            break;
-        case 2:
-            this.damage = {
-                base: 15,
-                max: 35,
-                critMult: 2.5,
-                critOdds: 1
-            };
-            break;
-        case 3:
-            this.damage = {
-                base: 20,
-                max: 50,
-                critMult: 3,
-                critOdds: 1
-            };
-            break;
-    }*/
+        base: 20,
+        max: 30
+    };
 };
 
 Saw.prototype.checkValidity = function(bool) {
     if (bool) {
-        this.current=null;
-        this.valid=false;
+        this.current = null;
+        this.valid = false;
         game.physics.p2.removeConstraint(this.entity.constraint);
         this.entity.constraint = null;
         this.entity.body.destroy();
@@ -300,26 +262,6 @@ Saw.prototype.checkValidity = function(bool) {
             this.designCheck();
         }, this);
     }
-    /*if (bool) {
-        this.check = game.add.sprite(this.design.x, this.design.y, 'circle');
-        game.global.depth[3].add(this.check);
-        this.check.entity = this;
-        game.physics.p2.enableBody(this.check);
-        this.check.body.clearShapes();
-        var sensorShape = this.check.body.addCircle(60);
-        sensorShape.sensor = true;
-        this.check.body.gravityScale = 0;
-        this.check.body.overlap = 0;
-        this.check.body.setCollisionGroup(game.global.playerCollisionGroup);
-        this.check.body.collides([game.global.playerCollisionGroup]);
-        game.global.sensors.push(this.check.body);
-        
-    }
-    else {
-        game.time.events.remove(this.check.event);
-        this.check.entity = null;
-        this.check.destroy();
-    }*/
 };
 
 Saw.prototype.disable = function() {
@@ -329,38 +271,25 @@ Saw.prototype.disable = function() {
 }
 
 Saw.prototype.designCheck = function() {
-    this.valid=false;
+    this.valid = false;
     if (this.entity) {
         for (var i in this.panel.saws) {
-            if (Math.sqrt((this.entity.x - this.panel.saws[i].entity.x) * (this.entity.x - this.panel.saws[i].entity.x) + (this.entity.y - this.panel.saws[i].entity.y) * (this.entity.y - this.panel.saws[i].entity.y)) < 80){
+            if (Math.sqrt((this.entity.x - this.panel.saws[i].entity.x) * (this.entity.x - this.panel.saws[i].entity.x) + (this.entity.y - this.panel.saws[i].entity.y) * (this.entity.y - this.panel.saws[i].entity.y)) < 80) {
                 this.panel.saws[i].entity.loadTexture('saw', 1);
-                this.valid=true;
-                this.current=this.panel.saws[i];
+                this.valid = true;
+                this.current = this.panel.saws[i];
             }
             else
                 this.panel.saws[i].entity.loadTexture('sawError');
         }
     }
-    /*this.check.body.reset(this.design.x, this.design.y, true);
-    if (this.check.body.overlap > 0) {
-        this.valid = false;
-        this.design.loadTexture('bumperError');
-        this.design.scale.set(this.size);
-        this.check.tint = 0xFFFFFF;
-    }
-    else {
-        this.valid = true;
-        this.design.loadTexture('bumper' + this.level, 0);
-        this.design.scale.set(this.size);
-        this.check.tint = 0x00FFFF;
-    }*/
 };
 
 Saw.prototype.restart = function() {
     this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
     this.entity.constraint.setMotorSpeed(this.direction * 5);
     this.monsterHits = 0;
-    this.loop=0;
+    this.loop = 0;
     this.animation = 0;
     if (this.blocker)
         this.blocker.destroy();
@@ -371,12 +300,7 @@ Saw.prototype.reset = function() {
     this.entity.constraint.setMotorSpeed(0);
     this.heat = 0;
     this.entity.body.setCollisionGroup(game.global.voidCollisionGroup);
-    /*this.blocker = game.add.sprite(this.x, this.y);
-    game.physics.p2.enableBody(this.blocker,true);
-    this.blocker.body.setRectangle(60,200);
-    this.blocker.body.static=true;
-    this.blocker.body.setCollisionGroup(game.global.playerCollisionGroup);*/
-    this.animation= 0;
+    this.animation = 0;
     this.loop = 0;
     this.design.body.x = this.x + this.direction * this.heat / this.heatLimit * 40;
     this.entity.pivotPoint.body.x = this.x + this.direction * this.heat / this.heatLimit * 40;

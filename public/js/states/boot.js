@@ -1,3 +1,6 @@
+/**
+ * Lboot of the game state
+ */
 var bootState = {
     preload: function() {
         // Load the image
@@ -11,7 +14,6 @@ var bootState = {
         game.scale.setScreenSize(true);
         game.stage.smoothed = false;
         // Set some game settings 
-        //game.stage.backgroundColor = '#A5A5A5';
         game.stage.backgroundColor = '#3498db';
 
         // Start the load state

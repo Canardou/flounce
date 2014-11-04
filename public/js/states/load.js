@@ -1,3 +1,6 @@
+/**
+ * Loading bar state + All assets
+ */
 var loadState = {
 	preload: function () {
 		// Add a 'loading...' label on the screen
@@ -75,6 +78,5 @@ var loadState = {
     create: function() {
 		//Start the menu
 		game.state.start('menu');
-		//game.state.start('level1');
     }
 };

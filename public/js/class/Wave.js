@@ -1,4 +1,7 @@
 /*global Monster,Guy,game,pi,cos,sin,floor,def,isDef,rand,inh from utils.js*/
+/**
+ * Handle the creation of monsters during a level
+ */
 var Wave = function(monstersToCreate, hero, number, entrees) {
 	this.monstersToCreate = monstersToCreate;
 	this.hero = hero;

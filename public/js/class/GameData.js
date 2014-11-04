@@ -1,3 +1,6 @@
+/**
+ * handle data from one game to another
+ */
 var GameData = function(){
 	this.checkCookie();
 };

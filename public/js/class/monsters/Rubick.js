@@ -1,4 +1,7 @@
 /*global Monster,game,pi,cos,sin,def,isDef,rand,inh from utils.js*/
+/**
+ * rubick boss class
+ */
 var Rubick = function(x, y, life, gold, value, strength, decay, damage, hero, vx, vy, variation) {
     Monster.call(this, life, gold, value, strength, decay, damage, hero);
     this.variation = def(variation, 0);
@@ -15,8 +18,6 @@ var Rubick = function(x, y, life, gold, value, strength, decay, damage, hero, vx
         chest.scale.set(0.3);
         game.physics.p2.enableBody(chest);
         chest.body.setRectangle(30, 30);
-        //chest.body.clearShapes();
-        //chest.body.loadPolygon('paddle_physics', 'rubick');
         this.body = chest.body;
         this.body.mass = 15;
         this.body.velocity.x = def(vx, Math.random() * 200 - 100);
@@ -30,8 +31,6 @@ var Rubick = function(x, y, life, gold, value, strength, decay, damage, hero, vx
         chest.scale.set(0.4);
         game.physics.p2.enableBody(chest);
         chest.body.setRectangle(45, 45);
-        //chest.body.clearShapes();
-        //chest.body.loadPolygon('paddle_physics', 'rubick');
         this.body = chest.body;
         this.body.mass = 20;
         this.body.velocity.x = def(vx, Math.random() * 200 - 100);

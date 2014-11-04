@@ -1,4 +1,7 @@
 /*global Monster,game,pi,cos,sin,def,isDef,rand,inh from utils.js*/
+/**
+ * Guy class
+ */
 var Guy = function(x, y, life, gold, value, strength, decay, damage, hero, vx, vy) {
     Monster.call(this, life, gold, value, strength, decay, damage, hero);
 
@@ -28,8 +31,6 @@ var Guy = function(x, y, life, gold, value, strength, decay, damage, hero, vx, v
     head.revolute.lowerLimit = -0.5;
     head.revolute.upperLimit = 0.5;
     this.constraints.push(head.revolute);
-    //head.rotation = game.physics.p2.createRotationalSpring(head, chest, 0, 5, 1);
-    //this.constraints.push(head.rotation);
     //Arms
     var left_arm = game.add.sprite(x - 4, y - 4, 'guy_arm');
     this.parts.push(left_arm);

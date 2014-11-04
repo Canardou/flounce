@@ -1,3 +1,6 @@
+/**
+ * handle entrances ?
+ */
 var Entree = function(x, y, minWave) {
     this.x = x;
     this.y = y;

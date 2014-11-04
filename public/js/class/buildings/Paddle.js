@@ -1,4 +1,8 @@
 /*global game,pi,cos,sin,def,isDef,rand from utils.js*/
+/**
+ * create a paddle on the game
+ * Should even handle key ?
+ */
 var Paddle = function(damage, x, y, orientation, small, initial_angle, angle_max, speed) {
     //Building.call(this,damage);
     //Constants and functions
@@ -9,9 +13,6 @@ var Paddle = function(damage, x, y, orientation, small, initial_angle, angle_max
     this.sound.volume = 0.3;
     /**
      * Generate the base of paddle, without the body physics
-     * @param cx pivot point x
-     * @param cy pivot point y
-     * @param img sprite reference
      */
     var generate_paddle = function(cx, cy, img) {
         var paddle = game.add.sprite(x-cx, y-cy, img);

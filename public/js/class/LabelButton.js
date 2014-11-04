@@ -1,3 +1,6 @@
+/**
+ * create the Next wave button
+ */
 var LabelButton = function(game, x, y, key, label, callback,
                        callbackContext, labelColor, font, overFrame, outFrame, downFrame, upFrame){
     Phaser.Button.call(this, game, x, y, key, callback,

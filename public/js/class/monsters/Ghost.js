@@ -1,4 +1,7 @@
 /*global Monster,game,pi,cos,sin,def,isDef,rand,inh from utils.js*/
+/**
+ * Ghost class
+ */
 var Ghost = function(x, y, life, gold, value, strength, decay, damage, hero, vx, vy) {
     Monster.call(this, life, gold, value, strength, decay, damage, hero);
 
@@ -26,8 +29,6 @@ var Ghost = function(x, y, life, gold, value, strength, decay, damage, hero, vx,
     chest.revolute.upperLimit = 0.5;
     chest.body.mass = 4;
     this.constraints.push(chest.revolute);
-    //head.rotation = game.physics.p2.createRotationalSpring(head, chest, 0, 5, 1);
-    //this.constraints.push(head.rotation);
     //Arms
     var chest2 = game.add.sprite(x, y - 24, 'ghost2');
     this.parts.push(chest2);
@@ -91,11 +92,6 @@ Ghost.prototype.remove = function(ghost) {
             that.body.collideWorldBounds = false;
             that.checkWorldBounds = true;
 
-            /*that.events.onOutOfBounds.add(function() {
-                if (that) {
-                    that.destroy();
-                }
-            }, this); //Sprite must be dead before destroying it, so we must check*/
             //Remove out of bounds parts
             that.outOfBoundsKill = true;
             //Make the parts disapear after 5 seconds, exponential fade out : slow at start

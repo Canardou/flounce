@@ -1,3 +1,7 @@
+/**
+ * Bumper class
+ */
+
 var Bumper = function(damage, x, y) {
     Building.call(this, damage);
     this.bump1 = game.add.audio('bump1');

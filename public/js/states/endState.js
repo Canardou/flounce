@@ -1,4 +1,7 @@
 /*global Phaser game*/
+/**
+ * Show score at the end of the waves or when the game is lost
+ */
 var endState = {
     create: function() {
         //Handling all the sprite/text to destroy at the end of this state
