@@ -56,7 +56,7 @@ var Rubick = function(x, y, life, gold, value, strength, decay, damage, hero, vx
     this.updateCollision();
 };
 
-inh(Rubick, Monster);
+Rubick.inherits(Monster);
 
 Rubick.prototype.getHit = function(damage) {
     if (!this.dead) {

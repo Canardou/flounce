@@ -128,6 +128,8 @@ var Guy = function(x, y, life, gold, value, strength, decay, damage, hero, vx, v
     this.updateCollision();
 };
 
+Guy.inherits(Monster);
+
 Guy.prototype.playSound = function() {
     var soundNumber = floor(rand(3,1));
 
@@ -140,5 +142,3 @@ Guy.prototype.playSound = function() {
             break;
     }
 };
-
-inh(Guy, Monster);

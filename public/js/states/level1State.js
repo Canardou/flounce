@@ -27,7 +27,7 @@ var level1State = {
         game.global.towers = [];
         game.global.monsters = [];
 
-        var waves = [ //To invert order go to Niveau.js lign 35
+        var waves = [ //To invert order go to Level.js lign 35
             //Wave 10
             [{
                 "type": "Blockers",
@@ -492,7 +492,7 @@ var level1State = {
 
 
         //Begining of the level
-        game.global.currentLevel = new Niveau(waves, 20, 250, [new Entree(100, -100), new Entree(400, -100), new Entree(0, 280)],20);
+        game.global.currentLevel = new Level(waves, 20, 250, [new Entrance(100, -100), new Entrance(400, -100), new Entrance(0, 280)],20);
 
         //!!!!!!!!!!GLOBAL TO REMOVE !!!!!!
         button = new LabelButton(game, game.world.centerX, game.world.centerY + 500, 'wood_frame', 'Click & die', game.global.currentLevel.defend, game.global.currentLevel, 'white');

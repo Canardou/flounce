@@ -52,7 +52,7 @@ var Ghost = function(x, y, life, gold, value, strength, decay, damage, hero, vx,
     this.updateCollision();
 };
 
-inh(Ghost, Monster);
+Ghost.inherits(Monster);
 
 Ghost.prototype.destroy = function() {
     var ghost = this;

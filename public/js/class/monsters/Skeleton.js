@@ -126,4 +126,4 @@ var Skeleton = function(x, y, life, gold, value, strengh, decay, damage, hero, v
     this.updateCollision();
 };
 
-inh(Skeleton, Monster);
+Skeleton.inherits(Monster);

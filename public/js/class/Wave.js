@@ -2,13 +2,13 @@
 /**
  * Handle the creation of monsters during a level
  */
-var Wave = function(monstersToCreate, hero, number, entrees) {
+var Wave = function(monstersToCreate, hero, number, Entrances) {
 	this.monstersToCreate = monstersToCreate;
 	this.hero = hero;
 	this.number = number;
 	this.end = false;
 	this.hero = hero;
-	this.entrees = def(entrees, [new Entree(100, -100), new Entree(400, -100)]);
+	this.Entrances = def(Entrances, [new Entrance(100, -100), new Entrance(400, -100)]);
 	this.loop = 0;
 };
 
@@ -48,35 +48,35 @@ Wave.prototype.update = function() {
 };
 
 Wave.prototype.popMonster = function(toSummon) {
-	var entreeToUse;
+	var EntranceToUse;
 	if (toSummon.entry) {
 		if (toSummon.entry === 'all') {
-			entreeToUse = floor(rand(this.entrees.length, 0));
+			EntranceToUse = floor(rand(this.Entrances.length, 0));
 		}
 		else {
-			entreeToUse = toSummon.entry[floor(rand(toSummon.entry.length, 0))];
+			EntranceToUse = toSummon.entry[floor(rand(toSummon.entry.length, 0))];
 		}
 	}
 
 	var aliveMonster;
 	var weigth = 1; //+(this.number/10);
 	if (toSummon.type === "Guy") {
-		aliveMonster = new Guy(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y, toSummon.life * weigth, toSummon.gold * weigth, toSummon.value * weigth, toSummon.strength, false, toSummon.damage, this.hero, toSummon.vx, toSummon.vy);
+		aliveMonster = new Guy(this.Entrances[EntranceToUse].x, this.Entrances[EntranceToUse].y, toSummon.life * weigth, toSummon.gold * weigth, toSummon.value * weigth, toSummon.strength, false, toSummon.damage, this.hero, toSummon.vx, toSummon.vy);
 	}
 	else if (toSummon.type === "Skeleton") {
-		aliveMonster = new Skeleton(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y, toSummon.life * weigth, toSummon.gold * weigth, toSummon.value * weigth, toSummon.strength, false, toSummon.damage, this.hero, toSummon.vx, toSummon.vy);
+		aliveMonster = new Skeleton(this.Entrances[EntranceToUse].x, this.Entrances[EntranceToUse].y, toSummon.life * weigth, toSummon.gold * weigth, toSummon.value * weigth, toSummon.strength, false, toSummon.damage, this.hero, toSummon.vx, toSummon.vy);
 	}
 	else if (toSummon.type === "Rubick") {
-		aliveMonster = new Rubick(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y, toSummon.life * weigth, toSummon.gold * weigth, toSummon.value * weigth, toSummon.strength, false, toSummon.damage, this.hero, toSummon.vx, toSummon.vy);
+		aliveMonster = new Rubick(this.Entrances[EntranceToUse].x, this.Entrances[EntranceToUse].y, toSummon.life * weigth, toSummon.gold * weigth, toSummon.value * weigth, toSummon.strength, false, toSummon.damage, this.hero, toSummon.vx, toSummon.vy);
 	}
 	else if (toSummon.type === "Charlie") {
-		aliveMonster = new Skeleton(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y, toSummon.life * weigth, toSummon.gold * weigth, toSummon.value * weigth, toSummon.strength, false, toSummon.damage, this.hero, toSummon.vx, toSummon.vy, 1);
+		aliveMonster = new Skeleton(this.Entrances[EntranceToUse].x, this.Entrances[EntranceToUse].y, toSummon.life * weigth, toSummon.gold * weigth, toSummon.value * weigth, toSummon.strength, false, toSummon.damage, this.hero, toSummon.vx, toSummon.vy, 1);
 	}
 	else if (toSummon.type === "Ghost") {
-		aliveMonster = new Ghost(this.entrees[entreeToUse].x, this.entrees[entreeToUse].y, toSummon.life * weigth, toSummon.gold * weigth, toSummon.value * weigth, toSummon.strength, false, toSummon.damage, this.hero, toSummon.vx, toSummon.vy, 1);
+		aliveMonster = new Ghost(this.Entrances[EntranceToUse].x, this.Entrances[EntranceToUse].y, toSummon.life * weigth, toSummon.gold * weigth, toSummon.value * weigth, toSummon.strength, false, toSummon.damage, this.hero, toSummon.vx, toSummon.vy, 1);
 	}
 	/*else { //banan ;)
-		aliveMonster = new Banan(life * weigth, gold * weigth, value * weigth, strength, entreeToUse);  
+		aliveMonster = new Banan(life * weigth, gold * weigth, value * weigth, strength, EntranceToUse);  
 	}*/
 };
 

@@ -20,7 +20,7 @@ TowerPanel.prototype.setTowers = function(towers) {
     this.towers = towers;
 };
 
-TowerPanel.prototype.activateTower = function() { // A lancer dans Niveau.js ligne 46
+TowerPanel.prototype.reset = function() {
     if (this.shown) {
         while (this.shown.length > 0) {
             var tower = this.shown.pop();
@@ -53,10 +53,6 @@ TowerPanel.prototype.activateTower = function() { // A lancer dans Niveau.js lig
 
     if (game.global.currentLevel && game.global.currentLevel.countWave === 1)
         var showGold = new TextHint('Oh my Gold !', 400, 1045, '#E8B71A');
-};
-
-TowerPanel.prototype.reset = function() {
-    this.activateTower();
 };
 
 TowerPanel.prototype.greyTower = function() {
