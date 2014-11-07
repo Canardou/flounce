@@ -1,15 +1,15 @@
 Depth
 0 Background
-1 Deactivated bumpers
-2 Blockers, Princess, etc
-3 Parts
-4 Guys
-5 Rubicks
+1 Deactivated bumpers (Background active objects)
+2 Blockers, Princess, etc (Background object)
+3 Parts (Parts)
+4 Guys (Monster)
+5 Rubicks (Boss)
 6 Saw
 7
 8
 9
-10 Walls
+10 Walls (Foreground)
 11
 12 Paddle
 13
@@ -19,20 +19,3 @@ Depth
 17 Bumpers, Fake saw
 18
 19
-
-Names/Methods
-
-reset :
-Remise à 0 de l'objet
-restart :
-
-update :
-Each frame function
-upgrade :
-
-kill :
-Pre-function to die
-die :
-Function to kill the object (before destroy mostly)
-destroy :
-Memory free

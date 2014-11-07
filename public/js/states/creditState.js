@@ -96,8 +96,17 @@ var creditState = {
         creditText.tween3Bis = game.add.tween(creditText).to({
             alpha: 0
         }, 4000, Phaser.Easing.Linear.None, false)
-
+        
         creditText.tween3Bis.onComplete.add(function() {
+            creditText.setText('     Additional credits \nhttp://icons8.com/license/');
+            creditText.tween3Credit.start();
+        }, this);
+        
+        creditText.tween3Credit = game.add.tween(creditText).to({
+            alpha: 1
+        }, 4000, Phaser.Easing.Linear.None, false);
+
+        creditText.tween3Credit.onComplete.add(function() {
             creditText.setText('        Thanks\n  for kidnapping me !!\n#StockhlomSyndrome');
             //creditText.fontSize = 30;
             creditText.tween4.start();
