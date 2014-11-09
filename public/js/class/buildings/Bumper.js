@@ -2,8 +2,8 @@
  * Bumper class
  */
 
-var Bumper = function(damage, x, y) {
-    Building.call(this, damage);
+var Bumper = function(x, y) {
+    Building.call(this);
     this.bump1 = game.add.audio('bump1');
     this.bump2 = game.add.audio('bump2');
     this.levelMax = 3;
@@ -14,6 +14,8 @@ var Bumper = function(damage, x, y) {
     this.overHeat = false;
     this.cost = [300, 325, 350, 375];
     this.size = 0.5;
+    this.damage.base = 10;
+    this.damage.max = 20;
 
     this.entity = game.add.sprite(x, y);
     this.design = game.add.sprite(x, y, 'bumper' + this.level, 0);
@@ -51,7 +53,8 @@ Bumper.prototype.hit = function(bumper, part) {
                     this.overHeat = true;
                     this.heat = this.cooldown;
                     this.entity.body.setCollisionGroup(game.global.voidCollisionGroup);
-                } else if (this.heat > this.heatLimit / 2 - 10 && this.heat != 0)
+                }
+                else if (this.heat > this.heatLimit / 2 - 10 && this.heat != 0)
                     this.design.loadTexture('bumper' + this.level, 1);
                 var retour = this.getDamage(bumper, part);
                 var angle = Math.atan2(bumper.y - entity.body.y, bumper.x - entity.body.x);
@@ -207,7 +210,8 @@ Bumper.prototype.checkValidity = function(bool) {
             this.designCheck();
             //this.check.body.angularVelocity = 1;
         }, this);
-    } else {
+    }
+    else {
         game.time.events.remove(this.check.event);
         this.check.entity = null;
         this.check.destroy();
@@ -221,7 +225,8 @@ Bumper.prototype.designCheck = function() {
         this.design.loadTexture('bumperError');
         this.design.scale.set(this.size);
         this.check.tint = 0xFFFFFF;
-    } else {
+    }
+    else {
         this.valid = true;
         this.design.loadTexture('bumper' + this.level, 0);
         this.design.scale.set(this.size);

@@ -508,65 +508,41 @@ var level1State = {
         button.scale.x = 0.4;
         button.scale.y = 0.4;
 
-        bumper = new Bumper({
-            base: 10,
-            max: 20
-        }, 320, 1070);
+        bumper = new Bumper(320, 1070);
         bumper.drag = true;
         bumper.heatLimit = 10;
         game.global.towers.push(bumper);
 
-        var bumper = new Bumper({
-            base: 10,
-            max: 20
-        }, 155, 650);
+        var bumper = new Bumper(155, 650);
         game.global.towers.push(bumper);
         bumper.panel = game.global.currentLevel.panel;
 
-        bumper = new Bumper({
-            base: 10,
-            max: 20
-        }, 420, 550);
+        bumper = new Bumper(420, 550);
 
         game.global.towers.push(bumper);
         bumper.panel = game.global.currentLevel.panel;
 
-        bumper = new Saw({
-            base: 10,
-            max: 20
-        }, 540, 200, 'right', true);
+        bumper = new Saw(540, 200, 'right', true);
 
         game.global.currentLevel.panel.saws.push(bumper);
         bumper.panel = game.global.currentLevel.panel;
 
-        bumper = new Saw({
-            base: 10,
-            max: 20
-        }, 80, 480, 'left', true);
+        bumper = new Saw(80, 480, 'left', true);
 
         game.global.currentLevel.panel.saws.push(bumper);
         bumper.panel = game.global.currentLevel.panel;
 
-        bumper = new Saw({
-            base: 10,
-            max: 20
-        }, 600, 420, 'right', true);
+        bumper = new Saw(600, 420, 'right', true);
 
         game.global.currentLevel.panel.saws.push(bumper);
         bumper.panel = game.global.currentLevel.panel;
 
-        bumper = new Saw({
-            base: 10,
-            max: 20
-        }, 600, 620, 'right', true);
+        bumper = new Saw(600, 620, 'right', true);
 
         game.global.currentLevel.panel.saws.push(bumper);
         bumper.panel = game.global.currentLevel.panel;
 
-        bumper = new Saw({
-            base: 10,
-            max: 20
-        }, 80, 210, 'left', true);
+        bumper = new Saw(80, 210, 'left', true);
 
         game.global.currentLevel.panel.saws.push(bumper);
         bumper.panel = game.global.currentLevel.panel;

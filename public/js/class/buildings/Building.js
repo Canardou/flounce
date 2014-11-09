@@ -1,14 +1,14 @@
 /**
  * base class for all Buildings which deal damages
  */
-var Building = function(damage, cost) {
+var Building = function() {
     this.design;
     this.entity;
     this.damage = {
-        base: def(damage.base, 0),
-        max: def(damage.max, 0),
-        critMult: def(damage.critMult, 2),
-        critOdds: def(damage.critOdds, 0)
+        base: 0,
+        max: 0,
+        critMult: 0,
+        critOdds: 0
     };
     this.level = 0;
     this.levelMax = 0;
@@ -29,12 +29,12 @@ Building.prototype.available = 0;
 Building.prototype.getDamage = function(body1, body2) {
     if (rand(100, 0) < this.damage.critOdds)
         return {
-            damage: floor(this.damage.max * rand(this.damage.critMult, 1)),
+            damage: floor(1 + this.damage.max * rand(this.damage.critMult, 1)),
             crit: true
         };
     else
         return {
-            damage: floor(rand(this.damage.max, this.damage.base)),
+            damage: floor(1 + rand(this.damage.max, this.damage.base)),
             crit: false
         };
 };

@@ -31,10 +31,7 @@ TowerPanel.prototype.reset = function() {
     }
     for (var i = 0; i < this.towers.length; i++) {
 
-        var tower = new this.towers[i]({
-            base: 10,
-            max: 20
-        }, 70, 1000 + (i * 75));
+        var tower = new this.towers[i](70, 1000 + (i * 75));
         this.shown.push(tower);
         tower.drag = true;
         if (tower.available < game.global.currentLevel.countWave && game.global.currentLevel && game.global.currentLevel.hero.gold >= tower.cost[0] && game.global.currentLevel.phase=='constructing') {

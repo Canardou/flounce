@@ -1,17 +1,13 @@
 /**
  * create a Saw (real or fake for panel)
  */
-var Saw = function(damage, x, y, orientation, real) {
-    Building.call(this, damage);
+var Saw = function(x, y, orientation, real) {
+    Building.call(this);
     this.bump1 = game.add.audio('bump1');
     this.bump2 = game.add.audio('bump2');
     this.levelMax = 1;
-    this.damage = {
-        base: 15,
-        max: 20,
-        critMult: def(damage.critMult, 2),
-        critOdds: def(damage.critOdds, 0)
-    };
+    this.damage.base = 15;
+    this.damage.max = 20;
 
 
 
