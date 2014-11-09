@@ -7,19 +7,55 @@ var creditState = {
     preload: function() {},
 
     create: function() {
-        //Handling all the sprite/text to destroy at the end of this state
+
+        var text = [
+            ['A game made by...'],
+            ['Olivier Hachette\n       &&\n Simon Robain'],
+            ['     For TDDD23\nat Linköping University'],
+            ['     Additional credits \n          icons8.com'],
+            ['        Thanks\n  for kidnapping me !!\n#StockhlomSyndrome']
+        ];
+
+        var exit = function() {
+            for (var i in thingToDestroy) {
+                thingToDestroy[i].destroy();
+            }
+            game.state.start('menu');
+        }
+
+        var nextText = function() {
+                creditText.setText(text.shift());
+                creditText.tween = game.add.tween(creditText).to({
+                    alpha: 1
+                }, 4000, Phaser.Easing.Linear.None, true);
+
+                creditText.tween.onComplete.add(function() {
+                    creditText.tweenBis.start();
+                }, this);
+
+                creditText.tweenBis = game.add.tween(creditText).to({
+                    alpha: 0
+                }, 4000, Phaser.Easing.Linear.None, false);
+
+                creditText.tweenBis.onComplete.add(function() {
+                    if (text.length > 0)
+                        nextText();
+                    else
+                        exit();
+                }, this);
+            }
+            //Handling all the sprite/text to destroy at the end of this state
         var thingToDestroy = [];
 
-
         //Flounce a flipper that bounce
-        var flipperText = game.add.text(game.world.centerX, 100, 'Flounce, a flipper that ', {
+        var flipperText = game.add.text(game.world.centerX, 100, 'Flounce, a flipper which ', {
             font: '50px Indie Flower',
             fill: '#ffffff'
         });
         flipperText.anchor.setTo(0.5, 0.5);
         thingToDestroy.push(flipperText);
 
-        var bounce = game.add.text(game.world.centerX, 140, 'bounces', {
+        var bounce = game.add.text(game.world.centerX, 140, 'bounces!', {
             font: '50px Indie Flower',
             fill: '#ffffff'
         });
@@ -28,8 +64,8 @@ var creditState = {
 
         bounce.tween = game.add.tween(bounce).to({
             y: 150
-        }, 400, Phaser.Easing.Bounce.None, true, 0, true);
-        bounce.tween.loop();
+        }, 400, Phaser.Easing.Linear.None, false, 0, 5, true);
+        bounce.tween.start();
 
         //Princess :D
         var bigPrincess = game.add.sprite(100, 550, 'bigPrincess');
@@ -43,7 +79,7 @@ var creditState = {
         infobox.alpha = 0.94
 
         //The huge message that Tweeeeen Sorry it is 6:00am...
-        var creditText = game.add.text(infobox.x + 200, infobox.y + 100, 'A game made by...', {
+        var creditText = game.add.text(infobox.x + 200, infobox.y + 100, '', {
             font: '40px Indie Flower',
             fill: '#ffffff'
         });
@@ -51,84 +87,12 @@ var creditState = {
         creditText.alpha = 0;
         thingToDestroy.push(creditText);
 
-        creditText.tween = game.add.tween(creditText).to({
-            alpha: 1
-        }, 4000, Phaser.Easing.Linear.None, true);
+        var key_esc = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
+        key_esc.onDown.add(function() {
+            exit();
+        });
 
-        creditText.tween.onComplete.add(function() {
-            creditText.tweenBis.start();
-        }, this);
-
-        creditText.tweenBis = game.add.tween(creditText).to({
-            alpha: 0
-        }, 4000, Phaser.Easing.Linear.None, false);
-
-        creditText.tweenBis.onComplete.add(function() {
-            creditText.setText('Olivier Hachette\n       &&\n Simon Robain');
-            creditText.tween2.start();
-        }, this);
-
-        creditText.tween2 = game.add.tween(creditText).to({
-            alpha: 1
-        }, 4000, Phaser.Easing.Linear.None, false);
-
-        creditText.tween2.onComplete.add(function() {
-            creditText.tween2Bis.start();
-        }, this);
-
-        creditText.tween2Bis = game.add.tween(creditText).to({
-            alpha: 0
-        }, 4000, Phaser.Easing.Linear.None, false);
-
-        creditText.tween2Bis.onComplete.add(function() {
-            creditText.setText('     For TDDD23\nat Linköping University');
-            creditText.tween3.start();
-        }, this);
-
-        creditText.tween3 = game.add.tween(creditText).to({
-            alpha: 1
-        }, 4000, Phaser.Easing.Linear.None, false);
-
-        creditText.tween3.onComplete.add(function() {
-            creditText.tween3Bis.start();
-        }, this);
-
-        creditText.tween3Bis = game.add.tween(creditText).to({
-            alpha: 0
-        }, 4000, Phaser.Easing.Linear.None, false)
-        
-        creditText.tween3Bis.onComplete.add(function() {
-            creditText.setText('     Additional credits \nhttp://icons8.com/license/');
-            creditText.tween3Credit.start();
-        }, this);
-        
-        creditText.tween3Credit = game.add.tween(creditText).to({
-            alpha: 1
-        }, 4000, Phaser.Easing.Linear.None, false);
-
-        creditText.tween3Credit.onComplete.add(function() {
-            creditText.setText('        Thanks\n  for kidnapping me !!\n#StockhlomSyndrome');
-            //creditText.fontSize = 30;
-            creditText.tween4.start();
-        }, this);
-
-        creditText.tween4 = game.add.tween(creditText).to({
-            alpha: 1
-        }, 4000, Phaser.Easing.Linear.None, false);
-
-        creditText.tween4.onComplete.add(function() {
-            creditText.tween4Bis.start();
-        }, this);
-
-        creditText.tween4Bis = game.add.tween(creditText).to({
-            alpha: 0
-        }, 4000, Phaser.Easing.Linear.None, false);
-
-        creditText.tween4Bis.onComplete.add(function() {
-            game.state.start('menu');
-        }, this);;
-
-
+        nextText();
     },
     update: function() {}
 };
