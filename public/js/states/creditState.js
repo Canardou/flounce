@@ -9,11 +9,11 @@ var creditState = {
     create: function() {
 
         var text = [
-            ['A game made by...'],
-            ['Olivier Hachette\n       &&\n Simon Robain'],
-            ['     For TDDD23\nat Linköping University'],
-            ['     Additional credits \n          icons8.com'],
-            ['        Thanks\n  for kidnapping me !!\n#StockhlomSyndrome']
+            'A game made by...',
+            'Olivier Hachette\n       &&\n Simon Robain',
+            '     For TDDD23\nat Linköping University',
+            '     Additional credits \n          icons8.com',
+            '        Thanks\n  for kidnapping me !!\n#StockhlomSyndrome'
         ];
 
         var exit = function() {
