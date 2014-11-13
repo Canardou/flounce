@@ -25,7 +25,7 @@ var menuState = {
         game.global.monsters = [];
         game.physics.p2.updateBoundsCollisionGroup();
 
-        var her = new Hero(20000, 1, false);
+        //var her = new Hero(20000, 1, false);
         //GameData
         var data = new GameData();
 

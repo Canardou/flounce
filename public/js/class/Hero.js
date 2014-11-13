@@ -21,6 +21,11 @@ var Hero = function(life, gold, printText, power) {
     this.entity = game.add.sprite(game.global.width / 2, game.global.height - (1138 - height) / 2);
     game.physics.p2.enableBody(this.entity);
     this.entity.body.setRectangle(640, 1138 - height);
+    
+    this.upperLimit = game.add.sprite(320,-30);
+    game.physics.p2.enableBody(this.upperLimit,true);
+    this.upperLimit.body.kinematic = true;
+    this.setUpperLimit(true);
 
     this.entity.body.setCollisionGroup(game.global.playerCollisionGroup);
     this.entity.body.collides(game.global.enemiesCollisionGroup, this.getHit, this);
@@ -186,3 +191,15 @@ Hero.prototype.destroy = function() {
         this.goldText.destroy();
     }
 };
+
+Hero.prototype.setUpperLimit=function(bool){
+    if(bool){
+        this.upperLimit.body.setRectangle(640, 60);
+        this.upperLimit.body.setCollisionGroup(game.global.playerCollisionGroup);
+        this.upperLimit.body.collides(game.global.checkCollisionGroup);
+        this.upperLimit.body.collides(game.global.enemiesCollisionGroup);
+    }
+    else {
+        this.upperLimit.body.clearShapes();
+    }
+}

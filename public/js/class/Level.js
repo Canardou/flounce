@@ -31,6 +31,7 @@ var Level = function(waves, initialHeroLife, initialHeroGold, entries, minutes, 
 Level.prototype.defend = function() {
 	if (this.panel.isDragged == false) {
 		this.phase = "defending";
+		this.hero.setUpperLimit(false);
 		this.countWave++;
 		this.hero.lifeLostPerWave[this.countWave] = 0;
 		var towers = game.global.towers;
@@ -51,6 +52,7 @@ Level.prototype.defend = function() {
 //When every monster have been killed
 Level.prototype.construct = function() {
 	this.phase = "constructing";
+	this.hero.setUpperLimit(true);
 	var towers = game.global.towers;
 	for (var i in towers) {
 		towers[i].reset();
