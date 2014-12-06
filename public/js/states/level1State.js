@@ -467,6 +467,47 @@ var level1State = {
             paddle_left.down();
         });
 
+        game.input.onDown.add(function(pointer) {
+            var PointX = game.input.activePointer.position.x;
+            if(PointX<320)
+                paddle_left.up();
+            else
+                paddle_right.up();
+        });
+        
+        game.input.onUp.add(function(pointer) {
+            var firstPointX = game.input.activePointer.positionDown.x;
+            var firstPointY = game.input.activePointer.positionDown.y;
+            
+            var lastPointX = game.input.activePointer.position.x;
+            var lastPointY = game.input.activePointer.position.y;
+            
+            if(Phaser.Point.distance(game.input.activePointer.position, game.input.activePointer.positionDown) > 150 && game.input.activePointer.duration > 100 && game.input.activePointer.duration < 250)
+            {
+                if(firstPointX-lastPointX<0){
+                    for (var i in game.global.monsters)
+                        game.global.monsters[i].add(300,0);
+                }
+                else {
+                    for (var i in game.global.monsters)
+                        game.global.monsters[i].add(-300,0);
+                }
+                
+            }
+            if(firstPointX<320)
+                paddle_left.down();
+            else
+                paddle_right.down();
+            /*if(swipeCoordX2 < swipeCoordX - swipeMinDistance){
+                console.log("left");
+            }else if(swipeCoordX2 > swipeCoordX + swipeMinDistance){
+                console.log("right");
+            }else if(swipeCoordY2 < swipeCoordY - swipeMinDistance){
+                console.log("up");
+            }else if(swipeCoordY2 > swipeCoordY + swipeMinDistance){
+                console.log("down");
+            }*/
+        }, this);      
 
         key_M.onUp.add(function() {
             for (var i in game.global.monsters) {
